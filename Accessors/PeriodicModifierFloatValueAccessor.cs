@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace UnityAnimationModifiers.Accessors
+namespace dninosores.UnityAnimationModifiers.Accessors
 {
 	[Serializable]
 	public class PeriodicModifierFloatValueAccessor : ValueAccessor<float>
@@ -21,15 +21,15 @@ namespace UnityAnimationModifiers.Accessors
 		{
 			switch (valueType)
 			{
-				case (ValueType.Intensity):
+				case ValueType.Intensity:
 					return modifier.intensity;
-				case (ValueType.Amplitude):
+				case ValueType.Amplitude:
 					return modifier.amplitude;
-				case (ValueType.Frequency):
+				case ValueType.Frequency:
 					return modifier.frequency;
-				case (ValueType.PhaseShift):
+				case ValueType.PhaseShift:
 					return modifier.phaseShift;
-				case (ValueType.VerticalShift):
+				case ValueType.VerticalShift:
 					return modifier.verticalShift;
 				default:
 					throw new NotImplementedException("No case found for ValueType " + valueType);
@@ -41,19 +41,19 @@ namespace UnityAnimationModifiers.Accessors
 		{
 			switch (valueType)
 			{
-				case (ValueType.Intensity):
+				case ValueType.Intensity:
 					modifier.intensity = value;
 					break;
-				case (ValueType.Amplitude):
+				case ValueType.Amplitude:
 					modifier.amplitude = value;
 					break;
-				case (ValueType.Frequency):
+				case ValueType.Frequency:
 					modifier.frequency = value;
 					break;
-				case (ValueType.PhaseShift):
+				case ValueType.PhaseShift:
 					modifier.phaseShift = value;
 					break;
-				case (ValueType.VerticalShift):
+				case ValueType.VerticalShift:
 					modifier.verticalShift = value;
 					break;
 				default:

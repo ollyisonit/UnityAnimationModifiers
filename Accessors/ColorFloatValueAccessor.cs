@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace UnityAnimationModifiers.Accessors
+namespace dninosores.UnityAnimationModifiers.Accessors
 {
 	public abstract class ColorFloatValueAccessor : ValueAccessor<float>
 	{
@@ -9,7 +9,7 @@ namespace UnityAnimationModifiers.Accessors
 		{
 			A,
 			R,
-			G, 
+			G,
 			B,
 		}
 		public ColorChannel colorChannel;
@@ -24,13 +24,13 @@ namespace UnityAnimationModifiers.Accessors
 			Color c = GetColor();
 			switch (colorChannel)
 			{
-				case (ColorChannel.A):
+				case ColorChannel.A:
 					return c.a;
-				case (ColorChannel.R):
+				case ColorChannel.R:
 					return c.r;
-				case (ColorChannel.G):
+				case ColorChannel.G:
 					return c.g;
-				case (ColorChannel.B):
+				case ColorChannel.B:
 					return c.b;
 				default:
 					throw new NotImplementedException("No case found for " + colorChannel);
@@ -42,16 +42,16 @@ namespace UnityAnimationModifiers.Accessors
 			Color c = GetColor();
 			switch (colorChannel)
 			{
-				case (ColorChannel.A):
+				case ColorChannel.A:
 					c.a = f;
 					break;
-				case (ColorChannel.R):
+				case ColorChannel.R:
 					c.r = f;
 					break;
-				case (ColorChannel.G):
+				case ColorChannel.G:
 					c.g = f;
 					break;
-				case (ColorChannel.B):
+				case ColorChannel.B:
 					c.b = f;
 					break;
 				default:

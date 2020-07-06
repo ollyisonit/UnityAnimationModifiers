@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace UnityAnimationModifiers
+namespace dninosores.UnityAnimationModifiers
 {
 	public abstract class PeriodicModifier : LateUpdateFloatModifier
 	{

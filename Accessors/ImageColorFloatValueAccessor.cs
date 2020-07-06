@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace UnityAnimationModifiers.Accessors
+namespace dninosores.UnityAnimationModifiers.Accessors
 {
 	[System.Serializable]
 	public class ImageColorFloatValueAccessor : ColorFloatValueAccessor

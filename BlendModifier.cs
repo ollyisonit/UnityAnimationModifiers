@@ -1,8 +1,8 @@
-﻿using System;
+﻿using dninosores.UnityAnimationModifiers.Accessors;
+using System;
 using System.Collections.Generic;
-using UnityAnimationModifiers.Accessors;
 
-namespace UnityAnimationModifiers
+namespace dninosores.UnityAnimationModifiers
 {
 	public class BlendModifier : LateUpdateFloatModifier
 	{
@@ -55,10 +55,10 @@ namespace UnityAnimationModifiers
 			float value;
 			switch (blendMode)
 			{
-				case (BlendMode.Add):
+				case BlendMode.Add:
 					value = 0;
 					break;
-				case (BlendMode.Multiply):
+				case BlendMode.Multiply:
 					value = 1;
 					break;
 				default:
@@ -80,9 +80,9 @@ namespace UnityAnimationModifiers
 		{
 			switch (blendMode)
 			{
-				case (BlendMode.Add):
+				case BlendMode.Add:
 					return left + right;
-				case (BlendMode.Multiply):
+				case BlendMode.Multiply:
 					return left * right;
 				default:
 					throw new NotImplementedException("Case not found for " + blendMode);

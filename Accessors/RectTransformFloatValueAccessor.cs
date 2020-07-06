@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace UnityAnimationModifiers.Accessors
+namespace dninosores.UnityAnimationModifiers.Accessors
 {
 	[Serializable]
 	public class RectTransformFloatValueAccessor : ValueAccessor<float>
@@ -30,9 +30,9 @@ namespace UnityAnimationModifiers.Accessors
 		{
 			switch (axis)
 			{
-				case (Axis.X):
+				case Axis.X:
 					return v.x;
-				case (Axis.Y):
+				case Axis.Y:
 					return v.y;
 				default:
 					throw new NotImplementedException("No case found for axis " + axis);
@@ -49,10 +49,10 @@ namespace UnityAnimationModifiers.Accessors
 		{
 			switch (axis)
 			{
-				case (Axis.X):
+				case Axis.X:
 					v.x = value;
 					break;
-				case (Axis.Y):
+				case Axis.Y:
 					v.y = value;
 					break;
 				default:
@@ -65,24 +65,24 @@ namespace UnityAnimationModifiers.Accessors
 		{
 			return SetVector(axis, v, value);
 		}
-		
+
 		public override float GetValue()
 		{
 			switch (valueType)
 			{
-				case (ValueType.anchoredPosition):
+				case ValueType.anchoredPosition:
 					return GetVector(rectTransform.anchoredPosition);
-				case (ValueType.anchorMax):
+				case ValueType.anchorMax:
 					return GetVector(rectTransform.anchorMax);
-				case (ValueType.anchorMin):
+				case ValueType.anchorMin:
 					return GetVector(rectTransform.anchorMin);
-				case (ValueType.offsetMax):
+				case ValueType.offsetMax:
 					return GetVector(rectTransform.offsetMax);
-				case (ValueType.offsetMin):
+				case ValueType.offsetMin:
 					return GetVector(rectTransform.offsetMin);
-				case (ValueType.pivot):
+				case ValueType.pivot:
 					return GetVector(rectTransform.pivot);
-				case (ValueType.sizeDelta):
+				case ValueType.sizeDelta:
 					return GetVector(rectTransform.sizeDelta);
 				default:
 					throw new NotImplementedException("Case not found for ValueType " + valueType);
@@ -98,25 +98,25 @@ namespace UnityAnimationModifiers.Accessors
 
 			switch (valueType)
 			{
-				case (ValueType.anchoredPosition):
+				case ValueType.anchoredPosition:
 					rectTransform.anchoredPosition = Set(rectTransform.anchoredPosition);
 					break;
-				case (ValueType.anchorMax):
+				case ValueType.anchorMax:
 					rectTransform.anchorMax = Set(rectTransform.anchorMax);
 					break;
-				case (ValueType.anchorMin):
+				case ValueType.anchorMin:
 					rectTransform.anchorMin = Set(rectTransform.anchorMin);
 					break;
-				case (ValueType.offsetMax):
+				case ValueType.offsetMax:
 					rectTransform.offsetMax = Set(rectTransform.offsetMax);
 					break;
-				case (ValueType.offsetMin):
+				case ValueType.offsetMin:
 					rectTransform.offsetMin = Set(rectTransform.offsetMin);
 					break;
-				case (ValueType.pivot):
+				case ValueType.pivot:
 					rectTransform.pivot = Set(rectTransform.pivot);
 					break;
-				case (ValueType.sizeDelta):
+				case ValueType.sizeDelta:
 					rectTransform.sizeDelta = Set(rectTransform.sizeDelta);
 					break;
 				default:

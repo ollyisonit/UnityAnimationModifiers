@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace UnityAnimationModifiers
+namespace dninosores.UnityAnimationModifiers
 {
 	class SineModifier : PeriodicModifier
 	{

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace UnityAnimationModifiers.Accessors
+namespace dninosores.UnityAnimationModifiers.Accessors
 {
 	[Serializable]
 	public class ModifierFloatValueAccessor : ValueAccessor<float>

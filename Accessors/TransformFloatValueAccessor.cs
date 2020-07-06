@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace UnityAnimationModifiers.Accessors
+namespace dninosores.UnityAnimationModifiers.Accessors
 {
 	[Serializable]
 	public class TransformFloatValueAccessor : ValueAccessor<float>
@@ -41,15 +41,15 @@ namespace UnityAnimationModifiers.Accessors
 		{
 			switch (ttype)
 			{
-				case (TransformType.Position):
+				case TransformType.Position:
 					return transform.position;
-				case (TransformType.LocalPosition):
+				case TransformType.LocalPosition:
 					return transform.localPosition;
-				case (TransformType.Rotation):
+				case TransformType.Rotation:
 					return transform.eulerAngles;
-				case (TransformType.LocalRotation):
+				case TransformType.LocalRotation:
 					return transform.localEulerAngles;
-				case (TransformType.LocalScale):
+				case TransformType.LocalScale:
 					return transform.localScale;
 				default:
 					throw new NotImplementedException(ttype + " not implemented.");
@@ -61,19 +61,19 @@ namespace UnityAnimationModifiers.Accessors
 		{
 			switch (ttype)
 			{
-				case (TransformType.Position):
+				case TransformType.Position:
 					transform.position = value;
 					break;
-				case (TransformType.LocalPosition):
+				case TransformType.LocalPosition:
 					transform.localPosition = value;
 					break;
-				case (TransformType.Rotation):
+				case TransformType.Rotation:
 					transform.eulerAngles = value;
 					break;
-				case (TransformType.LocalRotation):
+				case TransformType.LocalRotation:
 					transform.localEulerAngles = value;
 					break;
-				case (TransformType.LocalScale):
+				case TransformType.LocalScale:
 					transform.localScale = value;
 					break;
 				default:
@@ -86,11 +86,11 @@ namespace UnityAnimationModifiers.Accessors
 		{
 			switch (axis)
 			{
-				case (Axis.X):
+				case Axis.X:
 					return vector.x;
-				case (Axis.Y):
+				case Axis.Y:
 					return vector.y;
-				case (Axis.Z):
+				case Axis.Z:
 					return vector.z;
 				default:
 					throw new NotImplementedException(axis + " not implemented.");
@@ -102,13 +102,13 @@ namespace UnityAnimationModifiers.Accessors
 		{
 			switch (axis)
 			{
-				case (Axis.X):
+				case Axis.X:
 					vector.x = value;
 					return vector;
-				case (Axis.Y):
+				case Axis.Y:
 					vector.y = value;
 					return vector;
-				case (Axis.Z):
+				case Axis.Z:
 					vector.z = value;
 					return vector;
 				default:

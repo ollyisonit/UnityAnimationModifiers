@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-namespace UnityAnimationModifiers
+namespace dninosores.UnityAnimationModifiers
 {
     [DefaultExecutionOrder(999999)]
     public abstract class LateUpdateModifier<T> : MonoBehaviour
@@ -41,13 +41,13 @@ namespace UnityAnimationModifiers
 
         public void PlayPreview()
         {
-        
+
         }
 
 
         public void StopPreview()
         {
-        
+
         }
     }
 }
