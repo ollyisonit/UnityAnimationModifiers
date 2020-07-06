@@ -10,11 +10,8 @@
 /[Ll]ogs/
 /[Mm]emoryCaptures/
 
-# Asset meta data should only be ignored when the corresponding asset is also ignored
-!/[Aa]ssets/**/*.meta
-
-# Also ignore meta data for scripts
-*.cs.meta
+# Ignore all meta files, they aren't needed for scripts.
+*.meta
 
 # Uncomment this line if you wish to ignore the asset store tools plugin
 # /[Aa]ssets/AssetStoreTools*
