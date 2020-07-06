@@ -14,7 +14,8 @@ namespace dninosores.UnityAnimationModifiers
 			Light,
 			ImageColor,
 			Modifier,
-			Custom
+			Custom,
+			Reflected
 		}
 
 		[Header("Accessor"), Space(10)]
@@ -73,6 +74,9 @@ namespace dninosores.UnityAnimationModifiers
 
 		#endregion
 
+		[ShowWhen("accessType", AccessType.Reflected)]
+		public ReflectedFloatValueAccessor reflectedAccessor;
+
 		/// <summary>
 		/// Default to accessing components attached to the same object as this script.
 		/// </summary>
@@ -86,6 +90,7 @@ namespace dninosores.UnityAnimationModifiers
 			modifierToModify = new ModifierFloatValueAccessor();
 			periodicModifierToModify = new PeriodicModifierFloatValueAccessor();
 			blendToModify = new BlendModifierFloatValueAccessor(this);
+			reflectedAccessor = new ReflectedFloatValueAccessor();
 
 			transformToModify.transform = transform;
 			lightToModify.light = GetComponent<Light>();
@@ -136,6 +141,8 @@ namespace dninosores.UnityAnimationModifiers
 					}
 				case AccessType.Custom:
 					return customAccessor.GetValue();
+				case AccessType.Reflected:
+					return reflectedAccessor.GetValue();
 				default:
 					throw new NotImplementedException("No case for GetValue for accessType " + accessType + "!");
 			}
@@ -185,6 +192,9 @@ namespace dninosores.UnityAnimationModifiers
 					break;
 				case AccessType.Custom:
 					customAccessor.SetValue(value);
+					break;
+				case AccessType.Reflected:
+					reflectedAccessor.SetValue(value);
 					break;
 				default:
 					throw new NotImplementedException("No case for SetValue for accessType " + accessType + "!");
