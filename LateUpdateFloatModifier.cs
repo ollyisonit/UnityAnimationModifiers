@@ -74,9 +74,24 @@ namespace dninosores.UnityAnimationModifiers
 
 		#endregion
 
+		#region ReflectedModifiers
+
+		public enum ReflectionType
+		{
+			Simple,
+			Nested
+		}
+
 		[ShowWhen("accessType", AccessType.Reflected)]
+		public ReflectionType reflectionType;
+
+		[ShowWhen(new string[] { "accessType", "reflectionType" }, new object[] { AccessType.Reflected, ReflectionType.Simple })]
 		public ReflectedFloatValueAccessor reflectedAccessor;
 
+		[ShowWhen(new string[] { "accessType", "reflectionType" }, new object[] { AccessType.Reflected, ReflectionType.Nested })]
+		public NestedReflectedFloatValueAccessor nestedReflectedAccessor;
+
+		#endregion
 		/// <summary>
 		/// Default to accessing components attached to the same object as this script.
 		/// </summary>
@@ -91,6 +106,7 @@ namespace dninosores.UnityAnimationModifiers
 			periodicModifierToModify = new PeriodicModifierFloatValueAccessor();
 			blendToModify = new BlendModifierFloatValueAccessor(this);
 			reflectedAccessor = new ReflectedFloatValueAccessor();
+			nestedReflectedAccessor = new NestedReflectedFloatValueAccessor();
 
 			transformToModify.transform = transform;
 			lightToModify.light = GetComponent<Light>();
@@ -142,7 +158,15 @@ namespace dninosores.UnityAnimationModifiers
 				case AccessType.Custom:
 					return customAccessor.GetValue();
 				case AccessType.Reflected:
-					return reflectedAccessor.GetValue();
+					switch (reflectionType)
+					{
+						case (ReflectionType.Simple):
+							return reflectedAccessor.GetValue();
+						case (ReflectionType.Nested):
+							return nestedReflectedAccessor.GetValue();
+						default:
+							throw new NotImplementedException("No case for GetValue for " + reflectionType);
+					}
 				default:
 					throw new NotImplementedException("No case for GetValue for accessType " + accessType + "!");
 			}
@@ -194,7 +218,17 @@ namespace dninosores.UnityAnimationModifiers
 					customAccessor.SetValue(value);
 					break;
 				case AccessType.Reflected:
-					reflectedAccessor.SetValue(value);
+					switch (reflectionType)
+					{
+						case (ReflectionType.Simple):
+							reflectedAccessor.SetValue(value);
+							break;
+						case (ReflectionType.Nested):
+							nestedReflectedAccessor.SetValue(value);
+							break;
+						default:
+							throw new NotImplementedException("No case for GetValue for " + reflectionType);
+					}
 					break;
 				default:
 					throw new NotImplementedException("No case for SetValue for accessType " + accessType + "!");
