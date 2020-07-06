@@ -12,7 +12,8 @@ namespace dninosores.UnityAnimationModifiers.Accessors
 			LocalPosition,
 			Rotation,
 			LocalRotation,
-			LocalScale
+			LocalScale,
+			LocalScaleAllAxes
 		}
 
 		public enum Axis
@@ -28,11 +29,20 @@ namespace dninosores.UnityAnimationModifiers.Accessors
 
 		public override float GetValue()
 		{
+			if (transformType == TransformType.LocalScaleAllAxes)
+			{
+				return GetValueFromVector3(transformAxis, transform.localScale);
+			}
 			return GetValueFromVector3(transformAxis, GetVector3FromTransform(transformType, transform));
 		}
 
 		public override void SetValue(float value)
 		{
+			if (transformType == TransformType.LocalScaleAllAxes)
+			{
+				transform.localScale = new Vector3(value, value, value);
+				return;
+			}
 			SetVector3FromTransform(transformType, transform,
 						SetValueFromVector3(transformAxis, GetVector3FromTransform(transformType, transform), value));
 		}
