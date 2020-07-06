@@ -13,12 +13,12 @@ namespace dninosores.UnityAnimationModifiers.Accessors
 
 		public ValueType valueType;
 
-		public override float GetValue()
+		public override float GetValues()
 		{
 			return modifier.intensity;
 		}
 
-		public override void SetValue(float value)
+		public override void SetValues(float value)
 		{
 			modifier.intensity = value;
 		}

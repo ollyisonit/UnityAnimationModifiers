@@ -50,7 +50,6 @@ namespace dninosores.UnityAnimationModifiers
 		[ShowWhen("accessType", AccessType.ImageColor)]
 		public ImageColorFloatValueAccessor imageToModify;
 
-
 		#region Modifier_Modifiers
 		public enum ModifierType
 		{
@@ -102,35 +101,35 @@ namespace dninosores.UnityAnimationModifiers
 			blendToModify.parent = this;
 		}
 
-		protected override float GetValue()
+		protected override float[] GetValues()
 		{
 			switch (accessType)
 			{
 				case AccessType.Transform:
-					return transformToModify.GetValue();
+					return transformToModify.GetValues();
 				case AccessType.RectTransform:
-					return rectToModify.GetValue();
+					return rectToModify.GetValues();
 				case AccessType.Light:
 					switch (lightAttribute)
 					{
 						case LightAttribute.General:
-							return lightToModify.GetValue();
+							return lightToModify.GetValues();
 						case LightAttribute.Color:
-							return lightColorToModify.GetValue();
+							return lightColorToModify.GetValues();
 						default:
 							throw new NotImplementedException("No case for LightAttribute " + lightAttribute);
 					}
 				case AccessType.ImageColor:
-					return imageToModify.GetValue();
+					return imageToModify.GetValues();
 				case AccessType.Modifier:
 					switch (modifierType)
 					{
 						case ModifierType.GeneralFloat:
-							return modifierToModify.GetValue();
+							return modifierToModify.GetValues();
 						case ModifierType.Periodic:
-							return periodicModifierToModify.GetValue();
+							return periodicModifierToModify.GetValues();
 						case ModifierType.Blend:
-							return blendToModify.GetValue();
+							return blendToModify.GetValues();
 						default:
 							throw new NotImplementedException("No case for ModifierType " + modifierType);
 					}
@@ -141,43 +140,43 @@ namespace dninosores.UnityAnimationModifiers
 			}
 		}
 
-		protected override void SetValue(float value)
+		protected override void SetValues(float[] values)
 		{
 			switch (accessType)
 			{
 				case AccessType.Transform:
-					transformToModify.SetValue(value);
+					transformToModify.SetValues(value);
 					break;
 				case AccessType.RectTransform:
-					rectToModify.SetValue(value);
+					rectToModify.SetValues(value);
 					break;
 				case AccessType.Light:
 					switch (lightAttribute)
 					{
 						case LightAttribute.General:
-							lightToModify.SetValue(value);
+							lightToModify.SetValues(value);
 							break;
 						case LightAttribute.Color:
-							lightColorToModify.SetValue(value);
+							lightColorToModify.SetValues(value);
 							break;
 						default:
 							throw new NotImplementedException("No case found for LightAttribute " + lightAttribute);
 					}
 					break;
 				case AccessType.ImageColor:
-					imageToModify.SetValue(value);
+					imageToModify.SetValues(value);
 					break;
 				case AccessType.Modifier:
 					switch (modifierType)
 					{
 						case ModifierType.GeneralFloat:
-							modifierToModify.SetValue(value);
+							modifierToModify.SetValues(value);
 							break;
 						case ModifierType.Periodic:
-							periodicModifierToModify.SetValue(value);
+							periodicModifierToModify.SetValues(value);
 							break;
 						case ModifierType.Blend:
-							blendToModify.SetValue(value);
+							blendToModify.SetValues(value);
 							break;
 						default:
 							throw new NotImplementedException("No case found for ModifierType " + modifierType);

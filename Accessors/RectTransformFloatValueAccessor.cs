@@ -66,7 +66,7 @@ namespace dninosores.UnityAnimationModifiers.Accessors
 			return SetVector(axis, v, value);
 		}
 
-		public override float GetValue()
+		public override float GetValues()
 		{
 			switch (valueType)
 			{
@@ -89,7 +89,7 @@ namespace dninosores.UnityAnimationModifiers.Accessors
 			}
 		}
 
-		public override void SetValue(float value)
+		public override void SetValues(float value)
 		{
 			Vector2 Set(Vector2 original)
 			{

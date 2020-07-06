@@ -26,12 +26,12 @@ namespace dninosores.UnityAnimationModifiers.Accessors
 		public TransformType transformType;
 		public Axis transformAxis;
 
-		public override float GetValue()
+		public override float GetValues()
 		{
 			return GetValueFromVector3(transformAxis, GetVector3FromTransform(transformType, transform));
 		}
 
-		public override void SetValue(float value)
+		public override void SetValues(float value)
 		{
 			SetVector3FromTransform(transformType, transform,
 						SetValueFromVector3(transformAxis, GetVector3FromTransform(transformType, transform), value));

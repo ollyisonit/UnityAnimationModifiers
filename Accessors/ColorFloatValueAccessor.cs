@@ -19,7 +19,7 @@ namespace dninosores.UnityAnimationModifiers.Accessors
 		protected abstract void SetColor(Color c);
 
 
-		public override float GetValue()
+		public override float GetValues()
 		{
 			Color c = GetColor();
 			switch (colorChannel)
@@ -37,7 +37,7 @@ namespace dninosores.UnityAnimationModifiers.Accessors
 			}
 		}
 
-		public override void SetValue(float f)
+		public override void SetValues(float f)
 		{
 			Color c = GetColor();
 			switch (colorChannel)

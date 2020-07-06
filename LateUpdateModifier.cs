@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Linq;
 using UnityEngine;
 
 namespace dninosores.UnityAnimationModifiers
@@ -8,11 +9,11 @@ namespace dninosores.UnityAnimationModifiers
     {
         public bool additive = true;
         public float intensity = 1;
-        protected T originalValue;
+        protected T[] originalValues;
 
-        protected abstract T GetValue();
+        protected abstract T[] GetValues();
 
-        protected abstract void SetValue(T value);
+        protected abstract void SetValues(T[] value);
 
         protected abstract T GetModifiedValue(T originalValue);
 
@@ -22,10 +23,15 @@ namespace dninosores.UnityAnimationModifiers
             {
                 if (additive)
                 {
-                    originalValue = GetValue();
+                    originalValues = GetValues();
                     StartCoroutine(SetValueBack());
                 }
-                SetValue(GetModifiedValue(GetValue()));
+                T[] outputValues = new T[originalValues.Length];
+                for (int i = 0; i < outputValues.Length; i++)
+                {
+                    outputValues[i] = GetModifiedValue(originalValues[i]);
+                }
+                SetValues(outputValues);
             }
         }
 
@@ -34,7 +40,7 @@ namespace dninosores.UnityAnimationModifiers
             yield return new WaitForEndOfFrame();
             if (additive)
             {
-                SetValue(originalValue);
+                SetValues(originalValues);
             }
         }
 

@@ -20,12 +20,12 @@ namespace dninosores.UnityAnimationModifiers.Accessors
 			this.parent = parent;
 		}
 
-		public override float GetValue()
+		public override float GetValues()
 		{
 			return modifier.GetValueFor(this);
 		}
 
-		public override void SetValue(float value)
+		public override void SetValues(float value)
 		{
 			modifier.SetValueFor(this, value);
 		}

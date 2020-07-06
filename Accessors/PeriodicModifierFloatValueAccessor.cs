@@ -17,7 +17,7 @@ namespace dninosores.UnityAnimationModifiers.Accessors
 
 		public ValueType valueType;
 
-		public override float GetValue()
+		public override float GetValues()
 		{
 			switch (valueType)
 			{
@@ -37,7 +37,7 @@ namespace dninosores.UnityAnimationModifiers.Accessors
 
 		}
 
-		public override void SetValue(float value)
+		public override void SetValues(float value)
 		{
 			switch (valueType)
 			{
