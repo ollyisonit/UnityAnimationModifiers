@@ -1,7 +1,10 @@
 import re
 import os
 
+# Sets execution order of all scripts in directory to the same value.
+
 directory = os.getcwd()
+input("Directory to scan is '" + directory + "'. Press ^C to abort or any key to continue")
 fileNameRegex = re.compile(".cs.meta$")
 stringTargetRegex = re.compile("executionOrder: \d+")
 newOrder = input("New execution order: ")
