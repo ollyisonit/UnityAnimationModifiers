@@ -1,7 +1,8 @@
-﻿using System;
+﻿using dninosores.UnityValueAccessors;
+using System;
 using UnityEngine;
 
-namespace dninosores.UnityAnimationModifiers.Accessors
+namespace dninosores.UnityAnimationModifiers.ValueAccessors
 {
 	[Serializable]
 	public class BlendModifierFloatValueAccessor : ValueAccessor<float>

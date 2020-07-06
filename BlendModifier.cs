@@ -1,4 +1,4 @@
-﻿using dninosores.UnityAnimationModifiers.Accessors;
+﻿using dninosores.UnityAnimationModifiers.ValueAccessors;
 using System;
 using System.Collections.Generic;
 

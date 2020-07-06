@@ -1,4 +1,6 @@
-﻿using dninosores.UnityAnimationModifiers.Accessors;
+﻿using dninosores.UnityAnimationModifiers.ValueAccessors;
+using dninosores.UnityValueAccessors;
+using dninosores.UnityValueAccessors.PropertyDrawers;
 using System;
 using UnityEngine;
 using UnityEngine.UI;
