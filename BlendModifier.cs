@@ -1,9 +1,8 @@
-﻿
-using LateUpdateModifiers.Accessors;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using UnityAnimationModifiers.Accessors;
 
-namespace LateUpdateModifiers
+namespace UnityAnimationModifiers
 {
 	public class BlendModifier : LateUpdateFloatModifier
 	{

@@ -1,9 +1,7 @@
-﻿using Assets.Scripts.LateUpdateModifiers.Accessors;
-using LateUpdateModifiers;
-using System;
+﻿using System;
 using UnityEngine;
 
-namespace LateUpdateModifiers.Accessors
+namespace UnityAnimationModifiers.Accessors
 {
 	[Serializable]
 	public class BlendModifierFloatValueAccessor : ValueAccessor<float>

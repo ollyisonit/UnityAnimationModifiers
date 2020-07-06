@@ -1,8 +1,7 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace LateUpdateModifiers
+namespace UnityAnimationModifiers
 {
     [DefaultExecutionOrder(999999)]
     public abstract class LateUpdateModifier<T> : MonoBehaviour

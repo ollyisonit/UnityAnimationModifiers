@@ -1,15 +1,9 @@
-﻿using Assets.Scripts.LateUpdateModifiers;
-using Assets.Scripts.LateUpdateModifiers.Accessors;
-using LateUpdateModifiers.Accessors;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
+using UnityAnimationModifiers.Accessors;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace LateUpdateModifiers
+namespace UnityAnimationModifiers
 {
 	public abstract class LateUpdateFloatModifier : LateUpdateModifier<float>
 	{

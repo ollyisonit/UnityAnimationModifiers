@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.Scripts.LateUpdateModifiers
+namespace UnityAnimationModifiers
 {
 	public class NoiseModifier : PeriodicModifier
 	{
