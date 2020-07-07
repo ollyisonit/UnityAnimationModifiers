@@ -1,6 +1,6 @@
 ﻿using dninosores.UnityAnimationModifiers.ValueAccessors;
+using dninosores.UnityConditionalHideAttribute;
 using dninosores.UnityValueAccessors;
-using dninosores.UnityValueAccessors.PropertyDrawers;
 using System;
 using UnityEngine;
 using UnityEngine.UI;
@@ -23,7 +23,7 @@ namespace dninosores.UnityAnimationModifiers
 		[Header("Accessor"), Space(10)]
 		public AccessType accessType;
 
-		[ShowWhen("accessType", AccessType.Transform)]
+		[ConditionalHide("accessType", AccessType.Transform)]
 		public TransformFloatValueAccessor transformToModify;
 
 		#region LightModifiers
@@ -33,24 +33,24 @@ namespace dninosores.UnityAnimationModifiers
 			Color
 		}
 
-		[ShowWhen(new string[] { "accessType" }, new object[] { AccessType.Light })]
+		[ConditionalHide(new string[] { "accessType" }, new object[] { AccessType.Light })]
 		public LightAttribute lightAttribute;
 
-		[ShowWhen(new string[] { "accessType", "lightAttribute" }, new object[] { AccessType.Light, LightAttribute.General })]
+		[ConditionalHide(new string[] { "accessType", "lightAttribute" }, new object[] { AccessType.Light, LightAttribute.General })]
 		public LightFloatValueAccessor lightToModify;
 
-		[ShowWhen(new string[] { "accessType", "lightAttribute" }, new object[] { AccessType.Light, LightAttribute.Color })]
+		[ConditionalHide(new string[] { "accessType", "lightAttribute" }, new object[] { AccessType.Light, LightAttribute.Color })]
 		public LightColorFloatValueAccessor lightColorToModify;
 
 		#endregion
 
-		[ShowWhen("accessType", AccessType.RectTransform)]
+		[ConditionalHide("accessType", AccessType.RectTransform)]
 		public RectTransformFloatValueAccessor rectToModify;
 
-		[ShowWhen("accessType", AccessType.Custom), Tooltip("Make a script that extends CustomFloatValueAccessor and reference it here")]
+		[ConditionalHide("accessType", AccessType.Custom), Tooltip("Make a script that extends CustomFloatValueAccessor and reference it here")]
 		public CustomFloatValueAccessor customAccessor;
 
-		[ShowWhen("accessType", AccessType.ImageColor)]
+		[ConditionalHide("accessType", AccessType.ImageColor)]
 		public ImageColorFloatValueAccessor imageToModify;
 
 
@@ -62,16 +62,16 @@ namespace dninosores.UnityAnimationModifiers
 			Blend
 		}
 
-		[ShowWhen("accessType", AccessType.Modifier)]
+		[ConditionalHide("accessType", AccessType.Modifier)]
 		public ModifierType modifierType;
 
-		[ShowWhen(new string[] { "accessType", "modifierType" }, new object[] { AccessType.Modifier, ModifierType.GeneralFloat })]
+		[ConditionalHide(new string[] { "accessType", "modifierType" }, new object[] { AccessType.Modifier, ModifierType.GeneralFloat })]
 		public ModifierFloatValueAccessor modifierToModify;
 
-		[ShowWhen(new string[] { "accessType", "modifierType" }, new object[] { AccessType.Modifier, ModifierType.Periodic })]
+		[ConditionalHide(new string[] { "accessType", "modifierType" }, new object[] { AccessType.Modifier, ModifierType.Periodic })]
 		public PeriodicModifierFloatValueAccessor periodicModifierToModify;
 
-		[ShowWhen(new string[] { "accessType", "modifierType" }, new object[] { AccessType.Modifier, ModifierType.Blend })]
+		[ConditionalHide(new string[] { "accessType", "modifierType" }, new object[] { AccessType.Modifier, ModifierType.Blend })]
 		public BlendModifierFloatValueAccessor blendToModify;
 
 		#endregion
@@ -84,13 +84,13 @@ namespace dninosores.UnityAnimationModifiers
 			Nested
 		}
 
-		[ShowWhen("accessType", AccessType.Reflected)]
+		[ConditionalHide("accessType", AccessType.Reflected)]
 		public ReflectionType reflectionType;
 
-		[ShowWhen(new string[] { "accessType", "reflectionType" }, new object[] { AccessType.Reflected, ReflectionType.Simple })]
+		[ConditionalHide(new string[] { "accessType", "reflectionType" }, new object[] { AccessType.Reflected, ReflectionType.Simple })]
 		public ReflectedFloatValueAccessor reflectedAccessor;
 
-		[ShowWhen(new string[] { "accessType", "reflectionType" }, new object[] { AccessType.Reflected, ReflectionType.Nested })]
+		[ConditionalHide(new string[] { "accessType", "reflectionType" }, new object[] { AccessType.Reflected, ReflectionType.Nested })]
 		public NestedReflectedFloatValueAccessor nestedReflectedAccessor;
 
 		#endregion
