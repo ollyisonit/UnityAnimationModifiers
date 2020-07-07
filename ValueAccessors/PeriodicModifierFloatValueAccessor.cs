@@ -1,5 +1,6 @@
 ﻿using dninosores.UnityValueAccessors;
 using System;
+using UnityEngine;
 
 namespace dninosores.UnityAnimationModifiers.ValueAccessors
 {
@@ -60,6 +61,11 @@ namespace dninosores.UnityAnimationModifiers.ValueAccessors
 				default:
 					throw new NotImplementedException("No case found for ValueType " + valueType);
 			}
+		}
+
+		public override void Reset(GameObject attachedObject)
+		{
+			attachedObject.GetComponent<PeriodicModifier>();
 		}
 	}
 }

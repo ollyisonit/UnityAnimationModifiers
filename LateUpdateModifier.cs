@@ -10,6 +10,14 @@ namespace dninosores.UnityAnimationModifiers
         public float intensity = 1;
         protected T originalValue;
 
+
+        protected virtual void Reset()
+        {
+            additive = true;
+            intensity = 1;
+        }
+
+
         protected abstract T GetValue();
 
         protected abstract void SetValue(T value);

@@ -31,6 +31,11 @@ namespace dninosores.UnityAnimationModifiers.ValueAccessors
 			modifier.SetValueFor(this, value);
 		}
 
+		public override void Reset(GameObject attachedObject)
+		{
+			modifier = attachedObject.GetComponent<BlendModifier>();
+		}
+
 		~BlendModifierFloatValueAccessor()
 		{
 			modifier.Unregister(this);

@@ -1,5 +1,6 @@
 ﻿using dninosores.UnityValueAccessors;
 using System;
+using UnityEngine;
 
 namespace dninosores.UnityAnimationModifiers.ValueAccessors
 {
@@ -22,6 +23,11 @@ namespace dninosores.UnityAnimationModifiers.ValueAccessors
 		public override void SetValue(float value)
 		{
 			modifier.intensity = value;
+		}
+
+		public override void Reset(GameObject attachedObject)
+		{
+			modifier = attachedObject.GetComponent<LateUpdateFloatModifier>();
 		}
 	}
 }
