@@ -1,11 +1,11 @@
-﻿using dninosores.UnityValueAccessors;
+﻿using dninosores.UnityAccessors;
 using System;
 using UnityEngine;
 
-namespace dninosores.UnityAnimationModifiers.ValueAccessors
+namespace dninosores.UnityAnimationModifiers.Accessors
 {
 	[Serializable]
-	public class PeriodicModifierFloatValueAccessor : ValueAccessor<float>
+	public class PeriodicModifierFloatAccessor : Accessor<float>
 	{
 		public PeriodicModifier modifier;
 		public enum ValueType

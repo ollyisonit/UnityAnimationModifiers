@@ -1,22 +1,22 @@
-﻿using dninosores.UnityValueAccessors;
+﻿using dninosores.UnityAccessors;
 using System;
 using UnityEngine;
 
-namespace dninosores.UnityAnimationModifiers.ValueAccessors
+namespace dninosores.UnityAnimationModifiers.Accessors
 {
 	[Serializable]
-	public class BlendModifierFloatValueAccessor : ValueAccessor<float>
+	public class BlendModifierFloatAccessor : Accessor<float>
 	{
 		public BlendModifier modifier;
 
 		[HideInInspector]
 		public LateUpdateFloatModifier parent;
 
-		public BlendModifierFloatValueAccessor(LateUpdateFloatModifier parent)
+		public BlendModifierFloatAccessor(LateUpdateFloatModifier parent)
 		{
 			if (parent == null)
 			{
-				throw new ArgumentException("BlendModifierFloatValueAccessor must have reference to containing modifier!");
+				throw new ArgumentException("BlendModifierFloatAccessor must have reference to containing modifier!");
 			}
 			this.parent = parent;
 		}
@@ -36,7 +36,7 @@ namespace dninosores.UnityAnimationModifiers.ValueAccessors
 			modifier = attachedObject.GetComponent<BlendModifier>();
 		}
 
-		~BlendModifierFloatValueAccessor()
+		~BlendModifierFloatAccessor()
 		{
 			modifier.Unregister(this);
 		}

@@ -1,11 +1,11 @@
-﻿using dninosores.UnityValueAccessors;
+﻿using dninosores.UnityAccessors;
 using System;
 using UnityEngine;
 
-namespace dninosores.UnityAnimationModifiers.ValueAccessors
+namespace dninosores.UnityAnimationModifiers.Accessors
 {
 	[Serializable]
-	public class ModifierFloatValueAccessor : ValueAccessor<float>
+	public class ModifierFloatAccessor : Accessor<float>
 	{
 		public LateUpdateFloatModifier modifier;
 		public enum ValueType

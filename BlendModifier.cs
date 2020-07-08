@@ -1,4 +1,4 @@
-﻿using dninosores.UnityAnimationModifiers.ValueAccessors;
+﻿using dninosores.UnityAnimationModifiers.Accessors;
 using System;
 using System.Collections.Generic;
 
@@ -6,7 +6,7 @@ namespace dninosores.UnityAnimationModifiers
 {
 	public class BlendModifier : LateUpdateFloatModifier
 	{
-		private Dictionary<BlendModifierFloatValueAccessor, float> values;
+		private Dictionary<BlendModifierFloatAccessor, float> values;
 
 		public enum BlendMode
 		{
@@ -17,23 +17,23 @@ namespace dninosores.UnityAnimationModifiers
 		public BlendMode blendMode;
 
 
-		public float GetValueFor(BlendModifierFloatValueAccessor mod)
+		public float GetValueFor(BlendModifierFloatAccessor mod)
 		{
 			Register(mod);
 			return values[mod];
 		}
 
-		public void SetValueFor(BlendModifierFloatValueAccessor mod, float value)
+		public void SetValueFor(BlendModifierFloatAccessor mod, float value)
 		{
 			Register(mod);
 			values[mod] = value;
 		}
 
-		public void Register(BlendModifierFloatValueAccessor modifier)
+		public void Register(BlendModifierFloatAccessor modifier)
 		{
 			if (values == null)
 			{
-				values = new Dictionary<BlendModifierFloatValueAccessor, float>();
+				values = new Dictionary<BlendModifierFloatAccessor, float>();
 			}
 
 			if (!values.ContainsKey(modifier))
@@ -42,7 +42,7 @@ namespace dninosores.UnityAnimationModifiers
 			}
 		}
 
-		public void Unregister(BlendModifierFloatValueAccessor modifier)
+		public void Unregister(BlendModifierFloatAccessor modifier)
 		{
 			if (values != null && values.ContainsKey(modifier))
 			{
@@ -65,7 +65,7 @@ namespace dninosores.UnityAnimationModifiers
 					throw new NotImplementedException("Case not found for " + blendMode);
 			}
 
-			foreach (KeyValuePair<BlendModifierFloatValueAccessor, float> pair in values)
+			foreach (KeyValuePair<BlendModifierFloatAccessor, float> pair in values)
 			{
 				if (pair.Key.parent.isActiveAndEnabled)
 				{

@@ -1,6 +1,6 @@
-﻿using dninosores.UnityAnimationModifiers.ValueAccessors;
+﻿using dninosores.UnityAnimationModifiers.Accessors;
 using dninosores.UnityEditorAttributes;
-using dninosores.UnityValueAccessors;
+using dninosores.UnityAccessors;
 using System;
 using UnityEngine;
 using UnityEngine.UI;
@@ -20,12 +20,12 @@ namespace dninosores.UnityAnimationModifiers
 			Reflected
 		}
 
-		public AnyFloatValueAccessor floatAccessor;
+		public AnyFloatAccessor floatAccessor;
 
 
 		protected override void Reset()
 		{
-			floatAccessor = new AnyFloatValueAccessor();
+			floatAccessor = new AnyFloatAccessor();
 			floatAccessor.Reset(gameObject);
 		}
 
