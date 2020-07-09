@@ -10,8 +10,8 @@ namespace dninosores.UnityAnimationModifiers
 
 		public enum BlendMode
 		{
-			Add,
-			Multiply
+			Add = 0,
+			Multiply = 1
 		}
 
 		public BlendMode blendMode;

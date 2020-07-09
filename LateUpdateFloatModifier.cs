@@ -11,13 +11,13 @@ namespace dninosores.UnityAnimationModifiers
 	{
 		public enum AccessType
 		{
-			Transform,
-			RectTransform,
-			Light,
-			ImageColor,
-			Modifier,
-			Custom,
-			Reflected
+			Transform = 0,
+			RectTransform = 1,
+			Light = 2,
+			ImageColor = 3,
+			Modifier = 4,
+			Custom = 5,
+			Reflected = 6
 		}
 
 		public AnyFloatAccessor floatAccessor;

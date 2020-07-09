@@ -10,7 +10,7 @@ namespace dninosores.UnityAnimationModifiers.Accessors
 		public LateUpdateFloatModifier modifier;
 		public enum ValueType
 		{
-			Intensity
+			Intensity = 0
 		}
 
 		public ValueType valueType;

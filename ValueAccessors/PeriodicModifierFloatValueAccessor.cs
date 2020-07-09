@@ -10,11 +10,11 @@ namespace dninosores.UnityAnimationModifiers.Accessors
 		public PeriodicModifier modifier;
 		public enum ValueType
 		{
-			Intensity,
-			Amplitude,
-			Frequency,
-			PhaseShift,
-			VerticalShift
+			Intensity = 0,
+			Amplitude = 1,
+			Frequency = 2,
+			PhaseShift = 3,
+			VerticalShift = 4
 		}
 
 		public ValueType valueType;
