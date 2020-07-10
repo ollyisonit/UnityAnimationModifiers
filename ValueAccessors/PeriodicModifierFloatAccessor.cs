@@ -4,8 +4,7 @@ using UnityEngine;
 
 namespace dninosores.UnityAnimationModifiers.Accessors
 {
-	[Serializable]
-	public class PeriodicModifierFloatAccessor : Accessor<float>
+	public class PeriodicModifierFloatAccessor : CustomFloatAccessor
 	{
 		public PeriodicModifier modifier;
 		public enum ValueType
@@ -63,9 +62,9 @@ namespace dninosores.UnityAnimationModifiers.Accessors
 			}
 		}
 
-		public override void Reset(GameObject attachedObject)
+		public void Reset()
 		{
-			attachedObject.GetComponent<PeriodicModifier>();
+			modifier = GetComponent<PeriodicModifier>();
 		}
 	}
 }

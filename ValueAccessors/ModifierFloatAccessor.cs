@@ -4,8 +4,7 @@ using UnityEngine;
 
 namespace dninosores.UnityAnimationModifiers.Accessors
 {
-	[Serializable]
-	public class ModifierFloatAccessor : Accessor<float>
+	public class ModifierFloatAccessor : CustomFloatAccessor
 	{
 		public LateUpdateFloatModifier modifier;
 		public enum ValueType
@@ -25,9 +24,9 @@ namespace dninosores.UnityAnimationModifiers.Accessors
 			modifier.intensity = value;
 		}
 
-		public override void Reset(GameObject attachedObject)
+		public void Reset()
 		{
-			modifier = attachedObject.GetComponent<LateUpdateFloatModifier>();
+			modifier = GetComponent<LateUpdateFloatModifier>();
 		}
 	}
 }
