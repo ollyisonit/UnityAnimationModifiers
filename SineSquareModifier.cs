@@ -6,7 +6,7 @@ namespace dninosores.UnityAnimationModifiers
 	{
 		protected override float GetRawModifiedValue()
 		{
-			return amplitude * 2 * (Mathf.Pow(Mathf.Sin(Time.realtimeSinceStartup * frequency * Mathf.PI * 2 + phaseShift), 2) - 0.5f) + verticalShift;
+			return amplitude * 2 * (Mathf.Pow(Mathf.Sin(time * frequency * Mathf.PI * 2 + phaseShift * Mathf.PI * 2), 2) - 0.5f) + verticalShift;
 		}
 	}
 }

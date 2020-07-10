@@ -16,7 +16,7 @@ namespace dninosores.UnityAnimationModifiers
 
 		protected override float GetRawModifiedValue()
 		{
-			return amplitude * (Mathf.PerlinNoise(Time.realtimeSinceStartup * frequency + phaseShift, seed) - 0.5f) + verticalShift;
+			return amplitude * (Mathf.PerlinNoise(time * frequency + phaseShift, seed) - 0.5f) + verticalShift;
 		}
 	}
 }

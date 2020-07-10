@@ -8,7 +8,7 @@ namespace dninosores.UnityAnimationModifiers
 
 		protected override float GetRawModifiedValue()
 		{
-			return amplitude * curve.Evaluate(Time.realtimeSinceStartup * frequency + phaseShift / (Mathf.PI * 2)) + verticalShift;
+			return amplitude * curve.Evaluate(base.time * frequency + phaseShift) + verticalShift;
 		}
 	}
 }
