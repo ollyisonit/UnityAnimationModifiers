@@ -8,8 +8,9 @@ namespace dninosores.UnityAnimationModifiers
 		public bool randomSeed = true;
 		public float seed;
 
-		void Awake()
+		protected override void Awake()
 		{
+			base.Awake();
 			if (randomSeed)
 				seed = Random.Range(-100f, 100f);
 		}
