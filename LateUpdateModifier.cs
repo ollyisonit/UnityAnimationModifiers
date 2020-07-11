@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using dninosores.UnityAccessors;
+using System.Collections;
 using UnityEngine;
 
 namespace dninosores.UnityAnimationModifiers
@@ -15,6 +16,7 @@ namespace dninosores.UnityAnimationModifiers
 
         protected virtual void Reset()
         {
+            ResetAccessors.Reset(this, gameObject);
             additive = true;
             intensity = 1;
         }
