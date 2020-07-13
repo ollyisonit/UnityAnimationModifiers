@@ -25,6 +25,7 @@ namespace dninosores.UnityAnimationModifiers
 
 		protected override void Reset()
 		{
+			base.Reset();
 			floatAccessor = new AnyFloatAccessor();
 			floatAccessor.Reset(gameObject);
 		}
