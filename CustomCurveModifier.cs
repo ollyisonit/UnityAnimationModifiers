@@ -1,7 +1,9 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace dninosores.UnityAnimationModifiers
 {
+	[Serializable]
 	class CustomCurveModifier : PeriodicModifier
 	{
 		public AnimationCurve curve = new AnimationCurve();

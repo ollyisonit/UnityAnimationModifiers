@@ -1,14 +1,22 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace dninosores.UnityAnimationModifiers
 {
+	[Serializable]
 	public abstract class PeriodicModifier : LateUpdateFloatModifier
 	{
-		[Header("Periodic settings"), Space(10)]
-		public float amplitude;
-		public float frequency;
-		[Range(0, 1)]
-		public float phaseShift;
-		public float verticalShift;
+		protected PeriodicModifierSettings settings;
+
+		public PeriodicModifier SetSettings(PeriodicModifierSettings settings)
+		{
+			this.settings = settings;
+			return this;
+		}
+
+		protected float amplitude => settings.amplitude;
+		protected float frequency => settings.frequency;
+		protected float phaseShift => settings.phaseShift;
+		protected float verticalShift => settings.verticalShift;
 	}
 }

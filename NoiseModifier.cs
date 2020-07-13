@@ -1,18 +1,20 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace dninosores.UnityAnimationModifiers
 {
+	[Serializable]
 	public class NoiseModifier : PeriodicModifier
 	{
-		[Header("Randomness"), Space(10)]
+		[Header("Randomness")]
 		public bool randomSeed = true;
 		public float seed;
 
-		protected override void Awake()
+
+		public override void Awake()
 		{
-			base.Awake();
 			if (randomSeed)
-				seed = Random.Range(-100f, 100f);
+				seed = UnityEngine.Random.Range(-100f, 100f);
 		}
 
 		protected override float GetRawModifiedValue()

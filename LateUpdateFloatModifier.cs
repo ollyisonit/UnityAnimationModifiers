@@ -1,5 +1,4 @@
-﻿using dninosores.UnityAnimationModifiers.Accessors;
-using dninosores.UnityEditorAttributes;
+﻿using dninosores.UnityEditorAttributes;
 using dninosores.UnityAccessors;
 using System;
 using UnityEngine;
@@ -7,6 +6,7 @@ using UnityEngine.UI;
 
 namespace dninosores.UnityAnimationModifiers
 {
+	[Serializable]
 	public abstract class LateUpdateFloatModifier : LateUpdateModifier<float>
 	{
 		public enum AccessType
@@ -23,11 +23,11 @@ namespace dninosores.UnityAnimationModifiers
 		public AnyFloatAccessor floatAccessor;
 
 
-		protected override void Reset()
+		public override void Reset(GameObject o)
 		{
-			base.Reset();
+			base.Reset(o);
 			floatAccessor = new AnyFloatAccessor();
-			floatAccessor.Reset(gameObject);
+			floatAccessor.Reset(o);
 		}
 
 

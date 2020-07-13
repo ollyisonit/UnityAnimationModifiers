@@ -1,7 +1,9 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace dninosores.UnityAnimationModifiers
 {
+	[Serializable]
 	class SineModifier : PeriodicModifier
 	{
 		protected override float GetRawModifiedValue()
