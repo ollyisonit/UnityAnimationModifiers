@@ -12,6 +12,7 @@ namespace dninosores.UnityAnimationModifiers
         public bool syncOnAwake = true;
         public float intensity = 1;
         protected T originalValue;
+        [HideInInspector]
         public float time;
 
 

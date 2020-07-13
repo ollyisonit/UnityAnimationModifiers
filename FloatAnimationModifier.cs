@@ -13,6 +13,7 @@ namespace dninosores.UnityAnimationModifiers
 			Noise,
 			Sine,
 			CustomCurve,
+			CustomEquation,
 			Custom
 		}
 
@@ -31,13 +32,18 @@ namespace dninosores.UnityAnimationModifiers
 		[ConditionalHide("modifierType", ModifierType.CustomCurve, "Modifier")]
 		public CustomCurveModifier curve;
 
+		[ConditionalHide("modifierType", ModifierType.CustomEquation, "Modifier")]
+		public CustomEquationFloatModifier equation;
+
+		[ConditionalHide("modifierType", ModifierType.Custom, "Modifier")]
+		public CustomFloatModifierContainer custom;
 
 
 
 		protected override void Reset()
 		{
 			base.Reset();
-			modifierType = ModifierType.Custom;
+			modifierType = ModifierType.CustomEquation;
 			periodicSettings = new PeriodicModifierSettings();
 			noiseModifier = new NoiseModifier();
 			noiseModifier.Reset(gameObject);
@@ -45,6 +51,10 @@ namespace dninosores.UnityAnimationModifiers
 			sine.Reset(gameObject);
 			curve = new CustomCurveModifier();
 			curve.Reset(gameObject);
+			equation = new CustomEquationFloatModifier();
+			equation.Reset(gameObject);
+			custom = new CustomFloatModifierContainer();
+			custom.Reset(gameObject);
 		}
 
 
@@ -60,6 +70,10 @@ namespace dninosores.UnityAnimationModifiers
 						return sine.SetSettings(periodicSettings);
 					case (ModifierType.CustomCurve):
 						return curve.SetSettings(periodicSettings);
+					case (ModifierType.CustomEquation):
+						return equation;
+					case (ModifierType.Custom):
+						return custom;
 					default:
 						throw new NotImplementedException("Case not found for ModifierType " + modifierType);
 				}
