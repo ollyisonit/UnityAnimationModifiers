@@ -1,9 +1,6 @@
-﻿using org.dninosores.mariuszgromada.math.mxparser;
+﻿using dninosores.UnityAccessors;
+using org.dninosores.mariuszgromada.math.mxparser;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace dninosores.UnityAnimationModifiers
@@ -11,6 +8,29 @@ namespace dninosores.UnityAnimationModifiers
 	[Serializable]
 	class CustomEquationFloatModifier : LateUpdateFloatModifier
 	{
+		[Serializable]
+		public class Variable
+		{
+			[Tooltip("The name of the variable to use when referenced in the equation")]
+			public string name;
+			[Tooltip("The value to use for the variable when referenced in the equation")]
+			public AnyFloatAccessor value;
+
+			public Variable()
+			{
+				name = "";
+				value = new AnyFloatAccessor();
+			}
+
+			public Argument GetArgument()
+			{
+				return new Argument(name, new AccessorArgument(value));
+			}
+
+
+		}
+
+
 		protected class TimeArgument : ArgumentExtension
 		{
 			public double t;
@@ -32,6 +52,9 @@ namespace dninosores.UnityAnimationModifiers
 
 		[Tooltip("Should the equation be allowed to change while the game is running?")]
 		public bool dynamic;
+
+		[Tooltip("Variables (other than t) that are referenced in the equation, and what values they should be interpreted as")]
+		public Variable[] variables;
 
 		private Expression expression;
 		private TimeArgument t;
@@ -62,6 +85,7 @@ namespace dninosores.UnityAnimationModifiers
 			base.Reset(o);
 			equation = "";
 			dynamic = false;
+			variables = new Variable[0];
 		}
 
 
@@ -74,10 +98,19 @@ namespace dninosores.UnityAnimationModifiers
 
 		private void RecalculateExpression()
 		{
-			expression = new Expression(equation, new Argument("t", t), new Function("Noise", new NoiseFunction()));
+			PrimitiveElement[] elements = new PrimitiveElement[variables.Length + 2];
+			elements[0] = new Argument("t", t);
+			elements[1] = new Function("Noise", new NoiseFunction());
+			for (int i = 2; i < variables.Length + 2; i++)
+			{
+				elements[i] = variables[i - 2].GetArgument();
+			}
+
+			expression = new Expression(equation, elements);
 			if (!expression.checkSyntax())
 			{
 				expression = null;
+				Debug.LogWarning("Expression '" + equation + "' could not be parsed!");
 			}
 		}
 	}
