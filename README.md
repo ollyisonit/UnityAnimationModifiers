@@ -42,6 +42,10 @@ When using custom equations, you should type the equation you want to use withou
 The modifier uses the [mxparser](https://github.com/mariuszgromada/MathParser.org-mXparser) library to read equations, so any functions supported in that library will be supported here.
 Additionally, you can use Noise(seed, time) to generate random Perlin noise in the same way that the Noise modifier does.
 
+The 'Dynamic' tickbox below the equation textbox tells the program whether the equation should be re-parsed each time it is evaluated. This will probably slow down your game, so you should only ever check this box if you know you are going to be changing the equation while the game is running.
+
+Custom equations also support the use of variables that reference other values in your scene. For example, you may want to include the x component of another object's transform in your equation. In order to do this, you can add a variable to the Variables array below the 'Dynamic' tickbox. Each variable has a name, which you should use to refer to it in your equation, and a FloatValueAccessor, which tells the variable where to get its value from.
+
 ## Creating your own modifiers
 If you want to create your own custom modifier, there are two routes you can take:
 ### Custom Float Modifier
