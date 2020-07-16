@@ -7,6 +7,9 @@ namespace dninosores.UnityAnimationModifiers
 	/// </summary>
 	public abstract class CustomFloatModifier : MonoBehaviour
 	{
+		/// <summary>
+		/// Gets the raw modified value given the time.
+		/// </summary>
 		public abstract float GetModifiedValue(float time);
 	}
 }
