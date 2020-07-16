@@ -6,6 +6,9 @@ using UnityEngine;
 
 namespace dninosores.UnityAnimationModifiers
 {
+	/// <summary>
+	/// Animation modifier that affects a float value.
+	/// </summary>
 	class FloatAnimationModifier : MonoAnimationModifier<float>
 	{
 		public enum ModifierType
@@ -17,6 +20,7 @@ namespace dninosores.UnityAnimationModifiers
 			Custom
 		}
 
+		[Tooltip("What type of function should be used to modify the value?")]
 		public ModifierType modifierType;
 
 		[ConditionalHide(new string[] { "modifierType", "modifierType", "modifierType" }, new object[]{ModifierType.Noise, ModifierType.Sine,
@@ -58,7 +62,7 @@ namespace dninosores.UnityAnimationModifiers
 		}
 
 
-		public override LateUpdateModifier<float> modifier
+		public override Modifier<float> modifier
 		{
 			get
 			{

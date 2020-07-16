@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace dninosores.UnityAnimationModifiers
 {
+	/// <summary>
+	/// Stores amplitude, frequency, phase shift, and vertical shift of a periodic modifier.
+	/// </summary>
 	[Serializable]
 	public class PeriodicModifierSettings
 	{

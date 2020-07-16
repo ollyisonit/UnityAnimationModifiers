@@ -6,20 +6,12 @@ using UnityEngine.UI;
 
 namespace dninosores.UnityAnimationModifiers
 {
+	/// <summary>
+	/// Base class for FloatModifiers that modify AnyFloatAccessors.
+	/// </summary>
 	[Serializable]
-	public abstract class LateUpdateFloatModifier : LateUpdateModifier<float>
+	public abstract class FloatModifier : Modifier<float>
 	{
-		public enum AccessType
-		{
-			Transform = 0,
-			RectTransform = 1,
-			Light = 2,
-			ImageColor = 3,
-			Modifier = 4,
-			Custom = 5,
-			Reflected = 6
-		}
-
 		public AnyFloatAccessor floatAccessor;
 
 

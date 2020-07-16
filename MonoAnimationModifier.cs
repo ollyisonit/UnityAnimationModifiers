@@ -3,10 +3,18 @@ using UnityEngine;
 
 namespace dninosores.UnityAnimationModifiers
 {
+    /// <summary>
+    /// MonoBehaviour container for a modifier of type T. This allows modifiers to be attached to gameObjects and show up in-editor.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public abstract class MonoAnimationModifier<T> : MonoBehaviour
     {
+        [Tooltip("Should the modifier be synced with the time since startup on awake?")]
         public bool syncOnAwake;
-        public abstract LateUpdateModifier<T> modifier {get;}
+        /// <summary>
+        /// Returns the contained modifier.
+        /// </summary>
+        public abstract Modifier<T> modifier {get;}
 
         protected virtual void Reset()
         {
@@ -15,7 +23,7 @@ namespace dninosores.UnityAnimationModifiers
 
         protected virtual void LateUpdate()
         {
-            modifier.LateUpdate(isActiveAndEnabled, this);
+            modifier.LateUpdate(this);
         }
 
 

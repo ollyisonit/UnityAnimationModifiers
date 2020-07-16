@@ -3,11 +3,17 @@ using UnityEngine;
 
 namespace dninosores.UnityAnimationModifiers
 {
+	/// <summary>
+	/// Modifier that generates values using some sort of periodic function.
+	/// </summary>
 	[Serializable]
-	public abstract class PeriodicModifier : LateUpdateFloatModifier
+	public abstract class PeriodicModifier : FloatModifier
 	{
 		protected PeriodicModifierSettings settings;
 
+		/// <summary>
+		/// Sets the settings of the periodic function.
+		/// </summary>
 		public PeriodicModifier SetSettings(PeriodicModifierSettings settings)
 		{
 			this.settings = settings;

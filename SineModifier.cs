@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace dninosores.UnityAnimationModifiers
 {
+	/// <summary>
+	/// Modifies a value based on a sine wave.
+	/// </summary>
 	[Serializable]
 	class SineModifier : PeriodicModifier
 	{

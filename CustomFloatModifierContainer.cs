@@ -3,8 +3,11 @@ using UnityEngine;
 
 namespace dninosores.UnityAnimationModifiers
 {
+	/// <summary>
+	/// Serializable container for a reference to a CustomFloatModifier.
+	/// </summary>
 	[Serializable]
-	public class CustomFloatModifierContainer : LateUpdateFloatModifier
+	public class CustomFloatModifierContainer : FloatModifier
 	{
 		public CustomFloatModifier customModifier;
 		protected override float GetRawModifiedValue()

@@ -1,13 +1,18 @@
-﻿using System;
+﻿using dninosores.UnityEditorAttributes;
+using System;
 using UnityEngine;
 
 namespace dninosores.UnityAnimationModifiers
 {
+	/// <summary>
+	/// Modifier that generates random values using Perlin noise.
+	/// </summary>
 	[Serializable]
 	public class NoiseModifier : PeriodicModifier
 	{
 		[Header("Randomness")]
 		public bool randomSeed = true;
+		[ConditionalHide("randomSeed", false)]
 		public float seed;
 
 

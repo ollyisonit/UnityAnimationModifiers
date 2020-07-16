@@ -5,8 +5,11 @@ using UnityEngine;
 
 namespace dninosores.UnityAnimationModifiers
 {
+	/// <summary>
+	/// Modifier that uses an equation typed by the user.
+	/// </summary>
 	[Serializable]
-	class CustomEquationFloatModifier : LateUpdateFloatModifier
+	class CustomEquationFloatModifier : FloatModifier
 	{
 		[Serializable]
 		public class Variable
