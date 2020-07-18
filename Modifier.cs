@@ -31,9 +31,9 @@ namespace dninosores.UnityAnimationModifiers
         /// Resets modifier back to its original values.
         /// </summary>
         /// <param name="gameObject">GameObject that modifier is associated with.</param>
-        public virtual void Reset(GameObject gameObject)
+        public virtual void Reset(MonoBehaviour mb)
         {
-            ResetAccessors.Reset(this, gameObject);
+            ResetAccessors.Reset(this, mb);
             additive = true;
             intensity = 1;
         }

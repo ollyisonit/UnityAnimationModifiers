@@ -15,7 +15,7 @@ namespace dninosores.UnityAnimationModifiers
 		public AnyFloatAccessor floatAccessor;
 
 
-		public override void Reset(GameObject o)
+		public override void Reset(MonoBehaviour o)
 		{
 			base.Reset(o);
 			floatAccessor = new AnyFloatAccessor();

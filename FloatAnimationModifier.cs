@@ -50,15 +50,15 @@ namespace dninosores.UnityAnimationModifiers
 			modifierType = ModifierType.CustomEquation;
 			periodicSettings = new PeriodicModifierSettings();
 			noiseModifier = new NoiseModifier();
-			noiseModifier.Reset(gameObject);
+			noiseModifier.Reset(this);
 			sine = new SineModifier();
-			sine.Reset(gameObject);
+			sine.Reset(this);
 			curve = new CustomCurveModifier();
-			curve.Reset(gameObject);
+			curve.Reset(this);
 			equation = new CustomEquationFloatModifier();
-			equation.Reset(gameObject);
+			equation.Reset(this);
 			custom = new CustomFloatModifierContainer();
-			custom.Reset(gameObject);
+			custom.Reset(this);
 		}
 
 

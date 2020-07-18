@@ -83,7 +83,7 @@ namespace dninosores.UnityAnimationModifiers
 		}
 
 
-		public override void Reset(GameObject o)
+		public override void Reset(MonoBehaviour o)
 		{
 			base.Reset(o);
 			equation = "";

@@ -15,7 +15,7 @@ namespace dninosores.UnityAnimationModifiers
 			return customModifier.GetModifiedValue(time);
 		}
 
-		public override void Reset(GameObject o)
+		public override void Reset(MonoBehaviour o)
 		{
 			base.Reset(o);
 			customModifier = o.GetComponent<CustomFloatModifier>();
