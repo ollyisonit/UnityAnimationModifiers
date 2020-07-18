@@ -25,12 +25,12 @@ namespace dninosores.UnityAnimationModifiers
 
 		protected override float GetValue()
 		{
-			return floatAccessor.GetValue();
+			return floatAccessor.Value;
 		}
 
 		protected override void SetValue(float value)
 		{
-			floatAccessor.SetValue(value);
+			floatAccessor.Value = (value);
 		}
 
 		protected abstract float GetRawModifiedValue();
