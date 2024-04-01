@@ -55,7 +55,8 @@
  */
 using System;
 
-namespace org.dninosores.mariuszgromada.math.mxparser.parsertokens {
+namespace org.ollyisonit.mariuszgromada.math.mxparser.parsertokens
+{
 	/**
 	 * Calculus Operators - mXparser tokens definition.
 	 *
@@ -79,101 +80,102 @@ namespace org.dninosores.mariuszgromada.math.mxparser.parsertokens {
 	 * @version        4.3.0
 	 */
 	[CLSCompliant(false)]
-	public sealed class CalculusOperator {
+	public sealed class CalculusOperator
+	{
 		/*
 		 * CalculusOperator - token type id.
 		 */
-		public const int TYPE_ID					= 8;
-		public const String TYPE_DESC				= "Calculus Operator";
+		public const int TYPE_ID = 8;
+		public const String TYPE_DESC = "Calculus Operator";
 		/*
 		 * CalculusOperator - tokens id.
 		 */
-		public const int SUM_ID						= 1;
-		public const int PROD_ID					= 3;
-		public const int INT_ID						= 5;
-		public const int DER_ID						= 6;
-		public const int DER_LEFT_ID				= 7;
-		public const int DER_RIGHT_ID				= 8;
-		public const int DERN_ID					= 9;
-		public const int FORW_DIFF_ID				= 10;
-		public const int BACKW_DIFF_ID				= 11;
-		public const int AVG_ID						= 12;
-		public const int VAR_ID						= 13;
-		public const int STD_ID						= 14;
-		public const int MIN_ID						= 15;
-		public const int MAX_ID						= 16;
-		public const int SOLVE_ID					= 17;
+		public const int SUM_ID = 1;
+		public const int PROD_ID = 3;
+		public const int INT_ID = 5;
+		public const int DER_ID = 6;
+		public const int DER_LEFT_ID = 7;
+		public const int DER_RIGHT_ID = 8;
+		public const int DERN_ID = 9;
+		public const int FORW_DIFF_ID = 10;
+		public const int BACKW_DIFF_ID = 11;
+		public const int AVG_ID = 12;
+		public const int VAR_ID = 13;
+		public const int STD_ID = 14;
+		public const int MIN_ID = 15;
+		public const int MAX_ID = 16;
+		public const int SOLVE_ID = 17;
 		/*
 		 * CalculusOperator - tokens key words.
 		 */
-		public const String SUM_STR					= "sum";
-		public const String PROD_STR				= "prod";
-		public const String INT_STR					= "int";
-		public const String DER_STR					= "der";
-		public const String DER_LEFT_STR			= "der-";
-		public const String DER_RIGHT_STR			= "der+";
-		public const String DERN_STR				= "dern";
-		public const String FORW_DIFF_STR			= "diff";
-		public const String BACKW_DIFF_STR			= "difb";
-		public const String AVG_STR					= "avg";
-		public const String VAR_STR					= "vari";
-		public const String STD_STR					= "stdi";
-		public const String MIN_STR					= "mini";
-		public const String MAX_STR					= "maxi";
-		public const String SOLVE_STR				= "solve";
+		public const String SUM_STR = "sum";
+		public const String PROD_STR = "prod";
+		public const String INT_STR = "int";
+		public const String DER_STR = "der";
+		public const String DER_LEFT_STR = "der-";
+		public const String DER_RIGHT_STR = "der+";
+		public const String DERN_STR = "dern";
+		public const String FORW_DIFF_STR = "diff";
+		public const String BACKW_DIFF_STR = "difb";
+		public const String AVG_STR = "avg";
+		public const String VAR_STR = "vari";
+		public const String STD_STR = "stdi";
+		public const String MIN_STR = "mini";
+		public const String MAX_STR = "maxi";
+		public const String SOLVE_STR = "solve";
 		/*
 		 * CalculusOperator - syntax.
 		 */
-		public const String SUM_SYN					= "sum( i, from, to, expr , <by> )";
-		public const String PROD_SYN				= "prod( i, from, to, expr , <by> )";
-		public const String INT_SYN					= "int( expr, arg, from, to )";
-		public const String DER_SYN					= "der( expr, arg, <point> )";
-		public const String DER_LEFT_SYN			= "der-( expr, arg, <point> )";
-		public const String DER_RIGHT_SYN			= "der+( expr, arg, <point> )";
-		public const String DERN_SYN				= "dern( expr, n, arg )";
-		public const String FORW_DIFF_SYN			= "diff( expr, arg, <delta> )";
-		public const String BACKW_DIFF_SYN			= "difb( expr, arg, <delta> )";
-		public const String AVG_SYN					= "avg( i, from, to, expr , <by> )";
-		public const String VAR_SYN					= "vari( i, from, to, expr , <by> )";
-		public const String STD_SYN					= "stdi( i, from, to, expr , <by> )";
-		public const String MIN_SYN					= "mini( i, from, to, expr , <by> )";
-		public const String MAX_SYN					= "maxi( i, from, to, expr , <by> )";
-		public const String SOLVE_SYN				= "solve( expr, arg, from, to )";
+		public const String SUM_SYN = "sum( i, from, to, expr , <by> )";
+		public const String PROD_SYN = "prod( i, from, to, expr , <by> )";
+		public const String INT_SYN = "int( expr, arg, from, to )";
+		public const String DER_SYN = "der( expr, arg, <point> )";
+		public const String DER_LEFT_SYN = "der-( expr, arg, <point> )";
+		public const String DER_RIGHT_SYN = "der+( expr, arg, <point> )";
+		public const String DERN_SYN = "dern( expr, n, arg )";
+		public const String FORW_DIFF_SYN = "diff( expr, arg, <delta> )";
+		public const String BACKW_DIFF_SYN = "difb( expr, arg, <delta> )";
+		public const String AVG_SYN = "avg( i, from, to, expr , <by> )";
+		public const String VAR_SYN = "vari( i, from, to, expr , <by> )";
+		public const String STD_SYN = "stdi( i, from, to, expr , <by> )";
+		public const String MIN_SYN = "mini( i, from, to, expr , <by> )";
+		public const String MAX_SYN = "maxi( i, from, to, expr , <by> )";
+		public const String SOLVE_SYN = "solve( expr, arg, from, to )";
 		/*
 		 * CalculusOperator - tokens description.
 		 */
-		public const String SUM_DESC				= "Summation operator - SIGMA";
-		public const String PROD_DESC				= "Product operator - PI";
-		public const String INT_DESC				= "Definite integral operator";
-		public const String DER_DESC				= "Derivative operator";
-		public const String DER_LEFT_DESC			= "Left derivative operator";
-		public const String DER_RIGHT_DESC			= "Right derivative operator";
-		public const String DERN_DESC				= "n-th derivative operator";
-		public const String FORW_DIFF_DESC			= "Forward difference operator";
-		public const String BACKW_DIFF_DESC			= "Backward difference operator";
-		public const String AVG_DESC				= "Average operator";
-		public const String VAR_DESC				= "Bias-corrected sample variance operator";
-		public const String STD_DESC				= "Bias-corrected sample standard deviation operator";
-		public const String MIN_DESC				= "Minimum value";
-		public const String MAX_DESC				= "Maximum value";
-		public const String SOLVE_DESC				= "f(x) = 0 equation solving, function root finding";
+		public const String SUM_DESC = "Summation operator - SIGMA";
+		public const String PROD_DESC = "Product operator - PI";
+		public const String INT_DESC = "Definite integral operator";
+		public const String DER_DESC = "Derivative operator";
+		public const String DER_LEFT_DESC = "Left derivative operator";
+		public const String DER_RIGHT_DESC = "Right derivative operator";
+		public const String DERN_DESC = "n-th derivative operator";
+		public const String FORW_DIFF_DESC = "Forward difference operator";
+		public const String BACKW_DIFF_DESC = "Backward difference operator";
+		public const String AVG_DESC = "Average operator";
+		public const String VAR_DESC = "Bias-corrected sample variance operator";
+		public const String STD_DESC = "Bias-corrected sample standard deviation operator";
+		public const String MIN_DESC = "Minimum value";
+		public const String MAX_DESC = "Maximum value";
+		public const String SOLVE_DESC = "f(x) = 0 equation solving, function root finding";
 		/*
 		 * CalculusOperator - since.
 		 */
-		public const String SUM_SINCE				= mXparser.NAMEv10;
-		public const String PROD_SINCE				= mXparser.NAMEv10;
-		public const String INT_SINCE				= mXparser.NAMEv10;
-		public const String DER_SINCE				= mXparser.NAMEv10;
-		public const String DER_LEFT_SINCE			= mXparser.NAMEv10;
-		public const String DER_RIGHT_SINCE			= mXparser.NAMEv10;
-		public const String DERN_SINCE				= mXparser.NAMEv10;
-		public const String FORW_DIFF_SINCE			= mXparser.NAMEv10;
-		public const String BACKW_DIFF_SINCE		= mXparser.NAMEv10;
-		public const String AVG_SINCE				= mXparser.NAMEv24;
-		public const String VAR_SINCE				= mXparser.NAMEv24;
-		public const String STD_SINCE				= mXparser.NAMEv24;
-		public const String MIN_SINCE				= mXparser.NAMEv24;
-		public const String MAX_SINCE				= mXparser.NAMEv24;
-		public const String SOLVE_SINCE				= mXparser.NAMEv40;
+		public const String SUM_SINCE = mXparser.NAMEv10;
+		public const String PROD_SINCE = mXparser.NAMEv10;
+		public const String INT_SINCE = mXparser.NAMEv10;
+		public const String DER_SINCE = mXparser.NAMEv10;
+		public const String DER_LEFT_SINCE = mXparser.NAMEv10;
+		public const String DER_RIGHT_SINCE = mXparser.NAMEv10;
+		public const String DERN_SINCE = mXparser.NAMEv10;
+		public const String FORW_DIFF_SINCE = mXparser.NAMEv10;
+		public const String BACKW_DIFF_SINCE = mXparser.NAMEv10;
+		public const String AVG_SINCE = mXparser.NAMEv24;
+		public const String VAR_SINCE = mXparser.NAMEv24;
+		public const String STD_SINCE = mXparser.NAMEv24;
+		public const String MIN_SINCE = mXparser.NAMEv24;
+		public const String MAX_SINCE = mXparser.NAMEv24;
+		public const String SOLVE_SINCE = mXparser.NAMEv40;
 	}
 }

@@ -1,7 +1,7 @@
 ﻿
 using UnityEngine;
 
-namespace dninosores.UnityAnimationModifiers
+namespace ollyisonit.UnityAnimationModifiers
 {
     /// <summary>
     /// MonoBehaviour container for a modifier of type T. This allows modifiers to be attached to gameObjects and show up in-editor.
@@ -14,7 +14,7 @@ namespace dninosores.UnityAnimationModifiers
         /// <summary>
         /// Returns the contained modifier.
         /// </summary>
-        public abstract Modifier<T> modifier {get;}
+        public abstract Modifier<T> modifier { get; }
 
         protected virtual void Reset()
         {

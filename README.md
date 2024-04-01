@@ -21,7 +21,7 @@ Provides ways to use equations to change values in the Unity editor over time, s
 	 
 	 Depending on the type of modifier you pick, you will get slightly different settings. However, all modifiers share an 'Additive' tickbox, which lets you pick whether you want the value from the modifier to be added on top of the original value, and an 'Intensity' value, which the modified value is multiplied by before it is returned. 
 	 
-	 All modifiers also share a 'Float Accessor' field, which allows you to select the value that you want to modify. [You can find more information on Accessors here.](https://github.com/dninosores/UnityValueAccessors)
+	 All modifiers also share a 'Float Accessor' field, which allows you to select the value that you want to modify. [You can find more information on Accessors here.](https://github.com/ollyisonit/UnityValueAccessors)
 
 ### Periodic Settings
 Noise, Sine, and Custom Curve are all periodic modifiers, meaning that they can be scaled over time. When you have one of these modifiers selected, you will have access to the Periodic Settings menu, which contains four settings:
@@ -54,10 +54,10 @@ In order to create a custom modifier that works with float modifiers, you should
 ### Custom Modifiers for Other Data Types
 In order to create a modifier for a non-float value, you will need to extend the Modifier<T\> class. Make sure that you mark your class as Serializable or it won't show up in the Unity editor. Since Modifiers aren't MonoBehaviours, they cannot be attached to GameObjects as scripts. In order to actually use your modifier in your scene, you will need to extend the MonoAnimationModifier class, which acts as a MonoBehaviour wrapper that you can use to attach your modifier to GameObjects.
 
-When creating custom modifiers, you will most likely find [Accessors](https://github.com/dninosores/UnityValueAccessors) useful for creating references to the values that you want to modify.
+When creating custom modifiers, you will most likely find [Accessors](https://github.com/ollyisonit/UnityValueAccessors) useful for creating references to the values that you want to modify.
 
 ## Installation
 Download or clone this repository and place it in the Assets folder of your Unity project.
 
 ## Dependencies
-This library requires you to have the [UnityValueAccessors](https://github.com/dninosores/UnityValueAccessors) and [UnityEditorAttributes](https://github.com/dninosores/UnityEditorAttributes) libraries in your project Assets folder.
+This library requires you to have the [UnityValueAccessors](https://github.com/ollyisonit/UnityValueAccessors) and [UnityEditorAttributes](https://github.com/ollyisonit/UnityEditorAttributes) libraries in your project Assets folder.

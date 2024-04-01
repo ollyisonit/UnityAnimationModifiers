@@ -1,8 +1,8 @@
 ﻿
-using dninosores.UnityAccessors;
-using org.dninosores.mariuszgromada.math.mxparser;
+using ollyisonit.UnityAccessors;
+using org.ollyisonit.mariuszgromada.math.mxparser;
 
-namespace dninosores.UnityAnimationModifiers
+namespace ollyisonit.UnityAnimationModifiers
 {
 
 	/// <summary>

@@ -1,9 +1,9 @@
-﻿using dninosores.UnityAccessors;
-using org.dninosores.mariuszgromada.math.mxparser;
+﻿using ollyisonit.UnityAccessors;
+using org.ollyisonit.mariuszgromada.math.mxparser;
 using System;
 using UnityEngine;
 
-namespace dninosores.UnityAnimationModifiers
+namespace ollyisonit.UnityAnimationModifiers
 {
 	/// <summary>
 	/// Modifier that uses an equation typed by the user.

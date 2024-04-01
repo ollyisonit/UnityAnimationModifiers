@@ -56,7 +56,8 @@
 using System;
 using System.Globalization;
 
-namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
+namespace org.ollyisonit.mariuszgromada.math.mxparser.mathcollection
+{
 	/**
 	 * MathFunctions - the most popular math functions. Many of function implemented by this class
 	 * could be found in java Math package (in fact functions from MathFunctions typically calls
@@ -84,17 +85,20 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 	 * @version        4.4.2
 	 */
 	[CLSCompliant(false)]
-	public sealed class MathFunctions {
+	public sealed class MathFunctions
+	{
 		private static readonly double DECIMAL_MIN_VALUE = (double)Decimal.MinValue / 1e17;
 		private static readonly double DECIMAL_MAX_VALUE = (double)Decimal.MaxValue / 1e17;
 
-		internal static bool isNotInDecimalRange(double x) {
+		internal static bool isNotInDecimalRange(double x)
+		{
 			if (Double.IsNaN(x)) return true;
 			if (Double.IsInfinity(x)) return true;
 			if (x <= DECIMAL_MIN_VALUE || x >= DECIMAL_MAX_VALUE) return true;
 			return false;
 		}
-		public static double canonicalRound(double x) {
+		public static double canonicalRound(double x)
+		{
 			if (Double.IsNaN(x)) return Double.NaN;
 			if (Double.IsInfinity(x)) return x;
 			String sx = x.ToString(CultureInfo.InvariantCulture);
@@ -103,7 +107,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 			if (Double.IsInfinity(nx)) return x;
 			return nx;
 		}
-		public static double canonicalRound(decimal x) {
+		public static double canonicalRound(decimal x)
+		{
 			String sx = x.ToString(CultureInfo.InvariantCulture);
 			double nx = Double.Parse(sx, NumberStyles.Float, CultureInfo.InvariantCulture);
 			return nx;
@@ -116,7 +121,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @param b  The b parameter
 		 * @return   The result of addition
 		 */
-		public static double plus(double a, double b) {
+		public static double plus(double a, double b)
+		{
 			if (Double.IsNaN(a)) return Double.NaN;
 			if (Double.IsNaN(b)) return Double.NaN;
 			double r = a + b;
@@ -126,10 +132,10 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 			if (isNotInDecimalRange(a)) return r;
 			if (isNotInDecimalRange(b)) return r;
 			if (isNotInDecimalRange(r)) return r;
-			decimal da = (decimal) a;
-			decimal db = (decimal) b;
+			decimal da = (decimal)a;
+			decimal db = (decimal)b;
 			decimal dr = da + db;
-			return (double) dr;
+			return (double)dr;
 		}
 		/**
 		 * Subtraction a - b applying canonical rounding if canonical
@@ -139,7 +145,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @param b  The b parameter
 		 * @return   The result of subtraction
 		 */
-		public static double minus(double a, double b) {
+		public static double minus(double a, double b)
+		{
 			if (Double.IsNaN(a)) return Double.NaN;
 			if (Double.IsNaN(b)) return Double.NaN;
 			double r = a - b;
@@ -162,7 +169,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @param b  The b parameter
 		 * @return   The result of multiplication
 		 */
-		public static double multiply(double a, double b) {
+		public static double multiply(double a, double b)
+		{
 			if (Double.IsNaN(a)) return Double.NaN;
 			if (Double.IsNaN(b)) return Double.NaN;
 			double r = a * b;
@@ -185,7 +193,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @param b  The b parameter
 		 * @return   The result of division
 		 */
-		public static double div(double a, double b) {
+		public static double div(double a, double b)
+		{
 			if (b == 0) return Double.NaN;
 			if (Double.IsNaN(a)) return Double.NaN;
 			if (Double.IsNaN(b)) return Double.NaN;
@@ -213,23 +222,27 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if n >= 0 returns Bell numbers,
 		 *             otherwise returns Double.NaN.
 		 */
-		public static double bellNumber(int n) {
+		public static double bellNumber(int n)
+		{
 			double result = Double.NaN;
-			if (n > 1) {
+			if (n > 1)
+			{
 				n -= 1;
 				if ((n + 1) * (n + 1) >= int.MaxValue) return Double.NaN;
-				long[,] bellTriangle = new long[n+1, n+1];
+				long[,] bellTriangle = new long[n + 1, n + 1];
 				bellTriangle[0, 0] = 1;
 				bellTriangle[1, 0] = 1;
-				for (int r = 1; r <= n; r++) {
+				for (int r = 1; r <= n; r++)
+				{
 					for (int k = 0; k < r; k++)
-						bellTriangle[r, k+1] = bellTriangle[r-1, k] + bellTriangle[r, k];
+						bellTriangle[r, k + 1] = bellTriangle[r - 1, k] + bellTriangle[r, k];
 					if (r < n)
-						bellTriangle[r+1, 0] = bellTriangle[r, r];
+						bellTriangle[r + 1, 0] = bellTriangle[r, r];
 					if (mXparser.isCurrentCalculationCancelled()) return Double.NaN;
 				}
 				result = bellTriangle[n, n];
-			} else if (n >= 0)
+			}
+			else if (n >= 0)
 				result = 1;
 			return result;
 		}
@@ -240,10 +253,11 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if n <> Double.NaN return bellNumber( (int)Math.round(n) ),
 		 *             otherwise return Double.NaN.
 		 */
-		public static double bellNumber(double n) {
+		public static double bellNumber(double n)
+		{
 			if (Double.IsNaN(n))
 				return Double.NaN;
-			return bellNumber( (int)Math.Round(n) );
+			return bellNumber((int)Math.Round(n));
 		}
 		/**
 		 * Euler numbers
@@ -254,8 +268,9 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if n >=0 returns Euler number,
 		 *             otherwise return Double.NaN.
 		 */
-		public static double eulerNumber(int n, int k) {
-			if ( n < 0)
+		public static double eulerNumber(int n, int k)
+		{
+			if (n < 0)
 				return Double.NaN;
 			if (k < 0)
 				return 0;
@@ -265,7 +280,7 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 				else
 					return 0;
 			if (mXparser.isCurrentCalculationCancelled()) return Double.NaN;
-			return (k+1) * eulerNumber(n-1, k) + (n-k) * eulerNumber(n-1, k-1);
+			return (k + 1) * eulerNumber(n - 1, k) + (n - k) * eulerNumber(n - 1, k - 1);
 		}
 		/**
 		 * Euler numbers
@@ -276,10 +291,11 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if n, k <> Double.NaN returns eulerNumber( (int)Math.round(n), (int)Math.round(k) ),
 		 *             otherwise return Double.NaN.
 		 */
-		public static double eulerNumber(double n, double k) {
+		public static double eulerNumber(double n, double k)
+		{
 			if (Double.IsNaN(n) || Double.IsNaN(k))
 				return Double.NaN;
-			return eulerNumber( (int)Math.Round(n), (int)Math.Round(k) );
+			return eulerNumber((int)Math.Round(n), (int)Math.Round(k));
 		}
 		/**
 		 * Factorial
@@ -288,14 +304,17 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 *
 		 * @return     Factorial if n >=0, otherwise returns Double.NaN.
 		 */
-		public static double factorial(int n) {
+		public static double factorial(int n)
+		{
 			double f = Double.NaN;
 			if (n >= 0)
 				if (n < 2) f = 1;
-				else {
+				else
+				{
 					f = 1;
-					for (int i = 1; i <= n; i++) {
-						f = f*i;
+					for (int i = 1; i <= n; i++)
+					{
+						f = f * i;
 						if (mXparser.isCurrentCalculationCancelled()) return Double.NaN;
 					}
 				}
@@ -309,10 +328,11 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if n <> Double.NaN return factorial( (int)Math.round(n) ),
 		 *             otherwise returns Double.NaN.
 		 */
-		public static double factorial(double n) {
+		public static double factorial(double n)
+		{
 			if (Double.IsNaN(n))
 				return Double.NaN;
-			return factorial( (int)Math.Round(n) );
+			return factorial((int)Math.Round(n));
 		}
 		/**
 		 * Generalized binomial coefficient
@@ -323,20 +343,24 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     Generalized binomial coefficient, if
 		 *             n = Double.NaN or k<0 returns Double.NaN.
 		 */
-		public static double binomCoeff(double n, long k) {
+		public static double binomCoeff(double n, long k)
+		{
 			if (Double.IsNaN(n))
 				return Double.NaN;
 			double result = Double.NaN;
-			if ( k >= 0 ){
+			if (k >= 0)
+			{
 				double numerator = 1;
-				if (k > 0 )
-					for (long i = 0; i <= k-1; i++) {
-						numerator*=(n-i);
+				if (k > 0)
+					for (long i = 0; i <= k - 1; i++)
+					{
+						numerator *= (n - i);
 						if (mXparser.isCurrentCalculationCancelled()) return Double.NaN;
 					}
 				double denominator = 1;
-				if ( k > 1 )
-					for (long i = 1; i <= k; i++) {
+				if (k > 1)
+					for (long i = 1; i <= k; i++)
+					{
 						denominator *= i;
 						if (mXparser.isCurrentCalculationCancelled()) return Double.NaN;
 					}
@@ -353,10 +377,11 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if n, k <> Double.NaN returns binomCoeff(n, (int)Math.round(k) ),
 		 *             otherwise returns Double.NaN.
 		 */
-		public static double binomCoeff(double n, double k) {
+		public static double binomCoeff(double n, double k)
+		{
 			if (Double.IsNaN(n) || Double.IsNaN(k))
 				return Double.NaN;
-			return binomCoeff(n, (long)Math.Round(k) );
+			return binomCoeff(n, (long)Math.Round(k));
 		}
 		/**
 		 * Generalized coefficient returning number of k permutations
@@ -368,15 +393,18 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return   For k greater than 0 return number of permutations, otherwise
 		 *           returns Double.NaN
 		 */
-		public static double numberOfPermutations(double n, long k) {
+		public static double numberOfPermutations(double n, long k)
+		{
 			if (Double.IsNaN(n))
 				return Double.NaN;
 			double result = Double.NaN;
-			if ( k >= 0 ){
+			if (k >= 0)
+			{
 				double numerator = 1;
-				if (k > 0 )
-					for (long i = 0; i <= k-1; i++) {
-						numerator*=(n-i);
+				if (k > 0)
+					for (long i = 0; i <= k - 1; i++)
+					{
+						numerator *= (n - i);
 						if (mXparser.isCurrentCalculationCancelled()) return Double.NaN;
 					}
 				result = numerator;
@@ -393,10 +421,11 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return   For k greater than 0 return number of permutations, otherwise
 		 *           returns Double.NaN
 		 */
-		public static double numberOfPermutations(double n, double k) {
+		public static double numberOfPermutations(double n, double k)
+		{
 			if (Double.IsNaN(n) || Double.IsNaN(k))
 				return Double.NaN;
-			return numberOfPermutations(n, (long)Math.Round(k) );
+			return numberOfPermutations(n, (long)Math.Round(k));
 		}
 		/**
 		 * Bernoulli numbers
@@ -407,12 +436,15 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if n, m >= 0 returns Bernoulli number,
 		 *             otherwise returns Double.NaN.
 		 */
-		public static double bernoulliNumber(int m, int n) {
+		public static double bernoulliNumber(int m, int n)
+		{
 			double result = Double.NaN;
-			if ( (m >= 0) && (n >= 0) ) {
+			if ((m >= 0) && (n >= 0))
+			{
 				result = 0;
 				for (int k = 0; k <= m; k++)
-					for (int v = 0; v <= k; v++) {
+					for (int v = 0; v <= k; v++)
+					{
 						result += Math.Pow(-1, v) * binomCoeff(k, v)
 							* (Math.Pow(n + v, m) / (k + 1));
 						if (mXparser.isCurrentCalculationCancelled()) return Double.NaN;
@@ -429,10 +461,11 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if n, m <> Double.NaN returns bernoulliNumber( (int)Math.round(m), (int)Math.round(n) ),
 		 *             otherwise returns Double.NaN.
 		 */
-		public static double bernoulliNumber(double m, double n) {
+		public static double bernoulliNumber(double m, double n)
+		{
 			if (Double.IsNaN(m) || Double.IsNaN(n))
 				return Double.NaN;
-			return bernoulliNumber( (int)Math.Round(m), (int)Math.Round(n) );
+			return bernoulliNumber((int)Math.Round(m), (int)Math.Round(n));
 		}
 		/**
 		 * Stirling numbers of the first kind
@@ -442,7 +475,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 *
 		 * @return     Stirling numbers of the first kind
 		 */
-		public static double Stirling1Number(int n, int k) {
+		public static double Stirling1Number(int n, int k)
+		{
 			if (k > n)
 				return 0;
 			if (n == 0)
@@ -456,7 +490,7 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 				else
 					return 0;
 			if (mXparser.isCurrentCalculationCancelled()) return Double.NaN;
-			return (n-1) * Stirling1Number(n-1, k) + Stirling1Number(n-1, k-1);
+			return (n - 1) * Stirling1Number(n - 1, k) + Stirling1Number(n - 1, k - 1);
 		}
 		/**
 		 * Stirling numbers of the first kind
@@ -467,10 +501,11 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if n, k <> Doube.NaN returns Stirling1Number( (int)Math.round(n), (int)Math.round(k) ),
 		 *             otherwise returns Double.NaN.
 		 */
-		public static double Stirling1Number(double n, double k) {
+		public static double Stirling1Number(double n, double k)
+		{
 			if (Double.IsNaN(n) || Double.IsNaN(k))
 				return Double.NaN;
-			return Stirling1Number( (int)Math.Round(n), (int)Math.Round(k) );
+			return Stirling1Number((int)Math.Round(n), (int)Math.Round(k));
 		}
 		/**
 		 * Stirling numbers of the second kind
@@ -480,7 +515,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 *
 		 * @return     Stirling numbers of the second kind
 		 */
-		public static double Stirling2Number(int n, int k) {
+		public static double Stirling2Number(int n, int k)
+		{
 			if (k > n)
 				return 0;
 			if (n == 0)
@@ -494,7 +530,7 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 				else
 					return 0;
 			if (mXparser.isCurrentCalculationCancelled()) return Double.NaN;
-			return k * Stirling2Number(n-1, k) + Stirling2Number(n-1, k-1);
+			return k * Stirling2Number(n - 1, k) + Stirling2Number(n - 1, k - 1);
 		}
 		/**
 		 * Stirling numbers of the second kind
@@ -505,10 +541,11 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if n, k <> Doube.NaN returns Stirling2Number( (int)Math.round(n), (int)Math.round(k) ),
 		 *             otherwise returns Double.NaN.
 		 */
-		public static double Stirling2Number(double n, double k) {
+		public static double Stirling2Number(double n, double k)
+		{
 			if (Double.IsNaN(n) || Double.IsNaN(k))
 				return Double.NaN;
-			return Stirling2Number( (int)Math.Round(n), (int)Math.Round(k) );
+			return Stirling2Number((int)Math.Round(n), (int)Math.Round(k));
 		}
 		/**
 		 * Worpitzky numbers
@@ -519,11 +556,14 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if n,k>=0 and k<=n return Worpitzky number,
 		 *             otherwise return Double.NaN.
 		 */
-		public static double worpitzkyNumber(int n, int k) {
+		public static double worpitzkyNumber(int n, int k)
+		{
 			double result = Double.NaN;
-			if ( (n >= 0) && (k >= 0) && (k <= n) ){
+			if ((n >= 0) && (k >= 0) && (k <= n))
+			{
 				result = 0;
-				for (int v = 0; v <= k; v++) {
+				for (int v = 0; v <= k; v++)
+				{
 					result += Math.Pow(-1, v + k) * Math.Pow(v + 1, n) * binomCoeff(k, v);
 					if (mXparser.isCurrentCalculationCancelled()) return Double.NaN;
 				}
@@ -539,10 +579,11 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if n,k<> Double.NaN returns worpitzkyNumber( (int)Math.round(n), (int)Math.round(k) ),
 		 *             otherwise return Double.NaN.
 		 */
-		public static double worpitzkyNumber(double n, double k) {
+		public static double worpitzkyNumber(double n, double k)
+		{
 			if (Double.IsNaN(n) || Double.IsNaN(k))
 				return Double.NaN;
-			return worpitzkyNumber( (int)Math.Round(n), (int)Math.Round(k) );
+			return worpitzkyNumber((int)Math.Round(n), (int)Math.Round(k));
 		}
 		/**
 		 * Harmonic numer
@@ -552,13 +593,15 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if n>0 returns harmonic number, otherwise returns 0
 		 *             (empty summation operator)
 		 */
-		public static double harmonicNumber(int n) {
+		public static double harmonicNumber(int n)
+		{
 			if (n <= 0)
 				return 0;
 			if (n == 1)
 				return 1;
 			double h = 1;
-			for (double k = 2.0; k <= n; k++) {
+			for (double k = 2.0; k <= n; k++)
+			{
 				h += 1.0 / k;
 				if (mXparser.isCurrentCalculationCancelled()) return Double.NaN;
 			}
@@ -572,10 +615,11 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if n <> Double.NaN returns harmonicNumber( (int)Math.round(n) ),
 		 *             otherwise returns Double.NaN
 		 */
-		public static double harmonicNumber(double n) {
+		public static double harmonicNumber(double n)
+		{
 			if (Double.IsNaN(n))
 				return Double.NaN;
-			return harmonicNumber( (int)Math.Round(n) );
+			return harmonicNumber((int)Math.Round(n));
 		}
 		/**
 		 * Harmonic number 1/1 + 1/2^x + ... + 1/n^x
@@ -586,15 +630,17 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if x<> Double.NaN and x>=0 Harmonic number,
 		 *             otherwise returns Double.NaN.
 		 */
-		public static double harmonicNumber(double x, int n) {
-			if  ( (Double.IsNaN(x)) || (x < 0) )
+		public static double harmonicNumber(double x, int n)
+		{
+			if ((Double.IsNaN(x)) || (x < 0))
 				return Double.NaN;
 			if (n <= 0)
 				return 0;
 			if (n == 1)
 				return x;
 			double h = 1;
-			for (double k = 2.0; k <= n; k++) {
+			for (double k = 2.0; k <= n; k++)
+			{
 				h += 1 / power(k, x);
 				if (mXparser.isCurrentCalculationCancelled()) return Double.NaN;
 			}
@@ -609,10 +655,11 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if x,n <> Double.NaN returns harmonicNumber( x, (int)Math.round(n) ),
 		 *             otherwise returns Double.NaN.
 		 */
-		public static double harmonicNumber(double x, double n) {
-			if ( (Double.IsNaN(x)) || (Double.IsNaN(n)) )
+		public static double harmonicNumber(double x, double n)
+		{
+			if ((Double.IsNaN(x)) || (Double.IsNaN(n)))
 				return Double.NaN;
-			return harmonicNumber( x, (int)Math.Round(n) );
+			return harmonicNumber(x, (int)Math.Round(n));
 		}
 		/**
 		 * Catalan numbers
@@ -621,8 +668,9 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 *
 		 * @return     Catalan numbers
 		 */
-		public static double catalanNumber(int n) {
-			return binomCoeff(2*n, n) * div(1, n+1);
+		public static double catalanNumber(int n)
+		{
+			return binomCoeff(2 * n, n) * div(1, n + 1);
 		}
 		/**
 		 * Catalan numbers
@@ -632,10 +680,11 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if n <> Double.NaN returns catalanNumber( (int)Math.round(n) ),
 		 *             otherwise returns Double.NaN.
 		 */
-		public static double catalanNumber(double n) {
+		public static double catalanNumber(double n)
+		{
 			if (Double.IsNaN(n))
 				return Double.NaN;
-			return catalanNumber( (int)Math.Round(n) );
+			return catalanNumber((int)Math.Round(n));
 		}
 		/**
 		 * Fibonacci numbers
@@ -645,15 +694,16 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if n >= 0 returns fibonacci numbers,
 		 *             otherwise returns Double.NaN.
 		 */
-		public static double fibonacciNumber(int n) {
-			if (n < 0 )
+		public static double fibonacciNumber(int n)
+		{
+			if (n < 0)
 				return Double.NaN;
 			if (n == 0)
 				return 0;
 			if (n == 1)
 				return 1;
 			if (mXparser.isCurrentCalculationCancelled()) return Double.NaN;
-			return fibonacciNumber(n-1) + fibonacciNumber(n-2);
+			return fibonacciNumber(n - 1) + fibonacciNumber(n - 2);
 		}
 		/**
 		 * Fibonacci numbers
@@ -663,10 +713,11 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if n <> Double.NaN returns fibonacciNumber( (int)Math.round(n) ),
 		 *             otherwise returns Double.NaN.
 		 */
-		public static double fibonacciNumber(double n) {
+		public static double fibonacciNumber(double n)
+		{
 			if (Double.IsNaN(n))
 				return Double.NaN;
-			return fibonacciNumber( (int)Math.Round(n) );
+			return fibonacciNumber((int)Math.Round(n));
 		}
 		/**
 		 * Lucas numebrs
@@ -676,15 +727,16 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if n >=0 returns Lucas numbers,
 		 *             otherwise returns Double.NaN.
 		 */
-		public static double lucasNumber(int n) {
-			if (n < 0 )
+		public static double lucasNumber(int n)
+		{
+			if (n < 0)
 				return Double.NaN;
 			if (n == 0)
 				return 2;
 			if (n == 1)
 				return 1;
 			if (mXparser.isCurrentCalculationCancelled()) return Double.NaN;
-			return lucasNumber(n-1) + lucasNumber(n-2);
+			return lucasNumber(n - 1) + lucasNumber(n - 2);
 		}
 		/**
 		 * Lucas numebrs
@@ -694,10 +746,11 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if n <> Double.NaN returns lucasNumber( (int)Math.round(n) ),
 		 *             otherwise returns Double.NaN.
 		 */
-		public static double lucasNumber(double n) {
+		public static double lucasNumber(double n)
+		{
 			if (Double.IsNaN(n))
 				return Double.NaN;
-			return lucasNumber( (int)Math.Round(n) );
+			return lucasNumber((int)Math.Round(n));
 		}
 		/**
 		 * Kronecker delta
@@ -708,7 +761,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if i,j <> Double.NaN returns Kronecker delta,
 		 *             otherwise returns Double.NaN.
 		 */
-		public static double kroneckerDelta(double i, double j) {
+		public static double kroneckerDelta(double i, double j)
+		{
 			if (Double.IsNaN(i) || Double.IsNaN(j))
 				return Double.NaN;
 			if (i == j)
@@ -724,7 +778,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 *
 		 * @return     Kronecker delta
 		 */
-		public static double kroneckerDelta(int i, int j) {
+		public static double kroneckerDelta(int i, int j)
+		{
 			if (i == j)
 				return 1;
 			else
@@ -739,21 +794,26 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 *             there is no division by 0 while computing returns continued fraction
 		 *             value, otherwise returns Double.NaN.
 		 */
-		public static double continuedFraction(params double[] sequence) {
+		public static double continuedFraction(params double[] sequence)
+		{
 			if (sequence == null) return Double.NaN;
 			if (sequence.Length == 0) return Double.NaN;
 			double cf = 0;
 			double a;
 			if (sequence.Length == 1)
 				return sequence[0];
-			int lastIndex = sequence.Length-1;
-			for(int i = lastIndex; i >= 0; i--) {
+			int lastIndex = sequence.Length - 1;
+			for (int i = lastIndex; i >= 0; i--)
+			{
 				a = sequence[i];
 				if (Double.IsNaN(a))
 					return Double.NaN;
-				if (i == lastIndex) {
+				if (i == lastIndex)
+				{
 					cf = a;
-				} else {
+				}
+				else
+				{
 					if (cf == 0)
 						return Double.NaN;
 					cf = a + 1.0 / cf;
@@ -771,7 +831,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 *
 		 * @return     continued polynomial value
 		 */
-		private static double continuedPolynomial(int n, double[] x) {
+		private static double continuedPolynomial(int n, double[] x)
+		{
 			if (x == null) return Double.NaN;
 			if (x.Length == 0) return Double.NaN;
 			if (n == 0)
@@ -779,7 +840,7 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 			if (n == 1)
 				return x[0];
 			if (mXparser.isCurrentCalculationCancelled()) return Double.NaN;
-			return x[n-1] * continuedPolynomial(n-1, x) + continuedPolynomial(n-2, x);
+			return x[n - 1] * continuedPolynomial(n - 1, x) + continuedPolynomial(n - 2, x);
 		}
 		/**
 		 * Continued polynomial
@@ -790,10 +851,12 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 *             returns continued polynomial, otherwise returns
 		 *             Double.NaN.
 		 */
-		public static double continuedPolynomial(params double[] x) {
+		public static double continuedPolynomial(params double[] x)
+		{
 			if (x == null) return Double.NaN;
 			if (x.Length == 0) return Double.NaN;
-			foreach (double d in x) {
+			foreach (double d in x)
+			{
 				if (Double.IsNaN(d))
 					return Double.NaN;
 				if (mXparser.isCurrentCalculationCancelled()) return Double.NaN;
@@ -809,14 +872,18 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if x <> Double.NaN and m>=0 returns polynomial value,
 		 *             otherwise returns Double.NaN.
 		 */
-		public static double eulerPolynomial(int m, double x) {
+		public static double eulerPolynomial(int m, double x)
+		{
 			if (Double.IsNaN(x))
 				return Double.NaN;
 			double result = Double.NaN;
-			if (m >= 0) {
+			if (m >= 0)
+			{
 				result = 0;
-				for (int n = 0; n <= m; n++) {
-					for (int k = 0; k <= n; k++) {
+				for (int n = 0; n <= m; n++)
+				{
+					for (int k = 0; k <= n; k++)
+					{
 						result += Math.Pow(-1, k) * binomCoeff(n, k) * Math.Pow(x + k, m);
 						if (mXparser.isCurrentCalculationCancelled()) return Double.NaN;
 					}
@@ -834,10 +901,11 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if x,m <> Double.NaN returns eulerPolynomial( (int)Math.round(m), (int)Math.round(x) ),
 		 *             otherwise returns Double.NaN.
 		 */
-		public static double eulerPolynomial(double m, double x) {
+		public static double eulerPolynomial(double m, double x)
+		{
 			if (Double.IsNaN(m) || Double.IsNaN(x))
 				return Double.NaN;
-			return eulerPolynomial( (int)Math.Round(m), (int)Math.Round(x) );
+			return eulerPolynomial((int)Math.Round(m), (int)Math.Round(x));
 		}
 		/**
 		 * Characteristic function x in (a,b)
@@ -849,12 +917,13 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if x, a, b <> Double.NaN returns
 		 * 			   characteristic function value on the (a,b) range.
 		 */
-		public static double chi(double x, double a, double b) {
+		public static double chi(double x, double a, double b)
+		{
 			if (Double.IsNaN(x) || Double.IsNaN(a) || Double.IsNaN(b))
 				return Double.NaN;
 			double result = Double.NaN;
-			if ( (!Double.IsNaN(x)) && (!Double.IsNaN(a)) && (!Double.IsNaN(b)) )
-				if ( (x > a) && (x < b) )
+			if ((!Double.IsNaN(x)) && (!Double.IsNaN(a)) && (!Double.IsNaN(b)))
+				if ((x > a) && (x < b))
 					result = 1;
 				else
 					result = 0;
@@ -870,12 +939,13 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if x, a, b <> Double.NaN returns
 		 * 			   characteristic function value on the [a,b] range.
 		 */
-		public static double chi_LR(double x, double a, double b) {
+		public static double chi_LR(double x, double a, double b)
+		{
 			if (Double.IsNaN(x) || Double.IsNaN(a) || Double.IsNaN(b))
 				return Double.NaN;
 			double result = Double.NaN;
-			if ( (!Double.IsNaN(x)) && (!Double.IsNaN(a)) && (!Double.IsNaN(b)) )
-				if ( (x >= a) && (x <= b) )
+			if ((!Double.IsNaN(x)) && (!Double.IsNaN(a)) && (!Double.IsNaN(b)))
+				if ((x >= a) && (x <= b))
 					result = 1;
 				else
 					result = 0;
@@ -891,12 +961,13 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if x, a, b <> Double.NaN returns
 		 * 			   characteristic function value on the [a,b) range.
 		 */
-		public static double chi_L(double x, double a, double b) {
+		public static double chi_L(double x, double a, double b)
+		{
 			if (Double.IsNaN(x) || Double.IsNaN(a) || Double.IsNaN(b))
 				return Double.NaN;
 			double result = Double.NaN;
-			if ( (!Double.IsNaN(x)) && (!Double.IsNaN(a)) && (!Double.IsNaN(b)) )
-				if ( (x >= a) && (x < b) )
+			if ((!Double.IsNaN(x)) && (!Double.IsNaN(a)) && (!Double.IsNaN(b)))
+				if ((x >= a) && (x < b))
 					result = 1;
 				else
 					result = 0;
@@ -912,12 +983,13 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if x, a, b <> Double.NaN returns
 		 * 			   characteristic function value on the (a,b] range.
 		 */
-		public static double chi_R(double x, double a, double b) {
+		public static double chi_R(double x, double a, double b)
+		{
 			if (Double.IsNaN(x) || Double.IsNaN(a) || Double.IsNaN(b))
 				return Double.NaN;
 			double result = Double.NaN;
-			if ( (!Double.IsNaN(x)) && (!Double.IsNaN(a)) && (!Double.IsNaN(b)) )
-				if ( (x > a) && (x <= b) )
+			if ((!Double.IsNaN(x)) && (!Double.IsNaN(a)) && (!Double.IsNaN(b)))
+				if ((x > a) && (x <= b))
 					result = 1;
 				else
 					result = 0;
@@ -932,12 +1004,14 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return   True if the number is almost integer according to the default epsilon,
 		 *           otherwise returns false.
 		 */
-		public static bool isAlmostInt(double a) {
+		public static bool isAlmostInt(double a)
+		{
 			double aint = Math.Round(a);
 			if (abs(a - aint) <= BinaryRelations.DEFAULT_COMPARISON_EPSILON) return true;
 			else return false;
 		}
-		private static double shorterResult(decimal dr, double r) {
+		private static double shorterResult(decimal dr, double r)
+		{
 			if (Double.IsNaN(r)) return Double.NaN;
 			if (Double.IsInfinity(r)) return r;
 			double drd = (double)dr;
@@ -945,10 +1019,13 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 			String rs = r.ToString(CultureInfo.InvariantCulture);
 			double res;
 			String sres;
-			if (drds.Length < rs.Length) {
+			if (drds.Length < rs.Length)
+			{
 				res = drd;
 				sres = drds;
-			} else {
+			}
+			else
+			{
 				res = r;
 				sres = rs;
 			}
@@ -968,7 +1045,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @param n   The integer exponent
 		 * @return    Return a to the power of n, if canonical rounding is enable, the it operates on big numbers
 		 */
-		private static double powInt(double a, int n) {
+		private static double powInt(double a, int n)
+		{
 			if (Double.IsNaN(a)) return Double.NaN;
 			double r = Math.Pow(a, n);
 			if (Double.IsInfinity(a)) return r;
@@ -979,47 +1057,55 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 			if (isNotInDecimalRange(r)) return r;
 			decimal dr = (decimal)r;
 			double apow = 1;
-			if (mXparser.checkIfCanonicalRounding()) {
+			if (mXparser.checkIfCanonicalRounding())
+			{
 				decimal da = (decimal)a;
-				if (n == 2) {
+				if (n == 2)
+				{
 					r = a * a;
 					if (MathFunctions.isNotInDecimalRange(r)) return r;
 					dr = da * da;
 					return shorterResult(dr, r);
 				}
-				if (n == 3) {
+				if (n == 3)
+				{
 					r = a * a * a;
 					if (MathFunctions.isNotInDecimalRange(r)) return r;
 					dr = da * da * da;
 					return shorterResult(dr, r);
 				}
-				if (n == 4) {
+				if (n == 4)
+				{
 					r = a * a * a * a;
 					if (MathFunctions.isNotInDecimalRange(r)) return r;
 					dr = da * da * da * da;
 					return shorterResult(dr, r);
 				}
-				if (n == -1) {
+				if (n == -1)
+				{
 					r = 1 / a;
 					if (MathFunctions.isNotInDecimalRange(r)) return r;
 					dr = Decimal.One / da;
 					return shorterResult(dr, r);
 				}
-				if (n == -2) {
+				if (n == -2)
+				{
 					apow = a * a;
 					r = 1 / apow;
 					if (MathFunctions.isNotInDecimalRange(r) || MathFunctions.isNotInDecimalRange(apow)) return r;
 					dr = Decimal.One / (da * da);
 					return shorterResult(dr, r);
 				};
-				if (n == -3) {
+				if (n == -3)
+				{
 					apow = a * a * a;
 					r = 1 / apow;
 					if (MathFunctions.isNotInDecimalRange(r) || MathFunctions.isNotInDecimalRange(apow)) return r;
 					dr = Decimal.One / (da * da * da);
 					return shorterResult(dr, r);
 				}
-				if (n == -4) {
+				if (n == -4)
+				{
 					apow = a * a * a * a;
 					r = 1 / apow;
 					if (MathFunctions.isNotInDecimalRange(r) || MathFunctions.isNotInDecimalRange(apow)) return r;
@@ -1031,20 +1117,25 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 				if (MathFunctions.isNotInDecimalRange(r)) decimalStillInRange = false;
 				if (decimalStillInRange) dr = da * da * da * da;
 				int nabs = Math.Abs(n);
-				for (int i = 5; i <= nabs; i++) {
+				for (int i = 5; i <= nabs; i++)
+				{
 					r = r * a;
 					if (MathFunctions.isNotInDecimalRange(r)) decimalStillInRange = false;
 					if (decimalStillInRange) dr = dr * da;
 				}
-				if (decimalStillInRange) {
+				if (decimalStillInRange)
+				{
 					if (n >= 0) return shorterResult(dr, r);
 					else return shorterResult(Decimal.One / dr, 1.0 / r);
 				}
-				else {
+				else
+				{
 					if (n >= 0) return r;
 					else return 1.0 / r;
 				}
-			} else {
+			}
+			else
+			{
 				return r;
 			}
 		}
@@ -1057,35 +1148,41 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if a,b &lt;&gt; Double.NaN returns Math.pow(a, b),
 		 *             otherwise returns Double.NaN.
 		 */
-		public static double power(double a, double b) {
+		public static double power(double a, double b)
+		{
 			if (Double.IsNaN(a) || Double.IsNaN(b))
 				return Double.NaN;
 			if (Double.IsInfinity(a)) Math.Pow(a, b);
 			if (Double.IsInfinity(b)) Math.Pow(a, b);
 			double babs = Math.Abs(b);
 			double bint = Math.Round(babs);
-			if ( MathFunctions.abs(babs - bint) <= BinaryRelations.DEFAULT_COMPARISON_EPSILON ) {
+			if (MathFunctions.abs(babs - bint) <= BinaryRelations.DEFAULT_COMPARISON_EPSILON)
+			{
 				if (b >= 0) return powInt(a, (int)bint);
 				else return powInt(a, -(int)bint);
-			} else if (a >= 0)
+			}
+			else if (a >= 0)
 				return Math.Pow(a, b);
 			else if (abs(b) >= 1)
 				return Math.Pow(a, b);
 			else if (b == 0)
 				return Math.Pow(a, b);
-			else {
+			else
+			{
 				double ndob = 1.0 / abs(b);
 				double nint = Math.Round(ndob);
-				if ( MathFunctions.abs(ndob-nint) <= BinaryRelations.DEFAULT_COMPARISON_EPSILON ) {
+				if (MathFunctions.abs(ndob - nint) <= BinaryRelations.DEFAULT_COMPARISON_EPSILON)
+				{
 					long n = (long)nint;
 					if (n % 2 == 1)
 						if (b > 0)
-							return -Math.Pow( abs(a), 1.0 / ndob);
+							return -Math.Pow(abs(a), 1.0 / ndob);
 						else
-							return -Math.Pow( abs(a), -1.0 / ndob);
+							return -Math.Pow(abs(a), -1.0 / ndob);
 					else
 						return Double.NaN;
-				} else return Double.NaN;
+				}
+				else return Double.NaN;
 			}
 		}
 		/**
@@ -1095,11 +1192,13 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @param x   Number
 		 * @return    Returns root of a number. If calculation is not possible Double.NaN is returned.
 		 */
-		public static double root(double n, double x) {
+		public static double root(double n, double x)
+		{
 			if (Double.IsNaN(n) || Double.IsNaN(n)) return Double.NaN;
 			if (Double.IsInfinity(n) || Double.IsInfinity(n)) return Double.NaN;
 			if (n < -BinaryRelations.DEFAULT_COMPARISON_EPSILON) return Double.NaN;
-			if (abs(n) <= BinaryRelations.DEFAULT_COMPARISON_EPSILON) {
+			if (abs(n) <= BinaryRelations.DEFAULT_COMPARISON_EPSILON)
+			{
 				if (abs(x) <= BinaryRelations.DEFAULT_COMPARISON_EPSILON) return 0;
 				else if (abs(x - 1) <= BinaryRelations.DEFAULT_COMPARISON_EPSILON) return 1;
 				else return Double.NaN;
@@ -1107,11 +1206,13 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 			long nint = (long)floor(n);
 			if (nint == 1) return x;
 			if (nint == 2) return sqrt(x);
-			if (nint % 2 == 1) {
+			if (nint % 2 == 1)
+			{
 				if (x >= 0) return Math.Pow(x, 1.0 / nint);
 				else return -Math.Pow(abs(x), 1.0 / nint);
 			}
-			else {
+			else
+			{
 				if (x >= 0) return Math.Pow(x, 1.0 / nint);
 				else return Double.NaN;
 			}
@@ -1123,10 +1224,12 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @param n   exponent
 		 * @return    Tetration result.
 		 */
-		public static double tetration(double a, double n) {
+		public static double tetration(double a, double n)
+		{
 			if (Double.IsNaN(a)) return Double.NaN;
 			if (Double.IsNaN(n)) return Double.NaN;
-			if (Double.IsPositiveInfinity(n)) {
+			if (Double.IsPositiveInfinity(n))
+			{
 				if (abs(a - MathConstants.EXP_MINUS_E) <= BinaryRelations.DEFAULT_COMPARISON_EPSILON)
 					return MathConstants.EXP_MINUS_1;
 				if (abs(a - MathConstants.EXP_1_OVER_E) <= BinaryRelations.DEFAULT_COMPARISON_EPSILON)
@@ -1137,14 +1240,16 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 				if (a < MathConstants.EXP_MINUS_E) return Double.NaN;
 			}
 			if (n < -BinaryRelations.DEFAULT_COMPARISON_EPSILON) return Double.NaN;
-			if (abs(n) <= BinaryRelations.DEFAULT_COMPARISON_EPSILON) {
+			if (abs(n) <= BinaryRelations.DEFAULT_COMPARISON_EPSILON)
+			{
 				if (abs(a) > BinaryRelations.DEFAULT_COMPARISON_EPSILON)
 					return 1;
 				else
 					return Double.NaN;
 			}
 			n = floor(n);
-			if (n == 0) {
+			if (n == 0)
+			{
 				if (abs(a) > BinaryRelations.DEFAULT_COMPARISON_EPSILON)
 					return 1;
 				else
@@ -1153,7 +1258,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 			if (abs(a) <= BinaryRelations.DEFAULT_COMPARISON_EPSILON) return 0;
 			if (n == 1) return a;
 			double r = a;
-			for (double i = 2; i <= n; i++) {
+			for (double i = 2; i <= n; i++)
+			{
 				r = Math.Pow(a, r);
 				if (mXparser.isCurrentCalculationCancelled()) return Double.NaN;
 			}
@@ -1167,7 +1273,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 *
 		 * @return     if a,b <> Double.NaN returns a % b.
 		 */
-		public static double mod(double a, double b) {
+		public static double mod(double a, double b)
+		{
 			if (Double.IsNaN(a) || Double.IsNaN(b))
 				return Double.NaN;
 			return a % b;
@@ -1181,16 +1288,16 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if a,b <> Double.NaN and b <> 0 returns a/b,
 		 *             otherwise return Double.NaN.
 		 */
-		 /*
-		public static double div(double a, double b) {
-			if (Double.IsNaN(a) || Double.IsNaN(b))
-				return Double.NaN;
-			double result = Double.NaN;
-			if (b != 0)
-				result = a / b;
-			return result;
-		}
-		*/
+		/*
+	   public static double div(double a, double b) {
+		   if (Double.IsNaN(a) || Double.IsNaN(b))
+			   return Double.NaN;
+		   double result = Double.NaN;
+		   if (b != 0)
+			   result = a / b;
+		   return result;
+	   }
+	   */
 		/**
 		 * Sine trigonometric function
 		 *
@@ -1199,7 +1306,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if a <> Double.NaN return Math.sin(a),
 		 *             otherwise return Double.NaN.
 		 */
-		public static double sin(double a) {
+		public static double sin(double a)
+		{
 			if (Double.IsNaN(a))
 				return Double.NaN;
 			if (mXparser.checkIfDegreesMode())
@@ -1217,7 +1325,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if a <> Double.NaN returns Math.cos(a),
 		 *             otherwise returns Double.NaN.
 		 */
-		public static double cos(double a) {
+		public static double cos(double a)
+		{
 			if (Double.IsNaN(a))
 				return Double.NaN;
 			if (mXparser.checkIfDegreesMode())
@@ -1235,7 +1344,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if a <> Double.NaN returns Math.tan(a),
 		 *             otherwise returns Double.NaN.
 		 */
-		public static double tan(double a) {
+		public static double tan(double a)
+		{
 			if (Double.IsNaN(a))
 				return Double.NaN;
 			if (mXparser.checkIfDegreesMode())
@@ -1253,7 +1363,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if a <> Double.NaN and tan(a) <> 0 returns 1 / Math.tan(a),
 		 *             otherwise returns Double.NaN.
 		 */
-		public static double ctan(double a) {
+		public static double ctan(double a)
+		{
 			if (Double.IsNaN(a))
 				return Double.NaN;
 			if (mXparser.checkIfDegreesMode())
@@ -1275,7 +1386,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if a <> Double.NaN and cos(a) <> 0 returns 1 / Math.cos(a),
 		 *             otherwise returns Double.NaN.
 		 */
-		public static double sec(double a) {
+		public static double sec(double a)
+		{
 			if (Double.IsNaN(a))
 				return Double.NaN;
 			if (mXparser.checkIfDegreesMode())
@@ -1297,7 +1409,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if a <> Double.NaN and sin(a) <> 0 returns 1 / Math.sin(a),
 		 *             otherwise returns Double.NaN.
 		 */
-		public static double cosec(double a) {
+		public static double cosec(double a)
+		{
 			if (Double.IsNaN(a))
 				return Double.NaN;
 			if (mXparser.checkIfDegreesMode())
@@ -1316,7 +1429,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @param val   Parameter
 		 * @return      f double is almost integer returns the closest integer, otherwise original value
 		 */
-		private static double intIfAlmostIntOtherwiseOrig(double val) {
+		private static double intIfAlmostIntOtherwiseOrig(double val)
+		{
 			double valint = Math.Round(val);
 			if (Math.Abs(val - valint) <= BinaryRelations.DEFAULT_COMPARISON_EPSILON) return valint;
 			return val;
@@ -1329,17 +1443,20 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if a <> Double.NaN returns Math.asin(a),
 		 *             otherwise returns Double.NaN.
 		 */
-		public static double asin(double a) {
+		public static double asin(double a)
+		{
 			if (Double.IsNaN(a))
 				return Double.NaN;
 			SpecialValue sv = SpecialValueTrigonometric.getSpecialValueAsin(a);
 			double r;
 			if (sv != null) r = sv.fv;
 			else r = Math.Asin(a);
-			if (mXparser.checkIfDegreesMode()) {
+			if (mXparser.checkIfDegreesMode())
+			{
 				if (sv != null) return sv.fvdeg;
 				return intIfAlmostIntOtherwiseOrig(r / Units.DEGREE_ARC);
-			} else return r;
+			}
+			else return r;
 		}
 		/**
 		 * Arcus cosine - inverse trigonometric cosine function
@@ -1349,14 +1466,16 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if a <> Double.NaN returns Math.acos(a),
 		 *             otherwise returns Double.NaN.
 		 */
-		public static double acos(double a) {
+		public static double acos(double a)
+		{
 			if (Double.IsNaN(a))
 				return Double.NaN;
 			SpecialValue sv = SpecialValueTrigonometric.getSpecialValueAcos(a);
 			double r;
 			if (sv != null) r = sv.fv;
 			else r = Math.Acos(a);
-			if (mXparser.checkIfDegreesMode()) {
+			if (mXparser.checkIfDegreesMode())
+			{
 				if (sv != null) return sv.fvdeg;
 				return intIfAlmostIntOtherwiseOrig(r / Units.DEGREE_ARC);
 			}
@@ -1370,14 +1489,16 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if a <> Double.NaN returns Math.atan(a),
 		 *             otherwise returns Double.NaN.
 		 */
-		public static double atan(double a) {
+		public static double atan(double a)
+		{
 			if (Double.IsNaN(a))
 				return Double.NaN;
 			SpecialValue sv = SpecialValueTrigonometric.getSpecialValueAtan(a);
 			double r;
 			if (sv != null) r = sv.fv;
 			else r = Math.Atan(a);
-			if (mXparser.checkIfDegreesMode()) {
+			if (mXparser.checkIfDegreesMode())
+			{
 				if (sv != null) return sv.fvdeg;
 				return intIfAlmostIntOtherwiseOrig(r / Units.DEGREE_ARC);
 			}
@@ -1391,18 +1512,21 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if a <> Double.NaN and a <> 0 returns Math.atan(1/a),
 		 *             otherwise returns Double.NaN.
 		 */
-		public static double actan(double a) {
+		public static double actan(double a)
+		{
 			if (Double.IsNaN(a))
 				return Double.NaN;
 			SpecialValue sv = SpecialValueTrigonometric.getSpecialValueActan(a);
 			double r;
 			if (sv != null) r = sv.fv;
-			else {
+			else
+			{
 				if (a > 0) r = Math.Atan(1 / a);
 				else if (a < 0) r = Math.Atan(1 / a) + MathConstants.PI;
 				else r = Double.NaN;
 			}
-			if (mXparser.checkIfDegreesMode()) {
+			if (mXparser.checkIfDegreesMode())
+			{
 				if (sv != null) return sv.fvdeg;
 				return intIfAlmostIntOtherwiseOrig(r / Units.DEGREE_ARC);
 			}
@@ -1414,14 +1538,16 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @param      a                   the a function parameter
 		 * @return     Inverse trigonometric secant function
 		 */
-		public static double asec(double a) {
+		public static double asec(double a)
+		{
 			if (Double.IsNaN(a))
 				return Double.NaN;
 			SpecialValue sv = SpecialValueTrigonometric.getSpecialValueAsec(a);
 			double r;
 			if (sv != null) r = sv.fv;
 			else r = Math.Acos(1 / a);
-			if (mXparser.checkIfDegreesMode()) {
+			if (mXparser.checkIfDegreesMode())
+			{
 				if (sv != null) return sv.fvdeg;
 				return intIfAlmostIntOtherwiseOrig(r / Units.DEGREE_ARC);
 			}
@@ -1433,14 +1559,16 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @param      a                   the a function parameter
 		 * @return     Inverse trigonometric cosecant function
 		 */
-		public static double acosec(double a) {
+		public static double acosec(double a)
+		{
 			if (Double.IsNaN(a))
 				return Double.NaN;
 			SpecialValue sv = SpecialValueTrigonometric.getSpecialValueAcsc(a);
 			double r;
 			if (sv != null) r = sv.fv;
 			else r = Math.Asin(1 / a);
-			if (mXparser.checkIfDegreesMode()) {
+			if (mXparser.checkIfDegreesMode())
+			{
 				if (sv != null) return sv.fvdeg;
 				return intIfAlmostIntOtherwiseOrig(r / Units.DEGREE_ARC);
 			}
@@ -1454,7 +1582,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if a <> Double.NaN returns Math.log(1/a),
 		 *             otherwise returns Double.NaN.
 		 */
-		public static double ln(double a) {
+		public static double ln(double a)
+		{
 			if (Double.IsNaN(a))
 				return Double.NaN;
 			return Math.Log(a);
@@ -1467,10 +1596,11 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if a <> Double.NaN returns Math.log(a)/Math.log(2.0),
 		 *             otherwise returns Double.NaN.
 		 */
-		public static double log2(double a) {
+		public static double log2(double a)
+		{
 			if (Double.IsNaN(a))
 				return Double.NaN;
-			return Math.Log(a)/Math.Log(2.0);
+			return Math.Log(a) / Math.Log(2.0);
 		}
 		/**
 		 * Common logarithm
@@ -1480,7 +1610,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if a <> Double.NaN returns Math.log10(a),
 		 *             otherwise returns Double.NaN.
 		 */
-		public static double log10(double a) {
+		public static double log10(double a)
+		{
 			if (Double.IsNaN(a))
 				return Double.NaN;
 			return Math.Log10(a);
@@ -1493,7 +1624,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if a <> Double.NaN returns Math.toRadians(a),
 		 *             otherwise returns Double.NaN.
 		 */
-		public static double rad(double a) {
+		public static double rad(double a)
+		{
 			if (Double.IsNaN(a))
 				return Double.NaN;
 			return a * (MathConstants.PI / 180.0);
@@ -1506,7 +1638,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if a <> Double.NaN returns Math.exp(a),
 		 *             otherwise returns Double.NaN.
 		 */
-		public static double exp(double a) {
+		public static double exp(double a)
+		{
 			if (Double.IsNaN(a))
 				return Double.NaN;
 			return Math.Exp(a);
@@ -1519,7 +1652,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if a <> Double.NaN returns Math.sqrt(a),
 		 *             otherwise returns Double.NaN.
 		 */
-		 public static double sqrt(double a) {
+		public static double sqrt(double a)
+		{
 			if (Double.IsNaN(a))
 				return Double.NaN;
 			return Math.Sqrt(a);
@@ -1532,7 +1666,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if a <> Double.NaN returns Math.sinh(a),
 		 *             otherwise returns Double.NaN.
 		 */
-		public static double sinh(double a) {
+		public static double sinh(double a)
+		{
 			if (Double.IsNaN(a))
 				return Double.NaN;
 			return Math.Sinh(a);
@@ -1545,7 +1680,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if a <> Double.NaN returns Math.cosh(a),
 		 *             otherwise returns Double.NaN.
 		 */
-		public static double cosh(double a) {
+		public static double cosh(double a)
+		{
 			if (Double.IsNaN(a))
 				return Double.NaN;
 			return Math.Cosh(a);
@@ -1558,7 +1694,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if a <> Double.NaN returns Math.tanh(a),
 		 *             otherwise returns Double.NaN.
 		 */
-		public static double tanh(double a) {
+		public static double tanh(double a)
+		{
 			if (Double.IsNaN(a))
 				return Double.NaN;
 			return Math.Tanh(a);
@@ -1571,7 +1708,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if a <> Double.NaN and tanh(a) <> 0 returns 1 / Math.tanh(a),
 		 *             otherwise returns Double.NaN.
 		 */
-		public static double coth(double a) {
+		public static double coth(double a)
+		{
 			if (Double.IsNaN(a))
 				return Double.NaN;
 			double result = Double.NaN;
@@ -1588,7 +1726,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if a <> Double.NaN and cosh(a) <> 0 returns 1 / Math.cosh(a),
 		 *             otherwise returns Double.NaN.
 		 */
-		public static double sech(double a) {
+		public static double sech(double a)
+		{
 			if (Double.IsNaN(a))
 				return Double.NaN;
 			double result = Double.NaN;
@@ -1605,7 +1744,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if a <> Double.NaN and sinh(a) <> 0 returns 1 / Math.sinh(a),
 		 *             otherwise returns Double.NaN.
 		 */
-		public static double csch(double a) {
+		public static double csch(double a)
+		{
 			if (Double.IsNaN(a))
 				return Double.NaN;
 			double result = Double.NaN;
@@ -1622,7 +1762,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if a <> Double.NaN returns Math.toDegrees(a),
 		 *             otherwise returns Double.NaN.
 		 */
-		public static double deg(double a) {
+		public static double deg(double a)
+		{
 			if (Double.IsNaN(a))
 				return Double.NaN;
 			return a * (180.0 / MathConstants.PI);
@@ -1635,7 +1776,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if a <> Double.NaN returns Math.abs(a),
 		 *             otherwise returns Double.NaN.
 		 */
-		public static double abs(double a) {
+		public static double abs(double a)
+		{
 			if (Double.IsNaN(a))
 				return Double.NaN;
 			return Math.Abs(a);
@@ -1648,7 +1790,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if a <> Double.NaN returns Math.signum(a),
 		 *             otherwise returns Double.NaN.
 		 */
-		public static double sgn(double a) {
+		public static double sgn(double a)
+		{
 			if (Double.IsNaN(a))
 				return Double.NaN;
 			return Math.Sign(a);
@@ -1661,7 +1804,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if a <> Double.NaN returns Math.floor(a),
 		 *             otherwise returns Double.NaN.
 		 */
-		public static double floor(double a) {
+		public static double floor(double a)
+		{
 			if (Double.IsNaN(a))
 				return Double.NaN;
 			return Math.Floor(a);
@@ -1674,7 +1818,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if a <> Double.NaN returns Math.ceil(a),
 		 *             otherwise returns Double.NaN.
 		 */
-		public static double ceil(double a) {
+		public static double ceil(double a)
+		{
 			if (Double.IsNaN(a))
 				return Double.NaN;
 			return Math.Ceiling(a);
@@ -1687,10 +1832,11 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if a <> Double.NaN returns Math.log(a + Math.sqrt(a*a+1)),
 		 *             otherwise returns Double.NaN.
 		 */
-		public static double arsinh(double a) {
+		public static double arsinh(double a)
+		{
 			if (Double.IsNaN(a))
 				return Double.NaN;
-			return Math.Log(a + Math.Sqrt(a*a+1));
+			return Math.Log(a + Math.Sqrt(a * a + 1));
 		}
 		/**
 		 * Arcus hyperbolic cosine - inverse hyperbolic cosine function.
@@ -1700,10 +1846,11 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if a <> Double.NaN returns Math.log(a + Math.sqrt(a*a-1)),
 		 *             otherwise returns Double.NaN.
 		 */
-		public static double arcosh(double a) {
+		public static double arcosh(double a)
+		{
 			if (Double.IsNaN(a))
 				return Double.NaN;
-			return Math.Log(a + Math.Sqrt(a*a-1));
+			return Math.Log(a + Math.Sqrt(a * a - 1));
 		}
 		/**
 		 * Arcus hyperbolic tangent - inverse hyperbolic tangent function.
@@ -1713,12 +1860,13 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if a <> Double.NaN and 1-a <> 0 returns 0.5*Math.log( (1+a)/(1-a) ),
 		 *             otherwise returns Double.NaN.
 		 */
-		public static double artanh(double a) {
+		public static double artanh(double a)
+		{
 			if (Double.IsNaN(a))
 				return Double.NaN;
 			double result = Double.NaN;
-			if (1-a != 0)
-				result = 0.5*Math.Log( (1+a)/(1-a) );
+			if (1 - a != 0)
+				result = 0.5 * Math.Log((1 + a) / (1 - a));
 			return result;
 		}
 		/**
@@ -1729,12 +1877,13 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if a <> Double.NaN and a-1 <> 0 returns 0.5*Math.log( (a+1)/(a-1) );,
 		 *             otherwise returns Double.NaN.
 		 */
-		public static double arcoth(double a) {
+		public static double arcoth(double a)
+		{
 			if (Double.IsNaN(a))
 				return Double.NaN;
 			double result = Double.NaN;
-			if (a-1 != 0)
-				result = 0.5*Math.Log( (a+1)/(a-1) );
+			if (a - 1 != 0)
+				result = 0.5 * Math.Log((a + 1) / (a - 1));
 			return result;
 		}
 		/**
@@ -1745,12 +1894,13 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if a <> Double.NaN and a <> 0 returns Math.log( (1+Math.sqrt(1-a*a))/a);,
 		 *             otherwise returns Double.NaN.
 		 */
-		public static double arsech(double a) {
+		public static double arsech(double a)
+		{
 			if (Double.IsNaN(a))
 				return Double.NaN;
 			double result = Double.NaN;
 			if (a != 0)
-				result = Math.Log( (1+Math.Sqrt(1-a*a))/a);
+				result = Math.Log((1 + Math.Sqrt(1 - a * a)) / a);
 			return result;
 		}
 		/**
@@ -1761,12 +1911,13 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if a <> Double.NaN and a <> 0 returns Math.log( (1+Math.sqrt(1-a*a))/a);,
 		 *             otherwise returns Double.NaN.
 		 */
-		public static double arcsch(double a) {
+		public static double arcsch(double a)
+		{
 			if (Double.IsNaN(a))
 				return Double.NaN;
 			double result = Double.NaN;
 			if (a != 0)
-				result = Math.Log( 1/a + Math.Sqrt(1+a*a)/Math.Abs(a) );
+				result = Math.Log(1 / a + Math.Sqrt(1 + a * a) / Math.Abs(a));
 			return result;
 		}
 		/**
@@ -1777,7 +1928,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if a <> Double.NaN and a <> 0 returns Math.sin(PI*a) / (PI*a);,
 		 *             otherwise returns Double.NaN.
 		 */
-		public static double sa(double a) {
+		public static double sa(double a)
+		{
 			if (Double.IsNaN(a))
 				return Double.NaN;
 			double x = MathConstants.PI * a;
@@ -1794,7 +1946,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if a <> Double.NaN and a <> 0 returns Math.sin(a) / (a),
 		 *             otherwise returns Double.NaN.
 		 */
-		public static double sinc(double a) {
+		public static double sinc(double a)
+		{
 			if (Double.IsNaN(a))
 				return Double.NaN;
 			double result = Double.NaN;
@@ -1816,7 +1969,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if a,b <> Double.NaN and log(b) <> 0 returns Math.log(a) / Math.log(b),
 		 *             otherwise returns Double.NaN.
 		 */
-		public static double log(double a, double b) {
+		public static double log(double a, double b)
+		{
 			if (Double.IsNaN(a) || Double.IsNaN(b))
 				return Double.NaN;
 			double result = Double.NaN;
@@ -1833,15 +1987,19 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return         If conversion from double to Decimal possible
 		 *                 returns rounded value, otherwise Double.NaN.
 		 */
-		public static double round(double value, int places) {
+		public static double round(double value, int places)
+		{
 			if (Double.IsNaN(value)) return Double.NaN;
 			if (Double.IsInfinity(value)) return value;
 			if (places < 0) return Double.NaN;
-			try {
+			try
+			{
 				Decimal bd = Convert.ToDecimal(value);
 				bd = Math.Round(bd, places, MidpointRounding.AwayFromZero);
 				return Convert.ToDouble(bd);
-			} catch (Exception) {
+			}
+			catch (Exception)
+			{
 				return value;
 			}
 		}
@@ -1852,7 +2010,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @param places   decimal places
 		 * @return         Rounded value
 		 */
-		public static double roundHalfUp(double value, int places) {
+		public static double roundHalfUp(double value, int places)
+		{
 			if (Double.IsNaN(value)) return Double.NaN;
 			if (places < 0) return Double.NaN;
 			if (Double.IsNegativeInfinity(value)) return Double.NegativeInfinity;
@@ -1860,7 +2019,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 			if (value == 0) return 0;
 			double sign = 1;
 			double origValue = value;
-			if (value < 0) {
+			if (value < 0)
+			{
 				sign = -1;
 				value = -value;
 			}
@@ -1868,7 +2028,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 			if (ulpPosition <= 0) return sign * Math.Floor(value);
 			if (places > ulpPosition) return origValue;
 			double multiplier = 1;
-			for (int place = 0; place < places; place++) {
+			for (int place = 0; place < places; place++)
+			{
 				multiplier = Math.Floor(multiplier * 10);
 				if (mXparser.isCurrentCalculationCancelled()) return Double.NaN;
 			}
@@ -1884,31 +2045,34 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @param places   decimal places
 		 * @return         Rounded value
 		 */
- 		public static double roundDown(double value, int places) {
- 			if (Double.IsNaN(value)) return Double.NaN;
+		public static double roundDown(double value, int places)
+		{
+			if (Double.IsNaN(value)) return Double.NaN;
 			if (places < 0) return Double.NaN;
- 			if (value == Double.NegativeInfinity) return Double.NegativeInfinity;
- 			if (value == Double.PositiveInfinity) return Double.PositiveInfinity;
- 			if (value == 0) return 0;
- 			double sign = 1;
- 			double origValue = value;
- 			if (value < 0) {
- 				sign = -1;
- 				value = -value;
- 			}
- 			int ulpPosition = MathFunctions.ulpDecimalDigitsBefore(value);
- 			if (ulpPosition <= 0) return sign * Math.Floor(value);
- 			if (places > ulpPosition) return origValue;
- 			double multiplier = 1;
- 			for (int place = 0; place < places; place++) {
- 				multiplier = Math.Floor(multiplier * 10);
+			if (value == Double.NegativeInfinity) return Double.NegativeInfinity;
+			if (value == Double.PositiveInfinity) return Double.PositiveInfinity;
+			if (value == 0) return 0;
+			double sign = 1;
+			double origValue = value;
+			if (value < 0)
+			{
+				sign = -1;
+				value = -value;
+			}
+			int ulpPosition = MathFunctions.ulpDecimalDigitsBefore(value);
+			if (ulpPosition <= 0) return sign * Math.Floor(value);
+			if (places > ulpPosition) return origValue;
+			double multiplier = 1;
+			for (int place = 0; place < places; place++)
+			{
+				multiplier = Math.Floor(multiplier * 10);
 				if (mXparser.isCurrentCalculationCancelled()) return Double.NaN;
 			}
- 			double valueMultiplied = value * multiplier;
- 			double valueFloor = Math.Floor(valueMultiplied);
- 			return Math.Floor(sign * valueFloor) / multiplier;
- 		}
- 		/**
+			double valueMultiplied = value * multiplier;
+			double valueFloor = Math.Floor(valueMultiplied);
+			return Math.Floor(sign * valueFloor) / multiplier;
+		}
+		/**
  		 * Unit in the last place rounding, see
  		 * 0.1 + 0.1 + 0.1 vs roundUlp(0.1 + 0.1 + 0.1)
  		 *
@@ -1919,29 +2083,32 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
  		 * @see MathFunctions#decimalDigitsBefore(double)
  		 * @see MathFunctions#ulp(double)
  		 */
-		public static double roundUlp(double number) {
-			if ( (Double.IsNaN(number) ) || (Double.IsInfinity(number)) || (number == 0) )
+		public static double roundUlp(double number)
+		{
+			if ((Double.IsNaN(number)) || (Double.IsInfinity(number)) || (number == 0))
 				return number;
-			else {
+			else
+			{
 				int precision = MathFunctions.ulpDecimalDigitsBefore(number);
 				if (precision >= 1)
-					return MathFunctions.round(number, precision-5);
+					return MathFunctions.round(number, precision - 5);
 				else if (precision == 0)
 					return MathFunctions.round(number, 0);
 				else return number;
 			}
 		}
- 		/**
+		/**
  		 * Returns integer part of a doube value.
  		 * @param x   Number
  		 * @return For non- negative x returns Math.floor(x),
  		 *         otherwise returns -Math.floor(-x)
  		 */
- 		public static double integerPart(double x) {
- 			if (x > 0) return Math.Floor(x);
- 			else if (x < 0) return -Math.Floor(-x);
- 			else return 0;
- 		}
+		public static double integerPart(double x)
+		{
+			if (x > 0) return Math.Floor(x);
+			else if (x < 0) return -Math.Floor(-x);
+			else return 0;
+		}
 		/**
  		 * For very small number returns the position of
  		 * first significant digit, ie 0.1 = 1, 0.01 = 2
@@ -1949,7 +2116,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @param value Double value, small one.
 		 * @return Number of digits, number of places.
 		 */
-		public static int decimalDigitsBefore(double value) {
+		public static int decimalDigitsBefore(double value)
+		{
 			if (value == 0) return -1;
 			if (value <= 1e-322) return 322;
 			else if (value <= 1e-321) return 321;
@@ -2280,7 +2448,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * Unit in the last place(ULP) for double
 		 * @return ULP for a given double.
 		 */
-		public static double ulp(double value) {
+		public static double ulp(double value)
+		{
 			double v = abs(value);
 			long bits = BitConverter.DoubleToInt64Bits(v) & 0x7FFFFFFFFFFFFFFFL;
 			double nextValue = BitConverter.Int64BitsToDouble(bits + 1);
@@ -2294,7 +2463,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 *                Returned proper value is always between -1 and +322.
 		 *                If value is NaN then -2 is returned.
 		 */
-		public static int ulpDecimalDigitsBefore(double value) {
+		public static int ulpDecimalDigitsBefore(double value)
+		{
 			if (Double.IsNaN(value)) return -2;
 			double u = ulp(value);
 			return decimalDigitsBefore(u);
@@ -2307,10 +2477,12 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 *                 then returns Double.NaN, if list contains no elements
 		 *                 then returns Double.NaN.
 		 */
-		public static double coalesce(double[] values) {
+		public static double coalesce(double[] values)
+		{
 			if (values == null) return Double.NaN;
 			if (values.Length == 0) return Double.NaN;
-			foreach (double v in values) {
+			foreach (double v in values)
+			{
 				if (!Double.IsNaN(v)) return v;
 				if (mXparser.isCurrentCalculationCancelled()) return Double.NaN;
 			}
@@ -2324,7 +2496,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 *
 		 * @see BinaryRelations#DEFAULT_COMPARISON_EPSILON
 		 */
-		public static bool isInteger(double x) {
+		public static bool isInteger(double x)
+		{
 			if (Double.IsNaN(x)) return false;
 			if (Double.IsPositiveInfinity(x)) return false;
 			if (Double.IsNegativeInfinity(x)) return false;
@@ -2342,7 +2515,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 *
 		 * @see BinaryRelations#DEFAULT_COMPARISON_EPSILON
 		 */
-		public static bool almostEqual(double a, double b) {
+		public static bool almostEqual(double a, double b)
+		{
 			if (Double.IsNaN(a)) return false;
 			if (Double.IsNaN(b)) return false;
 			if (a == b) return true;

@@ -59,7 +59,8 @@
  */
 using System;
 using System.Collections.Generic;
-namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
+namespace org.ollyisonit.mariuszgromada.math.mxparser.mathcollection
+{
 	/**
 	 * SpecialValueTrigonometric - stores special values for trigonometric and inverse trigonometric functions.
 	 *
@@ -83,7 +84,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 	 * @version        4.3.4
 	 */
 	[CLSCompliant(false)]
-	public class SpecialValueTrigonometric {
+	public class SpecialValueTrigonometric
+	{
 
 		/**
 		 * Epsilon is used to compare the x value with regards to some given small interval
@@ -393,7 +395,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @param sec     The secant function value
 		 * @param csc     The cosecant function value
 		 */
-		public SpecialValueTrigonometric(double factor, double sin, double cos, double tan, double ctan, double sec, double csc) {
+		public SpecialValueTrigonometric(double factor, double sin, double cos, double tan, double ctan, double sec, double csc)
+		{
 			this.factor = factor;
 			this.xrad = factor * MathConstants.PI;
 			this.xdeg = MathFunctions.round(factor * 180.0, 0);
@@ -409,7 +412,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 			/**
 			 * Adding values to the special values lists of inverse trigonometric functions
 			 */
-			if ((-MathConstants.PIBY2 - EPSILON <= xrad) && (xrad <= MathConstants.PIBY2 + EPSILON)) {
+			if ((-MathConstants.PIBY2 - EPSILON <= xrad) && (xrad <= MathConstants.PIBY2 + EPSILON))
+			{
 				if (valuesListAsin == null) valuesListAsin = new List<SpecialValue>();
 				if (valuesListAtan == null) valuesListAtan = new List<SpecialValue>();
 				if (valuesListAcsc == null) valuesListAcsc = new List<SpecialValue>();
@@ -422,7 +426,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 			/**
 			 * Adding values to the special values lists of inverse trigonometric functions
 			 */
-			if ((-EPSILON <= xrad) && (xrad <= MathConstants.PI + EPSILON)) {
+			if ((-EPSILON <= xrad) && (xrad <= MathConstants.PI + EPSILON))
+			{
 				if (valuesListAcos == null) valuesListAcos = new List<SpecialValue>();
 				if (valuesListActan == null) valuesListActan = new List<SpecialValue>();
 				if (valuesListAsec == null) valuesListAsec = new List<SpecialValue>();
@@ -439,10 +444,12 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return       Returns special values of trigonometric functions object if the special value was found for a given x
 		 * otherwise returns null
 		 */
-		public static SpecialValueTrigonometric getSpecialValueTrigonometric(double xrad) {
+		public static SpecialValueTrigonometric getSpecialValueTrigonometric(double xrad)
+		{
 			if (Double.IsNaN(xrad)) return null;
 			if (Double.IsInfinity(xrad)) return null;
-			foreach (SpecialValueTrigonometric sv in valuesListTrig) {
+			foreach (SpecialValueTrigonometric sv in valuesListTrig)
+			{
 				if ((sv.xradFrom <= xrad) && (xrad <= sv.xradTo)) return sv;
 			}
 			return null;
@@ -453,7 +460,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     Returns special value object if special value was found,
 		 * other wise returns null.
 		 */
-		public static SpecialValue getSpecialValueAsin(double x) {
+		public static SpecialValue getSpecialValueAsin(double x)
+		{
 			return getSpecialValue(x, valuesListAsin);
 		}
 		/**
@@ -462,7 +470,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     Returns special value object if special value was found,
 		 * other wise returns null.
 		 */
-		public static SpecialValue getSpecialValueAcos(double x) {
+		public static SpecialValue getSpecialValueAcos(double x)
+		{
 			return getSpecialValue(x, valuesListAcos);
 		}
 		/**
@@ -471,7 +480,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     Returns special value object if special value was found,
 		 * other wise returns null.
 		 */
-		public static SpecialValue getSpecialValueAtan(double x) {
+		public static SpecialValue getSpecialValueAtan(double x)
+		{
 			return getSpecialValue(x, valuesListAtan);
 		}
 		/**
@@ -480,7 +490,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     Returns special value object if special value was found,
 		 * other wise returns null.
 		 */
-		public static SpecialValue getSpecialValueActan(double x) {
+		public static SpecialValue getSpecialValueActan(double x)
+		{
 			return getSpecialValue(x, valuesListActan);
 		}
 		/**
@@ -489,7 +500,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     Returns special value object if special value was found,
 		 * other wise returns null.
 		 */
-		public static SpecialValue getSpecialValueAsec(double x) {
+		public static SpecialValue getSpecialValueAsec(double x)
+		{
 			return getSpecialValue(x, valuesListAsec);
 		}
 		/**
@@ -498,7 +510,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     Returns special value object if special value was found,
 		 * other wise returns null.
 		 */
-		public static SpecialValue getSpecialValueAcsc(double x) {
+		public static SpecialValue getSpecialValueAcsc(double x)
+		{
 			return getSpecialValue(x, valuesListAcsc);
 		}
 		/**
@@ -508,10 +521,12 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return               Returns special value object if special value was found,
 		 * other wise returns null.
 		 */
-		private static SpecialValue getSpecialValue(double x, List<SpecialValue> valuesList) {
+		private static SpecialValue getSpecialValue(double x, List<SpecialValue> valuesList)
+		{
 			if (Double.IsNaN(x)) return null;
 			if (Double.IsInfinity(x)) return null;
-			foreach (SpecialValue sv in valuesList) {
+			foreach (SpecialValue sv in valuesList)
+			{
 				if ((sv.xFrom <= x) && (x <= sv.xTo)) return sv;
 			}
 			return null;

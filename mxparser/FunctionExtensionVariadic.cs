@@ -55,7 +55,8 @@
  */
 using System;
 
-namespace org.dninosores.mariuszgromada.math.mxparser {
+namespace org.ollyisonit.mariuszgromada.math.mxparser
+{
 	/**
 	 * FunctionExtensionVariadic similarly to FunctionExtension
 	 * provides interface for function algorithm definition.
@@ -96,7 +97,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 	 *
 	 */
 	[CLSCompliant(false)]
-	public interface FunctionExtensionVariadic {
+	public interface FunctionExtensionVariadic
+	{
 		/**
 		 * Actual algorithm implementation.
 		 * @param parameters Variadic list of parameters

@@ -58,7 +58,8 @@
  *                              "Yes, up to isomorphism."
  */
 using System;
-namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
+namespace org.ollyisonit.mariuszgromada.math.mxparser.mathcollection
+{
 	/**
 	 * SpecialValue - generic class for storing special values of various functions (e.g.: inverse trigonometric).
 	 *
@@ -82,7 +83,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 	 * @version        4.3.4
 	 */
 	[CLSCompliant(false)]
-	public class SpecialValue {
+	public class SpecialValue
+	{
 		/**
 		 * Epsilon is used to compare the x value with regards to some given small interval
 		 */
@@ -112,7 +114,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @param x  The value of x from f(x)
 		 * @param fv The value of f(x) for a given x
 		 */
-		public SpecialValue(double x, double fv) {
+		public SpecialValue(double x, double fv)
+		{
 			this.x = x;
 			this.fv = fv;
 			xFrom = x - EPSILON;
@@ -124,7 +127,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @param fv      The value of f(x) in radians for a given x
 		 * @param fvdeg   The value of f(x) in degrees for a given x
 		 */
-		public SpecialValue(double x, double fv, double fvdeg) {
+		public SpecialValue(double x, double fv, double fvdeg)
+		{
 			this.x = x;
 			this.fv = fv;
 			this.fvdeg = fvdeg;

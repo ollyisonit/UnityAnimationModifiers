@@ -55,7 +55,8 @@
  */
 using System;
 
-namespace org.dninosores.mariuszgromada.math.mxparser.parsertokens {
+namespace org.ollyisonit.mariuszgromada.math.mxparser.parsertokens
+{
 	/**
 	 * Operators - mXparser tokens definition.
 	 *
@@ -79,71 +80,72 @@ namespace org.dninosores.mariuszgromada.math.mxparser.parsertokens {
 	 * @version        4.2.0
 	 */
 	[CLSCompliant(false)]
-	public sealed class Operator {
+	public sealed class Operator
+	{
 		/*
 		 * Operator - token type id.
 		 */
-		public const int TYPE_ID				= 1;
-		public const String TYPE_DESC			= "Operator";
+		public const int TYPE_ID = 1;
+		public const String TYPE_DESC = "Operator";
 		/*
 		 * Operator - tokens id.
 		 */
-		public const int PLUS_ID				= 1;
-		public const int MINUS_ID				= 2;
-		public const int MULTIPLY_ID			= 3;
-		public const int DIVIDE_ID				= 4;
-		public const int POWER_ID				= 5;
-		public const int FACT_ID				= 6;
-		public const int MOD_ID					= 7;
-        public const int PERC_ID                = 8;
-		public const int TETRATION_ID			= 9;
+		public const int PLUS_ID = 1;
+		public const int MINUS_ID = 2;
+		public const int MULTIPLY_ID = 3;
+		public const int DIVIDE_ID = 4;
+		public const int POWER_ID = 5;
+		public const int FACT_ID = 6;
+		public const int MOD_ID = 7;
+		public const int PERC_ID = 8;
+		public const int TETRATION_ID = 9;
 		/*
 		 * Operator - tokens key words.
 		 */
-		public const String PLUS_STR 			= "+";
-		public const String MINUS_STR 			= "-";
-		public const String MULTIPLY_STR 		= "*";
-		public const String DIVIDE_STR 			= "/";
-		public const String POWER_STR 			= "^";
-		public const String FACT_STR 			= "!";
-		public const String MOD_STR				= "#";
-        public const String PERC_STR			= "%";
-		public const String TETRATION_STR		= "^^";
+		public const String PLUS_STR = "+";
+		public const String MINUS_STR = "-";
+		public const String MULTIPLY_STR = "*";
+		public const String DIVIDE_STR = "/";
+		public const String POWER_STR = "^";
+		public const String FACT_STR = "!";
+		public const String MOD_STR = "#";
+		public const String PERC_STR = "%";
+		public const String TETRATION_STR = "^^";
 		/*
 		 * Operator - syntax.
 		 */
-		public const String PLUS_SYN 			= "a + b";
-		public const String MINUS_SYN 			= "a - b";
-		public const String MULTIPLY_SYN 		= "a * b";
-		public const String DIVIDE_SYN 			= "a / b";
-		public const String POWER_SYN 			= "a^b";
-		public const String FACT_SYN 			= "n!";
-		public const String MOD_SYN				= "a # b";
-        public const String PERC_SYN			= "n%";
-		public const String TETRATION_SYN		= "a^^n";
+		public const String PLUS_SYN = "a + b";
+		public const String MINUS_SYN = "a - b";
+		public const String MULTIPLY_SYN = "a * b";
+		public const String DIVIDE_SYN = "a / b";
+		public const String POWER_SYN = "a^b";
+		public const String FACT_SYN = "n!";
+		public const String MOD_SYN = "a # b";
+		public const String PERC_SYN = "n%";
+		public const String TETRATION_SYN = "a^^n";
 		/*
 		 * Operator - tokens description.
 		 */
-		public const String PLUS_DESC 			= "Addition";
-		public const String MINUS_DESC 			= "Subtraction";
-		public const String MULTIPLY_DESC 		= "Nultiplication";
-		public const String DIVIDE_DESC 		= "Division";
-		public const String POWER_DESC 			= "Exponentiation";
-		public const String FACT_DESC			= "Factorial";
-		public const String MOD_DESC			= "Modulo function";
-        public const String PERC_DESC			= "Percentage";
-		public const String TETRATION_DESC		= "Tetration (hyper-4, power tower, exponential tower)";
+		public const String PLUS_DESC = "Addition";
+		public const String MINUS_DESC = "Subtraction";
+		public const String MULTIPLY_DESC = "Nultiplication";
+		public const String DIVIDE_DESC = "Division";
+		public const String POWER_DESC = "Exponentiation";
+		public const String FACT_DESC = "Factorial";
+		public const String MOD_DESC = "Modulo function";
+		public const String PERC_DESC = "Percentage";
+		public const String TETRATION_DESC = "Tetration (hyper-4, power tower, exponential tower)";
 		/*
 		 * Operator - since.
 		 */
-		public const String PLUS_SINCE 			= mXparser.NAMEv10;
-		public const String MINUS_SINCE 		= mXparser.NAMEv10;
-		public const String MULTIPLY_SINCE 		= mXparser.NAMEv10;
-		public const String DIVIDE_SINCE 		= mXparser.NAMEv10;
-		public const String POWER_SINCE 		= mXparser.NAMEv10;
-		public const String FACT_SINCE			= mXparser.NAMEv10;
-		public const String MOD_SINCE			= mXparser.NAMEv10;
-        public const String PERC_SINCE			= mXparser.NAMEv41;
-		public const String TETRATION_SINCE		= mXparser.NAMEv42;
+		public const String PLUS_SINCE = mXparser.NAMEv10;
+		public const String MINUS_SINCE = mXparser.NAMEv10;
+		public const String MULTIPLY_SINCE = mXparser.NAMEv10;
+		public const String DIVIDE_SINCE = mXparser.NAMEv10;
+		public const String POWER_SINCE = mXparser.NAMEv10;
+		public const String FACT_SINCE = mXparser.NAMEv10;
+		public const String MOD_SINCE = mXparser.NAMEv10;
+		public const String PERC_SINCE = mXparser.NAMEv41;
+		public const String TETRATION_SINCE = mXparser.NAMEv42;
 	}
 }

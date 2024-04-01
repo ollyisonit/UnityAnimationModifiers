@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace dninosores.UnityAnimationModifiers
+namespace ollyisonit.UnityAnimationModifiers
 {
 	/// <summary>
 	/// Base class for user-defined custom modifiers.

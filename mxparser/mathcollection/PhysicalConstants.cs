@@ -55,7 +55,8 @@
  */
 using System;
 
-namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
+namespace org.ollyisonit.mariuszgromada.math.mxparser.mathcollection
+{
 	/**
 	 * PhysicalConstants - class representing the most important physical constants.
 	 *
@@ -79,7 +80,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 	 * @version        4.2.0
 	 */
 	[CLSCompliant(false)]
-	public sealed class PhysicalConstants {
+	public sealed class PhysicalConstants
+	{
 		/**
 		 * Light speed
 		 */
@@ -143,7 +145,7 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		/**
 		 * Elementary charge
 		 */
-		public const double ELEMENTARY_CHARGE = 1.6021766208E-19*Units.COULOMB;
+		public const double ELEMENTARY_CHARGE = 1.6021766208E-19 * Units.COULOMB;
 
 		/**
 		 * Electron rest mass

@@ -58,11 +58,12 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Globalization;
 
-using org.dninosores.mariuszgromada.math.mxparser.mathcollection;
-using org.dninosores.mariuszgromada.math.mxparser.parsertokens;
+using org.ollyisonit.mariuszgromada.math.mxparser.mathcollection;
+using org.ollyisonit.mariuszgromada.math.mxparser.parsertokens;
 
 [assembly: CLSCompliant(false)]
-namespace org.dninosores.mariuszgromada.math.mxparser {
+namespace org.ollyisonit.mariuszgromada.math.mxparser
+{
 	/**
 	 * mXparser class provides usefull methods when parsing, calculating or
 	 * parameters transforming.
@@ -92,7 +93,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 	 * @see Constant
 	 */
 	[CLSCompliant(false)]
-	public sealed class mXparser {
+	public sealed class mXparser
+	{
 		/**
 		 * mXparser version
 		 */
@@ -274,7 +276,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * Cache size according to {@link PrimesCache#DEFAULT_MAX_NUM_IN_CACHE}
 		 * @see PrimesCache
 		 */
-		public static void initPrimesCache() {
+		public static void initPrimesCache()
+		{
 			primesCache = new PrimesCache();
 		}
 		/**
@@ -284,9 +287,11 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @return Returns true in case when primes cache initialization was successful,
 		 * otherwise returns false.
 		 */
-		public static bool isInitPrimesCacheSuccessful() {
+		public static bool isInitPrimesCacheSuccessful()
+		{
 			if (primesCache == null) return false;
-			lock (primesCache) {
+			lock (primesCache)
+			{
 				return primesCache.isInitSuccessful();
 			}
 		}
@@ -296,7 +301,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *                            will be stored in cache.
 		 * @see PrimesCache
 		 */
-		public static void initPrimesCache(int mximumNumberInCache) {
+		public static void initPrimesCache(int mximumNumberInCache)
+		{
 			primesCache = new PrimesCache(mximumNumberInCache);
 		}
 		/**
@@ -304,13 +310,15 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @param primesCache The primes cache object
 		 * @see PrimesCache
 		 */
-		public static void initPrimesCache(PrimesCache primesCache) {
+		public static void initPrimesCache(PrimesCache primesCache)
+		{
 			mXparser.primesCache = primesCache;
 		}
 		/**
 		 * Sets {@link mXparser#primesCache} to null
 		 */
-		public static void setNoPrimesCache() {
+		public static void setNoPrimesCache()
+		{
 			primesCache = null;
 		}
 		/**
@@ -318,38 +326,46 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @return If primes cache was initialized then maximum number in
 		 * primes cache, otherwise {@link mXparser#PRIMES_CACHE_NOT_INITIALIZED}
 		 */
-		public static int getMaxNumInPrimesCache() {
-			if (primesCache != null) {
-				lock (primesCache) {
+		public static int getMaxNumInPrimesCache()
+		{
+			if (primesCache != null)
+			{
+				lock (primesCache)
+				{
 					return primesCache.getMaxNumInCache();
 				}
-			} else
+			}
+			else
 				return PRIMES_CACHE_NOT_INITIALIZED;
 		}
 		/**
 		 * Gets maximum threads number
 		 * @return Threads number.
 		 */
-		public static int getThreadsNumber() {
+		public static int getThreadsNumber()
+		{
 			return THREADS_NUMBER;
 		}
 		/**
 		 * Sets default threads number
 		 * @param threadsNumber  Thread number.
 		 */
-		public static void setDefaultThreadsNumber() {
+		public static void setDefaultThreadsNumber()
+		{
 			THREADS_NUMBER = Environment.ProcessorCount;
 		}
 		/**
 		 * Sets threads number
 		 */
-		public static void setThreadsNumber(int threadsNumber) {
+		public static void setThreadsNumber(int threadsNumber)
+		{
 			if (threadsNumber > 0) THREADS_NUMBER = threadsNumber;
 		}
 
 		private static readonly DateTime Jan1st1970 = new DateTime
 			(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
-		public static long currentTimeMillis() {
+		public static long currentTimeMillis()
+		{
 			return (long)(DateTime.UtcNow - Jan1st1970).TotalMilliseconds;
 		}
 		/**
@@ -364,7 +380,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @see        Expression
 		 */
-		public static double getFunctionValue(Expression f, Argument x, double x0) {
+		public static double getFunctionValue(Expression f, Argument x, double x0)
+		{
 			x.setArgumentValue(x0);
 			return f.calculate();
 		}
@@ -375,7 +392,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @return     numbers array
 		 */
-		public static double[] arrayList2double(List<Double> numbers) {
+		public static double[] arrayList2double(List<Double> numbers)
+		{
 			if (numbers == null)
 				return null;
 			int size = numbers.Count;
@@ -395,38 +413,47 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @param delta        'delta' step definition
 		 * @return             Array of function values
 		 */
-		public static double[] getFunctionValues(Expression f, Argument index, double from, double to, double delta) {
+		public static double[] getFunctionValues(Expression f, Argument index, double from, double to, double delta)
+		{
 			if ((Double.IsNaN(delta)) || (Double.IsNaN(from)) || (Double.IsNaN(to)) || (delta == 0))
 				return null;
 			int n = 0;
 			double[] values;
-			if ((to >= from) && (delta > 0)) {
+			if ((to >= from) && (delta > 0))
+			{
 				for (double i = from; i < to; i += delta)
 					n++;
 				n++;
 				values = new double[n];
 				int j = 0;
-				for (double i = from; i < to; i += delta) {
+				for (double i = from; i < to; i += delta)
+				{
 					values[j] = getFunctionValue(f, index, i);
 					j++;
 				}
 				values[j] = getFunctionValue(f, index, to);
-			} else if ((to <= from) && (delta < 0)) {
+			}
+			else if ((to <= from) && (delta < 0))
+			{
 				for (double i = from; i > to; i += delta)
 					n++;
 				n++;
 				values = new double[n];
 				int j = 0;
-				for (double i = from; i > to; i += delta) {
+				for (double i = from; i > to; i += delta)
+				{
 					values[j] = getFunctionValue(f, index, i);
 					j++;
 				}
 				values[j] = getFunctionValue(f, index, to);
-			} else if (from == to) {
+			}
+			else if (from == to)
+			{
 				n = 1;
 				values = new double[n];
 				values[0] = getFunctionValue(f, index, from);
-			} else values = null;
+			}
+			else values = null;
 			return values;
 		}
 		/**
@@ -436,21 +463,24 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @see ProbabilityDistributions
 		 * @see ProbabilityDistributions#randomGenerator
 		 */
-		public static void setRandomGenerator(Random randomGenerator) {
+		public static void setRandomGenerator(Random randomGenerator)
+		{
 			if (randomGenerator != null) ProbabilityDistributions.randomGenerator = randomGenerator;
 		}
 		/**
 		 * Sets comparison mode to EXACT.
 		 * @see BinaryRelations
 		 */
-		public static void setExactComparison() {
+		public static void setExactComparison()
+		{
 			BinaryRelations.setExactComparison();
 		}
 		/**
 		 * Sets comparison mode to EPSILON.
 		 * @see BinaryRelations
 		 */
-		public static void setEpsilonComparison() {
+		public static void setEpsilonComparison()
+		{
 			BinaryRelations.setEpsilonComparison();
 		}
 		/**
@@ -460,7 +490,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @see #setEpsilonComparison()
 		 * @see BinaryRelations
 		 */
-		public static void setEpsilon(double epsilon) {
+		public static void setEpsilon(double epsilon)
+		{
 			BinaryRelations.setEpsilon(epsilon);
 		}
 		/**
@@ -470,7 +501,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @see BinaryRelations#DEFAULT_COMPARISON_EPSILON
 		 * @see BinaryRelations
 		 */
-		public static void setDefaultEpsilon() {
+		public static void setDefaultEpsilon()
+		{
 			BinaryRelations.setDefaultEpsilon();
 		}
 		/**
@@ -480,7 +512,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @see #setEpsilonComparison()
 		 * @see BinaryRelations
 		 */
-		public static double getEpsilon() {
+		public static double getEpsilon()
+		{
 			return BinaryRelations.getEpsilon();
 		}
 		/**
@@ -490,7 +523,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @see #setExactComparison()
 		 * @see BinaryRelations
 		 */
-		public static bool checkIfEpsilonMode() {
+		public static bool checkIfEpsilonMode()
+		{
 			return BinaryRelations.checkIfEpsilonMode();
 		}
 		/**
@@ -500,7 +534,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @see #setExactComparison()
 		 * @see BinaryRelations
 		 */
-		public static bool checkIfExactMode() {
+		public static bool checkIfExactMode()
+		{
 			return BinaryRelations.checkIfExactMode();
 		}
 		/**
@@ -515,7 +550,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * enabled resulting in automatic rounding only in some cases.
 		 * Using this mode 0.1 + 0.1 + 0.1 = 0.3
 		 */
-		public static void enableUlpRounding() {
+		public static void enableUlpRounding()
+		{
 			ulpRounding = true;
 		}
 		/**
@@ -530,7 +566,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * enabled resulting in automatic rounding only in some cases.
 		 * Disabling this mode 0.1 + 0.1 + 0.1 will be slightly different than 0.3.
 		 */
-		public static void disableUlpRounding() {
+		public static void disableUlpRounding()
+		{
 			ulpRounding = false;
 		}
 		/**
@@ -547,7 +584,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @param ulpRoundingState    True to enable, false to disable
 		 */
-		public static void setUlpRounding(bool ulpRoundingState) {
+		public static void setUlpRounding(bool ulpRoundingState)
+		{
 			ulpRounding = ulpRoundingState;
 		}
 		/**
@@ -563,7 +601,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @return True if ULP rounding is enabled, otherwise false.
 		 */
-		public static bool checkIfUlpRounding() {
+		public static bool checkIfUlpRounding()
+		{
 			return ulpRounding;
 		}
 		/**
@@ -578,7 +617,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * enabled resulting in automatic rounding only in some cases.
 		 * Using this mode 2.5 - 2.2 = 0.3
 		 */
-		public static void enableCanonicalRounding() {
+		public static void enableCanonicalRounding()
+		{
 			canonicalRounding = true;
 		}
 		/**
@@ -593,7 +633,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * enabled resulting in automatic rounding only in some cases.
 		 * Using this mode 2.5 - 2.2 = 0.3
 		 */
-		public static void disableCanonicalRounding() {
+		public static void disableCanonicalRounding()
+		{
 			canonicalRounding = false;
 		}
 		/**
@@ -610,7 +651,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @param canonicalRoundingState    True to enable, false to disable
 		 */
-		public static void setCanonicalRounding(bool canonicalRoundingState) {
+		public static void setCanonicalRounding(bool canonicalRoundingState)
+		{
 			canonicalRounding = canonicalRoundingState;
 		}
 		/**
@@ -626,7 +668,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @return True if Canonical rounding is enabled, otherwise false.
 		 */
-		public static bool checkIfCanonicalRounding() {
+		public static bool checkIfCanonicalRounding()
+		{
 			return canonicalRounding;
 		}
 		/**
@@ -639,7 +682,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @see mXparser#getEpsilon()
 		 * @see Expression#calculate()
 		 */
-		public static void enableAlmostIntRounding() {
+		public static void enableAlmostIntRounding()
+		{
 			almostIntRounding = true;
 		}
 		/**
@@ -652,7 +696,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @see mXparser#getEpsilon()
 		 * @see Expression#calculate()
 		 */
-		public static void disableAlmostIntRounding() {
+		public static void disableAlmostIntRounding()
+		{
 			almostIntRounding = false;
 		}
 		/**
@@ -663,7 +708,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @param almostIntRoundingState    True to enable, false to disable
 		 */
-		public static void setAlmostIntRounding(bool almostIntRoundingState) {
+		public static void setAlmostIntRounding(bool almostIntRoundingState)
+		{
 			almostIntRounding = almostIntRoundingState;
 		}
 		/**
@@ -678,7 +724,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @see mXparser#getEpsilon()
 		 * @see Expression#calculate()
 		 */
-		public static bool checkIfAlmostIntRounding() {
+		public static bool checkIfAlmostIntRounding()
+		{
 			return almostIntRounding;
 		}
 		/**
@@ -699,7 +746,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @param maxAllowedRecursionDepth
 		 */
-		public static void setMaxAllowedRecursionDepth(int maxAllowedRecursionDepth) {
+		public static void setMaxAllowedRecursionDepth(int maxAllowedRecursionDepth)
+		{
 			MAX_RECURSION_CALLS = maxAllowedRecursionDepth;
 		}
 		/**
@@ -718,21 +766,24 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * Currently does not affect properly defined recursive mode.
 		 */
-		public static int getMaxAllowedRecursionDepth() {
+		public static int getMaxAllowedRecursionDepth()
+		{
 			return MAX_RECURSION_CALLS;
 		}
 		/**
 		 * Set mXparser to operate in radians mode for
 		 * trigonometric functions
 		 */
-		public static void setRadiansMode() {
+		public static void setRadiansMode()
+		{
 			degreesMode = false;
 		}
 		/**
 		 * Set mXparser to operate in degrees mode for
 		 * trigonometric functions
 		 */
-		public static void setDegreesMode() {
+		public static void setDegreesMode()
+		{
 			degreesMode = true;
 		}
 		/**
@@ -741,7 +792,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @return true - if radians mode, false - otherwise
 		 */
-		public static bool checkIfRadiansMode() {
+		public static bool checkIfRadiansMode()
+		{
 			return !degreesMode;
 		}
 		/**
@@ -750,7 +802,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @return true - if degrees mode, false - otherwise
 		 */
-		public static bool checkIfDegreesMode() {
+		public static bool checkIfDegreesMode()
+		{
 			return degreesMode;
 		}
 		/**
@@ -759,7 +812,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @param n initial search size, has to be non-zero positive.
 		 * @see NumberTheory#toFraction(double)
 		 */
-		public static void setToFractionInitSearchSize(long n) {
+		public static void setToFractionInitSearchSize(long n)
+		{
 			NumberTheory.setToFractionInitSearchSize(n);
 		}
 		/**
@@ -768,7 +822,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @return initial search size used by the toFraction method
 		 * @see NumberTheory#toFraction(double)
 		 */
-		public static long getToFractionInitSearchSize() {
+		public static long getToFractionInitSearchSize()
+		{
 			return NumberTheory.getToFractionInitSearchSize();
 		}
 		/**
@@ -778,9 +833,11 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @param tokens  List of tokens to remove.
 		 */
-		public static void removeBuiltinTokens(params String[] tokens) {
+		public static void removeBuiltinTokens(params String[] tokens)
+		{
 			if (tokens == null) return;
-			lock (tokensToRemove) {
+			lock (tokensToRemove)
+			{
 				foreach (String token in tokens)
 					if (token != null)
 						if (token.Length > 0)
@@ -793,11 +850,13 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * Un-marks tokens previously marked to be removed.
 		 * @param tokens List of tokens to un-mark.
 		 */
-		public static void unremoveBuiltinTokens(params String[] tokens) {
+		public static void unremoveBuiltinTokens(params String[] tokens)
+		{
 			if (tokens == null) return;
 			if (tokens.Length == 0) return;
 			if (tokensToRemove.Count == 0) return;
-			lock (tokensToRemove) {
+			lock (tokensToRemove)
+			{
 				foreach (String token in tokens)
 					if (token != null)
 						tokensToRemove.Remove(token);
@@ -807,8 +866,10 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		/**
 		 * Un-marks all tokens previously marked to be removed.
 		 */
-		public static void unremoveAllBuiltinTokens() {
-			lock (tokensToRemove) {
+		public static void unremoveAllBuiltinTokens()
+		{
+			lock (tokensToRemove)
+			{
 				tokensToRemove.Clear();
 				optionsChangesetNumber++;
 			}
@@ -817,8 +878,10 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * Returns current list of tokens marked to be removed.
 		 * @return Current list of tokens marked to be removed
 		 */
-		public static String[] getBuiltinTokensToRemove() {
-			lock (tokensToRemove) {
+		public static String[] getBuiltinTokensToRemove()
+		{
+			lock (tokensToRemove)
+			{
 				int tokensNum = tokensToRemove.Count;
 				String[] tokensToRemoveArray = new String[tokensNum];
 				for (int i = 0; i < tokensNum; i++)
@@ -835,12 +898,14 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @param currentToken     Current token name
 		 * @param newToken         New token name
 		 */
-		public static void modifyBuiltinToken(String currentToken, String newToken) {
+		public static void modifyBuiltinToken(String currentToken, String newToken)
+		{
 			if (currentToken == null) return;
 			if (currentToken.Length == 0) return;
 			if (newToken == null) return;
 			if (newToken.Length == 0) return;
-			lock (tokensToModify) {
+			lock (tokensToModify)
+			{
 				foreach (TokenModification tm in tokensToModify)
 					if (tm.currentToken.Equals(currentToken)) return;
 				TokenModification tma = new TokenModification();
@@ -861,12 +926,14 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @param newToken              New token name
 		 * @param newTokenDescription   New token description (if null the previous one will be used)
 		 */
-		public static void modifyBuiltinToken(String currentToken, String newToken, String newTokenDescription) {
+		public static void modifyBuiltinToken(String currentToken, String newToken, String newTokenDescription)
+		{
 			if (currentToken == null) return;
 			if (currentToken.Length == 0) return;
 			if (newToken == null) return;
 			if (newToken.Length == 0) return;
-			lock (tokensToModify) {
+			lock (tokensToModify)
+			{
 				foreach (TokenModification tm in tokensToModify)
 					if (tm.currentToken.Equals(currentToken)) return;
 				TokenModification tma = new TokenModification();
@@ -881,15 +948,18 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * Un-marks tokens previously marked to be modified.
 		 * @param currentOrNewTokens   List of tokens to be un-marked (current or modified).
 		 */
-		public static void unmodifyBuiltinTokens(params String[] currentOrNewTokens) {
+		public static void unmodifyBuiltinTokens(params String[] currentOrNewTokens)
+		{
 			if (currentOrNewTokens == null) return;
 			if (currentOrNewTokens.Length == 0) return;
 			if (tokensToModify.Count == 0) return;
-			lock (tokensToModify) {
+			lock (tokensToModify)
+			{
 				List<TokenModification> toRemove = new List<TokenModification>();
 				foreach (String token in currentOrNewTokens)
 					if (token != null)
-						if (token.Length > 0) {
+						if (token.Length > 0)
+						{
 							foreach (TokenModification tm in tokensToModify)
 								if ((token.Equals(tm.currentToken)) || (token.Equals(tm.newToken))) toRemove.Add(tm);
 						}
@@ -901,8 +971,10 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		/**
 		 * Un-marks all tokens previously marked to be modified.
 		 */
-		public static void unmodifyAllBuiltinTokens() {
-			lock (tokensToModify) {
+		public static void unmodifyAllBuiltinTokens()
+		{
+			lock (tokensToModify)
+			{
 				tokensToModify.Clear();
 				optionsChangesetNumber++;
 			}
@@ -912,11 +984,14 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @return String[i][0] - current token, String[i][1] - new token,
 		 *                        String[i][2] - new token description.
 		 */
-		public static String[,] getBuiltinTokensToModify() {
-			lock (tokensToModify) {
+		public static String[,] getBuiltinTokensToModify()
+		{
+			lock (tokensToModify)
+			{
 				int tokensNum = tokensToModify.Count;
 				String[,] tokensToModifyArray = new String[tokensNum, 3];
-				for (int i = 0; i < tokensNum; i++) {
+				for (int i = 0; i < tokensNum; i++)
+				{
 					TokenModification tm = tokensToModify[i];
 					tokensToModifyArray[i, 0] = tm.currentToken;
 					tokensToModifyArray[i, 1] = tm.newToken;
@@ -929,7 +1004,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * Sets mXparser to override built-in tokens
 		 * by user defined tokens.
 		 */
-		public static void setToOverrideBuiltinTokens() {
+		public static void setToOverrideBuiltinTokens()
+		{
 			overrideBuiltinTokens = true;
 			optionsChangesetNumber++;
 		}
@@ -937,7 +1013,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * Sets mXparser not to override built-in tokens
 		 * by user defined tokens.
 		 */
-		public static void setNotToOverrideBuiltinTokens() {
+		public static void setNotToOverrideBuiltinTokens()
+		{
 			overrideBuiltinTokens = false;
 			optionsChangesetNumber++;
 		}
@@ -947,14 +1024,16 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @return True if mXparser is set to override built-in tokens by
 		 *         user defined tokens, otherwise false.
 		 */
-		public static bool checkIfsetToOverrideBuiltinTokens() {
+		public static bool checkIfsetToOverrideBuiltinTokens()
+		{
 			return overrideBuiltinTokens;
 		}
 		/**
 		 * Sets default mXparser options
 		 *
 		 */
-		public static void setDefaultOptions() {
+		public static void setDefaultOptions()
+		{
 			enableUlpRounding();
 			enableAlmostIntRounding();
 			setMaxAllowedRecursionDepth(DEFAULT_MAX_RECURSION_CALLS);
@@ -973,9 +1052,11 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @param tokenTypeId Token type id
 		 * @return String representing token type description.
 		 */
-		public static String getTokenTypeDescription(int tokenTypeId) {
+		public static String getTokenTypeDescription(int tokenTypeId)
+		{
 			String type = "";
-			switch (tokenTypeId) {
+			switch (tokenTypeId)
+			{
 				case ParserSymbol.TYPE_ID: type = ParserSymbol.TYPE_DESC; break;
 				case ParserSymbol.NUMBER_TYPE_ID: type = "Number"; break;
 				case Operator.TYPE_ID: type = Operator.TYPE_DESC; break;
@@ -1003,7 +1084,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @param number   Integer number
 		 * @return         Hex string (i.e. FF23)
 		 */
-		public static String numberToHexString(int number) {
+		public static String numberToHexString(int number)
+		{
 			return number.ToString("X");
 		}
 		/**
@@ -1012,7 +1094,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @param number   Long number
 		 * @return         Hex string (i.e. FF23)
 		 */
-		public static String numberToHexString(long number) {
+		public static String numberToHexString(long number)
+		{
 			return number.ToString("X");
 		}
 		/**
@@ -1021,7 +1104,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @param number   Double number
 		 * @return         Hex string (i.e. FF23)
 		 */
-		public static String numberToHexString(double number) {
+		public static String numberToHexString(double number)
+		{
 			return numberToHexString((long)number);
 		}
 		/**
@@ -1031,11 +1115,13 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @param hexString   Hex string (i.e. 48656C6C6F)
 		 * @return         ASCII string (i.e. '48656C6C6F' = 'Hello')
 		 */
-		public static String hexString2AsciiString(String hexString) {
+		public static String hexString2AsciiString(String hexString)
+		{
 			String hexByteStr;
 			int hexByteInt;
 			String asciiString = "";
-			for (int i = 0; i < hexString.Length; i += 2) {
+			for (int i = 0; i < hexString.Length; i += 2)
+			{
 				hexByteStr = hexString.Substring(i, 2);
 				hexByteInt = int.Parse(hexByteStr, NumberStyles.HexNumber);
 				asciiString = asciiString + (char)hexByteInt;
@@ -1050,7 +1136,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @param number   Integer number (i.e. 310939249775 = '48656C6C6F')
 		 * @return         ASCII string (i.e. '48656C6C6F' = 'Hello')
 		 */
-		public static String numberToAsciiString(int number) {
+		public static String numberToAsciiString(int number)
+		{
 			return hexString2AsciiString(numberToHexString(number));
 		}
 		/**
@@ -1061,7 +1148,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @param number   Long number (i.e. 310939249775 = '48656C6C6F')
 		 * @return         ASCII string (i.e. '48656C6C6F' = 'Hello')
 		 */
-		public static String numberToAsciiString(long number) {
+		public static String numberToAsciiString(long number)
+		{
 			return hexString2AsciiString(numberToHexString(number));
 		}
 		/**
@@ -1072,7 +1160,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @param number   Double number (i.e. 310939249775 = '48656C6C6F')
 		 * @return         ASCII string (i.e. '48656C6C6F' = 'Hello')
 		 */
-		public static String numberToAsciiString(double number) {
+		public static String numberToAsciiString(double number)
+		{
 			return hexString2AsciiString(numberToHexString(number));
 		}
 		/**
@@ -1087,7 +1176,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @return                 Decimal number after conversion. If conversion was not
 		 *                         possible the Double.NaN is returned.
 		 */
-		public static double convOthBase2Decimal(String numberLiteral, int numeralSystemBase) {
+		public static double convOthBase2Decimal(String numberLiteral, int numeralSystemBase)
+		{
 			return NumberTheory.convOthBase2Decimal(numberLiteral, numeralSystemBase);
 		}
 		/**
@@ -1110,7 +1200,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @return     Decimal number after conversion. If conversion was not
 		 *             possible the Double.NaN is returned.
 		 */
-		public static double convOthBase2Decimal(String numberLiteral) {
+		public static double convOthBase2Decimal(String numberLiteral)
+		{
 			return NumberTheory.convOthBase2Decimal(numberLiteral);
 		}
 		/**
@@ -1121,7 +1212,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @return                    Number after conversion. If conversion is not possible then
 		 *                            Double.NaN is returned.
 		 */
-		public static double convOthBase2Decimal(int numeralSystemBase, params int[] digits) {
+		public static double convOthBase2Decimal(int numeralSystemBase, params int[] digits)
+		{
 			return NumberTheory.convOthBase2Decimal(numeralSystemBase, digits);
 		}
 		/**
@@ -1132,7 +1224,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @return                    Number after conversion. If conversion is not possible then
 		 *                            Double.NaN is returned.
 		 */
-		public static double convOthBase2Decimal(double numeralSystemBase, params double[] digits) {
+		public static double convOthBase2Decimal(double numeralSystemBase, params double[] digits)
+		{
 			return NumberTheory.convOthBase2Decimal(numeralSystemBase, digits);
 		}
 		/**
@@ -1150,7 +1243,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *                   33:X, 34:Y, 35:Z. If conversion was not possible
 		 *                   the "NaN" string is returned.
 		 */
-		public static String convDecimal2OthBase(double decimalNumber, int numeralSystemBase) {
+		public static String convDecimal2OthBase(double decimalNumber, int numeralSystemBase)
+		{
 			return NumberTheory.convDecimal2OthBase(decimalNumber, numeralSystemBase);
 		}
 		/**
@@ -1177,7 +1271,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * If conversion was not possible the "NaN" string is returned.
 		 */
-		public static String convDecimal2OthBase(double decimalNumber, int numeralSystemBase, int format) {
+		public static String convDecimal2OthBase(double decimalNumber, int numeralSystemBase, int format)
+		{
 			return NumberTheory.convDecimal2OthBase(decimalNumber, numeralSystemBase, format);
 		}
 		/**
@@ -1190,7 +1285,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * If conversion is not possible then Double.NaN is
 		 * assigned to all the fields.
 		 */
-		public static double[] toFraction(double value) {
+		public static double[] toFraction(double value)
+		{
 			return NumberTheory.toFraction(value);
 		}
 		/**
@@ -1204,7 +1300,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * If conversion is not possible then Double.NaN is
 		 * assigned to both numerator and denominator.
 		 */
-		public static double[] toMixedFraction(double value) {
+		public static double[] toMixedFraction(double value)
+		{
 			return NumberTheory.toMixedFraction(value);
 		}
 		/**
@@ -1216,7 +1313,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @see NumberTheory#toFraction(double)
 		 * @see NumberTheory#toMixedFraction(double)
 		 */
-		public static String fractionToString(double[] fraction) {
+		public static String fractionToString(double[] fraction)
+		{
 			return NumberTheory.fractionToString(fraction);
 		}
 		/**
@@ -1228,7 +1326,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @see NumberTheory#toFraction(double)
 		 * @see NumberTheory#fractionToString(double[])
 		 */
-		public static String toFractionString(double value) {
+		public static String toFractionString(double value)
+		{
 			return NumberTheory.toFractionString(value);
 		}
 		/**
@@ -1240,30 +1339,35 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @see NumberTheory#toMixedFraction(double)
 		 * @see NumberTheory#fractionToString(double[])
 		 */
-		public static String toMixedFractionString(double value) {
+		public static String toMixedFractionString(double value)
+		{
 			return NumberTheory.toMixedFractionString(value);
 		}
-		public static void doNothing(Object o) {
+		public static void doNothing(Object o)
+		{
 		}
-		private static void consoleWriteLine(Object o) {
+		private static void consoleWriteLine(Object o)
+		{
 #if PCL || NETSTANDARD1_0 || NETSTANDARD1_1 || NETSTANDARD1_2
 				System.Diagnostics.Debug.WriteLine(o);
 #else
-				Console.WriteLine(o);
+			Console.WriteLine(o);
 #endif
 		}
-		private static void consoleWriteLine() {
+		private static void consoleWriteLine()
+		{
 #if PCL || NETSTANDARD1_0 || NETSTANDARD1_1 || NETSTANDARD1_2
 				System.Diagnostics.Debug.WriteLine("");
 #else
-				Console.WriteLine();
+			Console.WriteLine();
 #endif
 		}
-		private static void consoleWrite(Object o) {
+		private static void consoleWrite(Object o)
+		{
 #if PCL || NETSTANDARD1_0 || NETSTANDARD1_1 || NETSTANDARD1_2
 				System.Diagnostics.Debug.WriteLine(o);
 #else
-				Console.Write(o);
+			Console.Write(o);
 #endif
 		}
 		/**
@@ -1271,9 +1375,12 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @param o    Object to print
 		 */
-		public static void consolePrintln(Object o) {
-			lock (CONSOLE_OUTPUT) {
-				if ((CONSOLE_ROW_NUMBER == 1) && (CONSOLE_OUTPUT.Equals(""))) {
+		public static void consolePrintln(Object o)
+		{
+			lock (CONSOLE_OUTPUT)
+			{
+				if ((CONSOLE_ROW_NUMBER == 1) && (CONSOLE_OUTPUT.Equals("")))
+				{
 					consoleWrite(CONSOLE_PREFIX);
 					CONSOLE_OUTPUT = CONSOLE_PREFIX;
 				}
@@ -1288,8 +1395,10 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @param stringArray  array of strinfs
 		 */
-		public static void consolePrintln(String[] stringArray) {
-			if (stringArray == null) {
+		public static void consolePrintln(String[] stringArray)
+		{
+			if (stringArray == null)
+			{
 				consolePrintln("null");
 				return;
 			}
@@ -1300,9 +1409,12 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * Prints new line to the Console, no new line
 		 *
 		 */
-		public static void consolePrintln() {
-			lock (CONSOLE_OUTPUT) {
-				if ((CONSOLE_ROW_NUMBER == 1) && (CONSOLE_OUTPUT.Equals(""))) {
+		public static void consolePrintln()
+		{
+			lock (CONSOLE_OUTPUT)
+			{
+				if ((CONSOLE_ROW_NUMBER == 1) && (CONSOLE_OUTPUT.Equals("")))
+				{
 					consoleWrite(CONSOLE_PREFIX);
 					CONSOLE_OUTPUT = CONSOLE_PREFIX;
 				}
@@ -1317,9 +1429,12 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @param o    Object to print
 		 */
-		public static void consolePrint(Object o) {
-			lock (CONSOLE_OUTPUT) {
-				if ((CONSOLE_ROW_NUMBER == 1) && (CONSOLE_OUTPUT.Equals(""))) {
+		public static void consolePrint(Object o)
+		{
+			lock (CONSOLE_OUTPUT)
+			{
+				if ((CONSOLE_ROW_NUMBER == 1) && (CONSOLE_OUTPUT.Equals("")))
+				{
 					consoleWrite(CONSOLE_PREFIX);
 					CONSOLE_OUTPUT = CONSOLE_PREFIX;
 				}
@@ -1336,8 +1451,10 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @see mXparser#consolePrintln()
 		 * @see mXparser#resetConsoleOutput()
 		 */
-		public static void resetConsoleOutput() {
-			lock (CONSOLE_OUTPUT) {
+		public static void resetConsoleOutput()
+		{
+			lock (CONSOLE_OUTPUT)
+			{
 				CONSOLE_OUTPUT = "";
 				CONSOLE_ROW_NUMBER = 1;
 			}
@@ -1345,16 +1462,20 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		/**
 		 * Sets default console prefix.
 		 */
-		public static void setDefaultConsolePrefix() {
-			lock (CONSOLE_PREFIX) {
+		public static void setDefaultConsolePrefix()
+		{
+			lock (CONSOLE_PREFIX)
+			{
 				CONSOLE_PREFIX = "[mXparser-v." + VERSION + "] ";
 			}
 		}
 		/**
 		 * Sets default console output string prefix.
 		 */
-		public static void setDefaultConsoleOutputPrefix() {
-			lock (CONSOLE_OUTPUT_PREFIX) {
+		public static void setDefaultConsoleOutputPrefix()
+		{
+			lock (CONSOLE_OUTPUT_PREFIX)
+			{
 				CONSOLE_OUTPUT_PREFIX = "[mXparser-v." + VERSION + "] ";
 			}
 		}
@@ -1362,8 +1483,10 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * Sets console prefix.
 		 * @param consolePrefix String containing console prefix definition.
 		 */
-		public static void setConsolePrefix(String consolePrefix) {
-			lock (CONSOLE_PREFIX) {
+		public static void setConsolePrefix(String consolePrefix)
+		{
+			lock (CONSOLE_PREFIX)
+			{
 				CONSOLE_PREFIX = consolePrefix;
 			}
 		}
@@ -1371,8 +1494,10 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * Sets console output string prefix.
 		 * @param consoleOutputPrefix String containing console output prefix definition.
 		 */
-		public static void setConsoleOutputPrefix(String consoleOutputPrefix) {
-			lock (CONSOLE_OUTPUT_PREFIX) {
+		public static void setConsoleOutputPrefix(String consoleOutputPrefix)
+		{
+			lock (CONSOLE_OUTPUT_PREFIX)
+			{
 				CONSOLE_OUTPUT_PREFIX = consoleOutputPrefix;
 			}
 		}
@@ -1387,7 +1512,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @see mXparser#consolePrintln();
 		 * @see mXparser#resetConsoleOutput();
 		 */
-		public static String getConsoleOutput() {
+		public static String getConsoleOutput()
+		{
 			return CONSOLE_OUTPUT;
 		}
 		/**
@@ -1395,8 +1521,10 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @return String with all general help content
 		 */
-		public static String getHelp() {
-			lock (mXparserExp) {
+		public static String getHelp()
+		{
+			lock (mXparserExp)
+			{
 				return mXparserExp.getHelp();
 			}
 		}
@@ -1406,22 +1534,26 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @return  String with all help content
 		 * lines containing given keyword
 		 */
-		public static String getHelp(String word) {
-			lock (mXparserExp) {
+		public static String getHelp(String word)
+		{
+			lock (mXparserExp)
+			{
 				return mXparserExp.getHelp(word);
 			}
 		}
 		/**
 		 * Prints all help content.
 		 */
-		public static void consolePrintHelp() {
+		public static void consolePrintHelp()
+		{
 			consoleWriteLine(getHelp());
 		}
 		/**
 		 * Prints filtered help content.
 		 * @param word      Key word.
 		 */
-		public static void consolePrintHelp(String word) {
+		public static void consolePrintHelp(String word)
+		{
 			consoleWriteLine(getHelp(word));
 		}
 		/**
@@ -1433,8 +1565,10 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @see KeyWord#wordTypeId
 		 * @see mXparser#getHelp()
 		 */
-		public static List<KeyWord> getKeyWords() {
-			lock (mXparserExp) {
+		public static List<KeyWord> getKeyWords()
+		{
+			lock (mXparserExp)
+			{
 				return mXparserExp.getKeyWords();
 			}
 		}
@@ -1452,8 +1586,10 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @see KeyWord#wordTypeId
 		 * @see mXparser#getHelp(String)
 		 */
-		public static List<KeyWord> getKeyWords(String query) {
-			lock (mXparserExp) {
+		public static List<KeyWord> getKeyWords(String query)
+		{
+			lock (mXparserExp)
+			{
 				return mXparserExp.getKeyWords(query);
 			}
 		}
@@ -1466,7 +1602,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @return            True if pattern matches entirely, False otherwise
 		 */
-		public static bool regexMatch(String str, String pattern){
+		public static bool regexMatch(String str, String pattern)
+		{
 			return Regex.IsMatch(str, "^(" + pattern + ")$");
 		}
 		/**
@@ -1476,7 +1613,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @see Expression#getCopyOfInitialTokens()
 		 * @see Token
 		 */
-		public static void consolePrintTokens(List<Token> tokens) {
+		public static void consolePrintTokens(List<Token> tokens)
+		{
 			Expression.showTokens(tokens);
 		}
 		/**
@@ -1518,22 +1656,23 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 			"If you have any questions/bugs feel free to contact:\n" +
 			"\n" +
 			"    Mariusz Gromada\n" +
-			"    dninosores.mariuszgromada.org@gmail.com\n" +
+			"    ollyisonit.mariuszgromada.org@gmail.com\n" +
 			"    http://mathspace.plt/\n" +
 			"    http://mathparser.org/\n" +
-			"    http://github.com/dninosores.mariuszgromada/MathParser.org-mXparser\n" +
-			"    http://dninosores.mariuszgromada.github.io/MathParser.org-mXparser/\n" +
+			"    http://github.com/ollyisonit.mariuszgromada/MathParser.org-mXparser\n" +
+			"    http://ollyisonit.mariuszgromada.github.io/MathParser.org-mXparser/\n" +
 			"    http://mxparser.sourceforge.net/\n" +
-			"    http://bitbucket.org/dninosores.mariuszgromada/mxparser/\n" +
+			"    http://bitbucket.org/ollyisonit.mariuszgromada/mxparser/\n" +
 			"    http://mxparser.codeplex.com/\n" +
-			"    http://janetsudoku.dninosores.mariuszgromada.org/\n"
+			"    http://janetsudoku.ollyisonit.mariuszgromada.org/\n"
 			;
 		/**
 		 * Gets license info
 		 *
 		 * @return     license info as string.
 		 */
-		public static String getLicense() {
+		public static String getLicense()
+		{
 			return mXparser.LICENSE;
 		}
 		/**
@@ -1541,10 +1680,12 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @param n Number of milliseconds
 		 */
-		public static void wait(int n) {
+		public static void wait(int n)
+		{
 			long t0, t1;
 			t0 = DateTime.Now.Millisecond;
-			do {
+			do
+			{
 				t1 = DateTime.Now.Millisecond;
 			} while (t1 - t0 < n);
 		}
@@ -1553,7 +1694,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * remember to reset this flag after process is cancelled and you are going to start
 		 * new calculation process.
 		 */
-		public static void cancelCurrentCalculation() {
+		public static void cancelCurrentCalculation()
+		{
 			cancelCurrentCalculationFlag = true;
 		}
 		/**
@@ -1561,7 +1703,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 *  @see {@link #cancelCurrentCalculation()}
 		 */
-		public static void resetCancelCurrentCalculationFlag() {
+		public static void resetCancelCurrentCalculationFlag()
+		{
 			cancelCurrentCalculationFlag = false;
 		}
 		/**
@@ -1570,7 +1713,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @see {@link #cancelCurrentCalculation()}
 		 * @see {@link #resetCancelCurrentCalculationFlag()}
 		 */
-		public static bool isCurrentCalculationCancelled() {
+		public static bool isCurrentCalculationCancelled()
+		{
 			return cancelCurrentCalculationFlag;
 		}
 		/*

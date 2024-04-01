@@ -1,10 +1,10 @@
-﻿using dninosores.UnityEditorAttributes;
-using dninosores.UnityAccessors;
+﻿using ollyisonit.UnityEditorAttributes;
+using ollyisonit.UnityAccessors;
 using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace dninosores.UnityAnimationModifiers
+namespace ollyisonit.UnityAnimationModifiers
 {
 	/// <summary>
 	/// Base class for FloatModifiers that modify AnyFloatAccessors.

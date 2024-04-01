@@ -55,7 +55,8 @@
  */
 using System;
 
-namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
+namespace org.ollyisonit.mariuszgromada.math.mxparser.mathcollection
+{
 	/**
 	 * BinaryRelations - class for dealing with binary relations on integers or doubles.
 	 *
@@ -79,7 +80,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 	 * @version        4.1.0
 	 */
 	[CLSCompliant(false)]
-	public sealed class BinaryRelations {
+	public sealed class BinaryRelations
+	{
 		/**
 		 * Default epsilon for comparison
 		 */
@@ -95,13 +97,15 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		/**
 		 * Sets comparison mode to EXACT.
 		 */
-		public static void setExactComparison() {
+		public static void setExactComparison()
+		{
 			epsilonComparison = false;
 		}
 		/**
 		 * Sets comparison mode to EPSILON.
 		 */
-		public static void setEpsilonComparison() {
+		public static void setEpsilonComparison()
+		{
 			epsilonComparison = true;
 		}
 		/**
@@ -110,7 +114,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 *
 		 * @see #setEpsilonComparison()
 		 */
-		public static void setEpsilon(double epsilon) {
+		public static void setEpsilon(double epsilon)
+		{
 			if (epsilon > 0) BinaryRelations.epsilon = epsilon;
 		}
 		/**
@@ -119,7 +124,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @see #setEpsilonComparison()
 		 * @see #DEFAULT_COMPARISON_EPSILON
 		 */
-		public static void setDefaultEpsilon() {
+		public static void setDefaultEpsilon()
+		{
 			BinaryRelations.epsilon = DEFAULT_COMPARISON_EPSILON;
 		}
 		/**
@@ -128,7 +134,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 *
 		 * @see #setEpsilonComparison()
 		 */
-		public static double getEpsilon() {
+		public static double getEpsilon()
+		{
 			return epsilon;
 		}
 		/**
@@ -137,7 +144,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @see #setEpsilonComparison()
 		 * @see #setExactComparison()
 		 */
-		public static bool checkIfEpsilonMode() {
+		public static bool checkIfEpsilonMode()
+		{
 			return epsilonComparison;
 		}
 		/**
@@ -146,7 +154,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @see #setEpsilonComparison()
 		 * @see #setExactComparison()
 		 */
-		public static bool checkIfExactMode() {
+		public static bool checkIfExactMode()
+		{
 			return !epsilonComparison;
 		}
 		/**
@@ -159,14 +168,17 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 *             else if a = b return 1,
 		 *             otherwise return 0.
 		 */
-		public static double eq(double a, double b) {
+		public static double eq(double a, double b)
+		{
 			if ((Double.IsNaN(a)) || (Double.IsNaN(b))) return Double.NaN;
 			double eps = NumberTheory.max(epsilon, MathFunctions.ulp(b));
 			if (Double.IsInfinity(a) || Double.IsInfinity(b)) eps = 0;
 			double result = BooleanAlgebra.FALSE;
-			if (epsilonComparison) {
+			if (epsilonComparison)
+			{
 				if (MathFunctions.abs(a - b) <= eps) result = BooleanAlgebra.TRUE;
-			} else if (a == b) result = BooleanAlgebra.TRUE;
+			}
+			else if (a == b) result = BooleanAlgebra.TRUE;
 			return result;
 		}
 		/**
@@ -179,14 +191,17 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 *             else if a &lt;&gt; b return 1,
 		 *             otherwise return 0.
 		 */
-		public static double neq(double a, double b) {
+		public static double neq(double a, double b)
+		{
 			if ((Double.IsNaN(a)) || (Double.IsNaN(b))) return Double.NaN;
 			double eps = NumberTheory.max(epsilon, MathFunctions.ulp(b));
 			if (Double.IsInfinity(a) || Double.IsInfinity(b)) eps = 0;
 			double result = BooleanAlgebra.FALSE;
-			if (epsilonComparison) {
+			if (epsilonComparison)
+			{
 				if (MathFunctions.abs(a - b) > eps) result = BooleanAlgebra.TRUE;
-			} else if (a != b) result = BooleanAlgebra.TRUE;
+			}
+			else if (a != b) result = BooleanAlgebra.TRUE;
 			return result;
 		}
 		/**
@@ -199,14 +214,17 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 *             else if a &lt; b return 1,
 		 *             otherwise return 0.
 		 */
-		public static double lt(double a, double b) {
+		public static double lt(double a, double b)
+		{
 			if ((Double.IsNaN(a)) || (Double.IsNaN(b))) return Double.NaN;
 			double eps = NumberTheory.max(epsilon, MathFunctions.ulp(b));
 			if (Double.IsInfinity(a) || Double.IsInfinity(b)) eps = 0;
 			double result = BooleanAlgebra.FALSE;
-			if (epsilonComparison) {
+			if (epsilonComparison)
+			{
 				if (a < b - eps) result = BooleanAlgebra.TRUE;
-			} else if (a < b) result = BooleanAlgebra.TRUE;
+			}
+			else if (a < b) result = BooleanAlgebra.TRUE;
 			return result;
 		}
 		/**
@@ -219,14 +237,17 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 *             else if a &gt; b return 1,
 		 *             otherwise return 0.
 		 */
-		public static double gt(double a, double b) {
+		public static double gt(double a, double b)
+		{
 			if ((Double.IsNaN(a)) || (Double.IsNaN(b))) return Double.NaN;
 			double eps = NumberTheory.max(epsilon, MathFunctions.ulp(b));
 			if (Double.IsInfinity(a) || Double.IsInfinity(b)) eps = 0;
 			double result = BooleanAlgebra.FALSE;
-			if (epsilonComparison) {
+			if (epsilonComparison)
+			{
 				if (a > b + eps) result = BooleanAlgebra.TRUE;
-			} else if (a > b) result = BooleanAlgebra.TRUE;
+			}
+			else if (a > b) result = BooleanAlgebra.TRUE;
 			return result;
 		}
 		/**
@@ -239,14 +260,17 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 *             else if a &lt;= b return 1,
 		 *             otherwise return 0.
 		 */
-		public static double leq(double a, double b) {
+		public static double leq(double a, double b)
+		{
 			if ((Double.IsNaN(a)) || (Double.IsNaN(b))) return Double.NaN;
 			double eps = NumberTheory.max(epsilon, MathFunctions.ulp(b));
 			if (Double.IsInfinity(a) || Double.IsInfinity(b)) eps = 0;
 			double result = BooleanAlgebra.FALSE;
-			if (epsilonComparison) {
+			if (epsilonComparison)
+			{
 				if (a <= b + eps) result = BooleanAlgebra.TRUE;
-			} else if (a <= b) result = BooleanAlgebra.TRUE;
+			}
+			else if (a <= b) result = BooleanAlgebra.TRUE;
 			return result;
 		}
 		/**
@@ -259,14 +283,17 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 *             else if a &gt;= b return 1,
 		 *             otherwise return 0.
 		 */
-		public static double geq(double a, double b) {
+		public static double geq(double a, double b)
+		{
 			if ((Double.IsNaN(a)) || (Double.IsNaN(b))) return Double.NaN;
 			double eps = NumberTheory.max(epsilon, MathFunctions.ulp(b));
 			if (Double.IsInfinity(a) || Double.IsInfinity(b)) eps = 0;
 			double result = BooleanAlgebra.FALSE;
-			if (epsilonComparison) {
+			if (epsilonComparison)
+			{
 				if (a >= b - eps) result = BooleanAlgebra.TRUE;
-			} else if (a >= b) result = BooleanAlgebra.TRUE;
+			}
+			else if (a >= b) result = BooleanAlgebra.TRUE;
 			return result;
 		}
 	}

@@ -55,7 +55,8 @@
  */
 using System;
 
-namespace org.dninosores.mariuszgromada.math.mxparser.parsertokens {
+namespace org.ollyisonit.mariuszgromada.math.mxparser.parsertokens
+{
 	/**
 	 * Token recognized by mXparser after string tokenization process.
 	 *
@@ -79,7 +80,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.parsertokens {
 	 * @version        4.0.0
 	 */
 	[CLSCompliant(false)]
-	public class Token {
+	public class Token
+	{
 		/**
 		 * Indicator that token was not matched
 		 */
@@ -117,7 +119,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.parsertokens {
 		/**
 		 * Default constructor
 		 */
-		public Token() {
+		public Token()
+		{
 			tokenStr = "";
 			keyWord = "";
 			tokenId = NOT_MATCHED;
@@ -129,7 +132,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.parsertokens {
 		/**
 		 * Token cloning.
 		 */
-		public Token clone() {
+		public Token clone()
+		{
 			Token token = new Token();
 			token.keyWord = keyWord;
 			token.tokenStr = tokenStr;

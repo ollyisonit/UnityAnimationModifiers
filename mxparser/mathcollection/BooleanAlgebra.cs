@@ -55,7 +55,8 @@
  */
 using System;
 
-namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
+namespace org.ollyisonit.mariuszgromada.math.mxparser.mathcollection
+{
 	/**
 	 * BooleanAlgebra - class for boolean operators.
 	 *
@@ -79,7 +80,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 	 * @version        4.3.0
 	 */
 	[CLSCompliant(false)]
-	public sealed class BooleanAlgebra {
+	public sealed class BooleanAlgebra
+	{
 		/**
 		 * False as integer
 		 */
@@ -219,17 +221,20 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 *             else if a <> 0 return TRUE,
 		 *             else return FALSE.
 		 */
-		public static int double2IntBoolean(double a) {
+		public static int double2IntBoolean(double a)
+		{
 			if (Double.IsNaN(a))
 				return NULL;
-			if (BinaryRelations.epsilonComparison) {
+			if (BinaryRelations.epsilonComparison)
+			{
 				/* Epsilon comparison mode */
 				if (MathFunctions.abs(a) > BinaryRelations.epsilon)
 					return TRUE;
 				else
 					return FALSE;
 			}
-			else {
+			else
+			{
 				/* Exact comparison mode */
 				if (a != 0)
 					return TRUE;
@@ -245,7 +250,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 *
 		 * @return     Truth table element AND[A][B] where A = double2IntBoolean(a), B = double2IntBoolean(b)
 		 */
-		public static double and(double a, double b) {
+		public static double and(double a, double b)
+		{
 			int A = double2IntBoolean(a);
 			int B = double2IntBoolean(b);
 			return AND_TRUTH_TABLE[A, B];
@@ -259,7 +265,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     Truth table element OR[A][B]
 		 *             where A = double2IntBoolean(a), B = double2IntBoolean(b)
 		 */
-		public static double or(double a, double b) {
+		public static double or(double a, double b)
+		{
 			int A = double2IntBoolean(a);
 			int B = double2IntBoolean(b);
 			return OR_TRUTH_TABLE[A, B];
@@ -273,7 +280,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     Truth table element XOR[A][B]
 		 *             where A = double2IntBoolean(a), B = double2IntBoolean(b)
 		 */
-		public static double xor(double a, double b) {
+		public static double xor(double a, double b)
+		{
 			int A = double2IntBoolean(a);
 			int B = double2IntBoolean(b);
 			return XOR_TRUTH_TABLE[A, B];
@@ -287,7 +295,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     Truth table element NAND[A][B]
 		 *             where A = double2IntBoolean(a), B = double2IntBoolean(b)
 		 */
-		public static double nand(double a, double b) {
+		public static double nand(double a, double b)
+		{
 			int A = double2IntBoolean(a);
 			int B = double2IntBoolean(b);
 			return NAND_TRUTH_TABLE[A, B];
@@ -301,7 +310,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     Truth table element NOR[A][B]
 		 *             where A = double2IntBoolean(a), B = double2IntBoolean(b)
 		 */
-		public static double nor(double a, double b) {
+		public static double nor(double a, double b)
+		{
 			int A = double2IntBoolean(a);
 			int B = double2IntBoolean(b);
 			return NOR_TRUTH_TABLE[A, B];
@@ -315,7 +325,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     Truth table element XNOR[A][B]
 		 *             where A = double2IntBoolean(a), B = double2IntBoolean(b)
 		 */
-		public static double xnor(double a, double b) {
+		public static double xnor(double a, double b)
+		{
 			int A = double2IntBoolean(a);
 			int B = double2IntBoolean(b);
 			return XNOR_TRUTH_TABLE[A, B];
@@ -329,7 +340,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     Truth table element IMP[A][B]
 		 *             where A = double2IntBoolean(a), B = double2IntBoolean(b)
 		 */
-		public static double imp(double a, double b) {
+		public static double imp(double a, double b)
+		{
 			int A = double2IntBoolean(a);
 			int B = double2IntBoolean(b);
 			return IMP_TRUTH_TABLE[A, B];
@@ -343,7 +355,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     Truth table element EQV[A][B]
 		 *             where A = double2IntBoolean(a), B = double2IntBoolean(b)
 		 */
-		public static double eqv(double a, double b) {
+		public static double eqv(double a, double b)
+		{
 			int A = double2IntBoolean(a);
 			int B = double2IntBoolean(b);
 			return EQV_TRUTH_TABLE[A, B];
@@ -356,7 +369,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     Truth table element NOT[A]
 		 *             where A = double2IntBoolean(a)
 		 */
-		public static double not(double a) {
+		public static double not(double a)
+		{
 			int A = double2IntBoolean(a);
 			return NOT_TRUTH_TABLE[A];
 		}
@@ -369,7 +383,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     Truth table element CIMP[A][B]
 		 *             where A = double2IntBoolean(a), B = double2IntBoolean(b)
 		 */
-		public static double cimp(double a, double b) {
+		public static double cimp(double a, double b)
+		{
 			int A = double2IntBoolean(a);
 			int B = double2IntBoolean(b);
 			return CIMP_TRUTH_TABLE[A, B];
@@ -383,7 +398,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     Truth table element NIMP[A][B]
 		 *             where A = double2IntBoolean(a), B = double2IntBoolean(b)
 		 */
-		public static double nimp(double a, double b) {
+		public static double nimp(double a, double b)
+		{
 			int A = double2IntBoolean(a);
 			int B = double2IntBoolean(b);
 			return NIMP_TRUTH_TABLE[A, B];
@@ -410,12 +426,14 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return   Returns BooleanAlgebra.TRUE if all values on the list are BooleanAlgebra.TURE,
 		 *           otherwise returns BooleanAlgebra.FALSE
 		 */
-		public static double andVariadic(params double[] values) {
+		public static double andVariadic(params double[] values)
+		{
 			if (values == null) return Double.NaN;
 			if (values.Length == 0) return Double.NaN;
 			int cntTrue = 0;
 			int bv;
-			foreach (double v in values) {
+			foreach (double v in values)
+			{
 				bv = double2IntBoolean(v);
 				if (bv == FALSE) return FALSE;
 				if (bv == TRUE) cntTrue++;
@@ -431,12 +449,14 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return   Returns BooleanAlgebra.TRUE if at least one value on the list is BooleanAlgebra.TURE,
 		 *           otherwise returns BooleanAlgebra.FALSE
 		 */
-		public static double orVariadic(params double[] values) {
+		public static double orVariadic(params double[] values)
+		{
 			if (values == null) return Double.NaN;
 			if (values.Length == 0) return Double.NaN;
 			int cntFalse = 0;
 			int bv;
-			foreach (double v in values) {
+			foreach (double v in values)
+			{
 				bv = double2IntBoolean(v);
 				if (bv == TRUE) return TRUE;
 				if (bv == FALSE) cntFalse++;
@@ -452,14 +472,17 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return   Returns BooleanAlgebra.TRUE if exactly one value on the list is BooleanAlgebra.TURE,
 		 *           otherwise returns BooleanAlgebra.FALSE
 		 */
-		public static double xorVariadic(params double[] values) {
+		public static double xorVariadic(params double[] values)
+		{
 			if (values == null) return Double.NaN;
 			if (values.Length == 0) return Double.NaN;
 			int cntTrue = 0;
 			int bv;
-			foreach (double v in values) {
+			foreach (double v in values)
+			{
 				bv = double2IntBoolean(v);
-				if (bv == TRUE) {
+				if (bv == TRUE)
+				{
 					cntTrue++;
 					if (cntTrue > 1) return FALSE;
 				}

@@ -54,10 +54,11 @@
  *                              "Yes, up to isomorphism."
  */
 
-using org.dninosores.mariuszgromada.math.mxparser.parsertokens;
+using org.ollyisonit.mariuszgromada.math.mxparser.parsertokens;
 using System;
 
-namespace org.dninosores.mariuszgromada.math.mxparser {
+namespace org.ollyisonit.mariuszgromada.math.mxparser
+{
 	/**
 	 * Argument class enables to declare the argument
 	 * (variable) which can be used in further processing
@@ -116,7 +117,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 	 * @see Constant
 	 */
 	[CLSCompliant(false)]
-	public class Argument : PrimitiveElement {
+	public class Argument : PrimitiveElement
+	{
 		/**
 		 * No syntax errors in the dependent argument definition.
 		 */
@@ -149,8 +151,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * Argument type id for the definition of key words
 		 * known by the parser.
 		 */
-		public const int TYPE_ID			= 101;
-		public const String TYPE_DESC		= "User defined argument";
+		public const int TYPE_ID = 101;
+		public const String TYPE_DESC = "User defined argument";
 		/**
 		 * Argument with body based on the value or expression string.
 		 *
@@ -227,29 +229,34 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 */
 		public Argument(String argumentDefinitionString, params PrimitiveElement[] elements) : base(Argument.TYPE_ID)
 		{
-			if (mXparser.regexMatch(argumentDefinitionString, ParserSymbol.nameOnlyTokenRegExp)) {
+			if (mXparser.regexMatch(argumentDefinitionString, ParserSymbol.nameOnlyTokenRegExp))
+			{
 				argumentName = argumentDefinitionString;
 				argumentValue = ARGUMENT_INITIAL_VALUE;
 				argumentType = FREE_ARGUMENT;
 				argumentExpression = new Expression(elements);
 			}
-			else if (mXparser.regexMatch(argumentDefinitionString, ParserSymbol.constArgDefStrRegExp)) {
+			else if (mXparser.regexMatch(argumentDefinitionString, ParserSymbol.constArgDefStrRegExp))
+			{
 				HeadEqBody headEqBody = new HeadEqBody(argumentDefinitionString);
 				argumentName = headEqBody.headTokens[0].tokenStr;
 				Expression bodyExpr = new Expression(headEqBody.bodyStr);
 				double bodyValue = bodyExpr.calculate();
-				if ((bodyExpr.getSyntaxStatus() == Expression.NO_SYNTAX_ERRORS) && (bodyValue != Double.NaN)) {
+				if ((bodyExpr.getSyntaxStatus() == Expression.NO_SYNTAX_ERRORS) && (bodyValue != Double.NaN))
+				{
 					argumentExpression = new Expression();
 					argumentValue = bodyValue;
 					argumentType = FREE_ARGUMENT;
 				}
-				else {
+				else
+				{
 					argumentExpression = bodyExpr;
 					addDefinitions(elements);
 					argumentType = DEPENDENT_ARGUMENT;
 				}
 			}
-			else if (mXparser.regexMatch(argumentDefinitionString, ParserSymbol.functionDefStrRegExp)) {
+			else if (mXparser.regexMatch(argumentDefinitionString, ParserSymbol.functionDefStrRegExp))
+			{
 				HeadEqBody headEqBody = new HeadEqBody(argumentDefinitionString);
 				argumentName = headEqBody.headTokens[0].tokenStr;
 				argumentExpression = new Expression(headEqBody.bodyStr, elements);
@@ -258,7 +265,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 				argumentType = DEPENDENT_ARGUMENT;
 				n = new Argument(headEqBody.headTokens[2].tokenStr);
 			}
-			else {
+			else
+			{
 				argumentValue = ARGUMENT_INITIAL_VALUE;
 				argumentType = FREE_ARGUMENT;
 				argumentExpression = new Expression();
@@ -282,33 +290,45 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @param      forceDependent   If true parser will try to create dependent argument
 		 * @param      elements   Optional parameters (comma separated) such as Arguments, Constants, Functions
 		 */
-		public Argument(String argumentDefinitionString, bool forceDependent, params PrimitiveElement[] elements)  : base(Argument.TYPE_ID) {
-			if ( mXparser.regexMatch(argumentDefinitionString, ParserSymbol.nameOnlyTokenRegExp) ) {
+		public Argument(String argumentDefinitionString, bool forceDependent, params PrimitiveElement[] elements) : base(Argument.TYPE_ID)
+		{
+			if (mXparser.regexMatch(argumentDefinitionString, ParserSymbol.nameOnlyTokenRegExp))
+			{
 				argumentName = argumentDefinitionString;
 				argumentValue = ARGUMENT_INITIAL_VALUE;
 				argumentType = FREE_ARGUMENT;
 				argumentExpression = new Expression(elements);
-			} else if ( mXparser.regexMatch(argumentDefinitionString, ParserSymbol.constArgDefStrRegExp) ) {
+			}
+			else if (mXparser.regexMatch(argumentDefinitionString, ParserSymbol.constArgDefStrRegExp))
+			{
 				HeadEqBody headEqBody = new HeadEqBody(argumentDefinitionString);
 				argumentName = headEqBody.headTokens[0].tokenStr;
 				Expression bodyExpr = new Expression(headEqBody.bodyStr);
-				if (forceDependent == true) {
+				if (forceDependent == true)
+				{
 					argumentExpression = bodyExpr;
 					addDefinitions(elements);
 					argumentType = DEPENDENT_ARGUMENT;
-				} else {
+				}
+				else
+				{
 					double bodyValue = bodyExpr.calculate();
-					if ( (bodyExpr.getSyntaxStatus() == Expression.NO_SYNTAX_ERRORS) && (bodyValue != Double.NaN) ) {
+					if ((bodyExpr.getSyntaxStatus() == Expression.NO_SYNTAX_ERRORS) && (bodyValue != Double.NaN))
+					{
 						argumentExpression = new Expression();
 						argumentValue = bodyValue;
 						argumentType = FREE_ARGUMENT;
-					} else {
+					}
+					else
+					{
 						argumentExpression = bodyExpr;
 						addDefinitions(elements);
 						argumentType = DEPENDENT_ARGUMENT;
 					}
 				}
-			} else if ( mXparser.regexMatch(argumentDefinitionString, ParserSymbol.functionDefStrRegExp) ) {
+			}
+			else if (mXparser.regexMatch(argumentDefinitionString, ParserSymbol.functionDefStrRegExp))
+			{
 				HeadEqBody headEqBody = new HeadEqBody(argumentDefinitionString);
 				argumentName = headEqBody.headTokens[0].tokenStr;
 				argumentExpression = new Expression(headEqBody.bodyStr, elements);
@@ -316,7 +336,9 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 				argumentValue = ARGUMENT_INITIAL_VALUE;
 				argumentType = DEPENDENT_ARGUMENT;
 				n = new Argument(headEqBody.headTokens[2].tokenStr);
-			} else {
+			}
+			else
+			{
 				argumentValue = ARGUMENT_INITIAL_VALUE;
 				argumentType = FREE_ARGUMENT;
 				argumentExpression = new Expression();
@@ -332,14 +354,17 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @param      argumentName   the argument name
 		 * @param      argumentValue  the argument value
 		 */
-		public Argument(String argumentName, double argumentValue) : base(Argument.TYPE_ID) {
+		public Argument(String argumentName, double argumentValue) : base(Argument.TYPE_ID)
+		{
 			argumentExpression = new Expression();
-			if (mXparser.regexMatch(argumentName, ParserSymbol.nameOnlyTokenRegExp)) {
+			if (mXparser.regexMatch(argumentName, ParserSymbol.nameOnlyTokenRegExp))
+			{
 				this.argumentName = "" + argumentName;
 				this.argumentValue = argumentValue;
 				argumentType = FREE_ARGUMENT;
 			}
-			else {
+			else
+			{
 				this.argumentValue = ARGUMENT_INITIAL_VALUE;
 				argumentExpression.setSyntaxStatus(SYNTAX_ERROR_OR_STATUS_UNKNOWN, "[" + argumentName + "] " + "Invalid argument name, pattern not match: " + ParserSymbol.nameOnlyTokenRegExp);
 			}
@@ -355,15 +380,18 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @param argumentName       Argument name
 		 * @param argumentExtension  Your own source code
 		 */
-		public Argument(String argumentName, ArgumentExtension argumentExtension) : base(Argument.TYPE_ID) {
+		public Argument(String argumentName, ArgumentExtension argumentExtension) : base(Argument.TYPE_ID)
+		{
 			argumentExpression = new Expression();
-			if (mXparser.regexMatch(argumentName, ParserSymbol.nameOnlyTokenRegExp)) {
+			if (mXparser.regexMatch(argumentName, ParserSymbol.nameOnlyTokenRegExp))
+			{
 				this.argumentName = "" + argumentName;
 				this.argumentExtension = argumentExtension;
 				argumentType = FREE_ARGUMENT;
 				argumentBodyType = BODY_EXTENDED;
 			}
-			else {
+			else
+			{
 				this.argumentValue = ARGUMENT_INITIAL_VALUE;
 				argumentExpression.setSyntaxStatus(SYNTAX_ERROR_OR_STATUS_UNKNOWN, "[" + argumentName + "] " + "Invalid argument name, pattern not match: " + ParserSymbol.nameOnlyTokenRegExp);
 				argumentBodyType = BODY_RUNTIME;
@@ -383,15 +411,18 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @see        Expression
 		 * @see        PrimitiveElement
 		 */
-		public Argument(String argumentName, String argumentExpressionString, params PrimitiveElement[] elements) : base(Argument.TYPE_ID) {
-			if (mXparser.regexMatch(argumentName, ParserSymbol.nameOnlyTokenRegExp)) {
-				this.argumentName="" + argumentName;
-				argumentValue=ARGUMENT_INITIAL_VALUE;
+		public Argument(String argumentName, String argumentExpressionString, params PrimitiveElement[] elements) : base(Argument.TYPE_ID)
+		{
+			if (mXparser.regexMatch(argumentName, ParserSymbol.nameOnlyTokenRegExp))
+			{
+				this.argumentName = "" + argumentName;
+				argumentValue = ARGUMENT_INITIAL_VALUE;
 				argumentExpression = new Expression(argumentExpressionString, elements);
 				argumentExpression.setDescription(argumentName);
 				argumentType = DEPENDENT_ARGUMENT;
 			}
-			else {
+			else
+			{
 				this.argumentValue = ARGUMENT_INITIAL_VALUE;
 				argumentExpression = new Expression();
 				argumentExpression.setSyntaxStatus(SYNTAX_ERROR_OR_STATUS_UNKNOWN, "[" + argumentName + "] " + "Invalid argument name, pattern not match: " + ParserSymbol.nameOnlyTokenRegExp);
@@ -405,7 +436,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @param      description         the argument description.
 		 */
-		public void setDescription(String description) {
+		public void setDescription(String description)
+		{
 			this.description = description;
 		}
 		/**
@@ -413,19 +445,22 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @return     The argument description string.
 		 */
-		public String getDescription() {
+		public String getDescription()
+		{
 			return description;
 		}
 		/**
 		 * Enables argument verbose mode
 		 */
-		public void setVerboseMode() {
+		public void setVerboseMode()
+		{
 			argumentExpression.setVerboseMode();
 		}
 		/**
 		 * Disables argument verbose mode (sets default silent mode)
 		 */
-		public void setSilentMode() {
+		public void setSilentMode()
+		{
 			argumentExpression.setSilentMode();
 		}
 		/**
@@ -434,7 +469,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @return     true if verbose mode is on,
 		 *             otherwise returns false.
 		 */
-		public bool getVerboseMode() {
+		public bool getVerboseMode()
+		{
 			return argumentExpression.getVerboseMode();
 		}
 		/**
@@ -443,7 +479,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @return      true if recursive mode is enabled,
 		 *              otherwise returns false
 		 */
-		public bool getRecursiveMode() {
+		public bool getRecursiveMode()
+		{
 			return argumentExpression.getRecursiveMode();
 		}
 		/**
@@ -451,7 +488,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @return     Computing time in seconds.
 		 */
-		public double getComputingTime() {
+		public double getComputingTime()
+		{
 			return argumentExpression.getComputingTime();
 		}
 		/**
@@ -462,8 +500,10 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @param      argumentName        the argument name
 		 */
-		public void setArgumentName(String argumentName) {
-			if ((mXparser.regexMatch(argumentName, ParserSymbol.nameOnlyTokenRegExp))) {
+		public void setArgumentName(String argumentName)
+		{
+			if ((mXparser.regexMatch(argumentName, ParserSymbol.nameOnlyTokenRegExp)))
+			{
 				this.argumentName = argumentName;
 				setExpressionModifiedFlags();
 			}
@@ -481,7 +521,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @see        Expression
 		 */
-		public void setArgumentExpressionString(String argumentExpressionString) {
+		public void setArgumentExpressionString(String argumentExpressionString)
+		{
 			argumentExpression.setExpressionString(argumentExpressionString);
 			if (argumentType == FREE_ARGUMENT)
 				argumentType = DEPENDENT_ARGUMENT;
@@ -492,7 +533,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @return     the argument name as string
 		 */
-		public String getArgumentName() {
+		public String getArgumentName()
+		{
 			return argumentName;
 		}
 		/**
@@ -500,7 +542,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @return the argument expression string
 		 */
-		public String getArgumentExpressionString() {
+		public String getArgumentExpressionString()
+		{
 			return argumentExpression.getExpressionString();
 		}
 		/**
@@ -510,7 +553,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *                            Argument.DEPENDENT_ARGUMENT,
 		 *                            Argument.RECURSIVE_ARGUMENT
 		 */
-		public int getArgumentType() {
+		public int getArgumentType()
+		{
 			return argumentType;
 		}
 		/**
@@ -520,8 +564,10 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @param  argumentValue       the value of argument
 		 */
-		public void setArgumentValue(double argumentValue) {
-			if (argumentType == DEPENDENT_ARGUMENT) {
+		public void setArgumentValue(double argumentValue)
+		{
+			if (argumentType == DEPENDENT_ARGUMENT)
+			{
 				argumentType = FREE_ARGUMENT;
 				argumentExpression.setExpressionString("");
 			}
@@ -538,7 +584,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * Returns argument body type: {@link Argument#BODY_RUNTIME} {@link Argument#BODY_EXTENDED}
 		 * @return Returns argument body type: {@link Argument#BODY_RUNTIME} {@link Argument#BODY_EXTENDED}
 		 */
-		public int getArgumentBodyType() {
+		public int getArgumentBodyType()
+		{
 			return argumentBodyType;
 		}
 		/**
@@ -547,7 +594,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @return    syntax status: Argument.NO_SYNTAX_ERRORS,
 		 *            Argument.SYNTAX_ERROR_OR_STATUS_UNKNOWN
 		 */
-		public bool checkSyntax() {
+		public bool checkSyntax()
+		{
 			if (argumentBodyType == BODY_EXTENDED) return Argument.NO_SYNTAX_ERRORS;
 			if (argumentType == FREE_ARGUMENT)
 				return Argument.NO_SYNTAX_ERRORS;
@@ -559,7 +607,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @return     Error message as string.
 		 */
-		public String getErrorMessage() {
+		public String getErrorMessage()
+		{
 			return argumentExpression.getErrorMessage();
 		}
 		/**
@@ -569,7 +618,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *             otherwise returns calculated argument value
 		 *             based on the argument expression.
 		 */
-		public double getArgumentValue() {
+		public double getArgumentValue()
+		{
 			if (argumentBodyType == BODY_EXTENDED)
 				return argumentExtension.getArgumentValue();
 			if (argumentType == FREE_ARGUMENT)
@@ -585,7 +635,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @see PrimitiveElement
 		 */
-		public void addDefinitions(params PrimitiveElement[] elements) {
+		public void addDefinitions(params PrimitiveElement[] elements)
+		{
 			argumentExpression.addDefinitions(elements);
 		}
 		/**
@@ -596,7 +647,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @see PrimitiveElement
 		 */
-		public void removeDefinitions(params PrimitiveElement[] elements) {
+		public void removeDefinitions(params PrimitiveElement[] elements)
+		{
 			argumentExpression.removeDefinitions(elements);
 		}
 		/*=================================================
@@ -614,7 +666,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @see        Argument
 		 * @see        RecursiveArgument
 		 */
-		public void addArguments(params Argument[] arguments) {
+		public void addArguments(params Argument[] arguments)
+		{
 			argumentExpression.addArguments(arguments);
 		}
 		/**
@@ -627,7 +680,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @see        Argument
 		 * @see        RecursiveArgument
 		 */
-		public void defineArguments(params String[] argumentsNames) {
+		public void defineArguments(params String[] argumentsNames)
+		{
 			argumentExpression.defineArguments(argumentsNames);
 		}
 		/**
@@ -640,7 +694,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @see        Argument
 		 * @see        RecursiveArgument
 		 */
-		public void defineArgument(String argumentName, double argumentValue) {
+		public void defineArgument(String argumentName, double argumentValue)
+		{
 			argumentExpression.defineArgument(argumentName, argumentValue);
 		}
 		/**
@@ -654,7 +709,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @see        Argument
 		 * @see        RecursiveArgument
 		 */
-		public int getArgumentIndex(String argumentName) {
+		public int getArgumentIndex(String argumentName)
+		{
 			return argumentExpression.getArgumentIndex(argumentName);
 		}
 		/**
@@ -669,7 +725,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @see        Argument
 		 * @see        RecursiveArgument
 		 */
-		public Argument getArgument(String argumentName) {
+		public Argument getArgument(String argumentName)
+		{
 			return argumentExpression.getArgument(argumentName);
 		}
 		/**
@@ -684,7 +741,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @see        Argument
 		 * @see        RecursiveArgument
 		 */
-		public Argument getArgument(int argumentIndex) {
+		public Argument getArgument(int argumentIndex)
+		{
 			return argumentExpression.getArgument(argumentIndex);
 		}
 		/**
@@ -695,7 +753,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @see        Argument
 		 * @see        RecursiveArgument
 		 */
-		public int getArgumentsNumber() {
+		public int getArgumentsNumber()
+		{
 			return argumentExpression.getArgumentsNumber();
 		}
 		/**
@@ -709,7 +768,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @see        Argument
 		 * @see        RecursiveArgument
 		 */
-		public void removeArguments(params String[] argumentsNames) {
+		public void removeArguments(params String[] argumentsNames)
+		{
 			argumentExpression.removeArguments(argumentsNames);
 		}
 		/**
@@ -722,7 +782,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @see        Argument
 		 * @see        RecursiveArgument
 		 */
-		public void removeArguments(params Argument[] arguments) {
+		public void removeArguments(params Argument[] arguments)
+		{
 			argumentExpression.removeArguments(arguments);
 		}
 		/**
@@ -731,7 +792,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @see        Argument
 		 * @see        RecursiveArgument
 		 */
-		public void removeAllArguments() {
+		public void removeAllArguments()
+		{
 			argumentExpression.removeAllArguments();
 		}
 		/*=================================================
@@ -749,7 +811,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @see        Constant
 		 */
-		public void addConstants(params Constant[] constants) {
+		public void addConstants(params Constant[] constants)
+		{
 			argumentExpression.addConstants(constants);
 		}
 		/**
@@ -762,7 +825,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @see        Constant
 		 */
-		public void defineConstant(String constantName, double constantValue) {
+		public void defineConstant(String constantName, double constantValue)
+		{
 			argumentExpression.defineConstant(constantName, constantValue);
 		}
 		/**
@@ -775,7 +839,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @see        Constant
 		 */
-		public int getConstantIndex(String constantName) {
+		public int getConstantIndex(String constantName)
+		{
 			return argumentExpression.getConstantIndex(constantName);
 		}
 		/**
@@ -788,7 +853,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @see        Constant
 		 */
-		public Constant getConstant(String constantName) {
+		public Constant getConstant(String constantName)
+		{
 			return argumentExpression.getConstant(constantName);
 		}
 		/**
@@ -803,7 +869,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @see        Constant
 		 */
-		public Constant getConstant(int constantIndex) {
+		public Constant getConstant(int constantIndex)
+		{
 			return argumentExpression.getConstant(constantIndex);
 		}
 		/**
@@ -813,7 +880,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @see        Constant
 		 */
-		public int getConstantsNumber() {
+		public int getConstantsNumber()
+		{
 			return argumentExpression.getConstantsNumber();
 		}
 		/**
@@ -825,7 +893,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @see        Constant
 		 */
-		public void removeConstants(params String[] constantsNames) {
+		public void removeConstants(params String[] constantsNames)
+		{
 			argumentExpression.removeConstants(constantsNames);
 		}
 		/**
@@ -837,7 +906,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @see        Constant
 		 */
-		public void removeConstants(params Constant[] constants) {
+		public void removeConstants(params Constant[] constants)
+		{
 			argumentExpression.removeConstants(constants);
 		}
 		/**
@@ -846,7 +916,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @see        Constant
 		 */
-		public void removeAllConstants() {
+		public void removeAllConstants()
+		{
 			argumentExpression.removeAllConstants();
 		}
 		/*=================================================
@@ -864,7 +935,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @see        Function
 		 */
-		public void addFunctions(params Function[] functions) {
+		public void addFunctions(params Function[] functions)
+		{
 			argumentExpression.addFunctions(functions);
 		}
 		/**
@@ -880,8 +952,9 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @see        Function
 		 */
-		public void defineFunction(String functionName, String  functionExpressionString,
-				params String[] argumentsNames) {
+		public void defineFunction(String functionName, String functionExpressionString,
+				params String[] argumentsNames)
+		{
 			argumentExpression.defineFunction(functionName, functionExpressionString, argumentsNames);
 		}
 		/**
@@ -894,7 +967,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @see        Function
 		 */
-		public int getFunctionIndex(String functionName) {
+		public int getFunctionIndex(String functionName)
+		{
 			return argumentExpression.getFunctionIndex(functionName);
 		}
 		/**
@@ -907,7 +981,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @see        Function
 		 */
-		public Function getFunction(String functionName) {
+		public Function getFunction(String functionName)
+		{
 			return argumentExpression.getFunction(functionName);
 		}
 		/**
@@ -921,7 +996,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @see        Function
 		 */
-		public Function getFunction(int functionIndex) {
+		public Function getFunction(int functionIndex)
+		{
 			return argumentExpression.getFunction(functionIndex);
 		}
 		/**
@@ -931,7 +1007,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @see        Function
 		 */
-		public int getFunctionsNumber() {
+		public int getFunctionsNumber()
+		{
 			return argumentExpression.getFunctionsNumber();
 		}
 		/**
@@ -943,7 +1020,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @see        Function
 		 */
-		public void removeFunctions(params String[] functionsNames) {
+		public void removeFunctions(params String[] functionsNames)
+		{
 			argumentExpression.removeFunctions(functionsNames);
 		}
 		/**
@@ -955,7 +1033,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @see        Function
 		 */
-		public void removeFunctions(params Function[] functions) {
+		public void removeFunctions(params Function[] functions)
+		{
 			argumentExpression.removeFunctions(functions);
 		}
 		/**
@@ -964,7 +1043,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @see        Function
 		 */
-		public void removeAllFunctions() {
+		public void removeAllFunctions()
+		{
 			argumentExpression.removeAllFunctions();
 		}
 		/*=================================================
@@ -979,7 +1059,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @param      expression          the related expression
 		 * @see        Expression
 		 */
-		internal void addRelatedExpression(Expression expression) {
+		internal void addRelatedExpression(Expression expression)
+		{
 			argumentExpression.addRelatedExpression(expression);
 		}
 		/**
@@ -989,7 +1070,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @see        Expression
 		 */
-		internal void removeRelatedExpression(Expression expression) {
+		internal void removeRelatedExpression(Expression expression)
+		{
 			argumentExpression.removeRelatedExpression(expression);
 		}
 		/**
@@ -998,7 +1080,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @see        Expression
 		 */
-		internal void setExpressionModifiedFlags() {
+		internal void setExpressionModifiedFlags()
+		{
 			argumentExpression.setExpressionModifiedFlag();
 		}
 		/**
@@ -1006,7 +1089,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @return     clone of the argument.
 		 */
-		public Argument clone() {
+		public Argument clone()
+		{
 			Argument newArg = new Argument(this.argumentName);
 			newArg.argumentExpression = this.argumentExpression;
 			newArg.argumentType = this.argumentType;

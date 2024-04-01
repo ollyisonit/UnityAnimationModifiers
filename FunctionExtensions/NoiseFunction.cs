@@ -1,8 +1,8 @@
-﻿using org.dninosores.mariuszgromada.math.mxparser;
+﻿using org.ollyisonit.mariuszgromada.math.mxparser;
 using System;
 using UnityEngine;
 
-namespace dninosores.UnityAnimationModifiers
+namespace ollyisonit.UnityAnimationModifiers
 {
 	/// <summary>
 	/// Function of form Noise(seed, t)

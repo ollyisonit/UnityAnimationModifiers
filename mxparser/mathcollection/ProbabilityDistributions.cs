@@ -59,7 +59,8 @@
  */
 using System;
 
-namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
+namespace org.ollyisonit.mariuszgromada.math.mxparser.mathcollection
+{
 	/**
 	 * ProbabilityDistributions - random number generators, PDF - Probability Distribution Functions,
 	 * CDF - Cumulative Distribution Functions, QNT - Quantile Functions (Inverse Cumulative Distribution
@@ -85,7 +86,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 	 * @version        4.3.0
 	 */
 	[CLSCompliant(false)]
-	public class ProbabilityDistributions {
+	public class ProbabilityDistributions
+	{
 		/**
 		 * Random number generator
 		 */
@@ -99,7 +101,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return        Double.NaN if a or b is null, or b is lower than a -
 		 *                otherwise returns random number.
 		 */
-		public static double rndUniformContinuous(double a, double b, Random rnd) {
+		public static double rndUniformContinuous(double a, double b, Random rnd)
+		{
 			if (Double.IsNaN(a)) return Double.NaN;
 			if (Double.IsNaN(b)) return Double.NaN;
 			if (b < a) return Double.NaN;
@@ -114,7 +117,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return        Double.NaN if a or b is null, or b is lower than a -
 		 *                otherwise returns random number.
 		 */
-		public static double rndUniformContinuous(double a, double b) {
+		public static double rndUniformContinuous(double a, double b)
+		{
 			return rndUniformContinuous(a, b, randomGenerator);
 		}
 		/**
@@ -123,7 +127,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @param rnd     Random number generator.
 		 * @return        Random number.
 		 */
-		public static double rndUniformContinuous(Random rnd) {
+		public static double rndUniformContinuous(Random rnd)
+		{
 			return rnd.NextDouble();
 		}
 		/**
@@ -131,7 +136,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 *
 		 * @return        Random number.
 		 */
-		public static double randomUniformContinuous() {
+		public static double randomUniformContinuous()
+		{
 			return rndUniformContinuous(randomGenerator);
 		}
 		/**
@@ -144,12 +150,14 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return        Double.NaN if a or b is null, or b is lower than a -
 		 *                otherwise function value.
 		 */
-		public static double pdfUniformContinuous(double x, double a, double b) {
+		public static double pdfUniformContinuous(double x, double a, double b)
+		{
 			if (Double.IsNaN(x)) return Double.NaN;
 			if (Double.IsNaN(a)) return Double.NaN;
 			if (Double.IsNaN(b)) return Double.NaN;
 			if (b < a) return Double.NaN;
-			if (a == b) {
+			if (a == b)
+			{
 				if (x == a) return 1;
 				else return 0;
 			}
@@ -168,12 +176,14 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return        Double.NaN if a or b is null, or b is lower than a -
 		 *                otherwise function value.
 		 */
-		public static double cdfUniformContinuous(double x, double a, double b) {
+		public static double cdfUniformContinuous(double x, double a, double b)
+		{
 			if (Double.IsNaN(x)) return Double.NaN;
 			if (Double.IsNaN(a)) return Double.NaN;
 			if (Double.IsNaN(b)) return Double.NaN;
 			if (b < a) return Double.NaN;
-			if (a == b) {
+			if (a == b)
+			{
 				if (x < a) return 0.0;
 				else return 1.0;
 			}
@@ -194,13 +204,15 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 *                or q is lower than 0 or q is greater than 1 -
 		 *                otherwise function value.
 		 */
-		public static double qntUniformContinuous(double q, double a, double b) {
+		public static double qntUniformContinuous(double q, double a, double b)
+		{
 			if (Double.IsNaN(q)) return Double.NaN;
 			if (Double.IsNaN(a)) return Double.NaN;
 			if (Double.IsNaN(b)) return Double.NaN;
 			if ((q < 0.0) || (q > 1.0)) return Double.NaN;
 			if (b < a) return Double.NaN;
-			if (a == b) {
+			if (a == b)
+			{
 				if (q == 1.0) return b;
 				else return Double.NaN;
 			}
@@ -218,7 +230,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return        Double.NaN if a or b is null, or b is lower than a -
 		 *                otherwise returns random number.
 		 */
-		public static double rndInteger(int a, int b, Random rnd) {
+		public static double rndInteger(int a, int b, Random rnd)
+		{
 			if (Double.IsNaN(a)) return Double.NaN;
 			if (Double.IsNaN(b)) return Double.NaN;
 			if (b < a) return Double.NaN;
@@ -236,7 +249,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return        Double.NaN if a or b is null, or b is lower than a -
 		 *                otherwise returns random number.
 		 */
-		public static double rndInteger(int a, int b) {
+		public static double rndInteger(int a, int b)
+		{
 			return rndInteger(a, b, randomGenerator);
 		}
 		/**
@@ -245,7 +259,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @param rnd     Random number generator.
 		 * @return        Returns random number.
 		 */
-		public static int rndInteger(Random rnd) {
+		public static int rndInteger(Random rnd)
+		{
 			return rnd.Next(int.MinValue, int.MaxValue);
 		}
 		/**
@@ -255,7 +270,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @param rnd        Random number generator.
 		 * @return           if n &lt; 0 returns -1, otherwise random index.
 		 */
-		public static int rndIndex(int n, Random rnd) {
+		public static int rndIndex(int n, Random rnd)
+		{
 			if (n < 0) return -1;
 			return rnd.Next(n);
 		}
@@ -265,7 +281,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @param n          Bound.
 		 * @return           if n &lt; 0 returns -1, otherwise random index.
 		 */
-		public static int rndIndex(int n) {
+		public static int rndIndex(int n)
+		{
 			if (n < 0) return -1;
 			return randomGenerator.Next(n);
 		}
@@ -275,7 +292,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return        Double.NaN if a or b is null, or b is lower than a -
 		 *                otherwise returns random number.
 		 */
-		public static int rndInteger() {
+		public static int rndInteger()
+		{
 			return rndInteger(randomGenerator);
 		}
 		/**
@@ -287,7 +305,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return                  Double.NaN if mean or stddev or rnd is null or stddev is lower than 0 -
 		 *                          otherwise random number.
 		 */
-		public static double rndNormal(double mean, double stddev, Random rnd) {
+		public static double rndNormal(double mean, double stddev, Random rnd)
+		{
 			if (Double.IsNaN(mean)) return Double.NaN;
 			if (Double.IsNaN(stddev)) return Double.NaN;
 			if (rnd == null) return Double.NaN;
@@ -297,17 +316,21 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 			double b, v2;
 			double r, fac;
 			bool polarTransform;
-			do {
+			do
+			{
 				if (mXparser.isCurrentCalculationCancelled()) return Double.NaN;
 				a = rnd.NextDouble();
 				b = rnd.NextDouble();
 				v1 = 2.0 * a - 1.0;
 				v2 = 2.0 * b - 1.0;
 				r = (v1 * v1) + (v2 * v2);
-				if (r >= 1.0 || r == 0.0) {
+				if (r >= 1.0 || r == 0.0)
+				{
 					x = 0.0;
 					polarTransform = false;
-				} else {
+				}
+				else
+				{
 					fac = MathFunctions.sqrt(-2.0 * MathFunctions.ln(r) / r);
 					x = v1 * fac;
 					polarTransform = true;
@@ -323,7 +346,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return                  Double.NaN if mean or stddev is null or stddev is lower than 0 -
 		 *                          otherwise random number.
 		 */
-		public static double rndNormal(double mean, double stddev) {
+		public static double rndNormal(double mean, double stddev)
+		{
 			return rndNormal(mean, stddev, randomGenerator);
 		}
 		/**
@@ -335,12 +359,14 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return                  Double.NaN if mean or stddev is null or stddev is lower than 0 -
 		 *                          otherwise function value.
 		 */
-		public static double pdfNormal(double x, double mean, double stddev) {
+		public static double pdfNormal(double x, double mean, double stddev)
+		{
 			if (Double.IsNaN(x)) return Double.NaN;
 			if (Double.IsNaN(mean)) return Double.NaN;
 			if (Double.IsNaN(stddev)) return Double.NaN;
 			if (stddev < 0) return Double.NaN;
-			if (stddev == 0) {
+			if (stddev == 0)
+			{
 				if (x == mean) return 1.0;
 				else return 0;
 			}
@@ -358,12 +384,14 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return                  Double.NaN if mean or stddev is null or stddev is lower than 0 -
 		 *                          otherwise function value.
 		 */
-		public static double cdfNormal(double x, double mean, double stddev) {
+		public static double cdfNormal(double x, double mean, double stddev)
+		{
 			if (Double.IsNaN(x)) return Double.NaN;
 			if (Double.IsNaN(mean)) return Double.NaN;
 			if (Double.IsNaN(stddev)) return Double.NaN;
 			if (stddev < 0) return Double.NaN;
-			if (stddev == 0) {
+			if (stddev == 0)
+			{
 				if (x < mean) return 0.0;
 				else return 1.0;
 			}
@@ -382,13 +410,15 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 *                          or q is lower than 0 or q is greater than 1 -
 		 *                          otherwise function value.
 		 */
-		public static double qntNormal(double q, double mean, double stddev) {
+		public static double qntNormal(double q, double mean, double stddev)
+		{
 			if (Double.IsNaN(q)) return Double.NaN;
 			if (Double.IsNaN(mean)) return Double.NaN;
 			if (Double.IsNaN(stddev)) return Double.NaN;
 			if ((q < 0.0) || (q > 1.0)) return Double.NaN;
 			if (stddev < 0) return Double.NaN;
-			if (stddev == 0) {
+			if (stddev == 0)
+			{
 				if (q == 1.0) return mean;
 				else return Double.NaN;
 			}

@@ -2,7 +2,7 @@
 using System;
 using UnityEngine;
 
-namespace dninosores.UnityAnimationModifiers
+namespace ollyisonit.UnityAnimationModifiers
 {
 	/// <summary>
 	/// Stores amplitude, frequency, phase shift, and vertical shift of a periodic modifier.

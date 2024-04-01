@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace dninosores.UnityAnimationModifiers
+namespace ollyisonit.UnityAnimationModifiers
 {
 	/// <summary>
 	/// Modifier that uses an animation curve supplied by the user.
@@ -15,7 +15,7 @@ namespace dninosores.UnityAnimationModifiers
 
 		protected override float GetRawModifiedValue()
 		{
-			return amplitude * curve.Evaluate(base.time * frequency + 
+			return amplitude * curve.Evaluate(base.time * frequency +
 				phaseShift * (curve.postWrapMode == WrapMode.PingPong ? 2 : 1)) + verticalShift;
 		}
 	}

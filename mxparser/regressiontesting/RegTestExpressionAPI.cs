@@ -53,12 +53,12 @@
  *                              Asked if he believes in one God, a mathematician answered:
  *                              "Yes, up to isomorphism."
  */
-using org.dninosores.mariuszgromada.math.mxparser.mathcollection;
-using org.dninosores.mariuszgromada.math.mxparser.parsertokens;
+using org.ollyisonit.mariuszgromada.math.mxparser.mathcollection;
+using org.ollyisonit.mariuszgromada.math.mxparser.parsertokens;
 using System;
 using System.Collections.Generic;
 
-namespace org.dninosores.mariuszgromada.math.mxparser.regressiontesting
+namespace org.ollyisonit.mariuszgromada.math.mxparser.regressiontesting
 {
 	/**
 	 * RegTestExpressionAPI - regression tests for the expression API
@@ -85,13 +85,15 @@ namespace org.dninosores.mariuszgromada.math.mxparser.regressiontesting
 	 * @see Expression
 	 */
 	[CLSCompliant(false)]
-	public class RegTestExpressionAPI {
+	public class RegTestExpressionAPI
+	{
 		/**
 		 * Runs API regression tests.
 		 *
 		 * @return Number of tests with error result.
 		 */
-		public static int Start(int fractionIterations) {
+		public static int Start(int fractionIterations)
+		{
 			long start = mXparser.currentTimeMillis();
 			bool syn1, syn2, syn3, syn4, syn5, syn6, syn7, syn8, b1, b2, b3;
 			String s1, s2;
@@ -100,26 +102,26 @@ namespace org.dninosores.mariuszgromada.math.mxparser.regressiontesting
 			Function F1, F2, F3, F4, F5;
 			Constant C1, C2, C3, C4, C5;
 			double d1, d2, d3;
-			Constant c1 = new Constant("c1",1);
-			Constant c2 = new Constant("c2",2);
-			Constant c3 = new Constant("c3",3);
+			Constant c1 = new Constant("c1", 1);
+			Constant c2 = new Constant("c2", 2);
+			Constant c3 = new Constant("c3", 3);
 			//Constant c4 = new Constant("c4",4);
-			Constant c5 = new Constant("c5",5);
-			Constant c6 = new Constant("c6",6);
-			Function f1 = new Function("f1","1","x");
-			Function f2 = new Function("f2","2","x");
-			Function f3 = new Function("f3","3","x");
-			Function f4 = new Function("f4","4","x");
+			Constant c5 = new Constant("c5", 5);
+			Constant c6 = new Constant("c6", 6);
+			Function f1 = new Function("f1", "1", "x");
+			Function f2 = new Function("f2", "2", "x");
+			Function f3 = new Function("f3", "3", "x");
+			Function f4 = new Function("f4", "4", "x");
 			//Function f5 = new Function("f5","5","x");
-			Function f6 = new Function("f6","6","x");
-			Function f7 = new Function("f7","7","x");
-			Argument a1 = new Argument("a1",1);
-			Argument a2 = new Argument("a2",2);
-			Argument a3 = new Argument("a3",3);
-			Argument a4 = new Argument("a4",4);
-			Argument a5 = new Argument("a5",5);
-			Argument a6 = new Argument("a6",6);
-			Argument a7 = new Argument("a7",7);
+			Function f6 = new Function("f6", "6", "x");
+			Function f7 = new Function("f7", "7", "x");
+			Argument a1 = new Argument("a1", 1);
+			Argument a2 = new Argument("a2", 2);
+			Argument a3 = new Argument("a3", 3);
+			Argument a4 = new Argument("a4", 4);
+			Argument a5 = new Argument("a5", 5);
+			Argument a6 = new Argument("a6", 6);
+			Argument a7 = new Argument("a7", 7);
 			//Argument a8 = new Argument("a8",8);
 			bool[] test = new bool[100];
 			for (int i = 0; i < 100; i++)
@@ -131,40 +133,40 @@ namespace org.dninosores.mariuszgromada.math.mxparser.regressiontesting
 			 */
 			testId++;
 			e = new Expression();
-			if (	e.getExpressionString().Equals("")
+			if (e.getExpressionString().Equals("")
 					&& e.getArgumentsNumber() == 0
 					&& e.getConstantsNumber() == 0
-					&& e.getFunctionsNumber() == 0	)
+					&& e.getFunctionsNumber() == 0)
 				test[testId] = true;
 			/*
 			 * 1.
 			 */
 			testId++;
 			e = new Expression("a1+c2", a1, a2, a3, a4, a5);
-			if (	e.getExpressionString().Equals("a1+c2")
+			if (e.getExpressionString().Equals("a1+c2")
 					&& e.getArgumentsNumber() == 5
 					&& e.getConstantsNumber() == 0
-					&& e.getFunctionsNumber() == 0	)
+					&& e.getFunctionsNumber() == 0)
 				test[testId] = true;
 			/*
 			 * 2.
 			 */
 			testId++;
 			e = new Expression("a1+c2", a1, f1, a2, f2, a3, a4, f3, a5, f4);
-			if (	e.getExpressionString().Equals("a1+c2")
+			if (e.getExpressionString().Equals("a1+c2")
 					&& e.getArgumentsNumber() == 5
 					&& e.getConstantsNumber() == 0
-					&& e.getFunctionsNumber() == 4	)
+					&& e.getFunctionsNumber() == 4)
 				test[testId] = true;
 			/*
 			 * 3
 			 */
 			testId++;
 			e = new Expression("a1+c2", a1, a2, c1, c2, a3, a4, c5, a5, f1, f2, f3, f4);
-			if (	e.getExpressionString().Equals("a1+c2")
+			if (e.getExpressionString().Equals("a1+c2")
 					&& e.getArgumentsNumber() == 5
 					&& e.getConstantsNumber() == 3
-					&& e.getFunctionsNumber() == 4	)
+					&& e.getFunctionsNumber() == 4)
 				test[testId] = true;
 			/*
 			 * 4. void setExpressionString(String expressionString), String getExpressionString(), void clearExpressionString()
@@ -182,7 +184,7 @@ namespace org.dninosores.mariuszgromada.math.mxparser.regressiontesting
 			syn7 = e.checkSyntax();
 			s2 = e.getExpressionString();
 			syn8 = e.getSyntaxStatus();
-			if (	s1.Equals("c2+a1")
+			if (s1.Equals("c2+a1")
 					&& s2.Equals("")
 					&& syn1 == Expression.NO_SYNTAX_ERRORS
 					&& syn2 == Expression.SYNTAX_ERROR_OR_STATUS_UNKNOWN
@@ -205,7 +207,7 @@ namespace org.dninosores.mariuszgromada.math.mxparser.regressiontesting
 			e.clearDescription();
 			s2 = e.getDescription();
 			syn2 = e.getSyntaxStatus();
-			if (	s1.Equals("opis")
+			if (s1.Equals("opis")
 					&& s2.Equals("")
 					&& syn1 == Expression.NO_SYNTAX_ERRORS
 					&& syn2 == Expression.NO_SYNTAX_ERRORS
@@ -222,7 +224,7 @@ namespace org.dninosores.mariuszgromada.math.mxparser.regressiontesting
 			e.setSilentMode();
 			b3 = e.getVerboseMode();
 			syn2 = e.getSyntaxStatus();
-			if (	b1 == false
+			if (b1 == false
 					&& b2 == true
 					&& b3 == false
 					&& syn1 == Expression.NO_SYNTAX_ERRORS
@@ -236,11 +238,11 @@ namespace org.dninosores.mariuszgromada.math.mxparser.regressiontesting
 			Function fa = new Function("f(x,y)=sin(x)+cos(y)");
 			Function fb = new Function("f(x,y)=sin(x)+cos(y)+f(1,2)");
 			testId++;
-			syn1=fa.checkSyntax();
-			syn2=fb.checkSyntax();
+			syn1 = fa.checkSyntax();
+			syn2 = fb.checkSyntax();
 			b1 = fa.getRecursiveMode();
 			b2 = fb.getRecursiveMode();
-			if (	b1 == false
+			if (b1 == false
 					&& b2 == true
 					&& syn1 == Expression.NO_SYNTAX_ERRORS
 					&& syn2 == Expression.NO_SYNTAX_ERRORS
@@ -252,10 +254,10 @@ namespace org.dninosores.mariuszgromada.math.mxparser.regressiontesting
 			 */
 			testId++;
 			e = new Expression("1+2");
-			if (	e.getExpressionString().Equals("1+2")
+			if (e.getExpressionString().Equals("1+2")
 					&& e.getArgumentsNumber() == 0
 					&& e.getConstantsNumber() == 0
-					&& e.getFunctionsNumber() == 0	)
+					&& e.getFunctionsNumber() == 0)
 				test[testId] = true;
 			/*
 			 * 9.
@@ -263,10 +265,10 @@ namespace org.dninosores.mariuszgromada.math.mxparser.regressiontesting
 			 */
 			testId++;
 			e = new Expression("1+2", a1, a2, a3);
-			if (	e.getExpressionString().Equals("1+2")
+			if (e.getExpressionString().Equals("1+2")
 					&& e.getArgumentsNumber() == 3
 					&& e.getConstantsNumber() == 0
-					&& e.getFunctionsNumber() == 0	)
+					&& e.getFunctionsNumber() == 0)
 				test[testId] = true;
 			/*
 			 * 10.
@@ -289,7 +291,7 @@ namespace org.dninosores.mariuszgromada.math.mxparser.regressiontesting
 			syn7 = e.checkSyntax();
 			e.defineArgument("x", 1);
 			syn8 = e.getSyntaxStatus();
-			if (	e.getExpressionString().Equals("1+2")
+			if (e.getExpressionString().Equals("1+2")
 					&& e.getArgumentsNumber() == 11
 					&& e.getConstantsNumber() == 0
 					&& e.getFunctionsNumber() == 0
@@ -321,7 +323,7 @@ namespace org.dninosores.mariuszgromada.math.mxparser.regressiontesting
 			A5 = e.getArgument(1);//a7
 			n1 = e.getArgumentsNumber();//11
 			syn2 = e.getSyntaxStatus();
-			if (	i1 == -1
+			if (i1 == -1
 					&& i2 == 7
 					&& A1 == null
 					&& A2 == a2
@@ -350,7 +352,7 @@ namespace org.dninosores.mariuszgromada.math.mxparser.regressiontesting
 			d2 = e.getArgumentValue("asdfasdf");
 			d3 = e.getArgumentValue("a1");
 			syn5 = e.getSyntaxStatus();
-			if (	d1 == 1
+			if (d1 == 1
 					&& Double.IsNaN(d2)
 					&& d3 == 10
 					&& syn1 == Expression.NO_SYNTAX_ERRORS
@@ -373,22 +375,22 @@ namespace org.dninosores.mariuszgromada.math.mxparser.regressiontesting
 			e.removeArguments("asfdf");
 			syn2 = e.getSyntaxStatus();
 			n2 = e.getArgumentsNumber();
-			e.removeArguments("x1","x2");
+			e.removeArguments("x1", "x2");
 			n3 = e.getArgumentsNumber();
 			syn3 = e.checkSyntax();
 			e.removeArguments(a3);
 			n4 = e.getArgumentsNumber();
-			e.removeArguments(a1,a2);
+			e.removeArguments(a1, a2);
 			syn4 = e.getSyntaxStatus();
 			n5 = e.getArgumentsNumber();
 			syn5 = e.checkSyntax();
 			e.removeAllArguments();
 			n6 = e.getArgumentsNumber();
 			syn6 = e.getSyntaxStatus();
-			if (	n2 == n1
-					&& n2-n3 == 2
-					&& n3-n4 == 1
-					&& n4-n5 == 2
+			if (n2 == n1
+					&& n2 - n3 == 2
+					&& n3 - n4 == 1
+					&& n4 - n5 == 2
 					&& n6 == 0
 					&& syn1 == Expression.NO_SYNTAX_ERRORS
 					&& syn2 == Expression.SYNTAX_ERROR_OR_STATUS_UNKNOWN
@@ -413,11 +415,11 @@ namespace org.dninosores.mariuszgromada.math.mxparser.regressiontesting
 			e.addDefinitions(c1, c2, c3, c5, c6);
 			syn4 = e.getSyntaxStatus();
 			syn5 = e.checkSyntax();
-			e.defineConstant("cx1",1);
+			e.defineConstant("cx1", 1);
 			e.removeDefinitions(c5, c6);
 			syn6 = e.checkSyntax();
 			e.removeDefinitions(c5, c6);
-			if (	e.getExpressionString().Equals("1+2")
+			if (e.getExpressionString().Equals("1+2")
 					&& e.getArgumentsNumber() == 0
 					&& e.getConstantsNumber() == 5
 					&& e.getFunctionsNumber() == 0
@@ -447,7 +449,7 @@ namespace org.dninosores.mariuszgromada.math.mxparser.regressiontesting
 			C5 = e.getConstant(1);//c1
 			n1 = e.getConstantsNumber();//5
 			syn2 = e.getSyntaxStatus();
-			if (	i1 == -1
+			if (i1 == -1
 					&& i2 == -1
 					&& C1 == null
 					&& C2 == c1
@@ -466,29 +468,29 @@ namespace org.dninosores.mariuszgromada.math.mxparser.regressiontesting
 			 * void removeAllConstants()
 			 */
 			testId++;
-			e.defineConstant("cx2",1);
+			e.defineConstant("cx2", 1);
 			e.setExpressionString("1+2");
 			syn1 = e.checkSyntax();
 			n1 = e.getConstantsNumber();
 			e.removeConstants("asfdf");
 			syn2 = e.getSyntaxStatus();
 			n2 = e.getConstantsNumber();
-			e.removeConstants("cx1","cx2");
+			e.removeConstants("cx1", "cx2");
 			n3 = e.getConstantsNumber();
 			syn3 = e.checkSyntax();
 			e.removeConstants(c1);
 			n4 = e.getConstantsNumber();
-			e.removeConstants(c2,c3);
+			e.removeConstants(c2, c3);
 			syn4 = e.getSyntaxStatus();
 			n5 = e.getConstantsNumber();
 			syn5 = e.checkSyntax();
 			e.removeAllConstants();
 			n6 = e.getConstantsNumber();
 			syn6 = e.getSyntaxStatus();
-			if (	n2 == n1
-					&& n2-n3 == 2
-					&& n3-n4 == 1
-					&& n4-n5 == 2
+			if (n2 == n1
+					&& n2 - n3 == 2
+					&& n3 - n4 == 1
+					&& n4 - n5 == 2
 					&& n6 == 0
 					&& syn1 == Expression.NO_SYNTAX_ERRORS
 					&& syn2 == Expression.SYNTAX_ERROR_OR_STATUS_UNKNOWN
@@ -516,7 +518,7 @@ namespace org.dninosores.mariuszgromada.math.mxparser.regressiontesting
 			syn5 = e.checkSyntax();
 			e.defineFunction("ff1", "1", "x");
 			syn6 = e.getSyntaxStatus();
-			if (	e.getExpressionString().Equals("1+2")
+			if (e.getExpressionString().Equals("1+2")
 					&& e.getArgumentsNumber() == 0
 					&& e.getConstantsNumber() == 0
 					&& e.getFunctionsNumber() == 7
@@ -546,7 +548,7 @@ namespace org.dninosores.mariuszgromada.math.mxparser.regressiontesting
 			F5 = e.getFunction(0);//f7
 			n1 = e.getFunctionsNumber();//7
 			syn2 = e.getSyntaxStatus();
-			if (	i1 == -1
+			if (i1 == -1
 					&& i2 == 0
 					&& F1 == null
 					&& F2 == f1
@@ -571,22 +573,22 @@ namespace org.dninosores.mariuszgromada.math.mxparser.regressiontesting
 			e.removeFunctions("asfdf");
 			syn2 = e.getSyntaxStatus();
 			n2 = e.getFunctionsNumber();
-			e.removeFunctions("f1","f2");
+			e.removeFunctions("f1", "f2");
 			n3 = e.getFunctionsNumber();
 			syn3 = e.checkSyntax();
 			e.removeFunctions(f3);
 			n4 = e.getFunctionsNumber();
-			e.removeFunctions(f6,f7);
+			e.removeFunctions(f6, f7);
 			syn4 = e.getSyntaxStatus();
 			n5 = e.getFunctionsNumber();
 			syn5 = e.checkSyntax();
 			e.removeAllFunctions();
 			n6 = e.getFunctionsNumber();
 			syn6 = e.getSyntaxStatus();
-			if (	n2 == n1
-					&& n2-n3 == 2
-					&& n3-n4 == 1
-					&& n4-n5 == 2
+			if (n2 == n1
+					&& n2 - n3 == 2
+					&& n3 - n4 == 1
+					&& n4 - n5 == 2
 					&& n6 == 0
 					&& syn1 == Expression.NO_SYNTAX_ERRORS
 					&& syn2 == Expression.SYNTAX_ERROR_OR_STATUS_UNKNOWN
@@ -607,7 +609,7 @@ namespace org.dninosores.mariuszgromada.math.mxparser.regressiontesting
 			syn1 = e.checkSyntax();
 			d1 = e.calculate();
 			syn2 = e.getSyntaxStatus();
-			if (	syn1 == Expression.NO_SYNTAX_ERRORS
+			if (syn1 == Expression.NO_SYNTAX_ERRORS
 					&& syn2 == Expression.NO_SYNTAX_ERRORS
 					&& d1 == 3)
 				test[testId] = true;
@@ -856,8 +858,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.regressiontesting
 			mXparser.modifyBuiltinToken("sin", "TG", "NEW TG");
 			mXparser.modifyBuiltinToken("cos", "COS", "NEW COS");
 			mXparser.modifyBuiltinToken("cos", "COS1", "NEW COS1");
-            String help = mXparser.getHelp("COS");
-            String[,] tokensToModify1 = mXparser.getBuiltinTokensToModify();
+			String help = mXparser.getHelp("COS");
+			String[,] tokensToModify1 = mXparser.getBuiltinTokensToModify();
 			mXparser.unmodifyBuiltinTokens("", u, "SIN", "tg");
 			String[,] tokensToModify2 = mXparser.getBuiltinTokensToModify();
 			mXparser.unmodifyAllBuiltinTokens();
@@ -878,8 +880,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.regressiontesting
 					(tokensToModify2[0, 0].Equals("cos")) &&
 					(tokensToModify2[0, 1].Equals("COS")) &&
 					(tokensToModify2[0, 2].Equals("NEW COS")) &&
-                    (help.Contains("COS(x)"))
-                    ) test[testId] = true;
+					(help.Contains("COS(x)"))
+					) test[testId] = true;
 			/*
 			 * 32. Recursion counter
 			 */
@@ -909,7 +911,7 @@ namespace org.dninosores.mariuszgromada.math.mxparser.regressiontesting
 			 */
 			testId++;
 			List<KeyWord> keyWords = mXparser.getKeyWords("sin ");
-			if (	(keyWords.Count == 4) &&
+			if ((keyWords.Count == 4) &&
 					(keyWords[0].wordString.Equals("sin")) &&
 					(keyWords[1].wordString.Equals("asin")) &&
 					(keyWords[2].wordString.Equals("arsin")) &&
@@ -990,9 +992,11 @@ namespace org.dninosores.mariuszgromada.math.mxparser.regressiontesting
 			testId++;
 			test[testId] = true;
 			for (int decimalNumber = -fractionIterations; decimalNumber < fractionIterations; decimalNumber++)
-				for (int numeralSystemBase = 1; numeralSystemBase <= 36; numeralSystemBase++) {
+				for (int numeralSystemBase = 1; numeralSystemBase <= 36; numeralSystemBase++)
+				{
 					if (mXparser.isCurrentCalculationCancelled()) return -1;
-					if (NumberTheory.convOthBase2Decimal(NumberTheory.convDecimal2OthBase(decimalNumber, numeralSystemBase), numeralSystemBase) != decimalNumber) {
+					if (NumberTheory.convOthBase2Decimal(NumberTheory.convDecimal2OthBase(decimalNumber, numeralSystemBase), numeralSystemBase) != decimalNumber)
+					{
 						test[testId] = false;
 						break;
 					}
@@ -1003,7 +1007,7 @@ namespace org.dninosores.mariuszgromada.math.mxparser.regressiontesting
 			testId++;
 			char dc_1 = NumberTheory.digitChar(-1);
 			char dc37 = NumberTheory.digitChar(37);
-			int di = NumberTheory.digitIndex('¹');
+			int di = NumberTheory.digitIndex('ï¿½');
 			double dec1 = NumberTheory.convOthBase2Decimal("", 1);
 			double decNaN1 = NumberTheory.convOthBase2Decimal("1101", 0);
 			double decNaN2 = NumberTheory.convOthBase2Decimal("1101", 37);
@@ -1033,9 +1037,11 @@ namespace org.dninosores.mariuszgromada.math.mxparser.regressiontesting
 			testId++;
 			test[testId] = true;
 			for (int decimalNumber = -fractionIterations; decimalNumber < fractionIterations; decimalNumber++)
-				for (int numeralSystemBase = 1; numeralSystemBase <= 36; numeralSystemBase++) {
+				for (int numeralSystemBase = 1; numeralSystemBase <= 36; numeralSystemBase++)
+				{
 					if (mXparser.isCurrentCalculationCancelled()) return -1;
-					if (NumberTheory.convOthBase2Decimal(NumberTheory.convDecimal2OthBase(decimalNumber, numeralSystemBase, 1)) != decimalNumber) {
+					if (NumberTheory.convOthBase2Decimal(NumberTheory.convDecimal2OthBase(decimalNumber, numeralSystemBase, 1)) != decimalNumber)
+					{
 						test[testId] = false;
 						break;
 					}
@@ -1046,9 +1052,11 @@ namespace org.dninosores.mariuszgromada.math.mxparser.regressiontesting
 			testId++;
 			test[testId] = true;
 			for (int decimalNumber = -fractionIterations; decimalNumber < fractionIterations; decimalNumber++)
-				for (int numeralSystemBase = 1; numeralSystemBase <= 36; numeralSystemBase++) {
+				for (int numeralSystemBase = 1; numeralSystemBase <= 36; numeralSystemBase++)
+				{
 					if (mXparser.isCurrentCalculationCancelled()) return -1;
-					if (NumberTheory.convOthBase2Decimal(NumberTheory.convDecimal2OthBase(decimalNumber, numeralSystemBase, 2)) != decimalNumber) {
+					if (NumberTheory.convOthBase2Decimal(NumberTheory.convDecimal2OthBase(decimalNumber, numeralSystemBase, 2)) != decimalNumber)
+					{
 						test[testId] = false;
 						break;
 					}
@@ -1059,9 +1067,11 @@ namespace org.dninosores.mariuszgromada.math.mxparser.regressiontesting
 			testId++;
 			test[testId] = true;
 			for (int decimalNumber = -fractionIterations; decimalNumber < fractionIterations; decimalNumber++)
-				for (int numeralSystemBase = 1; numeralSystemBase <= 36; numeralSystemBase++) {
+				for (int numeralSystemBase = 1; numeralSystemBase <= 36; numeralSystemBase++)
+				{
 					if (mXparser.isCurrentCalculationCancelled()) return -1;
-					if (NumberTheory.convOthBase2Decimal(NumberTheory.convDecimal2OthBase(decimalNumber, numeralSystemBase, 0), numeralSystemBase) != decimalNumber) {
+					if (NumberTheory.convOthBase2Decimal(NumberTheory.convDecimal2OthBase(decimalNumber, numeralSystemBase, 0), numeralSystemBase) != decimalNumber)
+					{
 						test[testId] = false;
 						break;
 					}
@@ -1927,169 +1937,169 @@ namespace org.dninosores.mariuszgromada.math.mxparser.regressiontesting
 			 * 51. Default radian / degrees mode
 			 */
 			testId++;
-			if ( (mXparser.checkIfRadiansMode() == true) && (mXparser.checkIfDegreesMode() == false) )
+			if ((mXparser.checkIfRadiansMode() == true) && (mXparser.checkIfDegreesMode() == false))
 				test[testId] = true;
 			/*
 			 * 52. Set to degrees mode
 			 */
 			testId++;
 			mXparser.setDegreesMode();
-			if ( (mXparser.checkIfRadiansMode() == false) && (mXparser.checkIfDegreesMode() == true) )
+			if ((mXparser.checkIfRadiansMode() == false) && (mXparser.checkIfDegreesMode() == true))
 				test[testId] = true;
 			/*
 			 * 53. Set to degrees mode
 			 */
 			testId++;
 			mXparser.setRadiansMode();
-			if ( (mXparser.checkIfRadiansMode() == true) && (mXparser.checkIfDegreesMode() == false) )
+			if ((mXparser.checkIfRadiansMode() == true) && (mXparser.checkIfDegreesMode() == false))
 				test[testId] = true;
 			/*
 			 * 54. roundHalfUp
 			 */
 			testId++;
 			if (
-					( MathFunctions.roundHalfUp( 0.0, 0 ) == 0.0) &&
-					( MathFunctions.roundHalfUp( 0.0, 1 ) == 0.0) &&
-					( MathFunctions.roundHalfUp( 0.0, 2 ) == 0.0) &&
-					( MathFunctions.roundHalfUp( 0.0, 100 ) == 0.0) &&
-					( Double.IsNaN( MathFunctions.roundHalfUp( 0.0, -1 ) ) ) &&
-					( MathFunctions.roundHalfUp( 1.0, 0 ) == 1.0) &&
-					( MathFunctions.roundHalfUp( 1.0, 1 ) == 1.0) &&
-					( MathFunctions.roundHalfUp( 1.0, 2 ) == 1.0) &&
-					( MathFunctions.roundHalfUp( 1.0, 100 ) == 1.0) &&
-					( Double.IsNaN( MathFunctions.roundHalfUp( 1.0, -1 ) ) ) &&
-					( MathFunctions.roundHalfUp( 9856.0, 0 ) == 9856.0) &&
-					( MathFunctions.roundHalfUp( 9856.0, 1 ) == 9856.0) &&
-					( MathFunctions.roundHalfUp( 9856.0, 2 ) == 9856.0) &&
-					( MathFunctions.roundHalfUp( 9856.0, 100 ) == 9856.0) &&
-					( Double.IsNaN( MathFunctions.roundHalfUp( 9856.0, -1 ) ) ) &&
-					( MathFunctions.roundHalfUp( 9.856E303, 0 ) == 9.856E303) &&
-					( MathFunctions.roundHalfUp( 9.856E303, 1 ) == 9.856E303) &&
-					( MathFunctions.roundHalfUp( 9.856E303, 2 ) == 9.856E303) &&
-					( MathFunctions.roundHalfUp( 9.856E303, 100 ) == 9.856E303) &&
-					( Double.IsNaN( MathFunctions.roundHalfUp( 9.856E303, -1 ) ) ) &&
-					( MathFunctions.roundHalfUp( -1.0, 0 ) == -1.0) &&
-					( MathFunctions.roundHalfUp( -1.0, 1 ) == -1.0) &&
-					( MathFunctions.roundHalfUp( -1.0, 2 ) == -1.0) &&
-					( MathFunctions.roundHalfUp( -1.0, 100 ) == -1.0) &&
-					( Double.IsNaN( MathFunctions.roundHalfUp( -1.0, -1 ) ) ) &&
-					( MathFunctions.roundHalfUp( -9856.0, 0 ) == -9856.0) &&
-					( MathFunctions.roundHalfUp( -9856.0, 1 ) == -9856.0) &&
-					( MathFunctions.roundHalfUp( -9856.0, 2 ) == -9856.0) &&
-					( MathFunctions.roundHalfUp( -9856.0, 100 ) == -9856.0) &&
-					( Double.IsNaN( MathFunctions.roundHalfUp( -9856.0, -1 ) ) ) &&
-					( MathFunctions.roundHalfUp( -9.856E303, 0 ) == -9.856E303) &&
-					( MathFunctions.roundHalfUp( -9.856E303, 1 ) == -9.856E303) &&
-					( MathFunctions.roundHalfUp( -9.856E303, 2 ) == -9.856E303) &&
-					( MathFunctions.roundHalfUp( -9.856E303, 100 ) == -9.856E303) &&
-					( Double.IsNaN( MathFunctions.roundHalfUp( -9.856E303, -1 ) ) ) &&
-					( MathFunctions.roundHalfUp( 1.0E-5, 5 ) == 1.0E-5) &&
-					( MathFunctions.roundHalfUp( 1.0E-5, 6 ) == 1.0E-5) &&
-					( MathFunctions.roundHalfUp( 1.0E-5, 100 ) == 1.0E-5) &&
-					( MathFunctions.roundHalfUp( 1.0E-5, 500 ) == 1.0E-5) &&
-					( MathFunctions.roundHalfUp( 1.0E-5, 4 ) == 0.0) &&
-					( MathFunctions.roundHalfUp( 1.0E-5, 3 ) == 0.0) &&
-					( MathFunctions.roundHalfUp( 1.0E-5, 2 ) == 0.0) &&
-					( MathFunctions.roundHalfUp( 1.0E-5, 1 ) == 0.0) &&
-					( MathFunctions.roundHalfUp( 1.0E-5, 0 ) == 0.0) &&
-					( MathFunctions.roundHalfUp( -1.0E-5, 5 ) == -1.0E-5) &&
-					( MathFunctions.roundHalfUp( -1.0E-5, 6 ) == -1.0E-5) &&
-					( MathFunctions.roundHalfUp( -1.0E-5, 100 ) == -1.0E-5) &&
-					( MathFunctions.roundHalfUp( -1.0E-5, 500 ) == -1.0E-5) &&
-					( MathFunctions.roundHalfUp( -1.0E-5, 4 ) == -0.0) &&
-					( MathFunctions.roundHalfUp( -1.0E-5, 3 ) == -0.0) &&
-					( MathFunctions.roundHalfUp( -1.0E-5, 2 ) == -0.0) &&
-					( MathFunctions.roundHalfUp( -1.0E-5, 1 ) == -0.0) &&
-					( MathFunctions.roundHalfUp( -1.0E-5, 0 ) == -0.0) &&
-					( MathFunctions.roundHalfUp( 10.000000000123, 14 ) == 10.000000000123) &&
-					( MathFunctions.roundHalfUp( 10.000000000123, 13 ) == 10.000000000123) &&
-					( MathFunctions.roundHalfUp( 10.000000000123, 12 ) == 10.000000000123) &&
-					( MathFunctions.roundHalfUp( 10.000000000123, 11 ) == 10.00000000012) &&
-					( MathFunctions.roundHalfUp( 10.000000000123, 10 ) == 10.0000000001) &&
-					( MathFunctions.roundHalfUp( 10.000000000123, 9 ) == 10.0) &&
-					( MathFunctions.roundHalfUp( 10.000000000123, 3 ) == 10.0) &&
-					( MathFunctions.roundHalfUp( 10.000000000123, 0 ) == 10.0) &&
-					( MathFunctions.roundHalfUp( -10.000000000123, 14 ) == -10.000000000123) &&
-					( MathFunctions.roundHalfUp( -10.000000000123, 13 ) == -10.000000000123) &&
-					( MathFunctions.roundHalfUp( -10.000000000123, 12 ) == -10.000000000123) &&
-					( MathFunctions.roundHalfUp( -10.000000000123, 11 ) == -10.00000000012) &&
-					( MathFunctions.roundHalfUp( -10.000000000123, 10 ) == -10.0000000001) &&
-					( MathFunctions.roundHalfUp( -10.000000000123, 9 ) == -10.0) &&
-					( MathFunctions.roundHalfUp( -10.000000000123, 3 ) == -10.0) &&
-					( MathFunctions.roundHalfUp( -10.000000000123, 0 ) == -10.0) &&
-					( MathFunctions.roundHalfUp( 100.444444444445, 200 ) == 100.444444444445) &&
-					( MathFunctions.roundHalfUp( 100.444444444445, 14 ) == 100.444444444445) &&
-					( MathFunctions.roundHalfUp( 100.444444444445, 13 ) == 100.444444444445) &&
-					( MathFunctions.roundHalfUp( 100.444444444445, 12 ) == 100.444444444445) &&
-					( MathFunctions.roundHalfUp( 100.444444444445, 11 ) == 100.44444444445) &&
-					( MathFunctions.roundHalfUp( 100.444444444445, 10 ) == 100.4444444444) &&
-					( MathFunctions.roundHalfUp( 100.444444444445, 9 ) == 100.444444444) &&
-					( MathFunctions.roundHalfUp( 100.444444444445, 8 ) == 100.44444444) &&
-					( MathFunctions.roundHalfUp( 100.444444444445, 7 ) == 100.4444444) &&
-					( MathFunctions.roundHalfUp( 100.444444444445, 6 ) == 100.444444) &&
-					( MathFunctions.roundHalfUp( 100.444444444445, 5 ) == 100.44444) &&
-					( MathFunctions.roundHalfUp( 100.444444444445, 4 ) == 100.4444) &&
-					( MathFunctions.roundHalfUp( 100.444444444445, 3 ) == 100.444) &&
-					( MathFunctions.roundHalfUp( 100.444444444445, 2 ) == 100.44) &&
-					( MathFunctions.roundHalfUp( 100.444444444445, 1 ) == 100.4) &&
-					( MathFunctions.roundHalfUp( 100.444444444445, 0 ) == 100.0) &&
-					( MathFunctions.roundHalfUp( -100.444444444445, 200 ) == -100.444444444445) &&
-					( MathFunctions.roundHalfUp( -100.444444444445, 14 ) == -100.444444444445) &&
-					( MathFunctions.roundHalfUp( -100.444444444445, 13 ) == -100.444444444445) &&
-					( MathFunctions.roundHalfUp( -100.444444444445, 12 ) == -100.444444444445) &&
-					( MathFunctions.roundHalfUp( -100.444444444445, 11 ) == -100.44444444445) &&
-					( MathFunctions.roundHalfUp( -100.444444444445, 10 ) == -100.4444444444) &&
-					( MathFunctions.roundHalfUp( -100.444444444445, 9 ) == -100.444444444) &&
-					( MathFunctions.roundHalfUp( -100.444444444445, 8 ) == -100.44444444) &&
-					( MathFunctions.roundHalfUp( -100.444444444445, 7 ) == -100.4444444) &&
-					( MathFunctions.roundHalfUp( -100.444444444445, 6 ) == -100.444444) &&
-					( MathFunctions.roundHalfUp( -100.444444444445, 5 ) == -100.44444) &&
-					( MathFunctions.roundHalfUp( -100.444444444445, 4 ) == -100.4444) &&
-					( MathFunctions.roundHalfUp( -100.444444444445, 3 ) == -100.444) &&
-					( MathFunctions.roundHalfUp( -100.444444444445, 2 ) == -100.44) &&
-					( MathFunctions.roundHalfUp( -100.444444444445, 1 ) == -100.4) &&
-					( MathFunctions.roundHalfUp( -100.444444444445, 0 ) == -100.0) &&
-					( MathFunctions.roundHalfUp( 1.2345678907654321E9, 100 ) == 1.2345678907654321E9) &&
-					( MathFunctions.roundHalfUp( 1.2345678907654321E9, 8 ) == 1.2345678907654321E9) &&
-					( MathFunctions.roundHalfUp( 1.2345678907654321E9, 7 ) == 1.2345678907654321E9) &&
-					( MathFunctions.roundHalfUp( 1.2345678907654321E9, 6 ) == 1.234567890765432E9) &&
-					( MathFunctions.roundHalfUp( 1.2345678907654321E9, 5 ) == 1.23456789076543E9) &&
-					( MathFunctions.roundHalfUp( 1.2345678907654321E9, 4 ) == 1.2345678907654E9) &&
-					( MathFunctions.roundHalfUp( 1.2345678907654321E9, 3 ) == 1.234567890765E9) &&
-					( MathFunctions.roundHalfUp( 1.2345678907654321E9, 2 ) == 1.23456789077E9) &&
-					( MathFunctions.roundHalfUp( 1.2345678907654321E9, 1 ) == 1.2345678908E9) &&
-					( MathFunctions.roundHalfUp( 1.2345678907654321E9, 0 ) == 1.234567891E9) &&
-					( MathFunctions.roundHalfUp( -1.2345678907654321E9, 100 ) == -1.2345678907654321E9) &&
-					( MathFunctions.roundHalfUp( -1.2345678907654321E9, 8 ) == -1.2345678907654321E9) &&
-					( MathFunctions.roundHalfUp( -1.2345678907654321E9, 7 ) == -1.2345678907654321E9) &&
-					( MathFunctions.roundHalfUp( -1.2345678907654321E9, 6 ) == -1.234567890765432E9) &&
-					( MathFunctions.roundHalfUp( -1.2345678907654321E9, 5 ) == -1.23456789076543E9) &&
-					( MathFunctions.roundHalfUp( -1.2345678907654321E9, 4 ) == -1.2345678907654E9) &&
-					( MathFunctions.roundHalfUp( -1.2345678907654321E9, 3 ) == -1.234567890765E9) &&
-					( MathFunctions.roundHalfUp( -1.2345678907654321E9, 2 ) == -1.23456789077E9) &&
-					( MathFunctions.roundHalfUp( -1.2345678907654321E9, 1 ) == -1.2345678908E9) &&
-					( MathFunctions.roundHalfUp( -1.2345678907654321E9, 0 ) == -1.234567891E9) &&
-					( MathFunctions.roundHalfUp( 5.9999999999, 11 ) == 5.9999999999) &&
-					( MathFunctions.roundHalfUp( 5.9999999999, 10 ) == 5.9999999999) &&
-					( MathFunctions.roundHalfUp( 5.9999999999, 9 ) == 6.0) &&
-					( MathFunctions.roundHalfUp( 5.9999999999, 3 ) == 6.0) &&
-					( MathFunctions.roundHalfUp( 5.9999999999, 0 ) == 6.0) &&
-					( MathFunctions.roundHalfUp( -5.9999999999, 11 ) == -5.9999999999) &&
-					( MathFunctions.roundHalfUp( -5.9999999999, 10 ) == -5.9999999999) &&
-					( MathFunctions.roundHalfUp( -5.9999999999, 9 ) == -6.0) &&
-					( MathFunctions.roundHalfUp( -5.9999999999, 3 ) == -6.0) &&
-					( MathFunctions.roundHalfUp( -5.9999999999, 0 ) == -6.0) &&
-					( MathFunctions.roundHalfUp( 1.2300000000000001E305, 307 ) == 1.2300000000000001E305) &&
-					( MathFunctions.roundHalfUp( 1.2300000000000001E305, 10 ) == 1.2300000000000001E305) &&
-					( MathFunctions.roundHalfUp( 1.2300000000000001E305, 1 ) == 1.2300000000000001E305) &&
-					( MathFunctions.roundHalfUp( 1.2300000000000001E305, 0 ) == 1.2300000000000001E305) &&
-					( MathFunctions.roundHalfUp( -1.2300000000000001E305, 307 ) == -1.2300000000000001E305) &&
-					( MathFunctions.roundHalfUp( -1.2300000000000001E305, 10 ) == -1.2300000000000001E305) &&
-					( MathFunctions.roundHalfUp( -1.2300000000000001E305, 1 ) == -1.2300000000000001E305) &&
-					( MathFunctions.roundHalfUp( -1.2300000000000001E305, 0 ) == -1.2300000000000001E305) &&
-					( Double.IsNaN( MathFunctions.roundHalfUp( Double.NaN, 0 ) ) ) &&
-					( Double.IsPositiveInfinity(MathFunctions.roundHalfUp( Double.PositiveInfinity, 100 ))) &&
-					( Double.IsNegativeInfinity(MathFunctions.roundHalfUp( Double.NegativeInfinity, 100 )))
+					(MathFunctions.roundHalfUp(0.0, 0) == 0.0) &&
+					(MathFunctions.roundHalfUp(0.0, 1) == 0.0) &&
+					(MathFunctions.roundHalfUp(0.0, 2) == 0.0) &&
+					(MathFunctions.roundHalfUp(0.0, 100) == 0.0) &&
+					(Double.IsNaN(MathFunctions.roundHalfUp(0.0, -1))) &&
+					(MathFunctions.roundHalfUp(1.0, 0) == 1.0) &&
+					(MathFunctions.roundHalfUp(1.0, 1) == 1.0) &&
+					(MathFunctions.roundHalfUp(1.0, 2) == 1.0) &&
+					(MathFunctions.roundHalfUp(1.0, 100) == 1.0) &&
+					(Double.IsNaN(MathFunctions.roundHalfUp(1.0, -1))) &&
+					(MathFunctions.roundHalfUp(9856.0, 0) == 9856.0) &&
+					(MathFunctions.roundHalfUp(9856.0, 1) == 9856.0) &&
+					(MathFunctions.roundHalfUp(9856.0, 2) == 9856.0) &&
+					(MathFunctions.roundHalfUp(9856.0, 100) == 9856.0) &&
+					(Double.IsNaN(MathFunctions.roundHalfUp(9856.0, -1))) &&
+					(MathFunctions.roundHalfUp(9.856E303, 0) == 9.856E303) &&
+					(MathFunctions.roundHalfUp(9.856E303, 1) == 9.856E303) &&
+					(MathFunctions.roundHalfUp(9.856E303, 2) == 9.856E303) &&
+					(MathFunctions.roundHalfUp(9.856E303, 100) == 9.856E303) &&
+					(Double.IsNaN(MathFunctions.roundHalfUp(9.856E303, -1))) &&
+					(MathFunctions.roundHalfUp(-1.0, 0) == -1.0) &&
+					(MathFunctions.roundHalfUp(-1.0, 1) == -1.0) &&
+					(MathFunctions.roundHalfUp(-1.0, 2) == -1.0) &&
+					(MathFunctions.roundHalfUp(-1.0, 100) == -1.0) &&
+					(Double.IsNaN(MathFunctions.roundHalfUp(-1.0, -1))) &&
+					(MathFunctions.roundHalfUp(-9856.0, 0) == -9856.0) &&
+					(MathFunctions.roundHalfUp(-9856.0, 1) == -9856.0) &&
+					(MathFunctions.roundHalfUp(-9856.0, 2) == -9856.0) &&
+					(MathFunctions.roundHalfUp(-9856.0, 100) == -9856.0) &&
+					(Double.IsNaN(MathFunctions.roundHalfUp(-9856.0, -1))) &&
+					(MathFunctions.roundHalfUp(-9.856E303, 0) == -9.856E303) &&
+					(MathFunctions.roundHalfUp(-9.856E303, 1) == -9.856E303) &&
+					(MathFunctions.roundHalfUp(-9.856E303, 2) == -9.856E303) &&
+					(MathFunctions.roundHalfUp(-9.856E303, 100) == -9.856E303) &&
+					(Double.IsNaN(MathFunctions.roundHalfUp(-9.856E303, -1))) &&
+					(MathFunctions.roundHalfUp(1.0E-5, 5) == 1.0E-5) &&
+					(MathFunctions.roundHalfUp(1.0E-5, 6) == 1.0E-5) &&
+					(MathFunctions.roundHalfUp(1.0E-5, 100) == 1.0E-5) &&
+					(MathFunctions.roundHalfUp(1.0E-5, 500) == 1.0E-5) &&
+					(MathFunctions.roundHalfUp(1.0E-5, 4) == 0.0) &&
+					(MathFunctions.roundHalfUp(1.0E-5, 3) == 0.0) &&
+					(MathFunctions.roundHalfUp(1.0E-5, 2) == 0.0) &&
+					(MathFunctions.roundHalfUp(1.0E-5, 1) == 0.0) &&
+					(MathFunctions.roundHalfUp(1.0E-5, 0) == 0.0) &&
+					(MathFunctions.roundHalfUp(-1.0E-5, 5) == -1.0E-5) &&
+					(MathFunctions.roundHalfUp(-1.0E-5, 6) == -1.0E-5) &&
+					(MathFunctions.roundHalfUp(-1.0E-5, 100) == -1.0E-5) &&
+					(MathFunctions.roundHalfUp(-1.0E-5, 500) == -1.0E-5) &&
+					(MathFunctions.roundHalfUp(-1.0E-5, 4) == -0.0) &&
+					(MathFunctions.roundHalfUp(-1.0E-5, 3) == -0.0) &&
+					(MathFunctions.roundHalfUp(-1.0E-5, 2) == -0.0) &&
+					(MathFunctions.roundHalfUp(-1.0E-5, 1) == -0.0) &&
+					(MathFunctions.roundHalfUp(-1.0E-5, 0) == -0.0) &&
+					(MathFunctions.roundHalfUp(10.000000000123, 14) == 10.000000000123) &&
+					(MathFunctions.roundHalfUp(10.000000000123, 13) == 10.000000000123) &&
+					(MathFunctions.roundHalfUp(10.000000000123, 12) == 10.000000000123) &&
+					(MathFunctions.roundHalfUp(10.000000000123, 11) == 10.00000000012) &&
+					(MathFunctions.roundHalfUp(10.000000000123, 10) == 10.0000000001) &&
+					(MathFunctions.roundHalfUp(10.000000000123, 9) == 10.0) &&
+					(MathFunctions.roundHalfUp(10.000000000123, 3) == 10.0) &&
+					(MathFunctions.roundHalfUp(10.000000000123, 0) == 10.0) &&
+					(MathFunctions.roundHalfUp(-10.000000000123, 14) == -10.000000000123) &&
+					(MathFunctions.roundHalfUp(-10.000000000123, 13) == -10.000000000123) &&
+					(MathFunctions.roundHalfUp(-10.000000000123, 12) == -10.000000000123) &&
+					(MathFunctions.roundHalfUp(-10.000000000123, 11) == -10.00000000012) &&
+					(MathFunctions.roundHalfUp(-10.000000000123, 10) == -10.0000000001) &&
+					(MathFunctions.roundHalfUp(-10.000000000123, 9) == -10.0) &&
+					(MathFunctions.roundHalfUp(-10.000000000123, 3) == -10.0) &&
+					(MathFunctions.roundHalfUp(-10.000000000123, 0) == -10.0) &&
+					(MathFunctions.roundHalfUp(100.444444444445, 200) == 100.444444444445) &&
+					(MathFunctions.roundHalfUp(100.444444444445, 14) == 100.444444444445) &&
+					(MathFunctions.roundHalfUp(100.444444444445, 13) == 100.444444444445) &&
+					(MathFunctions.roundHalfUp(100.444444444445, 12) == 100.444444444445) &&
+					(MathFunctions.roundHalfUp(100.444444444445, 11) == 100.44444444445) &&
+					(MathFunctions.roundHalfUp(100.444444444445, 10) == 100.4444444444) &&
+					(MathFunctions.roundHalfUp(100.444444444445, 9) == 100.444444444) &&
+					(MathFunctions.roundHalfUp(100.444444444445, 8) == 100.44444444) &&
+					(MathFunctions.roundHalfUp(100.444444444445, 7) == 100.4444444) &&
+					(MathFunctions.roundHalfUp(100.444444444445, 6) == 100.444444) &&
+					(MathFunctions.roundHalfUp(100.444444444445, 5) == 100.44444) &&
+					(MathFunctions.roundHalfUp(100.444444444445, 4) == 100.4444) &&
+					(MathFunctions.roundHalfUp(100.444444444445, 3) == 100.444) &&
+					(MathFunctions.roundHalfUp(100.444444444445, 2) == 100.44) &&
+					(MathFunctions.roundHalfUp(100.444444444445, 1) == 100.4) &&
+					(MathFunctions.roundHalfUp(100.444444444445, 0) == 100.0) &&
+					(MathFunctions.roundHalfUp(-100.444444444445, 200) == -100.444444444445) &&
+					(MathFunctions.roundHalfUp(-100.444444444445, 14) == -100.444444444445) &&
+					(MathFunctions.roundHalfUp(-100.444444444445, 13) == -100.444444444445) &&
+					(MathFunctions.roundHalfUp(-100.444444444445, 12) == -100.444444444445) &&
+					(MathFunctions.roundHalfUp(-100.444444444445, 11) == -100.44444444445) &&
+					(MathFunctions.roundHalfUp(-100.444444444445, 10) == -100.4444444444) &&
+					(MathFunctions.roundHalfUp(-100.444444444445, 9) == -100.444444444) &&
+					(MathFunctions.roundHalfUp(-100.444444444445, 8) == -100.44444444) &&
+					(MathFunctions.roundHalfUp(-100.444444444445, 7) == -100.4444444) &&
+					(MathFunctions.roundHalfUp(-100.444444444445, 6) == -100.444444) &&
+					(MathFunctions.roundHalfUp(-100.444444444445, 5) == -100.44444) &&
+					(MathFunctions.roundHalfUp(-100.444444444445, 4) == -100.4444) &&
+					(MathFunctions.roundHalfUp(-100.444444444445, 3) == -100.444) &&
+					(MathFunctions.roundHalfUp(-100.444444444445, 2) == -100.44) &&
+					(MathFunctions.roundHalfUp(-100.444444444445, 1) == -100.4) &&
+					(MathFunctions.roundHalfUp(-100.444444444445, 0) == -100.0) &&
+					(MathFunctions.roundHalfUp(1.2345678907654321E9, 100) == 1.2345678907654321E9) &&
+					(MathFunctions.roundHalfUp(1.2345678907654321E9, 8) == 1.2345678907654321E9) &&
+					(MathFunctions.roundHalfUp(1.2345678907654321E9, 7) == 1.2345678907654321E9) &&
+					(MathFunctions.roundHalfUp(1.2345678907654321E9, 6) == 1.234567890765432E9) &&
+					(MathFunctions.roundHalfUp(1.2345678907654321E9, 5) == 1.23456789076543E9) &&
+					(MathFunctions.roundHalfUp(1.2345678907654321E9, 4) == 1.2345678907654E9) &&
+					(MathFunctions.roundHalfUp(1.2345678907654321E9, 3) == 1.234567890765E9) &&
+					(MathFunctions.roundHalfUp(1.2345678907654321E9, 2) == 1.23456789077E9) &&
+					(MathFunctions.roundHalfUp(1.2345678907654321E9, 1) == 1.2345678908E9) &&
+					(MathFunctions.roundHalfUp(1.2345678907654321E9, 0) == 1.234567891E9) &&
+					(MathFunctions.roundHalfUp(-1.2345678907654321E9, 100) == -1.2345678907654321E9) &&
+					(MathFunctions.roundHalfUp(-1.2345678907654321E9, 8) == -1.2345678907654321E9) &&
+					(MathFunctions.roundHalfUp(-1.2345678907654321E9, 7) == -1.2345678907654321E9) &&
+					(MathFunctions.roundHalfUp(-1.2345678907654321E9, 6) == -1.234567890765432E9) &&
+					(MathFunctions.roundHalfUp(-1.2345678907654321E9, 5) == -1.23456789076543E9) &&
+					(MathFunctions.roundHalfUp(-1.2345678907654321E9, 4) == -1.2345678907654E9) &&
+					(MathFunctions.roundHalfUp(-1.2345678907654321E9, 3) == -1.234567890765E9) &&
+					(MathFunctions.roundHalfUp(-1.2345678907654321E9, 2) == -1.23456789077E9) &&
+					(MathFunctions.roundHalfUp(-1.2345678907654321E9, 1) == -1.2345678908E9) &&
+					(MathFunctions.roundHalfUp(-1.2345678907654321E9, 0) == -1.234567891E9) &&
+					(MathFunctions.roundHalfUp(5.9999999999, 11) == 5.9999999999) &&
+					(MathFunctions.roundHalfUp(5.9999999999, 10) == 5.9999999999) &&
+					(MathFunctions.roundHalfUp(5.9999999999, 9) == 6.0) &&
+					(MathFunctions.roundHalfUp(5.9999999999, 3) == 6.0) &&
+					(MathFunctions.roundHalfUp(5.9999999999, 0) == 6.0) &&
+					(MathFunctions.roundHalfUp(-5.9999999999, 11) == -5.9999999999) &&
+					(MathFunctions.roundHalfUp(-5.9999999999, 10) == -5.9999999999) &&
+					(MathFunctions.roundHalfUp(-5.9999999999, 9) == -6.0) &&
+					(MathFunctions.roundHalfUp(-5.9999999999, 3) == -6.0) &&
+					(MathFunctions.roundHalfUp(-5.9999999999, 0) == -6.0) &&
+					(MathFunctions.roundHalfUp(1.2300000000000001E305, 307) == 1.2300000000000001E305) &&
+					(MathFunctions.roundHalfUp(1.2300000000000001E305, 10) == 1.2300000000000001E305) &&
+					(MathFunctions.roundHalfUp(1.2300000000000001E305, 1) == 1.2300000000000001E305) &&
+					(MathFunctions.roundHalfUp(1.2300000000000001E305, 0) == 1.2300000000000001E305) &&
+					(MathFunctions.roundHalfUp(-1.2300000000000001E305, 307) == -1.2300000000000001E305) &&
+					(MathFunctions.roundHalfUp(-1.2300000000000001E305, 10) == -1.2300000000000001E305) &&
+					(MathFunctions.roundHalfUp(-1.2300000000000001E305, 1) == -1.2300000000000001E305) &&
+					(MathFunctions.roundHalfUp(-1.2300000000000001E305, 0) == -1.2300000000000001E305) &&
+					(Double.IsNaN(MathFunctions.roundHalfUp(Double.NaN, 0))) &&
+					(Double.IsPositiveInfinity(MathFunctions.roundHalfUp(Double.PositiveInfinity, 100))) &&
+					(Double.IsNegativeInfinity(MathFunctions.roundHalfUp(Double.NegativeInfinity, 100)))
 				) test[testId] = true;
 			/*
 			 * 55. To Mixed fraction
@@ -2103,36 +2113,36 @@ namespace org.dninosores.mariuszgromada.math.mxparser.regressiontesting
 					(NumberTheory.toMixedFractionString(-1.0).Equals("-1")) &&
 					(NumberTheory.toMixedFractionString(-2.0).Equals("-2")) &&
 					(NumberTheory.toMixedFractionString(-1234567890.0).Equals("-1234567890")) &&
-					(NumberTheory.toMixedFractionString(1.0/2.0).Equals("1/2")) &&
-					(NumberTheory.toMixedFractionString(-1.0/2.0).Equals("-1/2")) &&
-					(NumberTheory.toMixedFractionString(2.0/3.0).Equals("2/3")) &&
-					(NumberTheory.toMixedFractionString(-2.0/3.0).Equals("-2/3")) &&
-					(NumberTheory.toMixedFractionString(263.0/326.0).Equals("263/326")) &&
-					(NumberTheory.toMixedFractionString(-263.0/326.0).Equals("-263/326")) &&
-					(NumberTheory.toMixedFractionString(2.0+5.0/6.0).Equals("2+5/6")) &&
-					(NumberTheory.toMixedFractionString(-2.0-5.0/6.0).Equals("-2-5/6")) &&
-					(NumberTheory.toMixedFractionString(2+263.0/326.0).Equals("2+263/326")) &&
-					(NumberTheory.toMixedFractionString(-2-263.0/326.0).Equals("-2-263/326")) &&
-					(NumberTheory.toMixedFractionString(20+263.0/326.0).Equals("20+263/326")) &&
-					(NumberTheory.toMixedFractionString(-20-263.0/326.0).Equals("-20-263/326")) &&
-					(NumberTheory.toMixedFractionString(200+263.0/326.0).Equals("200+263/326")) &&
-					(NumberTheory.toMixedFractionString(-200-263.0/326.0).Equals("-200-263/326")) &&
-					(NumberTheory.toMixedFractionString(2000+263.0/326.0).Equals("2000+263/326")) &&
-					(NumberTheory.toMixedFractionString(-2000-263.0/326.0).Equals("-2000-263/326")) &&
-					(NumberTheory.toMixedFractionString(20000+263.0/326.0).Equals("20000+263/326")) &&
-					(NumberTheory.toMixedFractionString(-20000-263.0/326.0).Equals("-20000-263/326")) &&
-					(NumberTheory.toMixedFractionString(200000+263.0/326.0).Equals("200000+263/326")) &&
-					(NumberTheory.toMixedFractionString(-200000-263.0/326.0).Equals("-200000-263/326")) &&
-					(NumberTheory.toMixedFractionString(2000000+263.0/326.0).Equals("2000000+263/326")) &&
-					(NumberTheory.toMixedFractionString(-2000000-263.0/326.0).Equals("-2000000-263/326")) &&
-					(NumberTheory.toMixedFractionString(20000000+263.0/326.0).Equals("20000000+263/326")) &&
-					(NumberTheory.toMixedFractionString(-20000000-263.0/326.0).Equals("-20000000-263/326")) &&
-					(NumberTheory.toMixedFractionString(200000000+263.0/326.0).Equals("200000000+263/326")) &&
-					(NumberTheory.toMixedFractionString(-200000000-263.0/326.0).Equals("-200000000-263/326")) &&
-					(NumberTheory.toMixedFractionString(2000000000+263.0/326.0).Equals("2000000000+263/326")) &&
-					(NumberTheory.toMixedFractionString(-2000000000-263.0/326.0).Equals("-2000000000-263/326")) &&
-					(NumberTheory.toMixedFractionString(20000000000.0+263.0/326.0).Equals("20000000000+263/326")) &&
-					(NumberTheory.toMixedFractionString(-20000000000.0-263.0/326.0).Equals("-20000000000-263/326"))
+					(NumberTheory.toMixedFractionString(1.0 / 2.0).Equals("1/2")) &&
+					(NumberTheory.toMixedFractionString(-1.0 / 2.0).Equals("-1/2")) &&
+					(NumberTheory.toMixedFractionString(2.0 / 3.0).Equals("2/3")) &&
+					(NumberTheory.toMixedFractionString(-2.0 / 3.0).Equals("-2/3")) &&
+					(NumberTheory.toMixedFractionString(263.0 / 326.0).Equals("263/326")) &&
+					(NumberTheory.toMixedFractionString(-263.0 / 326.0).Equals("-263/326")) &&
+					(NumberTheory.toMixedFractionString(2.0 + 5.0 / 6.0).Equals("2+5/6")) &&
+					(NumberTheory.toMixedFractionString(-2.0 - 5.0 / 6.0).Equals("-2-5/6")) &&
+					(NumberTheory.toMixedFractionString(2 + 263.0 / 326.0).Equals("2+263/326")) &&
+					(NumberTheory.toMixedFractionString(-2 - 263.0 / 326.0).Equals("-2-263/326")) &&
+					(NumberTheory.toMixedFractionString(20 + 263.0 / 326.0).Equals("20+263/326")) &&
+					(NumberTheory.toMixedFractionString(-20 - 263.0 / 326.0).Equals("-20-263/326")) &&
+					(NumberTheory.toMixedFractionString(200 + 263.0 / 326.0).Equals("200+263/326")) &&
+					(NumberTheory.toMixedFractionString(-200 - 263.0 / 326.0).Equals("-200-263/326")) &&
+					(NumberTheory.toMixedFractionString(2000 + 263.0 / 326.0).Equals("2000+263/326")) &&
+					(NumberTheory.toMixedFractionString(-2000 - 263.0 / 326.0).Equals("-2000-263/326")) &&
+					(NumberTheory.toMixedFractionString(20000 + 263.0 / 326.0).Equals("20000+263/326")) &&
+					(NumberTheory.toMixedFractionString(-20000 - 263.0 / 326.0).Equals("-20000-263/326")) &&
+					(NumberTheory.toMixedFractionString(200000 + 263.0 / 326.0).Equals("200000+263/326")) &&
+					(NumberTheory.toMixedFractionString(-200000 - 263.0 / 326.0).Equals("-200000-263/326")) &&
+					(NumberTheory.toMixedFractionString(2000000 + 263.0 / 326.0).Equals("2000000+263/326")) &&
+					(NumberTheory.toMixedFractionString(-2000000 - 263.0 / 326.0).Equals("-2000000-263/326")) &&
+					(NumberTheory.toMixedFractionString(20000000 + 263.0 / 326.0).Equals("20000000+263/326")) &&
+					(NumberTheory.toMixedFractionString(-20000000 - 263.0 / 326.0).Equals("-20000000-263/326")) &&
+					(NumberTheory.toMixedFractionString(200000000 + 263.0 / 326.0).Equals("200000000+263/326")) &&
+					(NumberTheory.toMixedFractionString(-200000000 - 263.0 / 326.0).Equals("-200000000-263/326")) &&
+					(NumberTheory.toMixedFractionString(2000000000 + 263.0 / 326.0).Equals("2000000000+263/326")) &&
+					(NumberTheory.toMixedFractionString(-2000000000 - 263.0 / 326.0).Equals("-2000000000-263/326")) &&
+					(NumberTheory.toMixedFractionString(20000000000.0 + 263.0 / 326.0).Equals("20000000000+263/326")) &&
+					(NumberTheory.toMixedFractionString(-20000000000.0 - 263.0 / 326.0).Equals("-20000000000-263/326"))
 					) test[testId] = true;
 			/*
 			 * 56. To fraction
@@ -2146,36 +2156,36 @@ namespace org.dninosores.mariuszgromada.math.mxparser.regressiontesting
 					(NumberTheory.toFractionString(-1.0).Equals("-1")) &&
 					(NumberTheory.toFractionString(-2.0).Equals("-2")) &&
 					(NumberTheory.toFractionString(-1234567890.0).Equals("-1234567890")) &&
-					(NumberTheory.toFractionString(1.0/2.0).Equals("1/2")) &&
-					(NumberTheory.toFractionString(-1.0/2.0).Equals("-1/2")) &&
-					(NumberTheory.toFractionString(2.0/3.0).Equals("2/3")) &&
-					(NumberTheory.toFractionString(-2.0/3.0).Equals("-2/3")) &&
-					(NumberTheory.toFractionString(263.0/326.0).Equals("263/326")) &&
-					(NumberTheory.toFractionString(-263.0/326.0).Equals("-263/326")) &&
-					(NumberTheory.toFractionString(17.0/6.0).Equals("17/6")) &&
-					(NumberTheory.toFractionString(-17.0/6.0).Equals("-17/6")) &&
-					(NumberTheory.toFractionString(915.0/326.0).Equals("915/326")) &&
-					(NumberTheory.toFractionString(-915.0/326.0).Equals("-915/326")) &&
-					(NumberTheory.toFractionString(6783.0/326.0).Equals("6783/326")) &&
-					(NumberTheory.toFractionString(-6783.0/326.0).Equals("-6783/326")) &&
-					(NumberTheory.toFractionString(65463.0/326.0).Equals("65463/326")) &&
-					(NumberTheory.toFractionString(-65463.0/326.0).Equals("-65463/326")) &&
-					(NumberTheory.toFractionString(652263.0/326.0).Equals("652263/326")) &&
-					(NumberTheory.toFractionString(-652263.0/326.0).Equals("-652263/326")) &&
-					(NumberTheory.toFractionString(6520263.0/326.0).Equals("6520263/326")) &&
-					(NumberTheory.toFractionString(-6520263.0/326.0).Equals("-6520263/326")) &&
-					(NumberTheory.toFractionString(65200263.0/326.0).Equals("65200263/326")) &&
-					(NumberTheory.toFractionString(-65200263.0/326.0).Equals("-65200263/326")) &&
-					(NumberTheory.toFractionString(652000263.0/326.0).Equals("652000263/326")) &&
-					(NumberTheory.toFractionString(-652000263.0/326.0).Equals("-652000263/326")) &&
-					(NumberTheory.toFractionString(6520000263.0/326.0).Equals("6520000263/326")) &&
-					(NumberTheory.toFractionString(-6520000263.0/326.0).Equals("-6520000263/326")) &&
-					(NumberTheory.toFractionString(65200000263.0/326.0).Equals("65200000263/326")) &&
-					(NumberTheory.toFractionString(-65200000263.0/326.0).Equals("-65200000263/326")) &&
-					(NumberTheory.toFractionString(652000000263.0/326.0).Equals("652000000263/326")) &&
-					(NumberTheory.toFractionString(-652000000263.0/326.0).Equals("-652000000263/326")) &&
-					(NumberTheory.toFractionString(6520000000263.0/326.0).Equals("6520000000263/326")) &&
-					(NumberTheory.toFractionString(-6520000000263.0/326.0).Equals("-6520000000263/326"))
+					(NumberTheory.toFractionString(1.0 / 2.0).Equals("1/2")) &&
+					(NumberTheory.toFractionString(-1.0 / 2.0).Equals("-1/2")) &&
+					(NumberTheory.toFractionString(2.0 / 3.0).Equals("2/3")) &&
+					(NumberTheory.toFractionString(-2.0 / 3.0).Equals("-2/3")) &&
+					(NumberTheory.toFractionString(263.0 / 326.0).Equals("263/326")) &&
+					(NumberTheory.toFractionString(-263.0 / 326.0).Equals("-263/326")) &&
+					(NumberTheory.toFractionString(17.0 / 6.0).Equals("17/6")) &&
+					(NumberTheory.toFractionString(-17.0 / 6.0).Equals("-17/6")) &&
+					(NumberTheory.toFractionString(915.0 / 326.0).Equals("915/326")) &&
+					(NumberTheory.toFractionString(-915.0 / 326.0).Equals("-915/326")) &&
+					(NumberTheory.toFractionString(6783.0 / 326.0).Equals("6783/326")) &&
+					(NumberTheory.toFractionString(-6783.0 / 326.0).Equals("-6783/326")) &&
+					(NumberTheory.toFractionString(65463.0 / 326.0).Equals("65463/326")) &&
+					(NumberTheory.toFractionString(-65463.0 / 326.0).Equals("-65463/326")) &&
+					(NumberTheory.toFractionString(652263.0 / 326.0).Equals("652263/326")) &&
+					(NumberTheory.toFractionString(-652263.0 / 326.0).Equals("-652263/326")) &&
+					(NumberTheory.toFractionString(6520263.0 / 326.0).Equals("6520263/326")) &&
+					(NumberTheory.toFractionString(-6520263.0 / 326.0).Equals("-6520263/326")) &&
+					(NumberTheory.toFractionString(65200263.0 / 326.0).Equals("65200263/326")) &&
+					(NumberTheory.toFractionString(-65200263.0 / 326.0).Equals("-65200263/326")) &&
+					(NumberTheory.toFractionString(652000263.0 / 326.0).Equals("652000263/326")) &&
+					(NumberTheory.toFractionString(-652000263.0 / 326.0).Equals("-652000263/326")) &&
+					(NumberTheory.toFractionString(6520000263.0 / 326.0).Equals("6520000263/326")) &&
+					(NumberTheory.toFractionString(-6520000263.0 / 326.0).Equals("-6520000263/326")) &&
+					(NumberTheory.toFractionString(65200000263.0 / 326.0).Equals("65200000263/326")) &&
+					(NumberTheory.toFractionString(-65200000263.0 / 326.0).Equals("-65200000263/326")) &&
+					(NumberTheory.toFractionString(652000000263.0 / 326.0).Equals("652000000263/326")) &&
+					(NumberTheory.toFractionString(-652000000263.0 / 326.0).Equals("-652000000263/326")) &&
+					(NumberTheory.toFractionString(6520000000263.0 / 326.0).Equals("6520000000263/326")) &&
+					(NumberTheory.toFractionString(-6520000000263.0 / 326.0).Equals("-6520000000263/326"))
 					) test[testId] = true;
 			/*
 			 * 57. Variadic user function
@@ -2184,10 +2194,10 @@ namespace org.dninosores.mariuszgromada.math.mxparser.regressiontesting
 			Function f = new Function("f(...) = sum( i, 1, [npar], par(i) )");
 			if (
 					(f.calculate(1) == 1) &&
-					(f.calculate(1,2) == 3) &&
-					(f.calculate(1,2,3) == 6) &&
-					(f.calculate(1,2,3,4) == 10) &&
-					(f.calculate(1,2,3,4,5) == 15)
+					(f.calculate(1, 2) == 3) &&
+					(f.calculate(1, 2, 3) == 6) &&
+					(f.calculate(1, 2, 3, 4) == 10) &&
+					(f.calculate(1, 2, 3, 4, 5) == 15)
 				) test[testId] = true;
 			/*
 			 * 58. Variadic user function with extension
@@ -2197,10 +2207,10 @@ namespace org.dninosores.mariuszgromada.math.mxparser.regressiontesting
 			Function g = new Function("g", gx);
 			if (
 					(g.calculate(1) == 1) &&
-					(g.calculate(1,2) == 3) &&
-					(g.calculate(1,2,3) == 6) &&
-					(g.calculate(1,2,3,4) == 10) &&
-					(g.calculate(1,2,3,4,5) == 15)
+					(g.calculate(1, 2) == 3) &&
+					(g.calculate(1, 2, 3) == 6) &&
+					(g.calculate(1, 2, 3, 4) == 10) &&
+					(g.calculate(1, 2, 3, 4, 5) == 15)
 				) test[testId] = true;
 			/*
 			 * 59. Almost int rounding disable / enable
@@ -2267,52 +2277,62 @@ namespace org.dninosores.mariuszgromada.math.mxparser.regressiontesting
 			 */
 			testId++;
 			test[testId] = true;
-			foreach (SpecialValueTrigonometric sv in SpecialValueTrigonometric.valuesListTrig) {
+			foreach (SpecialValueTrigonometric sv in SpecialValueTrigonometric.valuesListTrig)
+			{
 				if (Math.Abs(sv.sin - Math.Sin(sv.xrad)) > BinaryRelations.DEFAULT_COMPARISON_EPSILON) test[testId] = false;
 				if (Math.Abs(sv.cos - Math.Cos(sv.xrad)) > BinaryRelations.DEFAULT_COMPARISON_EPSILON) test[testId] = false;
 				if (!Double.IsNaN(sv.tan))
 					if (Math.Abs(sv.tan - Math.Tan(sv.xrad)) > BinaryRelations.DEFAULT_COMPARISON_EPSILON) test[testId] = false;
 				if (!Double.IsNaN(sv.ctan))
-					if (Math.Abs(sv.ctan - 1.0/Math.Tan(sv.xrad)) > BinaryRelations.DEFAULT_COMPARISON_EPSILON) test[testId] = false;
+					if (Math.Abs(sv.ctan - 1.0 / Math.Tan(sv.xrad)) > BinaryRelations.DEFAULT_COMPARISON_EPSILON) test[testId] = false;
 				if (!Double.IsNaN(sv.sec))
-					if (Math.Abs(sv.sec - 1.0/Math.Cos(sv.xrad)) > BinaryRelations.DEFAULT_COMPARISON_EPSILON) test[testId] = false;
+					if (Math.Abs(sv.sec - 1.0 / Math.Cos(sv.xrad)) > BinaryRelations.DEFAULT_COMPARISON_EPSILON) test[testId] = false;
 				if (!Double.IsNaN(sv.csc))
-					if (Math.Abs(sv.csc - 1.0/Math.Sin(sv.xrad)) > BinaryRelations.DEFAULT_COMPARISON_EPSILON) test[testId] = false;
+					if (Math.Abs(sv.csc - 1.0 / Math.Sin(sv.xrad)) > BinaryRelations.DEFAULT_COMPARISON_EPSILON) test[testId] = false;
 			}
 			/*
 			 * 67. Inverse trigonometric functions special values - compared to Math
 			 */
 			testId++;
 			test[testId] = true;
-			foreach (SpecialValue sv in SpecialValueTrigonometric.valuesListAsin) {
+			foreach (SpecialValue sv in SpecialValueTrigonometric.valuesListAsin)
+			{
 				if (!Double.IsNaN(sv.fv))
 					if (Math.Abs(sv.fv - Math.Asin(sv.x)) > BinaryRelations.DEFAULT_COMPARISON_EPSILON) test[testId] = false;
 			}
-			foreach (SpecialValue sv in SpecialValueTrigonometric.valuesListAcos) {
+			foreach (SpecialValue sv in SpecialValueTrigonometric.valuesListAcos)
+			{
 				if (!Double.IsNaN(sv.fv))
 					if (Math.Abs(sv.fv - Math.Acos(sv.x)) > BinaryRelations.DEFAULT_COMPARISON_EPSILON) test[testId] = false;
 			}
-			foreach (SpecialValue sv in SpecialValueTrigonometric.valuesListAtan) {
+			foreach (SpecialValue sv in SpecialValueTrigonometric.valuesListAtan)
+			{
 				if (!Double.IsNaN(sv.fv))
 					if (Math.Abs(sv.fv - Math.Atan(sv.x)) > BinaryRelations.DEFAULT_COMPARISON_EPSILON) test[testId] = false;
 			}
-			foreach (SpecialValue sv in SpecialValueTrigonometric.valuesListActan) {
-				if (!Double.IsNaN(sv.fv)) {
+			foreach (SpecialValue sv in SpecialValueTrigonometric.valuesListActan)
+			{
+				if (!Double.IsNaN(sv.fv))
+				{
 					double actan = Double.NaN;
-					if (sv.x > 0) actan = Math.Atan(1.0/sv.x);
-					else if (sv.x < 0) actan = Math.Atan(1.0/sv.x) + MathConstants.PI;
+					if (sv.x > 0) actan = Math.Atan(1.0 / sv.x);
+					else if (sv.x < 0) actan = Math.Atan(1.0 / sv.x) + MathConstants.PI;
 					if (Math.Abs(sv.fv - actan) > BinaryRelations.DEFAULT_COMPARISON_EPSILON) test[testId] = false;
 				}
 			}
-			foreach (SpecialValue sv in SpecialValueTrigonometric.valuesListAsec) {
-				if (!Double.IsNaN(sv.fv)) {
-					double asec = Math.Acos(1.0/sv.x);
+			foreach (SpecialValue sv in SpecialValueTrigonometric.valuesListAsec)
+			{
+				if (!Double.IsNaN(sv.fv))
+				{
+					double asec = Math.Acos(1.0 / sv.x);
 					if (Math.Abs(sv.fv - asec) > BinaryRelations.DEFAULT_COMPARISON_EPSILON) test[testId] = false;
 				}
 			}
-			foreach (SpecialValue sv in SpecialValueTrigonometric.valuesListAcsc) {
-				if (!Double.IsNaN(sv.fv)) {
-					double acsc = Math.Asin(1.0/sv.x);
+			foreach (SpecialValue sv in SpecialValueTrigonometric.valuesListAcsc)
+			{
+				if (!Double.IsNaN(sv.fv))
+				{
+					double acsc = Math.Asin(1.0 / sv.x);
 					if (Math.Abs(sv.fv - acsc) > BinaryRelations.DEFAULT_COMPARISON_EPSILON) test[testId] = false;
 				}
 			}
@@ -2321,7 +2341,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.regressiontesting
 			 */
 			testId++;
 			test[testId] = true;
-			foreach (SpecialValueTrigonometric sv in SpecialValueTrigonometric.valuesListTrig) {
+			foreach (SpecialValueTrigonometric sv in SpecialValueTrigonometric.valuesListTrig)
+			{
 				if (Math.Abs(sv.sin - MathFunctions.sin(sv.xrad)) > BinaryRelations.DEFAULT_COMPARISON_EPSILON) test[testId] = false;
 				if (Math.Abs(sv.cos - MathFunctions.cos(sv.xrad)) > BinaryRelations.DEFAULT_COMPARISON_EPSILON) test[testId] = false;
 				if (!Double.IsNaN(sv.tan))
@@ -2338,33 +2359,42 @@ namespace org.dninosores.mariuszgromada.math.mxparser.regressiontesting
 			 */
 			testId++;
 			test[testId] = true;
-			foreach (SpecialValue sv in SpecialValueTrigonometric.valuesListAsin) {
+			foreach (SpecialValue sv in SpecialValueTrigonometric.valuesListAsin)
+			{
 				if (!Double.IsNaN(sv.fv))
 					if (Math.Abs(sv.fv - MathFunctions.asin(sv.x)) > BinaryRelations.DEFAULT_COMPARISON_EPSILON) test[testId] = false;
 			}
-			foreach (SpecialValue sv in SpecialValueTrigonometric.valuesListAcos) {
+			foreach (SpecialValue sv in SpecialValueTrigonometric.valuesListAcos)
+			{
 				if (!Double.IsNaN(sv.fv))
 					if (Math.Abs(sv.fv - MathFunctions.acos(sv.x)) > BinaryRelations.DEFAULT_COMPARISON_EPSILON) test[testId] = false;
 			}
-			foreach (SpecialValue sv in SpecialValueTrigonometric.valuesListAtan) {
+			foreach (SpecialValue sv in SpecialValueTrigonometric.valuesListAtan)
+			{
 				if (!Double.IsNaN(sv.fv))
 					if (Math.Abs(sv.fv - MathFunctions.atan(sv.x)) > BinaryRelations.DEFAULT_COMPARISON_EPSILON) test[testId] = false;
 			}
-			foreach (SpecialValue sv in SpecialValueTrigonometric.valuesListActan) {
-				if (!Double.IsNaN(sv.fv)) {
+			foreach (SpecialValue sv in SpecialValueTrigonometric.valuesListActan)
+			{
+				if (!Double.IsNaN(sv.fv))
+				{
 					double actan = Double.NaN;
 					actan = MathFunctions.actan(sv.x);
 					if (Math.Abs(sv.fv - actan) > BinaryRelations.DEFAULT_COMPARISON_EPSILON) test[testId] = false;
 				}
 			}
-			foreach (SpecialValue sv in SpecialValueTrigonometric.valuesListAsec) {
-				if (!Double.IsNaN(sv.fv)) {
+			foreach (SpecialValue sv in SpecialValueTrigonometric.valuesListAsec)
+			{
+				if (!Double.IsNaN(sv.fv))
+				{
 					double asec = MathFunctions.asec(sv.x);
 					if (Math.Abs(sv.fv - asec) > BinaryRelations.DEFAULT_COMPARISON_EPSILON) test[testId] = false;
 				}
 			}
-			foreach (SpecialValue sv in SpecialValueTrigonometric.valuesListAcsc) {
-				if (!Double.IsNaN(sv.fv)) {
+			foreach (SpecialValue sv in SpecialValueTrigonometric.valuesListAcsc)
+			{
+				if (!Double.IsNaN(sv.fv))
+				{
 					double acsc = MathFunctions.acosec(sv.x);
 					if (Math.Abs(sv.fv - acsc) > BinaryRelations.DEFAULT_COMPARISON_EPSILON) test[testId] = false;
 				}
@@ -2374,7 +2404,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.regressiontesting
 			 */
 			testId++;
 			test[testId] = true;
-			for (double a = -6; a <= 6; a+=0.1) {
+			for (double a = -6; a <= 6; a += 0.1)
+			{
 				if (Math.Abs(Math.Sin(a) - MathFunctions.sin(a)) > BinaryRelations.DEFAULT_COMPARISON_EPSILON) test[testId] = false;
 			}
 			/*
@@ -2382,7 +2413,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.regressiontesting
 			 */
 			testId++;
 			test[testId] = true;
-			for (double a = -6; a <= 6; a+=0.1) {
+			for (double a = -6; a <= 6; a += 0.1)
+			{
 				if (Math.Abs(Math.Cos(a) - MathFunctions.cos(a)) > BinaryRelations.DEFAULT_COMPARISON_EPSILON) test[testId] = false;
 			}
 			/*
@@ -2390,7 +2422,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.regressiontesting
 			 */
 			testId++;
 			test[testId] = true;
-			for (double a = -6; a <= 6; a+=0.1) {
+			for (double a = -6; a <= 6; a += 0.1)
+			{
 				if (Math.Abs(Math.Tan(a) - MathFunctions.tan(a)) > BinaryRelations.DEFAULT_COMPARISON_EPSILON) test[testId] = false;
 			}
 			/*
@@ -2398,31 +2431,35 @@ namespace org.dninosores.mariuszgromada.math.mxparser.regressiontesting
 			 */
 			testId++;
 			test[testId] = true;
-			for (double a = -6; a <= 6; a+=0.1) {
-				if (Math.Abs(1.0/Math.Tan(a) - MathFunctions.ctan(a)) > BinaryRelations.DEFAULT_COMPARISON_EPSILON) test[testId] = false;
+			for (double a = -6; a <= 6; a += 0.1)
+			{
+				if (Math.Abs(1.0 / Math.Tan(a) - MathFunctions.ctan(a)) > BinaryRelations.DEFAULT_COMPARISON_EPSILON) test[testId] = false;
 			}
 			/*
 			 * 74. Secant test
 			 */
 			testId++;
 			test[testId] = true;
-			for (double a = -6; a <= 6; a+=0.1) {
-				if (Math.Abs(1.0/Math.Cos(a) - MathFunctions.sec(a)) > BinaryRelations.DEFAULT_COMPARISON_EPSILON) test[testId] = false;
+			for (double a = -6; a <= 6; a += 0.1)
+			{
+				if (Math.Abs(1.0 / Math.Cos(a) - MathFunctions.sec(a)) > BinaryRelations.DEFAULT_COMPARISON_EPSILON) test[testId] = false;
 			}
 			/*
 			 * 75. Cosecant test
 			 */
 			testId++;
 			test[testId] = true;
-			for (double a = -6; a <= 6; a+=0.1) {
-				if (Math.Abs(1.0/Math.Sin(a) - MathFunctions.cosec(a)) > BinaryRelations.DEFAULT_COMPARISON_EPSILON) test[testId] = false;
+			for (double a = -6; a <= 6; a += 0.1)
+			{
+				if (Math.Abs(1.0 / Math.Sin(a) - MathFunctions.cosec(a)) > BinaryRelations.DEFAULT_COMPARISON_EPSILON) test[testId] = false;
 			}
 			/*
 			 * 76. Inverse sine test
 			 */
 			testId++;
 			test[testId] = true;
-			for (double a = -0.9; a <= 0.9; a+=0.1) {
+			for (double a = -0.9; a <= 0.9; a += 0.1)
+			{
 				if (Math.Abs(Math.Asin(a) - MathFunctions.asin(a)) > BinaryRelations.DEFAULT_COMPARISON_EPSILON) test[testId] = false;
 			}
 			/*
@@ -2430,7 +2467,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.regressiontesting
 			 */
 			testId++;
 			test[testId] = true;
-			for (double a = -0.9; a <= 0.9; a+=0.1) {
+			for (double a = -0.9; a <= 0.9; a += 0.1)
+			{
 				if (Math.Abs(Math.Acos(a) - MathFunctions.acos(a)) > BinaryRelations.DEFAULT_COMPARISON_EPSILON) test[testId] = false;
 			}
 			/*
@@ -2438,7 +2476,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.regressiontesting
 			 */
 			testId++;
 			test[testId] = true;
-			for (double a = -5; a <= 5; a+=0.1) {
+			for (double a = -5; a <= 5; a += 0.1)
+			{
 				if (Math.Abs(Math.Atan(a) - MathFunctions.atan(a)) > BinaryRelations.DEFAULT_COMPARISON_EPSILON) test[testId] = false;
 			}
 			/*
@@ -2446,10 +2485,11 @@ namespace org.dninosores.mariuszgromada.math.mxparser.regressiontesting
 			 */
 			testId++;
 			test[testId] = true;
-			for (double a = -5; a <= 5; a+=0.1) {
+			for (double a = -5; a <= 5; a += 0.1)
+			{
 				double atan = Double.NaN;
-				if (a > 0) atan = Math.Atan(1/a);
-				else if (a < 0) atan = Math.Atan(1/a) + MathConstants.PI;
+				if (a > 0) atan = Math.Atan(1 / a);
+				else if (a < 0) atan = Math.Atan(1 / a) + MathConstants.PI;
 				if (Math.Abs(atan - MathFunctions.actan(a)) > BinaryRelations.DEFAULT_COMPARISON_EPSILON) test[testId] = false;
 			}
 			/*
@@ -2457,16 +2497,18 @@ namespace org.dninosores.mariuszgromada.math.mxparser.regressiontesting
 			 */
 			testId++;
 			test[testId] = true;
-			for (double a = -5.05; a <= 5.05; a+=0.1) {
-				if (Math.Abs(Math.Acos(1/a) - MathFunctions.asec(a)) > BinaryRelations.DEFAULT_COMPARISON_EPSILON) test[testId] = false;
+			for (double a = -5.05; a <= 5.05; a += 0.1)
+			{
+				if (Math.Abs(Math.Acos(1 / a) - MathFunctions.asec(a)) > BinaryRelations.DEFAULT_COMPARISON_EPSILON) test[testId] = false;
 			}
 			/*
 			 * 81. Inverse cosecant test
 			 */
 			testId++;
 			test[testId] = true;
-			for (double a = -5.05; a <= 5.05; a+=0.1) {
-				if (Math.Abs(Math.Asin(1/a) - MathFunctions.acosec(a)) > BinaryRelations.DEFAULT_COMPARISON_EPSILON) test[testId] = false;
+			for (double a = -5.05; a <= 5.05; a += 0.1)
+			{
+				if (Math.Abs(Math.Asin(1 / a) - MathFunctions.acosec(a)) > BinaryRelations.DEFAULT_COMPARISON_EPSILON) test[testId] = false;
 			}
 			/*
 			 * 82. Argument extension test
@@ -2497,20 +2539,25 @@ namespace org.dninosores.mariuszgromada.math.mxparser.regressiontesting
 			if (pim.getArgumentValue() != 5.0) test[testId] = false;
 
 			/* ============================================= */
-			long end =  mXparser.currentTimeMillis();
+			long end = mXparser.currentTimeMillis();
 			int nOk = 0;
 			int nError = 0;
-			for (int i = 0; i <= testId; i++) {
-				if (test[i]) {
+			for (int i = 0; i <= testId; i++)
+			{
+				if (test[i])
+				{
 					nOk++;
 					mXparser.consolePrintln("[" + i + "] " + "OK");
-				} else {
+				}
+				else
+				{
 					nError++;
 					mXparser.consolePrintln("[" + i + "] " + "ERROR");
 				}
 			}
-			mXparser.consolePrintln("OK : " + nOk + ", ERRORs: " + nError + ", total time: " + (end-start)/1000.0 + " s.");
-			for (int i = 0; i <= testId; i++) {
+			mXparser.consolePrintln("OK : " + nOk + ", ERRORs: " + nError + ", total time: " + (end - start) / 1000.0 + " s.");
+			for (int i = 0; i <= testId; i++)
+			{
 				if (!test[i])
 					mXparser.consolePrintln("ERROR: " + testId);
 			}
@@ -2521,13 +2568,15 @@ namespace org.dninosores.mariuszgromada.math.mxparser.regressiontesting
 		 * Runs main regression tests in the field of calculation.
 		 * @return Number of tests with error result.
 		 */
-		public static int Start() {
+		public static int Start()
+		{
 			return Start(10000);
 		}
 		/**
 		 * Runs API regression tests.
 		 */
-		public static void Main(string[] args) {
+		public static void Main(string[] args)
+		{
 			Start();
 			mXparser.resetCancelCurrentCalculationFlag();
 		}

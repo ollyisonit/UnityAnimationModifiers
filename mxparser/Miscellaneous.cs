@@ -53,11 +53,12 @@
  *                              Asked if he believes in one God, a mathematician answered:
  *                              "Yes, up to isomorphism."
  */
-using org.dninosores.mariuszgromada.math.mxparser.parsertokens;
+using org.ollyisonit.mariuszgromada.math.mxparser.parsertokens;
 using System;
 using System.Collections.Generic;
 
-namespace org.dninosores.mariuszgromada.math.mxparser {
+namespace org.ollyisonit.mariuszgromada.math.mxparser
+{
 	/*=================================================
 	*
 	* Package level classes and interfaces
@@ -67,7 +68,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 	/**
 	 * Package level class for handling function parameters.
 	 */
-	internal class FunctionParameter {
+	internal class FunctionParameter
+	{
 		internal List<Token> tokens;
 		internal String paramStr;
 		internal int fromIndex;
@@ -75,7 +77,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		internal FunctionParameter(List<Token> tokens,
 				String paramStr,
 				int fromIndex,
-				int toIndex) {
+				int toIndex)
+		{
 			this.tokens = tokens;
 			this.paramStr = paramStr;
 			this.fromIndex = fromIndex;
@@ -86,7 +89,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 	/**
 	* Package level class for generating iterative operator parameters
 	*/
-	internal class IterativeOperatorParameters {
+	internal class IterativeOperatorParameters
+	{
 		internal FunctionParameter indexParam;
 		internal FunctionParameter fromParam;
 		internal FunctionParameter toParam;
@@ -101,7 +105,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		internal double delta;
 		internal bool withDelta;
 
-		internal IterativeOperatorParameters(List<FunctionParameter> functionParameters) {
+		internal IterativeOperatorParameters(List<FunctionParameter> functionParameters)
+		{
 			/*
 			 * Get index string
 			 * 1st parameter
@@ -128,7 +133,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 			 */
 			deltaParam = null;
 			withDelta = false;
-			if (functionParameters.Count == 5) {
+			if (functionParameters.Count == 5)
+			{
 				deltaParam = functionParameters[4];
 				withDelta = true;
 			}
@@ -137,13 +143,15 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 	/**
 	* Handling argument parameters
 	*/
-	internal class ArgumentParameter {
+	internal class ArgumentParameter
+	{
 		internal Argument argument;
 		internal double initialValue;
 		internal int initialType;
 		internal int presence;
 		internal int index;
-		internal ArgumentParameter() {
+		internal ArgumentParameter()
+		{
 			argument = null;
 			initialValue = Double.NaN;
 			initialType = ConstantValue.NaN;
@@ -155,17 +163,20 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 	* which is used with stack while
 	* evaluation of tokens levels
 	*/
-	internal class TokenStackElement {
+	internal class TokenStackElement
+	{
 		internal int tokenIndex;
 		internal int tokenId;
 		internal int tokenTypeId;
 		internal int tokenLevel;
 		internal bool precedingFunction;
 	}
-	internal class SyntaxStackElement {
+	internal class SyntaxStackElement
+	{
 		internal String tokenStr;
 		internal int tokenLevel;
-		internal SyntaxStackElement(String tokenStr, int tokenLevel) {
+		internal SyntaxStackElement(String tokenStr, int tokenLevel)
+		{
 			this.tokenStr = tokenStr;
 			this.tokenLevel = tokenLevel;
 		}
@@ -180,11 +191,13 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 	* This king of sorting is used while checking the syntax
 	* (duplicated key word error)
 	*/
-	class KwStrComparator : IComparer<KeyWord> {
+	class KwStrComparator : IComparer<KeyWord>
+	{
 		/**
 		 *
 		 */
-		public int Compare(KeyWord kw1, KeyWord kw2) {
+		public int Compare(KeyWord kw1, KeyWord kw2)
+		{
 			String s1 = kw1.wordString;
 			String s2 = kw2.wordString;
 			return s1.CompareTo(s2);
@@ -197,11 +210,13 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 	* This king of sorting is used while tokenizing
 	* (best match)
 	*/
-	class DescKwLenComparator : IComparer<KeyWord> {
+	class DescKwLenComparator : IComparer<KeyWord>
+	{
 		/**
 		 *
 		 */
-		public int Compare(KeyWord kw1, KeyWord kw2) {
+		public int Compare(KeyWord kw1, KeyWord kw2)
+		{
 			int l1 = kw1.wordString.Length;
 			int l2 = kw2.wordString.Length;
 			return l2 - l1;
@@ -212,11 +227,13 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 	* type of the key word
 	*
 	*/
-	class KwTypeComparator : IComparer<KeyWord> {
+	class KwTypeComparator : IComparer<KeyWord>
+	{
 		/**
 		 *
 		 */
-		public int Compare(KeyWord kw1, KeyWord kw2) {
+		public int Compare(KeyWord kw1, KeyWord kw2)
+		{
 			int t1 = kw1.wordTypeId * 1000000 + kw1.wordId * 1000 + kw1.wordString.Length;
 			int t2 = kw2.wordTypeId * 1000000 + kw2.wordId * 1000 + kw2.wordString.Length;
 			return t1 - t2;
@@ -234,29 +251,35 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 	* Function "f(x,y) = sin(x) + cos(y)"
 	* Constant "a = 5/20"
 	*/
-	internal class HeadEqBody {
+	internal class HeadEqBody
+	{
 		private const bool ONLY_PARSER_KEYWORDS = true;
 		internal String headStr;
 		internal String bodyStr;
 		internal int eqPos;
 		internal List<Token> headTokens;
 		internal bool definitionError;
-		internal HeadEqBody(String definitionString) {
+		internal HeadEqBody(String definitionString)
+		{
 			char c;
 			eqPos = 0;
 			int matchStatus = mXparser.NOT_FOUND;
 			definitionError = false;
-			do {
+			do
+			{
 				c = definitionString[eqPos];
 				if (c == '=') matchStatus = mXparser.FOUND;
 				else eqPos++;
 			} while ((eqPos < definitionString.Length) && (matchStatus == mXparser.NOT_FOUND));
-			if ((matchStatus == mXparser.FOUND) && (eqPos > 0) && (eqPos <= definitionString.Length - 2)) {
+			if ((matchStatus == mXparser.FOUND) && (eqPos > 0) && (eqPos <= definitionString.Length - 2))
+			{
 				headStr = definitionString.Substring(0, eqPos);
 				bodyStr = definitionString.Substring(eqPos + 1);
 				Expression headExpression = new Expression(headStr, ONLY_PARSER_KEYWORDS);
 				headTokens = headExpression.getCopyOfInitialTokens();
-			} else {
+			}
+			else
+			{
 				definitionError = true;
 				headStr = "";
 				bodyStr = "";
@@ -268,7 +291,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 	/**
 	 * Data structure used internally for token to be modified list
 	 */
-	internal class TokenModification {
+	internal class TokenModification
+	{
 		internal String currentToken;
 		internal String newToken;
 		internal String newTokenDescription;

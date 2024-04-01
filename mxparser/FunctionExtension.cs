@@ -55,7 +55,8 @@
  */
 using System;
 
-namespace org.dninosores.mariuszgromada.math.mxparser {
+namespace org.ollyisonit.mariuszgromada.math.mxparser
+{
 	/**
 	 * FunctionExtension provides interface for function algorithm definition.
 	 * In this case algorithm definition is based on source code using
@@ -90,7 +91,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 	 *
 	 */
 	[CLSCompliant(false)]
-	public interface FunctionExtension {
+	public interface FunctionExtension
+	{
 		/**
 		 * Gets parameters number.
 		 *

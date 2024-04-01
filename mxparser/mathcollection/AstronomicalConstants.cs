@@ -55,7 +55,8 @@
  */
 using System;
 
-namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
+namespace org.ollyisonit.mariuszgromada.math.mxparser.mathcollection
+{
 	/**
 	 * AstronomicalConstants - class representing the most important astronomical constants.
 	 *
@@ -79,7 +80,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 	 * @version        4.0.0
 	 */
 	[CLSCompliant(false)]
-	public sealed class AstronomicalConstants {
+	public sealed class AstronomicalConstants
+	{
 		/**
 		 * Light year
 		 */

@@ -55,7 +55,8 @@
  */
 using System;
 
-namespace org.dninosores.mariuszgromada.math.mxparser {
+namespace org.ollyisonit.mariuszgromada.math.mxparser
+{
 
 	/**
 	 * ArgumentExtension provides interface for argument algorithm definition.
@@ -91,7 +92,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 	 * @see Argument
 	 */
 	[CLSCompliant(false)]
-	public interface ArgumentExtension {
+	public interface ArgumentExtension
+	{
 		/**
 		 * Actual algorithm implementation.
 		 *

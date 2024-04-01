@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace dninosores.UnityAnimationModifiers
+namespace ollyisonit.UnityAnimationModifiers
 {
 	/// <summary>
 	/// Modifier that generates values using some sort of periodic function.

@@ -53,11 +53,12 @@
  *                              Asked if he believes in one God, a mathematician answered:
  *                              "Yes, up to isomorphism."
  */
-using org.dninosores.mariuszgromada.math.mxparser.parsertokens;
+using org.ollyisonit.mariuszgromada.math.mxparser.parsertokens;
 using System;
 using System.Collections.Generic;
 
-namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
+namespace org.ollyisonit.mariuszgromada.math.mxparser.mathcollection
+{
 	/**
 	 * NumberTheory - summation / products etc...
 	 *
@@ -81,7 +82,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 	 * @version        4.4.2
 	 */
 	[CLSCompliant(false)]
-	public sealed class NumberTheory {
+	public sealed class NumberTheory
+	{
 		public static long DEFAULT_TO_FRACTION_INIT_SEARCH_SIZE = 10000;
 		/**
 		 * Initial search size 1 ... n for the toFraction method
@@ -94,7 +96,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @param n initial search size, has to be non-zero positive.
 		 * @see NumberTheory#toFraction(double)
 		 */
-		public static void setToFractionInitSearchSize(long n) {
+		public static void setToFractionInitSearchSize(long n)
+		{
 			if (n >= 0) TO_FRACTION_INIT_SEARCH_SIZE = n;
 		}
 		/**
@@ -103,7 +106,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return initial search size used by the toFraction method
 		 * @see NumberTheory#toFraction(double)
 		 */
-		public static long getToFractionInitSearchSize() {
+		public static long getToFractionInitSearchSize()
+		{
 			return TO_FRACTION_INIT_SEARCH_SIZE;
 		}
 		/**
@@ -115,7 +119,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if a,b <> Double.NaN returns Math.min(a, b),
 		 *             otherwise returns Double.NaN.
 		 */
-		public static double min(double a, double b) {
+		public static double min(double a, double b)
+		{
 			if (Double.IsNaN(a) || Double.IsNaN(b))
 				return Double.NaN;
 			return Math.Min(a, b);
@@ -128,11 +133,13 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if each number form numbers <> Double.NaN returns the smallest number,
 		 *             otherwise returns Double.NaN.
 		 */
-		public static double min(params double[] numbers) {
+		public static double min(params double[] numbers)
+		{
 			if (numbers == null) return Double.NaN;
 			if (numbers.Length == 0) return Double.NaN;
 			double min = Double.PositiveInfinity;
-			foreach (double number in numbers) {
+			foreach (double number in numbers)
+			{
 				if (Double.IsNaN(number))
 					return Double.NaN;
 				if (number < min)
@@ -149,16 +156,19 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     Returns the index of the first smallest number,
 		 *             otherwise returns Double.NaN.
 		 */
-		public static double argmin(params double[] numbers) {
+		public static double argmin(params double[] numbers)
+		{
 			if (numbers == null) return Double.NaN;
 			if (numbers.Length == 0) return Double.NaN;
 			double min = Double.PositiveInfinity;
 			double minIndex = -1;
-			for (int i = 0; i < numbers.Length; i++) {
+			for (int i = 0; i < numbers.Length; i++)
+			{
 				double number = numbers[i];
 				if (Double.IsNaN(number))
 					return Double.NaN;
-				if (BinaryRelations.lt(number, min) == BooleanAlgebra.TRUE) {
+				if (BinaryRelations.lt(number, min) == BooleanAlgebra.TRUE)
+				{
 					min = number;
 					minIndex = i;
 				}
@@ -175,7 +185,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if a,b <> Double.NaN returns Math.max(a, b),
 		 *             otherwise returns Double.NaN.
 		 */
-		public static double max(double a, double b) {
+		public static double max(double a, double b)
+		{
 			if (Double.IsNaN(a) || Double.IsNaN(b))
 				return Double.NaN;
 			return Math.Max(a, b);
@@ -188,11 +199,13 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if each number form numbers <> Double.NaN returns the highest number,
 		 *             otherwise returns Double.NaN.
 		 */
-		public static double max(params double[] numbers) {
+		public static double max(params double[] numbers)
+		{
 			if (numbers == null) return Double.NaN;
 			if (numbers.Length == 0) return Double.NaN;
 			double max = Double.NegativeInfinity;
-			foreach (double number in numbers) {
+			foreach (double number in numbers)
+			{
 				if (Double.IsNaN(number))
 					return Double.NaN;
 				if (number > max)
@@ -209,16 +222,19 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     Returns the index of the first biggest number,
 		 *             otherwise returns Double.NaN.
 		 */
-		public static double argmax(params double[] numbers) {
+		public static double argmax(params double[] numbers)
+		{
 			if (numbers == null) return Double.NaN;
 			if (numbers.Length == 0) return Double.NaN;
 			double max = Double.NegativeInfinity;
 			double maxIndex = -1;
-			for (int i = 0; i < numbers.Length; i++) {
+			for (int i = 0; i < numbers.Length; i++)
+			{
 				double number = numbers[i];
 				if (Double.IsNaN(number))
 					return Double.NaN;
-				if (BinaryRelations.gt(number, max) == BooleanAlgebra.TRUE) {
+				if (BinaryRelations.gt(number, max) == BooleanAlgebra.TRUE)
+				{
 					max = number;
 					maxIndex = i;
 				}
@@ -234,23 +250,28 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @param rightIndex    Starting right index.
 		 * @return              Initial ordering swapped according to sorting order.
 		 */
-		private static void sortAsc(double[] array, int[] initOrder, int leftIndex, int rightIndex) {
+		private static void sortAsc(double[] array, int[] initOrder, int leftIndex, int rightIndex)
+		{
 			int i = leftIndex;
 			int j = rightIndex;
 			double x = array[(leftIndex + rightIndex) / 2];
 			double w;
 			int v;
-			do {
+			do
+			{
 
-				while (BinaryRelations.lt(array[i], x) == BooleanAlgebra.TRUE) {
+				while (BinaryRelations.lt(array[i], x) == BooleanAlgebra.TRUE)
+				{
 					i++;
 					if (mXparser.isCurrentCalculationCancelled()) return;
 				}
-				while (BinaryRelations.gt(array[j], x) == BooleanAlgebra.TRUE) {
+				while (BinaryRelations.gt(array[j], x) == BooleanAlgebra.TRUE)
+				{
 					j--;
 					if (mXparser.isCurrentCalculationCancelled()) return;
 				}
-				if (i <= j) {
+				if (i <= j)
+				{
 					w = array[i];
 					array[i] = array[j];
 					array[j] = w;
@@ -271,10 +292,12 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return       Sorts array and additionally returns
 		 *               initial ordering swapped according to sorting order.
 		 */
-		public static int[] sortAsc(double[] array) {
+		public static int[] sortAsc(double[] array)
+		{
 			if (array == null) return null;
 			int[] initOrder = new int[array.Length];
-			for (int i = 0; i < array.Length; i++) {
+			for (int i = 0; i < array.Length; i++)
+			{
 				initOrder[i] = i;
 				if (mXparser.isCurrentCalculationCancelled()) return initOrder;
 			}
@@ -290,7 +313,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return List of values in the form of: first index - value index, second index: 0 - value, 1 - value count,
 		 *                                        2 - minimal value position in original array
 		 */
-		public static double[,] getDistValues(double[] array, bool returnOrderByDescFreqAndAscOrigPos) {
+		public static double[,] getDistValues(double[] array, bool returnOrderByDescFreqAndAscOrigPos)
+		{
 			if (array == null) return null;
 			/*
 			 * double[n][3] is returned
@@ -304,7 +328,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 			if (array.Length * 3 >= int.MaxValue) return new double[0, 3];
 			double[,] distVal = new double[array.Length, 3];
 			if (array.Length == 0) return distVal;
-			if (array.Length == 1) {
+			if (array.Length == 1)
+			{
 				distVal[0, value] = array[0];
 				distVal[0, count] = 1;
 				distVal[0, initPosFirst] = 0;
@@ -328,10 +353,12 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 			 * Iterating from the second element
 			 * First element is considered above
 			 */
-			for (int i = 1; i < array.Length; i++) {
+			for (int i = 1; i < array.Length; i++)
+			{
 				if (mXparser.isCurrentCalculationCancelled()) break;
 				/* if the same value */
-				if (BinaryRelations.eq(unqValue, array[i]) == BooleanAlgebra.TRUE) {
+				if (BinaryRelations.eq(unqValue, array[i]) == BooleanAlgebra.TRUE)
+				{
 					/*
 					 * - increase counter
 					 * - check if found smaller original position
@@ -340,7 +367,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 					if (initPos[i] < unqValMinPos)
 						unqValMinPos = initPos[i];
 				}
-				if ((BinaryRelations.eq(unqValue, array[i]) == BooleanAlgebra.FALSE) && (i < array.Length - 1)) {
+				if ((BinaryRelations.eq(unqValue, array[i]) == BooleanAlgebra.FALSE) && (i < array.Length - 1))
+				{
 					/* if new value found and not end of the list */
 					/*
 					 * Store analyzed value
@@ -358,7 +386,9 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 					unqValue = array[i];
 					unqValCnt = 1;
 					unqValMinPos = initPos[i];
-				} else if ((BinaryRelations.eq(unqValue, array[i]) == BooleanAlgebra.FALSE) && (i == array.Length - 1)) {
+				}
+				else if ((BinaryRelations.eq(unqValue, array[i]) == BooleanAlgebra.FALSE) && (i == array.Length - 1))
+				{
 					/* if new value found and end of the list */
 					/*
 					 * Store analyzed value
@@ -381,7 +411,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 					 */
 					unqCnt++;
 				}
-				else if (i == array.Length - 1) {
+				else if (i == array.Length - 1)
+				{
 					/* if no new vale and end of the list */
 					/*
 					 * Store analyzed value
@@ -397,7 +428,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 			}
 			double[,] distValFinal = new double[unqCnt, 3];
 			double maxBase = 0;
-			for (int i = 0; i < unqCnt; i++) {
+			for (int i = 0; i < unqCnt; i++)
+			{
 				if (mXparser.isCurrentCalculationCancelled()) break;
 				distValFinal[i, value] = distVal[i, value];
 				distValFinal[i, count] = distVal[i, count];
@@ -427,7 +459,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 			/*
 			 * Getting final ordering
 			 */
-			for (int i = 0; i < unqCnt; i++) {
+			for (int i = 0; i < unqCnt; i++)
+			{
 				if (mXparser.isCurrentCalculationCancelled()) break;
 				distValFinal[i, value] = distVal[keyInitOrder[i], value];
 				distValFinal[i, count] = distVal[keyInitOrder[i], count];
@@ -441,10 +474,12 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return           Number of unique values. If list is null or any Double.NaN
 		 *                   is found then Double.NaN is returned.
 		 */
-		public static double numberOfDistValues(params double[] numbers) {
+		public static double numberOfDistValues(params double[] numbers)
+		{
 			if (numbers == null) return Double.NaN;
 			if (numbers.Length == 0) return 0;
-			foreach (double v in numbers) {
+			foreach (double v in numbers)
+			{
 				if (Double.IsNaN(v)) return Double.NaN;
 				if (mXparser.isCurrentCalculationCancelled()) return Double.NaN;
 			}
@@ -458,7 +493,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @param      b                   the b function parameter
 		 * @return     GCD(a,b)
 		 */
-		public static long gcd(long a, long b) {
+		public static long gcd(long a, long b)
+		{
 			if (a < 0) a = -a;
 			if (b < 0) b = -b;
 			if ((a == 0) && (b != 0)) return b;
@@ -468,16 +504,19 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 			if (a == b) return a;
 			long quotient;
 			double NAN = Double.NaN;
-			while (b != 0) {
+			while (b != 0)
+			{
 				if (mXparser.isCurrentCalculationCancelled()) return (long)NAN;
-				if (a > b) {
+				if (a > b)
+				{
 					quotient = a / b - 1;
 					if (quotient > 0)
 						a -= b * quotient;
 					else
 						a -= b;
 				}
-				else {
+				else
+				{
 					quotient = b / a - 1;
 					if (quotient > 0)
 						b -= a * quotient;
@@ -496,7 +535,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if a, b <> Double.NaN returns gcd( (int)Math.round(a),(int)Math.round(b) ),
 		 *             otherwise returns Double.NaN.
 		 */
-		public static double gcd(double a, double b) {
+		public static double gcd(double a, double b)
+		{
 			if (Double.IsNaN(a) || Double.IsNaN(a))
 				return Double.NaN;
 			if (a < 0) a = -a;
@@ -509,16 +549,19 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 			if (b == 0) return Double.NaN;
 			if (a == b) return a;
 			double quotient;
-			while (b != 0.0) {
+			while (b != 0.0)
+			{
 				if (mXparser.isCurrentCalculationCancelled()) return Double.NaN;
-				if (a > b) {
+				if (a > b)
+				{
 					quotient = Math.Floor(a / b) - 1;
 					if (quotient > 0)
 						a = Math.Floor(a - b * quotient);
 					else
 						a = Math.Floor(a - b);
 				}
-				else {
+				else
+				{
 					quotient = Math.Floor(b / a) - 1;
 					if (quotient > 0)
 						b = Math.Floor(b - a * quotient);
@@ -535,7 +578,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 *
 		 * @return     GCD(a_1,...,a_n) a_1,...,a_n in numbers
 		 */
-		public static long gcd(params long[] numbers) {
+		public static long gcd(params long[] numbers)
+		{
 			if (numbers == null) return -1;
 			if (numbers.Length == 0) return -1;
 			if (numbers.Length == 1)
@@ -544,7 +588,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 			if (numbers.Length == 2)
 				return gcd(numbers[0], numbers[1]);
 			double NAN = Double.NaN;
-			for (int i = 1; i < numbers.Length; i++) {
+			for (int i = 1; i < numbers.Length; i++)
+			{
 				if (mXparser.isCurrentCalculationCancelled()) return (long)NAN;
 				numbers[i] = gcd(numbers[i - 1], numbers[i]);
 			}
@@ -559,14 +604,16 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 *             GCD(a_1,...,a_n) a_1,...,a_n in numbers,
 		 *             otherwise returns Double.NaN.
 		 */
-		public static double gcd(params double[] numbers) {
+		public static double gcd(params double[] numbers)
+		{
 			if (numbers == null) return Double.NaN;
 			if (numbers.Length == 0) return Double.NaN;
 			if (numbers.Length == 1)
 				return MathFunctions.floor(MathFunctions.abs(numbers[0]));
 			if (numbers.Length == 2)
 				return gcd(numbers[0], numbers[1]);
-			for (int i = 1; i < numbers.Length; i++) {
+			for (int i = 1; i < numbers.Length; i++)
+			{
 				if (mXparser.isCurrentCalculationCancelled()) return Double.NaN;
 				numbers[i] = gcd(numbers[i - 1], numbers[i]);
 			}
@@ -580,7 +627,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 *
 		 * @return     LCM(a,b)
 		 */
-		public static long lcm(long a, long b) {
+		public static long lcm(long a, long b)
+		{
 			a = Math.Abs(a);
 			b = Math.Abs(b);
 			if ((a == 0) || (b == 0))
@@ -596,7 +644,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     if a, b <> Double.NaN returns lcm( (int)Math.round(a), (int)Math.round(b) ),
 		 *             otherwise returns Double.NaN.
 		 */
-		public static double lcm(double a, double b) {
+		public static double lcm(double a, double b)
+		{
 			if (Double.IsNaN(a) || Double.IsNaN(a))
 				return Double.NaN;
 			a = MathFunctions.floor(MathFunctions.abs(a));
@@ -610,7 +659,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 *
 		 * @return     LCM(a_1,...,a_n) a_1,...,a_n in numbers
 		 */
-		public static long lcm(params long[] numbers) {
+		public static long lcm(params long[] numbers)
+		{
 			if (numbers == null) return -1;
 			if (numbers.Length == 0) return -1;
 			if (numbers.Length == 1)
@@ -619,7 +669,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 			if (numbers.Length == 2)
 				return lcm(numbers[0], numbers[1]);
 			double NAN = Double.NaN;
-			for (int i = 1; i < numbers.Length; i++) {
+			for (int i = 1; i < numbers.Length; i++)
+			{
 				if (mXparser.isCurrentCalculationCancelled()) return (long)NAN;
 				numbers[i] = lcm(numbers[i - 1], numbers[i]);
 			}
@@ -634,14 +685,16 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 *             LCM(a_1,...,a_n) a_1,...,a_n in numbers,
 		 *             otherwise returns Double.NaN.
 		 */
-		public static double lcm(params double[] numbers) {
+		public static double lcm(params double[] numbers)
+		{
 			if (numbers == null) return Double.NaN;
 			if (numbers.Length == 0) return Double.NaN;
 			if (numbers.Length == 1)
 				MathFunctions.floor(MathFunctions.abs(numbers[0]));
 			if (numbers.Length == 2)
 				return lcm(numbers[0], numbers[1]);
-			for (int i = 1; i < numbers.Length; i++) {
+			for (int i = 1; i < numbers.Length; i++)
+			{
 				if (mXparser.isCurrentCalculationCancelled()) return Double.NaN;
 				numbers[i] = lcm(numbers[i - 1], numbers[i]);
 			}
@@ -656,23 +709,28 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 *             sum(a_1,...,a_n) a_1,...,a_n in numbers,
 		 *             otherwise returns Double.NaN.
 		 */
-		public static double sum(params double[] numbers) {
+		public static double sum(params double[] numbers)
+		{
 			if (numbers == null) return Double.NaN;
 			if (numbers.Length == 0) return Double.NaN;
 			if (numbers.Length == 1) return numbers[0];
 			double sum = 0;
-			if (mXparser.checkIfCanonicalRounding()) {
+			if (mXparser.checkIfCanonicalRounding())
+			{
 				decimal dsum = Decimal.Zero;
 				decimal dxi = Decimal.Zero;
 				bool decimalStillInRange = true;
-				foreach (double xi in numbers) {
-					if ( Double.IsNaN(xi) ) return Double.NaN;
-					if ( Double.IsInfinity(xi)) return Double.NaN;
+				foreach (double xi in numbers)
+				{
+					if (Double.IsNaN(xi)) return Double.NaN;
+					if (Double.IsInfinity(xi)) return Double.NaN;
 					sum += xi;
-					if (decimalStillInRange) {
+					if (decimalStillInRange)
+					{
 						if (MathFunctions.isNotInDecimalRange(xi)) decimalStillInRange = false;
 						if (MathFunctions.isNotInDecimalRange(sum)) decimalStillInRange = false;
-						if (decimalStillInRange) {
+						if (decimalStillInRange)
+						{
 							dxi = (decimal)xi;
 							dsum = dsum + dxi;
 						}
@@ -681,10 +739,13 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 				}
 				if (decimalStillInRange) return (double)dsum;
 				else return sum;
-			} else {
-				foreach (double xi in numbers) {
-					if ( Double.IsNaN(xi) ) return Double.NaN;
-					if ( Double.IsInfinity(xi)) return Double.NaN;
+			}
+			else
+			{
+				foreach (double xi in numbers)
+				{
+					if (Double.IsNaN(xi)) return Double.NaN;
+					if (Double.IsInfinity(xi)) return Double.NaN;
 					sum += xi;
 					if (mXparser.isCurrentCalculationCancelled()) return Double.NaN;
 				}
@@ -701,23 +762,28 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 *             prod(a_1,...,a_n) a_1,...,a_n in numbers,
 		 *             otherwise returns Double.NaN.
 		 */
-		public static double prod(params double[] numbers) {
+		public static double prod(params double[] numbers)
+		{
 			if (numbers == null) return Double.NaN;
 			if (numbers.Length == 0) return Double.NaN;
 			if (numbers.Length == 1) return numbers[0];
 			double prod = 1;
-			if (mXparser.checkIfCanonicalRounding()) {
+			if (mXparser.checkIfCanonicalRounding())
+			{
 				decimal dprod = Decimal.One;
 				decimal dxi = Decimal.One;
 				bool decimalStillInRange = true;
-				foreach (double xi in numbers) {
-					if ( Double.IsNaN(xi) ) return Double.NaN;
-					if ( Double.IsInfinity(xi)) return Double.NaN;
+				foreach (double xi in numbers)
+				{
+					if (Double.IsNaN(xi)) return Double.NaN;
+					if (Double.IsInfinity(xi)) return Double.NaN;
 					prod *= xi;
-					if (decimalStillInRange) {
+					if (decimalStillInRange)
+					{
 						if (MathFunctions.isNotInDecimalRange(xi)) decimalStillInRange = false;
 						if (MathFunctions.isNotInDecimalRange(prod)) decimalStillInRange = false;
-						if (decimalStillInRange) {
+						if (decimalStillInRange)
+						{
 							dxi = (decimal)xi;
 							dprod = dprod * dxi;
 						}
@@ -727,10 +793,12 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 				if (decimalStillInRange) return (double)dprod;
 				else return prod;
 			}
-			else {
-				foreach (double xi in numbers) {
-					if ( Double.IsNaN(xi) ) return Double.NaN;
-					if ( Double.IsInfinity(xi)) return Double.NaN;
+			else
+			{
+				foreach (double xi in numbers)
+				{
+					if (Double.IsNaN(xi)) return Double.NaN;
+					if (Double.IsInfinity(xi)) return Double.NaN;
 					prod *= xi;
 					if (mXparser.isCurrentCalculationCancelled()) return Double.NaN;
 				}
@@ -744,7 +812,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 *
 		 * @return true if number is prime, otherwise false
 		 */
-		public static bool primeTest(long n) {
+		public static bool primeTest(long n)
+		{
 			/*
 			 * 2 is a prime :-)
 			 */
@@ -769,14 +838,16 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 			 * If prime cache exist
 			 */
 			if (mXparser.primesCache != null)
-				if (mXparser.primesCache.cacheStatus == PrimesCache.CACHING_FINISHED) {
+				if (mXparser.primesCache.cacheStatus == PrimesCache.CACHING_FINISHED)
+				{
 					/*
 					 * If prime cache is ready and number we are querying
 					 * is in cache the cache answer will be returned
 					 */
 					if (n <= mXparser.primesCache.maxNumInCache)
 						return mXparser.primesCache.isPrime[(int)n];
-					else {
+					else
+					{
 						/*
 						 * If number is bigger than maximum stored in cache
 						 * the we are querying each prime in cache
@@ -784,7 +855,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 						 */
 						long topCache = Math.Min(top, mXparser.primesCache.maxNumInCache);
 						long i;
-						for (i = 3; i <= topCache; i += 2) {
+						for (i = 3; i <= topCache; i += 2)
+						{
 							if (mXparser.primesCache.isPrime[(int)i] == true)
 								if (n % i == 0) return false;
 							if (mXparser.isCurrentCalculationCancelled()) return false;
@@ -801,7 +873,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 			 * still left and is below sqrt(n) agains being
 			 * divisor of n
 			 */
-			for (long i = primesCacheOddEnd; i <= top; i += 2) {
+			for (long i = primesCacheOddEnd; i <= top; i += 2)
+			{
 				if (n % i == 0) return false;
 				if (mXparser.isCurrentCalculationCancelled()) return false;
 			}
@@ -814,7 +887,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 *
 		 * @return true if number is prime, otherwise false
 		 */
-		public static double primeTest(double n) {
+		public static double primeTest(double n)
+		{
 			if (Double.IsNaN(n)) return Double.NaN;
 			bool isPrime = primeTest((long)n);
 			if (isPrime == true)
@@ -829,12 +903,14 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 *
 		 * @return Number of primes below or equal x
 		 */
-		public static long primeCount(long n) {
+		public static long primeCount(long n)
+		{
 			if (n <= 1) return 0;
 			if (n == 2) return 1;
 			long numberOfPrimes = 1;
 			double NAN = Double.NaN;
-			for (long i = 3; i <= n; i++) {
+			for (long i = 3; i <= n; i++)
+			{
 				if (mXparser.isCurrentCalculationCancelled()) return (long)NAN;
 				if (primeTest(i) == true)
 					numberOfPrimes++;
@@ -848,10 +924,12 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 *
 		 * @return Number of primes below or equal x
 		 */
-		public static double primeCount(double n) {
+		public static double primeCount(double n)
+		{
 			return primeCount((long)n);
 		}
-		class CanonicalResult {
+		class CanonicalResult
+		{
 			internal const bool SUMMATION = true;
 			internal const bool MULTIPLICATION = false;
 			internal double fval;
@@ -859,14 +937,18 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 			decimal dfval;
 			decimal dresult;
 			bool decimalStillInRange;
-			internal CanonicalResult(bool summation) {
-				if (summation) {
+			internal CanonicalResult(bool summation)
+			{
+				if (summation)
+				{
 					fval = 0;
 					dfval = Decimal.Zero;
 					result = 0;
 					dresult = Decimal.Zero;
 					decimalStillInRange = true;
-				} else {
+				}
+				else
+				{
 					fval = 1;
 					dfval = Decimal.One;
 					result = 1;
@@ -874,29 +956,36 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 					decimalStillInRange = true;
 				}
 			}
-			internal void add() {
+			internal void add()
+			{
 				result += fval;
-				if (decimalStillInRange) {
+				if (decimalStillInRange)
+				{
 					if (MathFunctions.isNotInDecimalRange(fval)) decimalStillInRange = false;
 					if (MathFunctions.isNotInDecimalRange(result)) decimalStillInRange = false;
-					if (decimalStillInRange) {
+					if (decimalStillInRange)
+					{
 						dfval = (decimal)fval;
 						dresult = dresult + dfval;
 					}
 				}
 			}
-			internal void multiply() {
+			internal void multiply()
+			{
 				result *= fval;
-				if (decimalStillInRange) {
+				if (decimalStillInRange)
+				{
 					if (MathFunctions.isNotInDecimalRange(fval)) decimalStillInRange = false;
 					if (MathFunctions.isNotInDecimalRange(result)) decimalStillInRange = false;
-					if (decimalStillInRange) {
+					if (decimalStillInRange)
+					{
 						dfval = (decimal)fval;
 						dresult = dresult * dfval;
 					}
 				}
 			}
-			internal double getResult() {
+			internal double getResult()
+			{
 				if (decimalStillInRange) return (double)dresult;
 				else return result;
 			}
@@ -912,70 +1001,92 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 *
 		 * @return     summation operation (for empty summation operations returns 0).
 		 */
-		public static double sigmaSummation(Expression f, Argument index, double from, double to, double delta) {
-			if ( (Double.IsNaN(delta) ) || (Double.IsNaN(from) ) || (Double.IsNaN(to) ) || (delta == 0) )
+		public static double sigmaSummation(Expression f, Argument index, double from, double to, double delta)
+		{
+			if ((Double.IsNaN(delta)) || (Double.IsNaN(from)) || (Double.IsNaN(to)) || (delta == 0))
 				return Double.NaN;
 			double i;
 			CanonicalResult opRes = new CanonicalResult(CanonicalResult.SUMMATION);
-			if (mXparser.checkIfCanonicalRounding()) {
-				if ( (to >= from) && (delta > 0) ) {
-					for (i = from; i < to; i+=delta) {
+			if (mXparser.checkIfCanonicalRounding())
+			{
+				if ((to >= from) && (delta > 0))
+				{
+					for (i = from; i < to; i += delta)
+					{
 						if (mXparser.isCurrentCalculationCancelled()) return Double.NaN;
 						opRes.fval = mXparser.getFunctionValue(f, index, i);
 						if (Double.IsNaN(opRes.fval) || Double.IsInfinity(opRes.fval)) return Double.NaN;
 						opRes.add();
 					}
-					if ( delta - (i - to) > 0.5 * delta) {
+					if (delta - (i - to) > 0.5 * delta)
+					{
 						opRes.fval = mXparser.getFunctionValue(f, index, to);
 						if (Double.IsNaN(opRes.fval) || Double.IsInfinity(opRes.fval)) return Double.NaN;
 						opRes.add();
 					}
-				} else if ( (to <= from) && (delta < 0) ) {
-					for (i = from; i > to; i+=delta) {
+				}
+				else if ((to <= from) && (delta < 0))
+				{
+					for (i = from; i > to; i += delta)
+					{
 						if (mXparser.isCurrentCalculationCancelled()) return Double.NaN;
 						opRes.fval = mXparser.getFunctionValue(f, index, i);
 						if (Double.IsNaN(opRes.fval) || Double.IsInfinity(opRes.fval)) return Double.NaN;
 						opRes.add();
 					}
-					if ( -delta - (to - i) > -0.5 * delta) {
+					if (-delta - (to - i) > -0.5 * delta)
+					{
 						opRes.fval = mXparser.getFunctionValue(f, index, to);
 						if (Double.IsNaN(opRes.fval) || Double.IsInfinity(opRes.fval)) return Double.NaN;
 						opRes.add();
 					}
-				} else if (from == to) {
+				}
+				else if (from == to)
+				{
 					opRes.fval = mXparser.getFunctionValue(f, index, from);
 					if (Double.IsNaN(opRes.fval) || Double.IsInfinity(opRes.fval)) return Double.NaN;
 					opRes.add();
 				}
 				return opRes.getResult();
-			} else {
+			}
+			else
+			{
 				double fval = 0;
 				double result = 0;
-				if ( (to >= from) && (delta > 0) ) {
-					for (i = from; i < to; i+=delta) {
+				if ((to >= from) && (delta > 0))
+				{
+					for (i = from; i < to; i += delta)
+					{
 						if (mXparser.isCurrentCalculationCancelled()) return Double.NaN;
 						fval = mXparser.getFunctionValue(f, index, i);
 						if (Double.IsNaN(fval) || Double.IsInfinity(fval)) return Double.NaN;
 						result += fval;
 					}
-					if ( delta - (i - to) > 0.5 * delta) {
+					if (delta - (i - to) > 0.5 * delta)
+					{
 						fval = mXparser.getFunctionValue(f, index, to);
 						if (Double.IsNaN(fval) || Double.IsInfinity(fval)) return Double.NaN;
 						result += fval;
 					}
-				} else if ( (to <= from) && (delta < 0) ) {
-					for (i = from; i > to; i+=delta) {
+				}
+				else if ((to <= from) && (delta < 0))
+				{
+					for (i = from; i > to; i += delta)
+					{
 						if (mXparser.isCurrentCalculationCancelled()) return Double.NaN;
 						fval = mXparser.getFunctionValue(f, index, i);
 						if (Double.IsNaN(fval) || Double.IsInfinity(fval)) return Double.NaN;
 						result += fval;
 					}
-					if ( -delta - (to - i) > -0.5 * delta) {
+					if (-delta - (to - i) > -0.5 * delta)
+					{
 						fval = mXparser.getFunctionValue(f, index, to);
 						if (Double.IsNaN(fval) || Double.IsInfinity(fval)) return Double.NaN;
 						result += fval;
 					}
-				} else if (from == to) {
+				}
+				else if (from == to)
+				{
 					fval = mXparser.getFunctionValue(f, index, from);
 					if (Double.IsNaN(fval) || Double.IsInfinity(fval)) return Double.NaN;
 					result += fval;
@@ -997,71 +1108,93 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @see        Expression
 		 * @see        Argument
 		 */
-		public static double piProduct(Expression f, Argument index, double from, double to, double delta) {
+		public static double piProduct(Expression f, Argument index, double from, double to, double delta)
+		{
 			if ((Double.IsNaN(delta)) || (Double.IsNaN(from)) || (Double.IsNaN(to)) || (delta == 0))
 				return Double.NaN;
 			double i;
 			CanonicalResult opRes = new CanonicalResult(CanonicalResult.MULTIPLICATION);
-			if (mXparser.checkIfCanonicalRounding()) {
-				if ( (to >= from) && (delta > 0) ) {
-					for (i = from; i < to; i+=delta) {
+			if (mXparser.checkIfCanonicalRounding())
+			{
+				if ((to >= from) && (delta > 0))
+				{
+					for (i = from; i < to; i += delta)
+					{
 						if (mXparser.isCurrentCalculationCancelled()) return Double.NaN;
 						opRes.fval = mXparser.getFunctionValue(f, index, i);
 						if (Double.IsNaN(opRes.fval) || Double.IsInfinity(opRes.fval)) return Double.NaN;
 						opRes.multiply();
 					}
-					if ( delta - (i - to) > 0.5 * delta) {
+					if (delta - (i - to) > 0.5 * delta)
+					{
 						opRes.fval = mXparser.getFunctionValue(f, index, to);
 						if (Double.IsNaN(opRes.fval) || Double.IsInfinity(opRes.fval)) return Double.NaN;
 						opRes.multiply();
 
 					}
-				} else if ( (to <= from) && (delta < 0) ) {
-					for (i = from; i > to; i+=delta) {
+				}
+				else if ((to <= from) && (delta < 0))
+				{
+					for (i = from; i > to; i += delta)
+					{
 						if (mXparser.isCurrentCalculationCancelled()) return Double.NaN;
 						opRes.fval = mXparser.getFunctionValue(f, index, i);
 						if (Double.IsNaN(opRes.fval) || Double.IsInfinity(opRes.fval)) return Double.NaN;
 						opRes.multiply();
 					}
-					if ( -delta - (to - i) > -0.5 * delta) {
+					if (-delta - (to - i) > -0.5 * delta)
+					{
 						opRes.fval = mXparser.getFunctionValue(f, index, to);
 						if (Double.IsNaN(opRes.fval) || Double.IsInfinity(opRes.fval)) return Double.NaN;
 						opRes.multiply();
 					}
-				} else if (from == to) {
+				}
+				else if (from == to)
+				{
 					opRes.fval = mXparser.getFunctionValue(f, index, from);
 					if (Double.IsNaN(opRes.fval) || Double.IsInfinity(opRes.fval)) return Double.NaN;
 					opRes.multiply();
 				}
 				return opRes.getResult();
-			} else {
+			}
+			else
+			{
 				double fval = 1;
 				double result = 1;
-				if ( (to >= from) && (delta > 0) ) {
-					for (i = from; i < to; i+=delta) {
+				if ((to >= from) && (delta > 0))
+				{
+					for (i = from; i < to; i += delta)
+					{
 						if (mXparser.isCurrentCalculationCancelled()) return Double.NaN;
 						fval = mXparser.getFunctionValue(f, index, i);
 						if (Double.IsNaN(fval) || Double.IsInfinity(fval)) return Double.NaN;
 						result *= fval;
 					}
-					if ( delta - (i - to) > 0.5 * delta) {
+					if (delta - (i - to) > 0.5 * delta)
+					{
 						fval = mXparser.getFunctionValue(f, index, to);
 						if (Double.IsNaN(fval) || Double.IsInfinity(fval)) return Double.NaN;
 						result *= fval;
 					}
-				} else if ( (to <= from) && (delta < 0) ) {
-					for (i = from; i > to; i+=delta) {
+				}
+				else if ((to <= from) && (delta < 0))
+				{
+					for (i = from; i > to; i += delta)
+					{
 						if (mXparser.isCurrentCalculationCancelled()) return Double.NaN;
 						fval = mXparser.getFunctionValue(f, index, i);
 						if (Double.IsNaN(fval) || Double.IsInfinity(fval)) return Double.NaN;
 						result *= fval;
 					}
-					if ( -delta - (to - i) > -0.5 * delta) {
+					if (-delta - (to - i) > -0.5 * delta)
+					{
 						fval = mXparser.getFunctionValue(f, index, to);
 						if (Double.IsNaN(fval) || Double.IsInfinity(fval)) return Double.NaN;
 						result *= fval;
 					}
-				} else if (from == to) {
+				}
+				else if (from == to)
+				{
 					fval = mXparser.getFunctionValue(f, index, from);
 					if (Double.IsNaN(fval) || Double.IsInfinity(fval)) return Double.NaN;
 					result *= fval;
@@ -1084,28 +1217,35 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @see        Expression
 		 * @see        Argument
 		 */
-		public static double min(Expression f, Argument index, double from, double to, double delta) {
+		public static double min(Expression f, Argument index, double from, double to, double delta)
+		{
 			if ((Double.IsNaN(delta)) || (Double.IsNaN(from)) || (Double.IsNaN(to)) || (delta == 0))
 				return Double.NaN;
 			double min = Double.PositiveInfinity;
 			double v;
-			if ((to >= from) && (delta > 0)) {
-				for (double i = from; i < to; i += delta) {
+			if ((to >= from) && (delta > 0))
+			{
+				for (double i = from; i < to; i += delta)
+				{
 					if (mXparser.isCurrentCalculationCancelled()) return Double.NaN;
 					v = mXparser.getFunctionValue(f, index, i);
 					if (v < min) min = v;
 				}
 				v = mXparser.getFunctionValue(f, index, to);
 				if (v < min) min = v;
-			} else if ((to <= from) && (delta < 0)) {
-				for (double i = from; i > to; i += delta) {
+			}
+			else if ((to <= from) && (delta < 0))
+			{
+				for (double i = from; i > to; i += delta)
+				{
 					if (mXparser.isCurrentCalculationCancelled()) return Double.NaN;
 					v = mXparser.getFunctionValue(f, index, i);
 					if (v < min) min = v;
 				}
 				v = mXparser.getFunctionValue(f, index, to);
 				if (v < min) min = v;
-			} else if (from == to)
+			}
+			else if (from == to)
 				min = mXparser.getFunctionValue(f, index, from);
 			return min;
 		}
@@ -1123,28 +1263,35 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @see        Expression
 		 * @see        Argument
 		 */
-		public static double max(Expression f, Argument index, double from, double to, double delta) {
+		public static double max(Expression f, Argument index, double from, double to, double delta)
+		{
 			if ((Double.IsNaN(delta)) || (Double.IsNaN(from)) || (Double.IsNaN(to)) || (delta == 0))
 				return Double.NaN;
 			double max = Double.NegativeInfinity;
 			double v;
-			if ((to >= from) && (delta > 0)) {
-				for (double i = from; i < to; i += delta) {
+			if ((to >= from) && (delta > 0))
+			{
+				for (double i = from; i < to; i += delta)
+				{
 					if (mXparser.isCurrentCalculationCancelled()) return Double.NaN;
 					v = mXparser.getFunctionValue(f, index, i);
 					if (v > max) max = v;
 				}
 				v = mXparser.getFunctionValue(f, index, to);
 				if (v > max) max = v;
-			} else if ((to <= from) && (delta < 0)) {
-				for (double i = from; i > to; i += delta) {
+			}
+			else if ((to <= from) && (delta < 0))
+			{
+				for (double i = from; i > to; i += delta)
+				{
 					if (mXparser.isCurrentCalculationCancelled()) return Double.NaN;
 					v = mXparser.getFunctionValue(f, index, i);
 					if (v > max) max = v;
 				}
 				v = mXparser.getFunctionValue(f, index, to);
 				if (v > max) max = v;
-			} else if (from == to)
+			}
+			else if (from == to)
 				max = mXparser.getFunctionValue(f, index, from);
 			return max;
 		}
@@ -1156,8 +1303,10 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return        Regular expression string if base between 1 and 36,
 		 *                otherwise empty string "" is returned.
 		 */
-		private static String getRegExpForNumeralSystem(int numeralSystemBase) {
-			switch (numeralSystemBase) {
+		private static String getRegExpForNumeralSystem(int numeralSystemBase)
+		{
+			switch (numeralSystemBase)
+			{
 				case 1: return ParserSymbol.BASE1_REG_EXP;
 				case 2: return ParserSymbol.BASE2_REG_EXP;
 				case 3: return ParserSymbol.BASE3_REG_EXP;
@@ -1212,8 +1361,10 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return            Returns digit index if digit char was recognized,
 		 *                    otherwise returns -1.
 		 */
-		public static int digitIndex(char digitChar) {
-			switch (digitChar) {
+		public static int digitIndex(char digitChar)
+		{
+			switch (digitChar)
+			{
 				case '0': return 0;
 				case '1': return 1;
 				case '2': return 2;
@@ -1293,8 +1444,10 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 *                     32:W, 33:X, 34:Y, 35:Z. If digit index is put of range
 		 *                     '?' is returned.
 		 */
-		public static char digitChar(int digitIndex) {
-			switch (digitIndex) {
+		public static char digitChar(int digitIndex)
+		{
+			switch (digitIndex)
+			{
 				case 0: return '0';
 				case 1: return '1';
 				case 2: return '2';
@@ -1354,7 +1507,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 *          system base is returned (base between 1 and 36), otherwise
 		 *          -1 is returned.
 		 */
-		public static int getNumeralSystemBase(String numberLiteral) {
+		public static int getNumeralSystemBase(String numberLiteral)
+		{
 			for (int b = 0; b <= 36; b++)
 				if (mXparser.regexMatch(numberLiteral, getRegExpForNumeralSystem(b)))
 					return b;
@@ -1372,10 +1526,12 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return                 Decimal number after conversion. If conversion was not
 		 *                         possible the Double.NaN is returned.
 		 */
-		public static double convOthBase2Decimal(String numberLiteral, int numeralSystemBase) {
+		public static double convOthBase2Decimal(String numberLiteral, int numeralSystemBase)
+		{
 			if (numberLiteral == null) return Double.NaN;
 			numberLiteral = numberLiteral.Trim();
-			if (numberLiteral.Length == 0) {
+			if (numberLiteral.Length == 0)
+			{
 				if (numeralSystemBase == 1) return 0;
 				else return Double.NaN;
 			}
@@ -1383,25 +1539,30 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 			if (numeralSystemBase > 36) return Double.NaN;
 			char signChar = numberLiteral[0];
 			double sign = 1.0;
-			if (signChar == '-') {
+			if (signChar == '-')
+			{
 				sign = -1.0;
 				numberLiteral = numberLiteral.Substring(1);
 			}
-			else if (signChar == '+') {
+			else if (signChar == '+')
+			{
 				sign = 1.0;
 				numberLiteral = numberLiteral.Substring(1);
 			}
 			int length = numberLiteral.Length;
 			double decValue = 0;
 			int digit;
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++)
+			{
 				if (mXparser.isCurrentCalculationCancelled()) return Double.NaN;
 				digit = digitIndex(numberLiteral[i]);
-				if (numeralSystemBase > 1) {
+				if (numeralSystemBase > 1)
+				{
 					if ((digit >= 0) && (digit < numeralSystemBase)) decValue = numeralSystemBase * decValue + digit;
 					else return Double.NaN;
 				}
-				else {
+				else
+				{
 					if (digit == 1) decValue = numeralSystemBase * decValue + digit;
 					else return Double.NaN;
 				}
@@ -1428,7 +1589,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return     Decimal number after conversion. If conversion was not
 		 *             possible the Double.NaN is returned.
 		 */
-		public static double convOthBase2Decimal(String numberLiteral) {
+		public static double convOthBase2Decimal(String numberLiteral)
+		{
 			if (numberLiteral == null) return Double.NaN;
 			numberLiteral = numberLiteral.Trim();
 			int numberLiteralStrLenght = numberLiteral.Length;
@@ -1453,23 +1615,28 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return                    Number after conversion. If conversion is not possible then
 		 *                            Double.NaN is returned.
 		 */
-		public static double convOthBase2Decimal(int numeralSystemBase, params int[] digits) {
+		public static double convOthBase2Decimal(int numeralSystemBase, params int[] digits)
+		{
 			if (numeralSystemBase < 1) return Double.NaN;
 			if (digits == null) return Double.NaN;
 			int length = digits.Length;
-			if (length == 0) {
+			if (length == 0)
+			{
 				if (numeralSystemBase == 1) return 0;
 				else return Double.NaN;
 			}
 			double decValue = 0;
 			int digit;
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++)
+			{
 				digit = digits[i];
-				if (numeralSystemBase > 1) {
+				if (numeralSystemBase > 1)
+				{
 					if ((digit >= 0) && (digit < numeralSystemBase)) decValue = numeralSystemBase * decValue + digit;
 					else return Double.NaN;
 				}
-				else {
+				else
+				{
 					if (digit == 1) decValue = numeralSystemBase * decValue + digit;
 					else return Double.NaN;
 				}
@@ -1485,19 +1652,22 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return                    Number after conversion. If conversion is not possible then
 		 *                            Double.NaN is returned.
 		 */
-		public static double convOthBase2Decimal(double numeralSystemBase, params double[] digits) {
+		public static double convOthBase2Decimal(double numeralSystemBase, params double[] digits)
+		{
 			if (numeralSystemBase < 0) return Double.NaN;
 			if (Double.IsNaN(numeralSystemBase)) return Double.NaN;
 			int numeralSystemBaseInt = (int)MathFunctions.floor(numeralSystemBase);
 			if (digits == null) return Double.NaN;
 			int length = digits.Length;
-			if (length == 0) {
+			if (length == 0)
+			{
 				if (numeralSystemBaseInt == 1) return 0;
 				else return Double.NaN;
 			}
 			int[] digitsInt = new int[length];
 			double digit;
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++)
+			{
 				digit = digits[i];
 				if (Double.IsNaN(digit)) return Double.NaN;
 				digitsInt[i] = (int)digit;
@@ -1514,12 +1684,14 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return                Number after conversion. If conversion is not possible then
 		 *                        Double.NaN is returned.
 		 */
-		public static double convOthBase2Decimal(int[] baseAndDigits) {
+		public static double convOthBase2Decimal(int[] baseAndDigits)
+		{
 			if (baseAndDigits == null) return Double.NaN;
 			if (baseAndDigits.Length == 0) return Double.NaN;
 			int numeralSystemBase = baseAndDigits[0];
 			int[] digits = new int[baseAndDigits.Length - 1];
-			for (int i = 1; i < baseAndDigits.Length; i++) {
+			for (int i = 1; i < baseAndDigits.Length; i++)
+			{
 				digits[i - 1] = baseAndDigits[i];
 				if (mXparser.isCurrentCalculationCancelled()) return Double.NaN;
 			}
@@ -1535,12 +1707,14 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return                Number after conversion. If conversion is not possible then
 		 *                        Double.NaN is returned.
 		 */
-		public static double convOthBase2Decimal(double[] baseAndDigits) {
+		public static double convOthBase2Decimal(double[] baseAndDigits)
+		{
 			if (baseAndDigits == null) return Double.NaN;
 			if (baseAndDigits.Length == 0) return Double.NaN;
 			double numeralSystemBase = baseAndDigits[0];
 			double[] digits = new double[baseAndDigits.Length - 1];
-			for (int i = 1; i < baseAndDigits.Length; i++) {
+			for (int i = 1; i < baseAndDigits.Length; i++)
+			{
 				digits[i - 1] = baseAndDigits[i];
 				if (mXparser.isCurrentCalculationCancelled()) return Double.NaN;
 			}
@@ -1561,11 +1735,13 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 *                   33:X, 34:Y, 35:Z. If conversion was not possible
 		 *                   the "NaN" string is returned.
 		 */
-		public static String convDecimal2OthBase(double decimalNumber, int numeralSystemBase) {
+		public static String convDecimal2OthBase(double decimalNumber, int numeralSystemBase)
+		{
 			if (Double.IsNaN(decimalNumber)) return "NaN";
 			if (numeralSystemBase < 1) return "NaN";
 			if (numeralSystemBase > 36) return "NaN";
-			if (decimalNumber == 0.0) {
+			if (decimalNumber == 0.0)
+			{
 				if (numeralSystemBase > 1) return "0";
 				else return "";
 			}
@@ -1578,13 +1754,15 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 			double quotient = intPart;
 			int reminder;
 			if (numeralSystemBase > 1)
-				while (quotient >= 1.0) {
+				while (quotient >= 1.0)
+				{
 					reminder = (int)(quotient % numeralSystemBase);
 					quotient = MathFunctions.floor(quotient / numeralSystemBase);
 					numberLiteral = digitChar(reminder) + numberLiteral;
 					if (mXparser.isCurrentCalculationCancelled()) return "NaN";
 				}
-			else {
+			else
+			{
 				char[] repeat = new char[(int)intPart];
 				for (int i = 0; i < (int)intPart; i++)
 					repeat[i] = '1';
@@ -1616,13 +1794,15 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 *
 		 * If conversion was not possible the "NaN" string is returned.
 		 */
-		public static String convDecimal2OthBase(double decimalNumber, int numeralSystemBase, int format) {
+		public static String convDecimal2OthBase(double decimalNumber, int numeralSystemBase, int format)
+		{
 			if (Double.IsNaN(decimalNumber)) return "NaN";
 			if (numeralSystemBase < 1) return "NaN";
 			if (numeralSystemBase > 36) return "NaN";
 			String prefix = "";
 			if ((format == 1) || (format == 2)) prefix = "b" + numeralSystemBase + ".";
-			if (format == 2) {
+			if (format == 2)
+			{
 				if (numeralSystemBase == 2) prefix = "b.";
 				if (numeralSystemBase == 8) prefix = "o.";
 				if (numeralSystemBase == 16) prefix = "h.";
@@ -1636,7 +1816,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @param number   The number
 		 * @return         Number of digits needed to represent given number in base 10 numeral system.
 		 */
-		public static int numberOfDigits(long number) {
+		public static int numberOfDigits(long number)
+		{
 			if (number < 0) number = -number;
 			if (number < 10) return 1;
 			else if (number < 100) return 2;
@@ -1656,7 +1837,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 *                 If number is NaN the NaN is returned. If number is infinite then
 		 *                 Double.POSITIVE_INFINITY is returned.
 		 */
-		public static double numberOfDigits(double number) {
+		public static double numberOfDigits(double number)
+		{
 			if (Double.IsNaN(number)) return Double.NaN;
 			if (Double.IsInfinity(number)) return Double.PositiveInfinity;
 			if (number < 0.0) number = -number;
@@ -1978,7 +2160,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return                    Returns number of digits. In case when numeralSystemBase is lower than
 		 *                            1 then -1 is returned.
 		 */
-		public static long numberOfDigits(long number, long numeralSystemBase) {
+		public static long numberOfDigits(long number, long numeralSystemBase)
+		{
 			if (numeralSystemBase < 1) return -1;
 			if (number < 0) number = -number;
 			if (numeralSystemBase == 10) return numberOfDigits(number);
@@ -1987,7 +2170,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 			long quotient = number;
 			long digitsNum = 0;
 			double NAN = Double.NaN;
-			while (quotient >= 1) {
+			while (quotient >= 1)
+			{
 				if (mXparser.isCurrentCalculationCancelled()) return (long)NAN;
 				quotient = quotient / numeralSystemBase;
 				digitsNum++;
@@ -2003,7 +2187,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 *                            then Double.NaN is returned. If numeralSystemBase is infinite then Double.NaN
 		 *                            is returned.
 		 */
-		public static double numberOfDigits(double number, double numeralSystemBase) {
+		public static double numberOfDigits(double number, double numeralSystemBase)
+		{
 			if (Double.IsNaN(number)) return Double.NaN;
 			if (Double.IsNaN(numeralSystemBase)) return Double.NaN;
 			if (Double.IsInfinity(numeralSystemBase)) return Double.NaN;
@@ -2017,7 +2202,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 			if (number < numeralSystemBase) return 1;
 			double quotient = number;
 			double digitsNum = 0;
-			while (quotient >= 1.0) {
+			while (quotient >= 1.0)
+			{
 				if (mXparser.isCurrentCalculationCancelled()) return Double.NaN;
 				quotient = MathFunctions.floor(quotient / numeralSystemBase);
 				digitsNum++;
@@ -2032,11 +2218,13 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @param numeralSystemBase   Base of numeral system - above 0
 		 * @return                    Return digit at given position. If digit finding was not possible then -1 is returned.
 		 */
-		public static int digitAtPosition(long number, int position, int numeralSystemBase) {
+		public static int digitAtPosition(long number, int position, int numeralSystemBase)
+		{
 			if (numeralSystemBase < 1) return -1;
 			if (number < 0) number = -number;
 			int digitsNum = (int)numberOfDigits(number, numeralSystemBase);
-			if (position <= -digitsNum) {
+			if (position <= -digitsNum)
+			{
 				if (numeralSystemBase > 1) return 0;
 				else return -1;
 			}
@@ -2047,7 +2235,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 			int digit;
 			int digitIndex = digitsNum;
 			double NAN = Double.NaN;
-			while (quotient >= 1) {
+			while (quotient >= 1)
+			{
 				if (mXparser.isCurrentCalculationCancelled()) return (int)NAN;
 				digit = (int)quotient % numeralSystemBase;
 				quotient = quotient / numeralSystemBase;
@@ -2064,7 +2253,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @param position            Position from 1 ... n (left to right) or from 0 ... -(n-1) (right to left).
 		 * @return                    Return digit at given position. If digit finding was not possible then -1 is returned.
 		 */
-		public static int digitAtPosition(long number, int position) {
+		public static int digitAtPosition(long number, int position)
+		{
 			return digitAtPosition(number, position, 10);
 		}
 		/**
@@ -2075,7 +2265,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @param numeralSystemBase   Base of numeral system - above 0
 		 * @return                    Return digit at given position. If digit finding was not possible then Double.NaN is returned.
 		 */
-		public static double digitAtPosition(double number, double position, double numeralSystemBase) {
+		public static double digitAtPosition(double number, double position, double numeralSystemBase)
+		{
 			if (Double.IsNaN(number)) return Double.NaN;
 			if (Double.IsNaN(position)) return Double.NaN;
 			if (Double.IsNaN(numeralSystemBase)) return Double.NaN;
@@ -2087,7 +2278,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 			number = MathFunctions.floor(number);
 			numeralSystemBase = MathFunctions.floor(numeralSystemBase);
 			int digitsNum = (int)numberOfDigits(number, numeralSystemBase);
-			if (position <= -digitsNum) {
+			if (position <= -digitsNum)
+			{
 				if (numeralSystemBase > 1.0) return 0;
 				else return Double.NaN;
 			}
@@ -2097,7 +2289,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 			double quotient = number;
 			double digit;
 			int digitIndex = digitsNum;
-			while (quotient >= 1.0) {
+			while (quotient >= 1.0)
+			{
 				if (mXparser.isCurrentCalculationCancelled()) return Double.NaN;
 				digit = MathFunctions.floor(quotient % numeralSystemBase);
 				quotient = MathFunctions.floor(quotient / numeralSystemBase);
@@ -2114,7 +2307,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @param position            Position from 1 ... n (left to right) or from 0 ... -(n-1) (right to left).
 		 * @return                    Return digit at given position. If digit finding was not possible then Double.NaN is returned.
 		 */
-		public static double digitAtPosition(double number, double position) {
+		public static double digitAtPosition(double number, double position)
+		{
 			return digitAtPosition(number, position, 10.0);
 		}
 		/**
@@ -2123,12 +2317,14 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @param number     Number to be decomposed
 		 * @return           List of prime factors (non-distinct)
 		 */
-		public static long[] primeFactors(long number) {
+		public static long[] primeFactors(long number)
+		{
 			long[] longZeroArray = new long[0];
 			long[] factors;
 			if (number == 0) return longZeroArray;
 			if (number < 0) number = -number;
-			if (number == 1) {
+			if (number == 1)
+			{
 				factors = new long[1];
 				factors[0] = 1;
 				return factors;
@@ -2136,15 +2332,18 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 			if (mXparser.primesCache != null)
 				if (mXparser.primesCache.getCacheStatus() == PrimesCache.CACHING_FINISHED)
 					if (number <= int.MaxValue)
-						if (mXparser.primesCache.primeTest((int)number) == PrimesCache.IS_PRIME) {
+						if (mXparser.primesCache.primeTest((int)number) == PrimesCache.IS_PRIME)
+						{
 							factors = new long[1];
 							factors[0] = number;
 							return factors;
 						}
 			long n = number;
 			List<long> factorsList = new List<long>();
-			for (long i = 2; i <= n / i; i++) {
-				while (n % i == 0) {
+			for (long i = 2; i <= n / i; i++)
+			{
+				while (n % i == 0)
+				{
 					factorsList.Add(i);
 					n /= i;
 					if (mXparser.isCurrentCalculationCancelled()) return longZeroArray;
@@ -2153,7 +2352,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 			if (n > 1) factorsList.Add(n);
 			int nfact = factorsList.Count;
 			factors = new long[nfact];
-			for (int i = 0; i < nfact; i++) {
+			for (int i = 0; i < nfact; i++)
+			{
 				factors[i] = factorsList[i];
 				if (mXparser.isCurrentCalculationCancelled()) return longZeroArray;
 			}
@@ -2165,14 +2365,16 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @param number     Number to be decomposed
 		 * @return           List of prime factors (non-distinct)
 		 */
-		public static double[] primeFactors(double number) {
+		public static double[] primeFactors(double number)
+		{
 			double[] doubleZeroArray = new double[0];
 			double[] factors;
 			if (Double.IsNaN(number)) return doubleZeroArray;
 			if (Double.IsInfinity(number)) return doubleZeroArray;
 			number = MathFunctions.floor(MathFunctions.abs(number));
 			if (number == 0.0) return doubleZeroArray;
-			if (number == 1.0) {
+			if (number == 1.0)
+			{
 				factors = new double[1];
 				factors[0] = 1.0;
 				return factors;
@@ -2180,15 +2382,18 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 			if (mXparser.primesCache != null)
 				if (mXparser.primesCache.getCacheStatus() == PrimesCache.CACHING_FINISHED)
 					if (number <= int.MaxValue)
-						if (mXparser.primesCache.primeTest((int)number) == PrimesCache.IS_PRIME) {
+						if (mXparser.primesCache.primeTest((int)number) == PrimesCache.IS_PRIME)
+						{
 							factors = new double[1];
 							factors[0] = number;
 							return factors;
 						}
 			double n = number;
 			List<double> factorsList = new List<double>();
-			for (double i = 2.0; i <= MathFunctions.floor(n / i); MathFunctions.floor(i++)) {
-				while (n % i == 0) {
+			for (double i = 2.0; i <= MathFunctions.floor(n / i); MathFunctions.floor(i++))
+			{
+				while (n % i == 0)
+				{
 					factorsList.Add(i);
 					n = MathFunctions.floor(n / i);
 					if (mXparser.isCurrentCalculationCancelled()) return doubleZeroArray;
@@ -2197,7 +2402,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 			if (n > 1.0) factorsList.Add(n);
 			int nfact = factorsList.Count;
 			factors = new double[nfact];
-			for (int i = 0; i < nfact; i++) {
+			for (int i = 0; i < nfact; i++)
+			{
 				factors[i] = factorsList[i];
 				if (mXparser.isCurrentCalculationCancelled()) return doubleZeroArray;
 			}
@@ -2209,7 +2415,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @param number     Number to be decomposed
 		 * @return           Number of distinct prime factors
 		 */
-		public static double numberOfPrimeFactors(double number) {
+		public static double numberOfPrimeFactors(double number)
+		{
 			if (Double.IsNaN(number)) return Double.NaN;
 			double[] factors = primeFactors(number);
 			if (factors.Length <= 1) return factors.Length;
@@ -2225,7 +2432,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 *                   For NaN of infinite parameters Double NaN is returned. For number eq 0 Double.NaN
 		 *                   is returned.
 		 */
-		public static double primeFactorValue(double number, double id) {
+		public static double primeFactorValue(double number, double id)
+		{
 			if (Double.IsNaN(number)) return Double.NaN;
 			if (Double.IsNaN(id)) return Double.NaN;
 			if (Double.IsInfinity(number)) return Double.NaN;
@@ -2250,7 +2458,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 *                   For NaN of infinite parameters Double NaN is returned. For number eq 0 Double.NaN
 		 *                   is returned.
 		 */
-		public static double primeFactorExponent(double number, double id) {
+		public static double primeFactorExponent(double number, double id)
+		{
 			if (Double.IsNaN(number)) return Double.NaN;
 			if (Double.IsNaN(id)) return Double.NaN;
 			if (Double.IsInfinity(number)) return Double.NaN;
@@ -2276,7 +2485,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return Returns array containing sign, numerator and denominator.
 		 * Sign at index 0, numerator at index 1, denominator at index 2.
 		 */
-		private static double[] fractionToDoubleArray(double sign, double numerator, double denominator) {
+		private static double[] fractionToDoubleArray(double sign, double numerator, double denominator)
+		{
 			double[] fraction = new double[3];
 			fraction[0] = sign;
 			fraction[1] = numerator;
@@ -2294,7 +2504,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return Returns array containing whole number, numerator and denominator.
 		 * Sign at index 0, whole number at index 1, numerator at index 2, denominator at index 3.
 		 */
-		private static double[] mixedFractionToDoubleArray(double sign, double whole, double numerator, double denominator) {
+		private static double[] mixedFractionToDoubleArray(double sign, double whole, double numerator, double denominator)
+		{
 			double[] mixedFraction = new double[4];
 			mixedFraction[0] = sign;
 			mixedFraction[1] = whole;
@@ -2312,12 +2523,14 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * If conversion is not possible then Double.NaN is
 		 * assigned to all the fields.
 		 */
-		public static double[] toFraction(double value) {
+		public static double[] toFraction(double value)
+		{
 			if (Double.IsNaN(value)) return fractionToDoubleArray(Double.NaN, Double.NaN, Double.NaN);
 			if (Double.IsInfinity(value)) return fractionToDoubleArray(Double.NaN, Double.NaN, Double.NaN);
 			if (value == 0) return fractionToDoubleArray(0, 0, 1);
 			double sign = 1;
-			if (value < 0) {
+			if (value < 0)
+			{
 				value = -value;
 				sign = -1;
 			}
@@ -2325,13 +2538,14 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 			double valueInt = Math.Floor(value);
 			double valueIntNumOfDigits = NumberTheory.numberOfDigits(valueInt);
 			double multiplier = 1;
-			for (int place = 1; place < valueIntNumOfDigits-1; place++)
+			for (int place = 1; place < valueIntNumOfDigits - 1; place++)
 				multiplier = Math.Floor(multiplier * 10);
 			double ERROR = BinaryRelations.DEFAULT_COMPARISON_EPSILON * multiplier;
 			/*
 			 * If already integer
 			 */
-			if (value >= 1) {
+			if (value >= 1)
+			{
 				if (Math.Abs(value - valueRound0) <= ERROR)
 					return fractionToDoubleArray(sign, valueInt, 1);
 			}
@@ -2352,13 +2566,15 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 			double n = 0;
 			double quotient;
 			double quotientRound0;
-			while (n <= TO_FRACTION_INIT_SEARCH_SIZE) {
+			while (n <= TO_FRACTION_INIT_SEARCH_SIZE)
+			{
 				if (mXparser.isCurrentCalculationCancelled()) break;
 				n++;
 				quotient = n / valueDecimal;
 				quotientRound0 = MathFunctions.roundHalfUp(quotient, 0);
 				fracDecimal = n / quotientRound0;
-				if ( ( Math.Abs(quotient - quotientRound0) <= ERROR) || ( Math.Abs(fracDecimal - valueDecimal) <= ERROR) ) {
+				if ((Math.Abs(quotient - quotientRound0) <= ERROR) || (Math.Abs(fracDecimal - valueDecimal) <= ERROR))
+				{
 					numerator = n;
 					denominator = quotientRound0;
 					gcd = NumberTheory.gcd(numerator, denominator);
@@ -2381,11 +2597,13 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 			denominator = Math.Floor(initDenominator / gcd);
 			double finalQuotient;
 			double a, b;
-			if (denominator > numerator) {
+			if (denominator > numerator)
+			{
 				a = denominator;
 				b = numerator;
 			}
-			else {
+			else
+			{
 				a = numerator;
 				b = denominator;
 			}
@@ -2394,7 +2612,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 			if (finalQuotientUlpPos > 0)
 				finalQuotient = MathFunctions.roundHalfUp(finalQuotient, finalQuotientUlpPos - 1);
 			double finalQuotientFloor = Math.Floor(finalQuotient);
-			if (Math.Abs(finalQuotient - finalQuotientFloor) <= ERROR) {
+			if (Math.Abs(finalQuotient - finalQuotientFloor) <= ERROR)
+			{
 				numerator = Math.Floor(numerator / b);
 				denominator = Math.Floor(denominator / b);
 			}
@@ -2411,7 +2630,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * If conversion is not possible then Double.NaN is
 		 * assigned to both numerator and denominator.
 		 */
-		public static double[] toMixedFraction(double value) {
+		public static double[] toMixedFraction(double value)
+		{
 			double[] fraction = toFraction(value);
 			double sign = fraction[0];
 			double numerator = fraction[1];
@@ -2435,7 +2655,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @see NumberTheory#toFraction(double)
 		 * @see NumberTheory#toMixedFraction(double)
 		 */
-		public static String fractionToString(double[] fraction) {
+		public static String fractionToString(double[] fraction)
+		{
 			bool mixedFraction = false;
 			if ((fraction.Length != 3) && (fraction.Length != 4))
 				return ConstantValue.NAN_STR;
@@ -2443,12 +2664,14 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 			int wholeIdx = 1;
 			int numeratorIdx;
 			int denominatorIdx;
-			if (fraction.Length == 4) {
+			if (fraction.Length == 4)
+			{
 				mixedFraction = true;
 				numeratorIdx = 2;
 				denominatorIdx = 3;
 			}
-			else {
+			else
+			{
 				numeratorIdx = 1;
 				denominatorIdx = 2;
 			}
@@ -2462,42 +2685,51 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 			double denominator = fraction[denominatorIdx];
 			String numeratorStr = String.Format("{0:0}", numerator);
 			String denominatorStr = String.Format("{0:0}", denominator);
-			if (mixedFraction == false) {
+			if (mixedFraction == false)
+			{
 				if (numerator == 0) return "0";
-				if (denominator == 1) {
+				if (denominator == 1)
+				{
 					if (sign >= 0)
 						return numeratorStr;
 					else
 						return "-" + numeratorStr;
 				}
-				else {
+				else
+				{
 					if (sign >= 0)
 						return numeratorStr + "/" + denominatorStr;
 					else
 						return "-" + numeratorStr + "/" + denominatorStr;
 				}
 			}
-			else {
+			else
+			{
 				double whole = fraction[wholeIdx];
 				String wholeStr = String.Format("{0:0}", whole);
-				if (numerator == 0) {
+				if (numerator == 0)
+				{
 					if (whole == 0)
 						return "0";
-					else {
+					else
+					{
 						if (sign >= 0)
 							return wholeStr;
 						else
 							return "-" + wholeStr;
 					}
 				}
-				else {
-					if (whole == 0) {
+				else
+				{
+					if (whole == 0)
+					{
 						if (sign >= 0)
 							return numeratorStr + "/" + denominatorStr;
 						else
 							return "-" + numeratorStr + "/" + denominatorStr;
 					}
-					else {
+					else
+					{
 						if (sign >= 0)
 							return wholeStr + "+" + numeratorStr + "/" + denominatorStr;
 						else
@@ -2515,7 +2747,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @see NumberTheory#toFraction(double)
 		 * @see NumberTheory#fractionToString(double[])
 		 */
-		public static String toFractionString(double value) {
+		public static String toFractionString(double value)
+		{
 			return fractionToString(toFraction(value));
 		}
 		/**
@@ -2527,7 +2760,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @see NumberTheory#toMixedFraction(double)
 		 * @see NumberTheory#fractionToString(double[])
 		 */
-		public static String toMixedFractionString(double value) {
+		public static String toMixedFractionString(double value)
+		{
 			return fractionToString(toMixedFraction(value));
 		}
 	}

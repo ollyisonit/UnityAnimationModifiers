@@ -53,11 +53,12 @@
  *                              Asked if he believes in one God, a mathematician answered:
  *                              "Yes, up to isomorphism."
  */
-using org.dninosores.mariuszgromada.math.mxparser.parsertokens;
+using org.ollyisonit.mariuszgromada.math.mxparser.parsertokens;
 using System;
 using System.Collections.Generic;
 
-namespace org.dninosores.mariuszgromada.math.mxparser {
+namespace org.ollyisonit.mariuszgromada.math.mxparser
+{
 	/**
 	 * Function class provides possibility to define user functions.
 	 * Functions can be used in further processing by any expression,
@@ -107,7 +108,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 	 *
 	 */
 	[CLSCompliant(false)]
-	public class Function : PrimitiveElement {
+	public class Function : PrimitiveElement
+	{
 		/**
 		 * No syntax errors in the function.
 		 */
@@ -123,8 +125,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		/**
 		 * Function type id identifier
 		 */
-		public const int TYPE_ID			= 103;
-		public const String TYPE_DESC		= "User defined function";
+		public const int TYPE_ID = 103;
+		public const String TYPE_DESC = "User defined function";
 		/**
 		 * Function with body based on the expression string.
 		 *
@@ -200,8 +202,10 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @see        Expression
 		 */
 		public Function(String functionName
-						,String  functionExpressionString, params PrimitiveElement[] elements) : base(Function.TYPE_ID) {
-			if (mXparser.regexMatch(functionName, ParserSymbol.nameOnlyTokenRegExp)) {
+						, String functionExpressionString, params PrimitiveElement[] elements) : base(Function.TYPE_ID)
+		{
+			if (mXparser.regexMatch(functionName, ParserSymbol.nameOnlyTokenRegExp))
+			{
 				this.functionName = functionName;
 				functionExpression = new Expression(functionExpressionString, elements);
 				functionExpression.setDescription(functionName);
@@ -212,7 +216,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 				functionBodyType = BODY_RUNTIME;
 				addFunctions(this);
 			}
-			else {
+			else
+			{
 				parametersNumber = 0;
 				description = "";
 				functionExpression = new Expression("");
@@ -231,9 +236,11 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @see        Expression
 		 */
 		public Function(String functionName
-						,String  functionExpressionString
-						,params String[] argumentsNames ) : base(Function.TYPE_ID) {
-			if (mXparser.regexMatch(functionName, ParserSymbol.nameOnlyTokenRegExp)) {
+						, String functionExpressionString
+						, params String[] argumentsNames) : base(Function.TYPE_ID)
+		{
+			if (mXparser.regexMatch(functionName, ParserSymbol.nameOnlyTokenRegExp))
+			{
 				this.functionName = functionName;
 				functionExpression = new Expression(functionExpressionString);
 				functionExpression.setDescription(functionName);
@@ -246,7 +253,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 				functionBodyType = BODY_RUNTIME;
 				addFunctions(this);
 			}
-			else {
+			else
+			{
 				parametersNumber = 0;
 				description = "";
 				functionExpression = new Expression("");
@@ -267,18 +275,22 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @see    PrimitiveElement
 		 *
 		 */
-		public Function(String functionDefinitionString, params PrimitiveElement[] elements) : base(Function.TYPE_ID) {
+		public Function(String functionDefinitionString, params PrimitiveElement[] elements) : base(Function.TYPE_ID)
+		{
 			parametersNumber = 0;
-			if (mXparser.regexMatch(functionDefinitionString, ParserSymbol.functionDefStrRegExp)) {
+			if (mXparser.regexMatch(functionDefinitionString, ParserSymbol.functionDefStrRegExp))
+			{
 				HeadEqBody headEqBody = new HeadEqBody(functionDefinitionString);
 				this.functionName = headEqBody.headTokens[0].tokenStr;
 				functionExpression = new Expression(headEqBody.bodyStr, elements);
 				functionExpression.setDescription(headEqBody.headStr);
 				functionExpression.UDFExpression = true;
 				isVariadic = false;
-				if (headEqBody.headTokens.Count > 1) {
+				if (headEqBody.headTokens.Count > 1)
+				{
 					Token t;
-					for (int i = 1; i < headEqBody.headTokens.Count; i++) {
+					for (int i = 1; i < headEqBody.headTokens.Count; i++)
+					{
 						t = headEqBody.headTokens[i];
 						if (t.tokenTypeId != ParserSymbol.TYPE_ID)
 							functionExpression.addArguments(new Argument(t.tokenStr));
@@ -288,7 +300,9 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 				description = "";
 				functionBodyType = BODY_RUNTIME;
 				addFunctions(this);
-			} else if ( mXparser.regexMatch(functionDefinitionString, ParserSymbol.functionVariadicDefStrRegExp) ) {
+			}
+			else if (mXparser.regexMatch(functionDefinitionString, ParserSymbol.functionVariadicDefStrRegExp))
+			{
 				HeadEqBody headEqBody = new HeadEqBody(functionDefinitionString);
 				this.functionName = headEqBody.headTokens[0].tokenStr;
 				functionExpression = new Expression(headEqBody.bodyStr, elements);
@@ -299,7 +313,9 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 				description = "";
 				functionBodyType = BODY_RUNTIME;
 				addFunctions(this);
-			} else {
+			}
+			else
+			{
 				functionExpression = new Expression();
 				functionExpression.setDescription(functionDefinitionString);
 				String errorMessage = ""; errorMessage = errorMessage + "\n [" + functionDefinitionString + "] " + "--> pattern not mathes: f(x1,...,xn) = ... reg exp: " + ParserSymbol.functionDefStrRegExp;
@@ -314,8 +330,10 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @param functionName       Function name
 		 * @param functionExtension  Your own source code
 		 */
-		public Function(String functionName, FunctionExtension functionExtension) : base(Function.TYPE_ID) {
-			if (mXparser.regexMatch(functionName, ParserSymbol.nameOnlyTokenRegExp)) {
+		public Function(String functionName, FunctionExtension functionExtension) : base(Function.TYPE_ID)
+		{
+			if (mXparser.regexMatch(functionName, ParserSymbol.nameOnlyTokenRegExp))
+			{
 				this.functionName = functionName;
 				functionExpression = new Expression("{body-ext}");
 				isVariadic = false;
@@ -323,7 +341,9 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 				description = "";
 				this.functionExtension = functionExtension;
 				functionBodyType = BODY_EXTENDED;
-			} else {
+			}
+			else
+			{
 				parametersNumber = 0;
 				description = "";
 				functionExpression = new Expression("");
@@ -338,8 +358,10 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @param functionName       Function name
 		 * @param functionExtensionVariadic  Your own source code
 		 */
-		public Function(String functionName, FunctionExtensionVariadic functionExtensionVariadic) : base(Function.TYPE_ID) {
-			if ( mXparser.regexMatch(functionName, ParserSymbol.nameOnlyTokenRegExp) ) {
+		public Function(String functionName, FunctionExtensionVariadic functionExtensionVariadic) : base(Function.TYPE_ID)
+		{
+			if (mXparser.regexMatch(functionName, ParserSymbol.nameOnlyTokenRegExp))
+			{
 				this.functionName = functionName;
 				functionExpression = new Expression("{body-ext-var}");
 				isVariadic = true;
@@ -347,7 +369,9 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 				description = "";
 				this.functionExtensionVariadic = functionExtensionVariadic;
 				functionBodyType = BODY_EXTENDED;
-			} else {
+			}
+			else
+			{
 				parametersNumber = 0;
 				description = "";
 				functionExpression = new Expression("");
@@ -360,14 +384,16 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @param      function            the function, which is going
 		 *                                 to be cloned.
 		 */
-		private Function(Function function) : base(Function.TYPE_ID) {
+		private Function(Function function) : base(Function.TYPE_ID)
+		{
 			functionName = function.functionName;
 			description = function.description;
 			parametersNumber = function.parametersNumber;
 			functionExpression = function.functionExpression.clone();
 			functionBodyType = function.functionBodyType;
 			isVariadic = function.isVariadic;
-			if (functionBodyType == BODY_EXTENDED) {
+			if (functionBodyType == BODY_EXTENDED)
+			{
 				if (function.functionExtension != null) functionExtension = function.functionExtension.clone();
 				if (function.functionExtensionVariadic != null) functionExtensionVariadic = function.functionExtensionVariadic.clone();
 			}
@@ -386,18 +412,22 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @see    PrimitiveElement
 		 *
 		 */
-		public void setFunction(String functionDefinitionString, params PrimitiveElement[] elements) {
+		public void setFunction(String functionDefinitionString, params PrimitiveElement[] elements)
+		{
 			parametersNumber = 0;
-			if ( mXparser.regexMatch(functionDefinitionString, ParserSymbol.functionDefStrRegExp) ) {
+			if (mXparser.regexMatch(functionDefinitionString, ParserSymbol.functionDefStrRegExp))
+			{
 				HeadEqBody headEqBody = new HeadEqBody(functionDefinitionString);
 				this.functionName = headEqBody.headTokens[0].tokenStr;
 				functionExpression = new Expression(headEqBody.bodyStr, elements);
 				functionExpression.setDescription(headEqBody.headStr);
 				functionExpression.UDFExpression = true;
 				isVariadic = false;
-				if (headEqBody.headTokens.Count > 1) {
+				if (headEqBody.headTokens.Count > 1)
+				{
 					Token t;
-					for (int i = 1; i < headEqBody.headTokens.Count; i++) {
+					for (int i = 1; i < headEqBody.headTokens.Count; i++)
+					{
 						t = headEqBody.headTokens[i];
 						if (t.tokenTypeId != ParserSymbol.TYPE_ID)
 							functionExpression.addArguments(new Argument(t.tokenStr));
@@ -407,7 +437,9 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 				description = "";
 				functionBodyType = BODY_RUNTIME;
 				addFunctions(this);
-			} else if ( mXparser.regexMatch(functionDefinitionString, ParserSymbol.functionVariadicDefStrRegExp) ) {
+			}
+			else if (mXparser.regexMatch(functionDefinitionString, ParserSymbol.functionVariadicDefStrRegExp))
+			{
 				HeadEqBody headEqBody = new HeadEqBody(functionDefinitionString);
 				this.functionName = headEqBody.headTokens[0].tokenStr;
 				functionExpression = new Expression(headEqBody.bodyStr, elements);
@@ -418,7 +450,9 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 				description = "";
 				functionBodyType = BODY_RUNTIME;
 				addFunctions(this);
-			} else {
+			}
+			else
+			{
 				functionExpression = new Expression();
 				functionExpression.setDescription(functionDefinitionString);
 				String errorMessage = ""; errorMessage = errorMessage + "\n [" + functionDefinitionString + "] " + "--> pattern not mathes: f(x1,...,xn) = ... reg exp: " + ParserSymbol.functionDefStrRegExp;
@@ -430,7 +464,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @param      description         the function description
 		 */
-		public void setDescription(String description) {
+		public void setDescription(String description)
+		{
 			this.description = description;
 		}
 		/**
@@ -438,7 +473,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @return     Function description as string
 		 */
-		public String getDescription() {
+		public String getDescription()
+		{
 			return description;
 		}
 		/**
@@ -446,7 +482,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @return     Function name as string.
 		 */
-		public String getFunctionName() {
+		public String getFunctionName()
+		{
 			return functionName;
 		}
 		/**
@@ -454,7 +491,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @return     Function expression as string.
 		 */
-		public String getFunctionExpressionString() {
+		public String getFunctionExpressionString()
+		{
 			return functionExpression.getExpressionString();
 		}
 		/**
@@ -462,8 +500,10 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @param      functionName        the function name
 		 */
-		public void setFunctionName(String functionName) {
-			if (mXparser.regexMatch(functionName, ParserSymbol.nameOnlyTokenRegExp)) {
+		public void setFunctionName(String functionName)
+		{
+			if (mXparser.regexMatch(functionName, ParserSymbol.nameOnlyTokenRegExp))
+			{
 				this.functionName = functionName;
 				setExpressionModifiedFlags();
 			}
@@ -476,7 +516,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *                             arguments declaration sequence)
 		 * @param      argumentValue   the argument value
 		 */
-		public void setArgumentValue(int argumentIndex, double argumentValue) {
+		public void setArgumentValue(int argumentIndex, double argumentValue)
+		{
 			if (isVariadic == false)
 				if (functionBodyType == BODY_RUNTIME)
 					functionExpression.argumentsList[argumentIndex].argumentValue = argumentValue;
@@ -487,7 +528,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * Returns function body type: {@link Function#BODY_RUNTIME} {@link Function#BODY_EXTENDED}
 		 * @return Returns function body type: {@link Function#BODY_RUNTIME} {@link Function#BODY_EXTENDED}
 		 */
-		public int getFunctionBodyType() {
+		public int getFunctionBodyType()
+		{
 			return functionBodyType;
 		}
 		/**
@@ -497,7 +539,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *                            Function.SYNTAX_ERROR_OR_STATUS_UNKNOWN
 		 *
 		 */
-		public bool checkSyntax() {
+		public bool checkSyntax()
+		{
 			bool syntaxStatus = Function.NO_SYNTAX_ERRORS;
 			if (functionBodyType != BODY_EXTENDED)
 				syntaxStatus = functionExpression.checkSyntax();
@@ -509,13 +552,15 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @return     Error message as string.
 		 */
-		public String getErrorMessage() {
+		public String getErrorMessage()
+		{
 			return functionExpression.getErrorMessage();
 		}
 		/**
 		 * clone method
 		 */
-		internal Function clone() {
+		internal Function clone()
+		{
 			Function newFunction = new Function(this);
 			return newFunction;
 		}
@@ -524,22 +569,26 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @return     Function value as double.
 		 */
-		public double calculate() {
+		public double calculate()
+		{
 			if (functionBodyType == BODY_RUNTIME)
 				return functionExpression.calculate();
 			else
 				if (isVariadic == false)
-					return functionExtension.calculate();
-				else {
-					List<Double> paramsList = functionExpression.UDFVariadicParamsAtRunTime;
-					if (paramsList != null) {
-						int n = paramsList.Count;
-						double[] parameters = new double[n];
-						for (int i = 0; i < n; i++)
-							parameters[i] = paramsList[i];
-						return functionExtensionVariadic.calculate(parameters);
-					} else return Double.NaN;
+				return functionExtension.calculate();
+			else
+			{
+				List<Double> paramsList = functionExpression.UDFVariadicParamsAtRunTime;
+				if (paramsList != null)
+				{
+					int n = paramsList.Count;
+					double[] parameters = new double[n];
+					for (int i = 0; i < n; i++)
+						parameters[i] = paramsList[i];
+					return functionExtensionVariadic.calculate(parameters);
 				}
+				else return Double.NaN;
+			}
 		}
 		/**
 		 * Calculates function value
@@ -548,29 +597,39 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @return     function value as double.
 		 */
-		public double calculate(params double[] parameters) {
-			if (parameters.Length > 0) {
+		public double calculate(params double[] parameters)
+		{
+			if (parameters.Length > 0)
+			{
 				functionExpression.UDFVariadicParamsAtRunTime = new List<Double>();
 				foreach (double x in parameters)
 					functionExpression.UDFVariadicParamsAtRunTime.Add(x);
-			} else return Double.NaN;
-			if (isVariadic) {
+			}
+			else return Double.NaN;
+			if (isVariadic)
+			{
 				if (functionBodyType == BODY_RUNTIME)
 					return functionExpression.calculate();
 				else
 					return functionExtensionVariadic.calculate(parameters);
-			} else if (parameters.Length == this.getParametersNumber()) {
-				if (functionBodyType == BODY_RUNTIME) {
+			}
+			else if (parameters.Length == this.getParametersNumber())
+			{
+				if (functionBodyType == BODY_RUNTIME)
+				{
 					for (int p = 0; p < parameters.Length; p++)
 						setArgumentValue(p, parameters[p]);
 					return functionExpression.calculate();
-				} else {
+				}
+				else
+				{
 					for (int p = 0; p < parameters.Length; p++)
 						functionExtension.setParameterValue(p, parameters[p]);
 					return functionExtension.calculate();
 				}
 			}
-			else {
+			else
+			{
 				this.functionExpression.setSyntaxStatus(SYNTAX_ERROR_OR_STATUS_UNKNOWN, "[" + functionName + "] incorrect number of function parameters (expecting " + getParametersNumber() + ", provided " + parameters.Length + ")!");
 				return Double.NaN;
 			}
@@ -582,35 +641,46 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @return     function value as double
 		 */
-		public double calculate(params Argument[] arguments) {
+		public double calculate(params Argument[] arguments)
+		{
 			double[] parameters;
-			if (arguments.Length > 0) {
+			if (arguments.Length > 0)
+			{
 				functionExpression.UDFVariadicParamsAtRunTime = new List<Double>();
 				parameters = new double[arguments.Length];
 				double x;
-				for (int i = 0; i < arguments.Length; i++) {
+				for (int i = 0; i < arguments.Length; i++)
+				{
 					x = arguments[i].getArgumentValue();
 					functionExpression.UDFVariadicParamsAtRunTime.Add(x);
 					parameters[i] = x;
 				}
-			} else return Double.NaN;
-			if (isVariadic) {
+			}
+			else return Double.NaN;
+			if (isVariadic)
+			{
 				if (functionBodyType == BODY_RUNTIME)
 					return functionExpression.calculate();
 				else
 					return functionExtensionVariadic.calculate(parameters);
-			} else if (arguments.Length == this.getParametersNumber()) {
-				if (functionBodyType == BODY_RUNTIME) {
+			}
+			else if (arguments.Length == this.getParametersNumber())
+			{
+				if (functionBodyType == BODY_RUNTIME)
+				{
 					for (int p = 0; p < arguments.Length; p++)
 						setArgumentValue(p, arguments[p].getArgumentValue());
 					return functionExpression.calculate();
-				} else {
+				}
+				else
+				{
 					for (int p = 0; p < arguments.Length; p++)
 						functionExtension.setParameterValue(p, arguments[p].getArgumentValue());
 					return functionExtension.calculate();
 				}
 			}
-			else {
+			else
+			{
 				this.functionExpression.setSyntaxStatus(SYNTAX_ERROR_OR_STATUS_UNKNOWN, "[" + functionName + "] incorrect number of function parameters (expecting " + getParametersNumber() + ", provided " + arguments.Length + ")!");
 				return Double.NaN;
 			}
@@ -624,7 +694,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @see PrimitiveElement
 		 */
-		public void addDefinitions(params PrimitiveElement[] elements) {
+		public void addDefinitions(params PrimitiveElement[] elements)
+		{
 			if (functionBodyType == Function.BODY_RUNTIME)
 				functionExpression.addDefinitions(elements);
 		}
@@ -637,7 +708,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @see PrimitiveElement
 		 */
-		public void removeDefinitions(params PrimitiveElement[] elements) {
+		public void removeDefinitions(params PrimitiveElement[] elements)
+		{
 			if (functionBodyType == Function.BODY_RUNTIME)
 				functionExpression.removeDefinitions(elements);
 		}
@@ -648,7 +720,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 *=================================================
 		 */
-		private int countRecursiveArguments() {
+		private int countRecursiveArguments()
+		{
 			int numOfRecursiveArguments = 0;
 			if (functionBodyType == Function.BODY_RUNTIME)
 				foreach (Argument argument in functionExpression.argumentsList)
@@ -663,8 +736,10 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @see        Argument
 		 * @see        RecursiveArgument
 		 */
-		public void addArguments(params Argument[] arguments) {
-			if (functionBodyType == Function.BODY_RUNTIME) {
+		public void addArguments(params Argument[] arguments)
+		{
+			if (functionBodyType == Function.BODY_RUNTIME)
+			{
 				functionExpression.addArguments(arguments);
 				parametersNumber = functionExpression.getArgumentsNumber() - countRecursiveArguments();
 			}
@@ -679,8 +754,10 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @see        Argument
 		 * @see        RecursiveArgument
 		 */
-		public void defineArguments(params String[] argumentsNames) {
-			if (functionBodyType == Function.BODY_RUNTIME) {
+		public void defineArguments(params String[] argumentsNames)
+		{
+			if (functionBodyType == Function.BODY_RUNTIME)
+			{
 				functionExpression.defineArguments(argumentsNames);
 				parametersNumber = functionExpression.getArgumentsNumber() - countRecursiveArguments();
 			}
@@ -695,8 +772,10 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @see        Argument
 		 * @see        RecursiveArgument
 		 */
-		public void defineArgument(String argumentName, double argumentValue) {
-			if (functionBodyType == Function.BODY_RUNTIME) {
+		public void defineArgument(String argumentName, double argumentValue)
+		{
+			if (functionBodyType == Function.BODY_RUNTIME)
+			{
 				functionExpression.defineArgument(argumentName, argumentValue);
 				parametersNumber = functionExpression.getArgumentsNumber() - countRecursiveArguments();
 			}
@@ -712,7 +791,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @see        Argument
 		 * @see        RecursiveArgument
 		 */
-		public int getArgumentIndex(String argumentName) {
+		public int getArgumentIndex(String argumentName)
+		{
 			if (functionBodyType == Function.BODY_RUNTIME)
 				return functionExpression.getArgumentIndex(argumentName);
 			else
@@ -730,7 +810,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @see        Argument
 		 * @see        RecursiveArgument
 		 */
-		public Argument getArgument(String argumentName) {
+		public Argument getArgument(String argumentName)
+		{
 			if (functionBodyType == Function.BODY_RUNTIME)
 				return functionExpression.getArgument(argumentName);
 			else
@@ -748,7 +829,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @see        Argument
 		 * @see        RecursiveArgument
 		 */
-		public Argument getArgument(int argumentIndex) {
+		public Argument getArgument(int argumentIndex)
+		{
 			if (functionBodyType == Function.BODY_RUNTIME)
 				return functionExpression.getArgument(argumentIndex);
 			else
@@ -762,10 +844,12 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @see        Argument
 		 * @see        RecursiveArgument
 		 */
-		public int getParametersNumber() {
+		public int getParametersNumber()
+		{
 			if (isVariadic == false)
 				return parametersNumber;
-			else {
+			else
+			{
 				if (functionExpression.UDFVariadicParamsAtRunTime != null)
 					return functionExpression.UDFVariadicParamsAtRunTime.Count;
 				else
@@ -778,8 +862,10 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @param      parametersNumber    the number of function parameters (default = number of arguments
 		 *                                 (less number might be specified).
 		 */
-		public void setParametersNumber(int parametersNumber) {
-			if (functionBodyType == Function.BODY_RUNTIME) {
+		public void setParametersNumber(int parametersNumber)
+		{
+			if (functionBodyType == Function.BODY_RUNTIME)
+			{
 				this.parametersNumber = parametersNumber;
 				functionExpression.setExpressionModifiedFlag();
 			}
@@ -790,7 +876,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @param parameterIndex  Parameter index between 0 and n-1
 		 * @return If parameter exists returns parameters name, otherwise empty string is returned.
 		 */
-		public String getParameterName(int parameterIndex) {
+		public String getParameterName(int parameterIndex)
+		{
 			if (parameterIndex < 0) return "";
 			if (parameterIndex >= parametersNumber) return "";
 			if (functionBodyType == BODY_RUNTIME) return getArgument(parameterIndex).getArgumentName();
@@ -805,7 +892,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @see        Argument
 		 * @see        RecursiveArgument
 		 */
-		public int getArgumentsNumber() {
+		public int getArgumentsNumber()
+		{
 			if (functionBodyType == Function.BODY_RUNTIME)
 				return functionExpression.getArgumentsNumber();
 			else
@@ -822,8 +910,10 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @see        Argument
 		 * @see        RecursiveArgument
 		 */
-		public void removeArguments(params String[] argumentsNames) {
-			if (functionBodyType == Function.BODY_RUNTIME) {
+		public void removeArguments(params String[] argumentsNames)
+		{
+			if (functionBodyType == Function.BODY_RUNTIME)
+			{
 				functionExpression.removeArguments(argumentsNames);
 				parametersNumber = functionExpression.getArgumentsNumber() - countRecursiveArguments();
 			}
@@ -838,8 +928,10 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @see        Argument
 		 * @see        RecursiveArgument
 		 */
-		public void removeArguments(params Argument[] arguments) {
-			if (functionBodyType == Function.BODY_RUNTIME) {
+		public void removeArguments(params Argument[] arguments)
+		{
+			if (functionBodyType == Function.BODY_RUNTIME)
+			{
 				functionExpression.removeArguments(arguments);
 				parametersNumber = functionExpression.getArgumentsNumber() - countRecursiveArguments();
 			}
@@ -850,8 +942,10 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @see        Argument
 		 * @see        RecursiveArgument
 		 */
-		public void removeAllArguments() {
-			if (functionBodyType == Function.BODY_RUNTIME) {
+		public void removeAllArguments()
+		{
+			if (functionBodyType == Function.BODY_RUNTIME)
+			{
 				functionExpression.removeAllArguments();
 				parametersNumber = 0;
 			}
@@ -871,7 +965,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @see        Constant
 		 */
-		public void addConstants(params Constant[] constants) {
+		public void addConstants(params Constant[] constants)
+		{
 			if (functionBodyType == Function.BODY_RUNTIME)
 				functionExpression.addConstants(constants);
 		}
@@ -885,7 +980,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @see        Constant
 		 */
-		public void defineConstant(String constantName, double constantValue) {
+		public void defineConstant(String constantName, double constantValue)
+		{
 			if (functionBodyType == Function.BODY_RUNTIME)
 				functionExpression.defineConstant(constantName, constantValue);
 		}
@@ -899,7 +995,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @see        Constant
 		 */
-		public int getConstantIndex(String constantName) {
+		public int getConstantIndex(String constantName)
+		{
 			if (functionBodyType == Function.BODY_RUNTIME)
 				return functionExpression.getConstantIndex(constantName);
 			else
@@ -915,7 +1012,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @see        Constant
 		 */
-		public Constant getConstant(String constantName) {
+		public Constant getConstant(String constantName)
+		{
 			if (functionBodyType == Function.BODY_RUNTIME)
 				return functionExpression.getConstant(constantName);
 			else
@@ -933,7 +1031,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @see        Constant
 		 */
-		public Constant getConstant(int constantIndex) {
+		public Constant getConstant(int constantIndex)
+		{
 			if (functionBodyType == Function.BODY_RUNTIME)
 				return functionExpression.getConstant(constantIndex);
 			else
@@ -946,7 +1045,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @see        Constant
 		 */
-		public int getConstantsNumber() {
+		public int getConstantsNumber()
+		{
 			if (functionBodyType == Function.BODY_RUNTIME)
 				return functionExpression.getConstantsNumber();
 			else
@@ -961,7 +1061,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @see        Constant
 		 */
-		public void removeConstants(params String[] constantsNames) {
+		public void removeConstants(params String[] constantsNames)
+		{
 			if (functionBodyType == Function.BODY_RUNTIME)
 				functionExpression.removeConstants(constantsNames);
 		}
@@ -974,7 +1075,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @see        Constant
 		 */
-		public void removeConstants(params Constant[] constants) {
+		public void removeConstants(params Constant[] constants)
+		{
 			if (functionBodyType == Function.BODY_RUNTIME)
 				functionExpression.removeConstants(constants);
 		}
@@ -984,7 +1086,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @see        Constant
 		 */
-		public void removeAllConstants() {
+		public void removeAllConstants()
+		{
 			functionExpression.removeAllConstants();
 		}
 		/*=================================================
@@ -1002,7 +1105,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @see        Function
 		 */
-		public void addFunctions(params Function[] functions) {
+		public void addFunctions(params Function[] functions)
+		{
 			if (functionBodyType == Function.BODY_RUNTIME)
 				functionExpression.addFunctions(functions);
 		}
@@ -1019,8 +1123,9 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @see        Function
 		 */
-		public void defineFunction(String functionName, String  functionExpressionString,
-				params String[] argumentsNames) {
+		public void defineFunction(String functionName, String functionExpressionString,
+				params String[] argumentsNames)
+		{
 			if (functionBodyType == Function.BODY_RUNTIME)
 				functionExpression.defineFunction(functionName, functionExpressionString, argumentsNames);
 		}
@@ -1034,7 +1139,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @see        Function
 		 */
-		public int getFunctionIndex(String functionName) {
+		public int getFunctionIndex(String functionName)
+		{
 			if (functionBodyType == Function.BODY_RUNTIME)
 				return functionExpression.getFunctionIndex(functionName);
 			else
@@ -1050,7 +1156,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @see        Function
 		 */
-		public Function getFunction(String functionName) {
+		public Function getFunction(String functionName)
+		{
 			if (functionBodyType == Function.BODY_RUNTIME)
 				return functionExpression.getFunction(functionName);
 			else
@@ -1067,7 +1174,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @see        Function
 		 */
-		public Function getFunction(int functionIndex) {
+		public Function getFunction(int functionIndex)
+		{
 			if (functionBodyType == Function.BODY_RUNTIME)
 				return functionExpression.getFunction(functionIndex);
 			else
@@ -1080,7 +1188,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @see        Function
 		 */
-		public int getFunctionsNumber() {
+		public int getFunctionsNumber()
+		{
 			if (functionBodyType == Function.BODY_RUNTIME)
 				return functionExpression.getFunctionsNumber();
 			else
@@ -1095,7 +1204,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @see        Function
 		 */
-		public void removeFunctions(params String[] functionsNames) {
+		public void removeFunctions(params String[] functionsNames)
+		{
 			if (functionBodyType == Function.BODY_RUNTIME)
 				functionExpression.removeFunctions(functionsNames);
 		}
@@ -1108,7 +1218,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @see        Function
 		 */
-		public void removeFunctions(params Function[] functions) {
+		public void removeFunctions(params Function[] functions)
+		{
 			if (functionBodyType == Function.BODY_RUNTIME)
 				functionExpression.removeFunctions(functions);
 		}
@@ -1118,7 +1229,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @see        Function
 		 */
-		public void removeAllFunctions() {
+		public void removeAllFunctions()
+		{
 			if (functionBodyType == Function.BODY_RUNTIME)
 				functionExpression.removeAllFunctions();
 		}
@@ -1128,13 +1240,15 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		/**
 		 * Enables verbose function mode
 		 */
-		public void setVerboseMode() {
+		public void setVerboseMode()
+		{
 			functionExpression.setVerboseMode();
 		}
 		/**
 		 * Disables function verbose mode (sets default silent mode)
 		 */
-		public void setSilentMode() {
+		public void setSilentMode()
+		{
 			functionExpression.setSilentMode();
 		}
 		/**
@@ -1143,20 +1257,24 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @return     true if verbose mode is on,
 		 *             otherwise returns false
 		 */
-		public bool getVerboseMode() {
+		public bool getVerboseMode()
+		{
 			return functionExpression.getVerboseMode();
 		}
 		/**
 		 * Checks whether function name appears in function body
 		 * if yes the recursive mode is being set
 		 */
-		internal void checkRecursiveMode() {
-			if (functionBodyType == Function.BODY_RUNTIME) {
+		internal void checkRecursiveMode()
+		{
+			if (functionBodyType == Function.BODY_RUNTIME)
+			{
 				List<Token> functionExpressionTokens = functionExpression.getInitialTokens();
 				functionExpression.disableRecursiveMode();
 				if (functionExpressionTokens != null)
 					foreach (Token t in functionExpressionTokens)
-						if (t.tokenStr.Equals(functionName)) {
+						if (t.tokenStr.Equals(functionName))
+						{
 							functionExpression.setRecursiveMode();
 							break;
 						}
@@ -1169,7 +1287,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *             otherwise returns false
 		 *
 		 */
-		public bool getRecursiveMode() {
+		public bool getRecursiveMode()
+		{
 			return functionExpression.getRecursiveMode();
 		}
 		/**
@@ -1177,7 +1296,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @return     computing time in seconds.
 		 */
-		public double getComputingTime() {
+		public double getComputingTime()
+		{
 			return functionExpression.getComputingTime();
 		}
 		/**
@@ -1185,7 +1305,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @param      expression          the related expression
 		 */
-		internal void addRelatedExpression(Expression expression) {
+		internal void addRelatedExpression(Expression expression)
+		{
 			if (functionBodyType == Function.BODY_RUNTIME)
 				functionExpression.addRelatedExpression(expression);
 		}
@@ -1194,14 +1315,16 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @param      expression          the related expression
 		 */
-		internal void removeRelatedExpression(Expression expression) {
+		internal void removeRelatedExpression(Expression expression)
+		{
 			if (functionBodyType == Function.BODY_RUNTIME)
 				functionExpression.removeRelatedExpression(expression);
 		}
 		/**
 		 * Set expression modified flags in the related expressions.
 		 */
-		internal void setExpressionModifiedFlags() {
+		internal void setExpressionModifiedFlags()
+		{
 			if (functionBodyType == Function.BODY_RUNTIME)
 				functionExpression.setExpressionModifiedFlag();
 		}

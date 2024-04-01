@@ -55,7 +55,8 @@
  */
 using System;
 
-namespace org.dninosores.mariuszgromada.math.mxparser.parsertokens {
+namespace org.ollyisonit.mariuszgromada.math.mxparser.parsertokens
+{
     /**
      * Class representing key words knowon to the parser
      *
@@ -79,15 +80,17 @@ namespace org.dninosores.mariuszgromada.math.mxparser.parsertokens {
      * @version        4.1.0
      */
     [CLSCompliant(false)]
-    public class KeyWord {
-		public const int NO_DEFINITION = ConstantValue.NaN;
-		public String wordString;
+    public class KeyWord
+    {
+        public const int NO_DEFINITION = ConstantValue.NaN;
+        public String wordString;
         public int wordId;
         public int wordTypeId;
         public String description;
         public String syntax;
         public String since;
-        public KeyWord() {
+        public KeyWord()
+        {
             wordString = "";
             wordId = NO_DEFINITION;
             wordTypeId = NO_DEFINITION;
@@ -106,7 +109,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.parsertokens {
 		 * @param syntax       the word syntax
 		 * @param since        the word version since
 		 */
-        public KeyWord(String wordString, String description, int wordId, String syntax, String since, int wordTypeId) {
+        public KeyWord(String wordString, String description, int wordId, String syntax, String since, int wordTypeId)
+        {
             this.wordString = wordString;
             this.wordId = wordId;
             this.wordTypeId = wordTypeId;

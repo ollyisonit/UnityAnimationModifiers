@@ -55,7 +55,8 @@
  */
 using System;
 
-namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
+namespace org.ollyisonit.mariuszgromada.math.mxparser.mathcollection
+{
 	/**
 	 * MathConstants - class representing the most important math constants.
 	 *
@@ -79,7 +80,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 	 * @version        4.3.4
 	 */
 	[CLSCompliant(false)]
-	public sealed class MathConstants {
+	public sealed class MathConstants
+	{
 		/**
 		 * Pi, Archimedes' constant or Ludolph's number
 		 */

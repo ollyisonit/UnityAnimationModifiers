@@ -55,7 +55,8 @@
  */
 using System;
 
-namespace org.dninosores.mariuszgromada.math.mxparser.parsertokens {
+namespace org.ollyisonit.mariuszgromada.math.mxparser.parsertokens
+{
 	/**
 	 * Bitwise Operators - mXparser tokens definition.
 	 *
@@ -79,56 +80,57 @@ namespace org.dninosores.mariuszgromada.math.mxparser.parsertokens {
 	 * @version        4.2.0
 	 */
 	[CLSCompliant(false)]
-	public sealed class BitwiseOperator {
+	public sealed class BitwiseOperator
+	{
 		/*
 		 * BitwiseOperator - token type id.
 		 */
-		public const int TYPE_ID 				= 11;
-		public const String TYPE_DESC			= "Bitwise Operator";
+		public const int TYPE_ID = 11;
+		public const String TYPE_DESC = "Bitwise Operator";
 		/*
 		 * BitwiseOperator - tokens id.
 		 */
-		public const int COMPL_ID				= 1;
-		public const int AND_ID					= 2;
-		public const int XOR_ID					= 3;
-		public const int OR_ID					= 4;
-		public const int LEFT_SHIFT_ID			= 5;
-		public const int RIGHT_SHIFT_ID			= 6;
+		public const int COMPL_ID = 1;
+		public const int AND_ID = 2;
+		public const int XOR_ID = 3;
+		public const int OR_ID = 4;
+		public const int LEFT_SHIFT_ID = 5;
+		public const int RIGHT_SHIFT_ID = 6;
 		/*
 		 * BitwiseOperator - tokens key words.
 		 */
-		public const String COMPL_STR			= "@~";
-		public const String AND_STR				= "@&";
-		public const String XOR_STR				= "@^";
-		public const String OR_STR				= "@|";
-		public const String LEFT_SHIFT_STR		= "@<<";
-		public const String RIGHT_SHIFT_STR		= "@>>";
+		public const String COMPL_STR = "@~";
+		public const String AND_STR = "@&";
+		public const String XOR_STR = "@^";
+		public const String OR_STR = "@|";
+		public const String LEFT_SHIFT_STR = "@<<";
+		public const String RIGHT_SHIFT_STR = "@>>";
 		/*
 		 * BitwiseOperator - syntax.
 		 */
-		public const String COMPL_SYN			= "@~a";
-		public const String AND_SYN				= "a @& b";
-		public const String XOR_SYN				= "a @^ b";
-		public const String OR_SYN				= "a @| b";
-		public const String LEFT_SHIFT_SYN		= "a @<< b";
-		public const String RIGHT_SHIFT_SYN		= "a @>> b";
+		public const String COMPL_SYN = "@~a";
+		public const String AND_SYN = "a @& b";
+		public const String XOR_SYN = "a @^ b";
+		public const String OR_SYN = "a @| b";
+		public const String LEFT_SHIFT_SYN = "a @<< b";
+		public const String RIGHT_SHIFT_SYN = "a @>> b";
 		/*
 		 * BitwiseOperator - tokens description.
 		 */
-		public const String COMPL_DESC			= "Bitwise unary complement";
-		public const String AND_DESC			= "Bitwise AND";
-		public const String XOR_DESC			= "Bitwise exclusive OR";
-		public const String OR_DESC				= "Bitwise inclusive OR";
-		public const String LEFT_SHIFT_DESC		= "Signed left shift";
-		public const String RIGHT_SHIFT_DESC	= "Signed right shift";
+		public const String COMPL_DESC = "Bitwise unary complement";
+		public const String AND_DESC = "Bitwise AND";
+		public const String XOR_DESC = "Bitwise exclusive OR";
+		public const String OR_DESC = "Bitwise inclusive OR";
+		public const String LEFT_SHIFT_DESC = "Signed left shift";
+		public const String RIGHT_SHIFT_DESC = "Signed right shift";
 		/*
 		 * BitwiseOperator - tokens since.
 		 */
-		public const String COMPL_SINCE			= mXparser.NAMEv40;
-		public const String AND_SINCE			= mXparser.NAMEv40;
-		public const String XOR_SINCE			= mXparser.NAMEv40;
-		public const String OR_SINCE			= mXparser.NAMEv40;
-		public const String LEFT_SHIFT_SINCE	= mXparser.NAMEv40;
-		public const String RIGHT_SHIFT_SINCE	= mXparser.NAMEv40;
+		public const String COMPL_SINCE = mXparser.NAMEv40;
+		public const String AND_SINCE = mXparser.NAMEv40;
+		public const String XOR_SINCE = mXparser.NAMEv40;
+		public const String OR_SINCE = mXparser.NAMEv40;
+		public const String LEFT_SHIFT_SINCE = mXparser.NAMEv40;
+		public const String RIGHT_SHIFT_SINCE = mXparser.NAMEv40;
 	}
 }

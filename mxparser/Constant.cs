@@ -53,11 +53,12 @@
  *                              Asked if he believes in one God, a mathematician answered:
  *                              "Yes, up to isomorphism."
  */
-using org.dninosores.mariuszgromada.math.mxparser.parsertokens;
+using org.ollyisonit.mariuszgromada.math.mxparser.parsertokens;
 using System;
 using System.Collections.Generic;
 
-namespace org.dninosores.mariuszgromada.math.mxparser {
+namespace org.ollyisonit.mariuszgromada.math.mxparser
+{
 	/**
 	 * Constant class provides ability to declare constants.
 	 * Constants can be used in further processing by any expression,
@@ -98,7 +99,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 	 *
 	 */
 	[CLSCompliant(false)]
-	public class Constant : PrimitiveElement {
+	public class Constant : PrimitiveElement
+	{
 		/**
 		 * When constant could not be found
 		 */
@@ -106,8 +108,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		/**
 		 * Type identifier for constants
 		 */
-		public const int TYPE_ID			= 104;
-		public const String TYPE_DESC		= "User defined constant";
+		public const int TYPE_ID = 104;
+		public const String TYPE_DESC = "User defined constant";
 		/**
 		 * Status of the Expression syntax
 		 */
@@ -149,15 +151,19 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @param      constantName        the constant name
 		 * @param      constantValue       the constant value
 		 */
-		public Constant(String constantName, double constantValue) : base(Constant.TYPE_ID) {
+		public Constant(String constantName, double constantValue) : base(Constant.TYPE_ID)
+		{
 			relatedExpressionsList = new List<Expression>();
-			if (mXparser.regexMatch(constantName, ParserSymbol.nameOnlyTokenOptBracketsRegExp)) {
+			if (mXparser.regexMatch(constantName, ParserSymbol.nameOnlyTokenOptBracketsRegExp))
+			{
 				this.constantName = constantName;
 				this.constantValue = constantValue;
 				description = "";
 				syntaxStatus = NO_SYNTAX_ERRORS;
 				errorMessage = NO_SYNTAX_ERROR_MSG;
-			} else {
+			}
+			else
+			{
 				syntaxStatus = SYNTAX_ERROR_OR_STATUS_UNKNOWN;
 				errorMessage = "[" + constantName + "] " + "--> invalid constant name, pattern not mathes: " + ParserSymbol.nameTokenRegExp; ;
 			}
@@ -170,16 +176,19 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @param      constantValue       the constant value
 		 * @param      description         the constant description
 		 */
-		public Constant(String constantName, double constantValue, String description) : base(Constant.TYPE_ID) {
+		public Constant(String constantName, double constantValue, String description) : base(Constant.TYPE_ID)
+		{
 			relatedExpressionsList = new List<Expression>();
-			if (mXparser.regexMatch(constantName, ParserSymbol.nameOnlyTokenOptBracketsRegExp)) {
+			if (mXparser.regexMatch(constantName, ParserSymbol.nameOnlyTokenOptBracketsRegExp))
+			{
 				this.constantName = constantName;
 				this.constantValue = constantValue;
 				this.description = description;
 				syntaxStatus = NO_SYNTAX_ERRORS;
 				errorMessage = NO_SYNTAX_ERROR_MSG;
 			}
-			else {
+			else
+			{
 				syntaxStatus = SYNTAX_ERROR_OR_STATUS_UNKNOWN;
 				errorMessage = "[" + constantName + "] " + "--> invalid constant name, pattern not mathes: " + ParserSymbol.nameTokenRegExp; ;
 			}
@@ -194,7 +203,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *                                      of one String, ie "c = 2" or "c = 2*sin(pi/3)"
 		 * @param      elements   Optional parameters (comma separated) such as Arguments, Constants, Functions
 		 */
-		public Constant(String constantDefinitionString, params PrimitiveElement[] elements) : base(Constant.TYPE_ID) {
+		public Constant(String constantDefinitionString, params PrimitiveElement[] elements) : base(Constant.TYPE_ID)
+		{
 			description = "";
 			syntaxStatus = SYNTAX_ERROR_OR_STATUS_UNKNOWN;
 			relatedExpressionsList = new List<Expression>();
@@ -214,7 +224,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @return     the constant name as string.
 		 */
-		public String getConstantName() {
+		public String getConstantName()
+		{
 			return constantName;
 		}
 		/**
@@ -223,12 +234,15 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @param      constantName        the constant name
 		 */
-		public void setConstantName(String constantName) {
-			if (mXparser.regexMatch(constantName, ParserSymbol.nameOnlyTokenOptBracketsRegExp)) {
+		public void setConstantName(String constantName)
+		{
+			if (mXparser.regexMatch(constantName, ParserSymbol.nameOnlyTokenOptBracketsRegExp))
+			{
 				this.constantName = constantName;
 				setExpressionModifiedFlags();
 			}
-			else {
+			else
+			{
 				syntaxStatus = SYNTAX_ERROR_OR_STATUS_UNKNOWN;
 				errorMessage = "[" + constantName + "] " + "--> invalid constant name, pattern not mathes: " + ParserSymbol.nameTokenRegExp; ;
 			}
@@ -237,7 +251,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * Sets constant value
 		 * @param value   constant value
 		 */
-		public void setConstantValue(double constantValue) {
+		public void setConstantValue(double constantValue)
+		{
 			this.constantValue = constantValue;
 		}
 		/**
@@ -245,7 +260,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @return     constant value as double
 		 */
-		public double getConstantValue() {
+		public double getConstantValue()
+		{
 			return constantValue;
 		}
 		/**
@@ -253,7 +269,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @return     constant description as string.
 		 */
-		public String getDescription() {
+		public String getDescription()
+		{
 			return description;
 		}
 		/**
@@ -261,7 +278,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @param      description         the constant description
 		 */
-		public void setDescription(String description) {
+		public void setDescription(String description)
+		{
 			this.description = description;
 		}
 		/**
@@ -269,7 +287,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @return     Error message as string.
 		 */
-		public String getErrorMessage() {
+		public String getErrorMessage()
+		{
 			return errorMessage;
 		}
 		/**
@@ -279,7 +298,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *             ConstantValue.SYNTAX_ERROR_OR_STATUS_UNKNOWN when syntax error was found or
 		 *             syntax status is unknown
 		 */
-		public bool getSyntaxStatus() {
+		public bool getSyntaxStatus()
+		{
 			return this.syntaxStatus;
 		}
 		/**
@@ -287,9 +307,10 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @param      expression          the related expression.
 		 */
-		internal void addRelatedExpression(Expression expression) {
+		internal void addRelatedExpression(Expression expression)
+		{
 			if (expression != null)
-				if ( !relatedExpressionsList.Contains(expression) )
+				if (!relatedExpressionsList.Contains(expression))
 					relatedExpressionsList.Add(expression);
 		}
 		/**
@@ -297,14 +318,16 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @param      expression          the related expression.
 		 */
-		internal void removeRelatedExpression(Expression expression) {
+		internal void removeRelatedExpression(Expression expression)
+		{
 			if (expression != null)
 				relatedExpressionsList.Remove(expression);
 		}
 		/**
 		 * Sets expression modified flag to each related expression.
 		 */
-		void setExpressionModifiedFlags() {
+		void setExpressionModifiedFlags()
+		{
 			foreach (Expression e in relatedExpressionsList)
 				e.setExpressionModifiedFlag();
 		}

@@ -55,7 +55,8 @@
  */
 using System;
 
-namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
+namespace org.ollyisonit.mariuszgromada.math.mxparser.mathcollection
+{
 	/**
 	 * Class for generating prime numbers cache using
 	 * Eratosthenes Sieve.
@@ -80,7 +81,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 	 * @version        4.4.2
 	 */
 	[CLSCompliant(false)]
-	public class PrimesCache {
+	public class PrimesCache
+	{
 		/**
 		 * Default range of integer to store in cache
 		 */
@@ -137,16 +139,19 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		/**
 		 * Eratosthenes Sieve implementation
 		 */
-		private void EratosthenesSieve() {
+		private void EratosthenesSieve()
+		{
 			long startTime = mXparser.currentTimeMillis();
-			try {
-				int size = maxNumInCache+1;
-				if (size <= 0) {
+			try
+			{
+				int size = maxNumInCache + 1;
+				if (size <= 0)
+				{
 					numberOfPrimes = 0;
 					maxNumInCache = 0;
 					initSuccessful = false;
 					long endTime = mXparser.currentTimeMillis();
-					computingTime = (endTime - startTime)/1000.0;
+					computingTime = (endTime - startTime) / 1000.0;
 					return;
 				}
 				isPrime = new bool[size];
@@ -156,34 +161,43 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 				 */
 				isPrime[0] = false;
 				isPrime[1] = false;
-				for (int i = 2; i <= maxNumInCache; i++) {
+				for (int i = 2; i <= maxNumInCache; i++)
+				{
 					isPrime[i] = true;
 					if (mXparser.isCurrentCalculationCancelled()) return;
 				}
 				/*
 				 * Sieve of Eratosthenes - marking non-primes
 				 */
-				for (int i = 2; i*i <= maxNumInCache; i++) {
+				for (int i = 2; i * i <= maxNumInCache; i++)
+				{
 					if (mXparser.isCurrentCalculationCancelled()) return;
 					if (isPrime[i] == true)
-						for (int j = i; i*j <= maxNumInCache; j++) {
-							isPrime[i*j] = false;
+						for (int j = i; i * j <= maxNumInCache; j++)
+						{
+							isPrime[i * j] = false;
 							if (mXparser.isCurrentCalculationCancelled()) return;
 						}
 				}
 				initSuccessful = true;
-			} catch (OutOfMemoryException) {
+			}
+			catch (OutOfMemoryException)
+			{
 				initSuccessful = false;
-			} finally {
+			}
+			finally
+			{
 				long endTime = mXparser.currentTimeMillis();
-				computingTime = (endTime - startTime)/1000.0;
+				computingTime = (endTime - startTime) / 1000.0;
 			}
 		}
 		/**
 		 * Counting found primes
 		 */
-		private void countPrimes() {
-			for (int i = 0; i <= maxNumInCache; i++) {
+		private void countPrimes()
+		{
+			for (int i = 0; i <= maxNumInCache; i++)
+			{
 				if (isPrime[i] == true) numberOfPrimes++;
 				if (mXparser.isCurrentCalculationCancelled()) return;
 			}
@@ -191,15 +205,19 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		/**
 		 * Default constructor - setting prime cache for a default range if integers
 		 */
-		public PrimesCache() {
+		public PrimesCache()
+		{
 			initSuccessful = false;
 			cacheStatus = CACHE_EMPTY;
 			maxNumInCache = DEFAULT_MAX_NUM_IN_CACHE;
 			EratosthenesSieve();
-			if (initSuccessful) {
+			if (initSuccessful)
+			{
 				countPrimes();
 				cacheStatus = CACHING_FINISHED;
-			} else {
+			}
+			else
+			{
 				maxNumInCache = 0;
 				numberOfPrimes = 0;
 			}
@@ -208,7 +226,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * Constructor - setting prime cache for a given range if integers
 		 * @param maxNumInCache Range of integers to be stored in prime cache
 		 */
-		public PrimesCache(int maxNumInCache) {
+		public PrimesCache(int maxNumInCache)
+		{
 			if (maxNumInCache > 2)
 				this.maxNumInCache = Math.Min(maxNumInCache, int.MaxValue - 1);
 			else
@@ -217,10 +236,13 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 			cacheStatus = CACHE_EMPTY;
 			maxNumInCache = DEFAULT_MAX_NUM_IN_CACHE;
 			EratosthenesSieve();
-			if (initSuccessful) {
+			if (initSuccessful)
+			{
 				countPrimes();
 				cacheStatus = CACHING_FINISHED;
-			} else {
+			}
+			else
+			{
 				maxNumInCache = 0;
 				numberOfPrimes = 0;
 			}
@@ -229,28 +251,32 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * Returns computing time of Eratosthenes Sieve
 		 * @return Computing time in seconds
 		 */
-		public double getComputingTime() {
+		public double getComputingTime()
+		{
 			return computingTime;
 		}
 		/**
 		 * Returns cache status
 		 * @return PrimesCache.CACHE_EMPTY or PrimesCache.CACHING_FINISHED;
 		 */
-		public bool getCacheStatus() {
+		public bool getCacheStatus()
+		{
 			return cacheStatus;
 		}
 		/**
 		 * Returns number of found primes.
 		 * @return Number of found primes.
 		 */
-		public int getNumberOfPrimes() {
+		public int getNumberOfPrimes()
+		{
 			return numberOfPrimes;
 		}
 		/**
 		 * Returns cache range.
 		 * @return Maximum integera number in cache/
 		 */
-		public int getMaxNumInCache() {
+		public int getMaxNumInCache()
+		{
 			return maxNumInCache;
 		}
 		/**
@@ -258,10 +284,11 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @param n Given integer number.
 		 * @return PrimesCache.IS_PRIME or PrimesCache.IS_NOT_PRIME or PrimesCache.NOT_IN_CACHE
 		 */
-		public int primeTest(int n) {
+		public int primeTest(int n)
+		{
 			if (n <= 1) return IS_NOT_PRIME;
-			if ( (n <= maxNumInCache) && (cacheStatus = CACHING_FINISHED) )
-				if ( isPrime[n] == true)
+			if ((n <= maxNumInCache) && (cacheStatus = CACHING_FINISHED))
+				if (isPrime[n] == true)
 					return IS_PRIME;
 				else
 					return IS_NOT_PRIME;
@@ -275,14 +302,16 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @return Returns true in case when primes cache initialization was successful,
 		 * otherwise returns false.
 		 */
-		public bool isInitSuccessful() {
+		public bool isInitSuccessful()
+		{
 			return initSuccessful;
 		}
 		/**
 		 * Gets underlying primes cache boolean table
 		 * @return Underlying primes cache boolean table
 		 */
-		bool[] getPrimes() {
+		bool[] getPrimes()
+		{
 			return isPrime;
 		}
 	}

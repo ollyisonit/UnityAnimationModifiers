@@ -55,7 +55,8 @@
  */
 using System;
 
-namespace org.dninosores.mariuszgromada.math.mxparser.regressiontesting {
+namespace org.ollyisonit.mariuszgromada.math.mxparser.regressiontesting
+{
 	/**
 	 * Use this class to run one of the following test
 	 * <ul>
@@ -85,7 +86,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.regressiontesting {
 	 *
 	 * @version        4.3.0
 	 */
-	public class RunTest {
+	public class RunTest
+	{
 		/**
 		 * Use this class to run one of the following test
 		 * <ul>
@@ -99,11 +101,14 @@ namespace org.dninosores.mariuszgromada.math.mxparser.regressiontesting {
 		 *              Param: syn - Syntax checking test, perf - Performance test
 		 * @return Number of tests with error result.
 		 */
-		public static int Start(params string[] args) {
+		public static int Start(params string[] args)
+		{
 			int nError = 0;
 			if (args != null)
-				foreach (String test in args) {
-					if (test.Equals("reg")) {
+				foreach (String test in args)
+				{
+					if (test.Equals("reg"))
+					{
 						mXparser.consolePrintln();
 						mXparser.consolePrintln();
 						mXparser.consolePrintln("====================================================================");
@@ -114,7 +119,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.regressiontesting {
 						mXparser.consolePrintln();
 						mXparser.consolePrintln();
 					}
-					if (test.Equals("api")) {
+					if (test.Equals("api"))
+					{
 						mXparser.consolePrintln();
 						mXparser.consolePrintln();
 						mXparser.consolePrintln("====================================================================");
@@ -125,7 +131,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.regressiontesting {
 						mXparser.consolePrintln();
 						mXparser.consolePrintln();
 					}
-					if (test.Equals("syn")) {
+					if (test.Equals("syn"))
+					{
 						mXparser.consolePrintln();
 						mXparser.consolePrintln();
 						mXparser.consolePrintln("====================================================================");
@@ -136,7 +143,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.regressiontesting {
 						mXparser.consolePrintln();
 						mXparser.consolePrintln();
 					}
-					if (test.Equals("perf")) {
+					if (test.Equals("perf"))
+					{
 						mXparser.consolePrintln();
 						mXparser.consolePrintln();
 						mXparser.consolePrintln("====================================================================");
@@ -163,7 +171,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.regressiontesting {
 		 * @param args  reg - Expression regression test, api - mXparser API test
 		 *              Param: syn - Syntax checking test, perf - Performance test
 		 */
-		public static void Main(string[] args) {
+		public static void Main(string[] args)
+		{
 			Start(args);
 			mXparser.resetCancelCurrentCalculationFlag();
 		}

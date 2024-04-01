@@ -1,8 +1,8 @@
-﻿using dninosores.UnityEditorAttributes;
+﻿using ollyisonit.UnityEditorAttributes;
 using System;
 using UnityEngine;
 
-namespace dninosores.UnityAnimationModifiers
+namespace ollyisonit.UnityAnimationModifiers
 {
 	/// <summary>
 	/// Modifier that generates random values using Perlin noise.

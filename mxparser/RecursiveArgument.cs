@@ -53,11 +53,12 @@
  *                              Asked if he believes in one God, a mathematician answered:
  *                              "Yes, up to isomorphism."
  */
-using org.dninosores.mariuszgromada.math.mxparser.parsertokens;
+using org.ollyisonit.mariuszgromada.math.mxparser.parsertokens;
 using System;
 using System.Collections.Generic;
 
-namespace org.dninosores.mariuszgromada.math.mxparser {
+namespace org.ollyisonit.mariuszgromada.math.mxparser
+{
 	/**
 	 * RecursiveArgument class enables to declare the argument
 	 * (variable) which is defined in a recursive way. Such an argument
@@ -113,12 +114,13 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 	 * @see Constant
 	 */
 	[CLSCompliant(false)]
-	public class RecursiveArgument : Argument {
+	public class RecursiveArgument : Argument
+	{
 		/**
 		 * Type identifier for recursive arguments.
 		 */
-		public const int TYPE_ID_RECURSIVE			= 102;
-		public const String TYPE_DESC_RECURSIVE		= "User defined recursive argument";
+		public const int TYPE_ID_RECURSIVE = 102;
+		public const String TYPE_DESC_RECURSIVE = "User defined recursive argument";
 		/**
 		 * Base values
 		 */
@@ -138,7 +140,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		public RecursiveArgument(String argumentName, String recursiveExpressionString, String indexName)
 			: base(argumentName, recursiveExpressionString)
 		{
-			if (argumentName.Equals(this.getArgumentName())) {
+			if (argumentName.Equals(this.getArgumentName()))
+			{
 				this.argumentType = RECURSIVE_ARGUMENT;
 				baseValues = new List<Double>();
 				this.n = new Argument(indexName);
@@ -163,7 +166,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		public RecursiveArgument(String argumentName, String recursiveExpressionString, Argument n, params PrimitiveElement[] elements)
 			: base(argumentName, recursiveExpressionString)
 		{
-			if (argumentName.Equals(this.getArgumentName())) {
+			if (argumentName.Equals(this.getArgumentName()))
+			{
 				this.argumentType = RECURSIVE_ARGUMENT;
 				baseValues = new List<Double>();
 				this.n = n;
@@ -195,7 +199,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 */
 		public RecursiveArgument(String argumentDefinitionString, params PrimitiveElement[] elements) : base(argumentDefinitionString)
 		{
-			if (mXparser.regexMatch(argumentDefinitionString, ParserSymbol.function1ArgDefStrRegExp)) {
+			if (mXparser.regexMatch(argumentDefinitionString, ParserSymbol.function1ArgDefStrRegExp))
+			{
 				this.argumentType = RECURSIVE_ARGUMENT;
 				baseValues = new List<Double>();
 				recursiveCounter = -1;
@@ -204,7 +209,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 				base.argumentExpression.addDefinitions(elements);
 				base.argumentExpression.setDescription(argumentDefinitionString);
 			}
-			else {
+			else
+			{
 				base.argumentExpression = new Expression();
 				base.argumentExpression.setSyntaxStatus(SYNTAX_ERROR_OR_STATUS_UNKNOWN, "[" + argumentDefinitionString + "] " + "Invalid argument definition (patterns: f(n) = f(n-1) ...  ).");
 			}
@@ -215,16 +221,19 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @param      index               the base case index
 		 * @param      value               the base case value
 		 */
-		public void addBaseCase(int index, double value) {
+		public void addBaseCase(int index, double value)
+		{
 			int recSize = baseValues.Count;
-			if (index > recSize-1) {
+			if (index > recSize - 1)
+			{
 				/*
 				 * Expand base values array if necessary
 				 */
 				for (int i = recSize; i < index; i++)
-					baseValues.Add( Double.NaN );
+					baseValues.Add(Double.NaN);
 				baseValues.Add(value);
-			} else
+			}
+			else
 				baseValues[index] = value;
 		}
 		/**
@@ -242,7 +251,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 *
 		 * @return     value as double
 		 */
-		public double getArgumentValue(double index) {
+		public double getArgumentValue(double index)
+		{
 			/*
 			 * Remember starting index
 			 */
@@ -254,12 +264,14 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 			 * Count recursive calls
 			 */
 			recursiveCounter++;
-			if ((recursiveCounter <= startingIndex) && (idx <= startingIndex)) {
+			if ((recursiveCounter <= startingIndex) && (idx <= startingIndex))
+			{
 				/*
 				 * if recursive counter is still lower than starting index
 				 * and current index is not increasing
 				 */
-				if ((idx >= 0) && (idx < recSize) && (!Double.IsNaN( baseValues[idx] )) ) {
+				if ((idx >= 0) && (idx < recSize) && (!Double.IsNaN(baseValues[idx])))
+				{
 					/*
 					 * decrease recursive counter and return value
 					 * if recursive value for the current index was already
@@ -268,7 +280,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 					recursiveCounter--;
 					return baseValues[idx];
 				}
-				else if (idx >= 0) {
+				else if (idx >= 0)
+				{
 					/*
 					 * value is to be calculated by the recursive calls
 					 */
@@ -281,12 +294,12 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 					 */
 					Expression newExp = new Expression(
 							base.argumentExpression.expressionString
-							,base.argumentExpression.argumentsList
-							,base.argumentExpression.functionsList
-							,base.argumentExpression.constantsList
-							,Expression.INTERNAL
-							,base.argumentExpression.UDFExpression
-							,base.argumentExpression.UDFVariadicParamsAtRunTime);
+							, base.argumentExpression.argumentsList
+							, base.argumentExpression.functionsList
+							, base.argumentExpression.constantsList
+							, Expression.INTERNAL
+							, base.argumentExpression.UDFExpression
+							, base.argumentExpression.UDFVariadicParamsAtRunTime);
 					newExp.setDescription(base.getArgumentName());
 					//newExp.setRecursiveMode();
 					if (base.getVerboseMode() == true)
@@ -307,7 +320,9 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 					 */
 					recursiveCounter--;
 					return value;
-				} else {
+				}
+				else
+				{
 					/*
 					 * decrease recursive counter and
 					 * return Double.NaN for negative index call
@@ -315,7 +330,9 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 					recursiveCounter--;
 					return Double.NaN;
 				}
-			} else {
+			}
+			else
+			{
 				/* stop never ending loop
 				 * decrease recursive counter and
 				 * return Double.NaN

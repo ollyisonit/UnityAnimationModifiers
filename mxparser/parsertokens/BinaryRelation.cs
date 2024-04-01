@@ -55,7 +55,8 @@
  */
 using System;
 
-namespace org.dninosores.mariuszgromada.math.mxparser.parsertokens {
+namespace org.ollyisonit.mariuszgromada.math.mxparser.parsertokens
+{
 	/**
 	 * Binary Relations - mXparser tokens definition.
 	 *
@@ -79,62 +80,63 @@ namespace org.dninosores.mariuszgromada.math.mxparser.parsertokens {
 	 * @version        4.1.0
 	 */
 	[CLSCompliant(false)]
-	public sealed class BinaryRelation {
+	public sealed class BinaryRelation
+	{
 		/*
 		 * BinaryRelation - token type id.
 		 */
-		public const int TYPE_ID				= 3;
-		public const String TYPE_DESC			= "Binary Relation";
+		public const int TYPE_ID = 3;
+		public const String TYPE_DESC = "Binary Relation";
 		/*
 		 * BinaryRelation - tokens id.
 		 */
-		public const int EQ_ID					= 1;
-		public const int NEQ_ID					= 2;
-		public const int LT_ID					= 3;
-		public const int GT_ID					= 4;
-		public const int LEQ_ID					= 5;
-		public const int GEQ_ID					= 6;
+		public const int EQ_ID = 1;
+		public const int NEQ_ID = 2;
+		public const int LT_ID = 3;
+		public const int GT_ID = 4;
+		public const int LEQ_ID = 5;
+		public const int GEQ_ID = 6;
 		/*
 		 * BinaryRelation - tokens key words.
 		 */
-		public const String EQ_STR 				= "=";
-		public const String EQ1_STR 			= "==";
-		public const String NEQ_STR 			= "<>";
-		public const String NEQ1_STR 			= "~=";
-		public const String NEQ2_STR 			= "!=";
-		public const String LT_STR 				= "<";
-		public const String GT_STR 				= ">";
-		public const String LEQ_STR 			= "<=";
-		public const String GEQ_STR 			= ">=";
+		public const String EQ_STR = "=";
+		public const String EQ1_STR = "==";
+		public const String NEQ_STR = "<>";
+		public const String NEQ1_STR = "~=";
+		public const String NEQ2_STR = "!=";
+		public const String LT_STR = "<";
+		public const String GT_STR = ">";
+		public const String LEQ_STR = "<=";
+		public const String GEQ_STR = ">=";
 		/*
 		 * BinaryRelation - syntax.
 		 */
-		public const String EQ_SYN 				= "a = b";
-		public const String EQ1_SYN 			= "a == b";
-		public const String NEQ_SYN 			= "a <> b";
-		public const String NEQ1_SYN 			= "a ~= b";
-		public const String NEQ2_SYN 			= "a != b";
-		public const String LT_SYN 				= "a < b";
-		public const String GT_SYN 				= "a > b";
-		public const String LEQ_SYN 			= "a <= b";
-		public const String GEQ_SYN 			= "a >= b";
+		public const String EQ_SYN = "a = b";
+		public const String EQ1_SYN = "a == b";
+		public const String NEQ_SYN = "a <> b";
+		public const String NEQ1_SYN = "a ~= b";
+		public const String NEQ2_SYN = "a != b";
+		public const String LT_SYN = "a < b";
+		public const String GT_SYN = "a > b";
+		public const String LEQ_SYN = "a <= b";
+		public const String GEQ_SYN = "a >= b";
 		/*
 		 * BinaryRelation - tokens description.
 		 */
-		public const String EQ_DESC 			= "Equality";
-		public const String NEQ_DESC			= "Inequation";
-		public const String LT_DESC 			= "Lower than";
-		public const String GT_DESC 			= "Greater than";
-		public const String LEQ_DESC 			= "Lower or equal";
-		public const String GEQ_DESC 			= "Greater or equal";
+		public const String EQ_DESC = "Equality";
+		public const String NEQ_DESC = "Inequation";
+		public const String LT_DESC = "Lower than";
+		public const String GT_DESC = "Greater than";
+		public const String LEQ_DESC = "Lower or equal";
+		public const String GEQ_DESC = "Greater or equal";
 		/*
 		 * BinaryRelation - since.
 		 */
-		public const String EQ_SINCE			= mXparser.NAMEv10;
-		public const String NEQ_SINCE			= mXparser.NAMEv10;
-		public const String LT_SINCE 			= mXparser.NAMEv10;
-		public const String GT_SINCE			= mXparser.NAMEv10;
-		public const String LEQ_SINCE 			= mXparser.NAMEv10;
-		public const String GEQ_SINCE 			= mXparser.NAMEv10;
+		public const String EQ_SINCE = mXparser.NAMEv10;
+		public const String NEQ_SINCE = mXparser.NAMEv10;
+		public const String LT_SINCE = mXparser.NAMEv10;
+		public const String GT_SINCE = mXparser.NAMEv10;
+		public const String LEQ_SINCE = mXparser.NAMEv10;
+		public const String GEQ_SINCE = mXparser.NAMEv10;
 	}
 }

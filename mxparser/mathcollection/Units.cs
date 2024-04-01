@@ -55,7 +55,8 @@
  */
 using System;
 
-namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
+namespace org.ollyisonit.mariuszgromada.math.mxparser.mathcollection
+{
 	/**
 	 * Units - class representing the most important units (length, area, volume, mass).
 	 *
@@ -79,7 +80,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 	 * @version        4.2.0
 	 */
 	[CLSCompliant(false)]
-	public sealed class Units {
+	public sealed class Units
+	{
 		/* ===========================================
 		 * Units prefixes
 		 * ===========================================
@@ -370,7 +372,7 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 */
 		public const double AMPERE = COULOMB / SECOND;
 
-        /* ===========================================
+		/* ===========================================
          * Units of Temperature
          * ===========================================
          */

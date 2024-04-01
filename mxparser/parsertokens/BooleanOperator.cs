@@ -55,7 +55,8 @@
  */
 using System;
 
-namespace org.dninosores.mariuszgromada.math.mxparser.parsertokens {
+namespace org.ollyisonit.mariuszgromada.math.mxparser.parsertokens
+{
 	/**
 	 * Boolean Operators - mXparser tokens definition.
 	 *
@@ -79,97 +80,98 @@ namespace org.dninosores.mariuszgromada.math.mxparser.parsertokens {
 	 * @version        4.1.0
 	 */
 	[CLSCompliant(false)]
-	public sealed class BooleanOperator {
+	public sealed class BooleanOperator
+	{
 		/*
 		 * BooleanOperator - token type id.
 		 */
-		public const int TYPE_ID				= 2;
-		public const String TYPE_DESC			= "Boolean Operator";
+		public const int TYPE_ID = 2;
+		public const String TYPE_DESC = "Boolean Operator";
 		/*
 		 * BooleanOperator - tokens id.
 		 */
-		public const int AND_ID					= 1;
-		public const int NAND_ID				= 2;
-		public const int OR_ID					= 3;
-		public const int NOR_ID					= 4;
-		public const int XOR_ID					= 5;
-		public const int IMP_ID					= 6;
-		public const int CIMP_ID				= 7;
-		public const int NIMP_ID				= 8;
-		public const int CNIMP_ID				= 9;
-		public const int EQV_ID					= 10;
-		public const int NEG_ID					= 11;
+		public const int AND_ID = 1;
+		public const int NAND_ID = 2;
+		public const int OR_ID = 3;
+		public const int NOR_ID = 4;
+		public const int XOR_ID = 5;
+		public const int IMP_ID = 6;
+		public const int CIMP_ID = 7;
+		public const int NIMP_ID = 8;
+		public const int CNIMP_ID = 9;
+		public const int EQV_ID = 10;
+		public const int NEG_ID = 11;
 		/*
 		 * BooleanOperator - tokens key words.
 		 */
-		public const String NEG_STR				= "~";
-		public const String AND_STR				= "&";
-		public const String AND1_STR			= "&&";
-		public const String AND2_STR			= "/\\";
-		public const String NAND_STR			= NEG_STR + AND_STR;
-		public const String NAND1_STR			= NEG_STR + AND1_STR;
-		public const String NAND2_STR			= NEG_STR + AND2_STR;
-		public const String OR_STR				= "|";
-		public const String OR1_STR				= "||";
-		public const String OR2_STR				= "\\/";
-		public const String NOR_STR				= NEG_STR + OR_STR;
-		public const String NOR1_STR			= NEG_STR + OR1_STR;
-		public const String NOR2_STR			= NEG_STR + OR2_STR;
-		public const String XOR_STR				= "(+)";
-		public const String IMP_STR				= "-->";
-		public const String CIMP_STR			= "<--";
-		public const String NIMP_STR			= "-/>";
-		public const String CNIMP_STR			= "</-";
-		public const String EQV_STR				= "<->";
+		public const String NEG_STR = "~";
+		public const String AND_STR = "&";
+		public const String AND1_STR = "&&";
+		public const String AND2_STR = "/\\";
+		public const String NAND_STR = NEG_STR + AND_STR;
+		public const String NAND1_STR = NEG_STR + AND1_STR;
+		public const String NAND2_STR = NEG_STR + AND2_STR;
+		public const String OR_STR = "|";
+		public const String OR1_STR = "||";
+		public const String OR2_STR = "\\/";
+		public const String NOR_STR = NEG_STR + OR_STR;
+		public const String NOR1_STR = NEG_STR + OR1_STR;
+		public const String NOR2_STR = NEG_STR + OR2_STR;
+		public const String XOR_STR = "(+)";
+		public const String IMP_STR = "-->";
+		public const String CIMP_STR = "<--";
+		public const String NIMP_STR = "-/>";
+		public const String CNIMP_STR = "</-";
+		public const String EQV_STR = "<->";
 		/*
 		 * BooleanOperator - syntax.
 		 */
-		public const String NEG_SYN				= "~p";
-		public const String AND_SYN				= "p & q";
-		public const String AND1_SYN			= "p && q";
-		public const String AND2_SYN			= "p /\\ q";
-		public const String NAND_SYN			= "p " + NEG_STR + AND_STR + " q";
-		public const String NAND1_SYN			= "p " + NEG_STR + AND1_STR + " q";
-		public const String NAND2_SYN			= "p " + NEG_STR + AND2_STR + " q";
-		public const String OR_SYN				= "p | q";
-		public const String OR1_SYN				= "p || q";
-		public const String OR2_SYN				= "p \\/ q";
-		public const String NOR_SYN				= "p " + NEG_STR + OR_STR + " q";
-		public const String NOR1_SYN			= "p " + NEG_STR + OR1_STR + " q";
-		public const String NOR2_SYN			= "p " + NEG_STR + OR2_STR + " q";
-		public const String XOR_SYN				= "p (+) q";
-		public const String IMP_SYN				= "p --> q";
-		public const String CIMP_SYN			= "p <-- q";
-		public const String NIMP_SYN			= "p  -/> q";
-		public const String CNIMP_SYN			= "p </- q";
-		public const String EQV_SYN				= "p <-> q";
+		public const String NEG_SYN = "~p";
+		public const String AND_SYN = "p & q";
+		public const String AND1_SYN = "p && q";
+		public const String AND2_SYN = "p /\\ q";
+		public const String NAND_SYN = "p " + NEG_STR + AND_STR + " q";
+		public const String NAND1_SYN = "p " + NEG_STR + AND1_STR + " q";
+		public const String NAND2_SYN = "p " + NEG_STR + AND2_STR + " q";
+		public const String OR_SYN = "p | q";
+		public const String OR1_SYN = "p || q";
+		public const String OR2_SYN = "p \\/ q";
+		public const String NOR_SYN = "p " + NEG_STR + OR_STR + " q";
+		public const String NOR1_SYN = "p " + NEG_STR + OR1_STR + " q";
+		public const String NOR2_SYN = "p " + NEG_STR + OR2_STR + " q";
+		public const String XOR_SYN = "p (+) q";
+		public const String IMP_SYN = "p --> q";
+		public const String CIMP_SYN = "p <-- q";
+		public const String NIMP_SYN = "p  -/> q";
+		public const String CNIMP_SYN = "p </- q";
+		public const String EQV_SYN = "p <-> q";
 		/*
 		 * BooleanOperator - tokens description.
 		 */
-		public const String AND_DESC			= "Logical conjunction (AND)";
-		public const String OR_DESC				= "Logical disjunction (OR)";
-		public const String NEG_DESC			= "Negation";
-		public const String NAND_DESC			= "NAND - Sheffer stroke";
-		public const String NOR_DESC			= "Logical NOR";
-		public const String XOR_DESC			= "Exclusive or (XOR)";
-		public const String IMP_DESC			= "Implication (IMP)";
-		public const String CIMP_DESC			= "Converse implication (CIMP)";
-		public const String NIMP_DESC			= "Material nonimplication (NIMP)";
-		public const String CNIMP_DESC			= "Converse nonimplication (CNIMP)";
-		public const String EQV_DESC			= "Logical biconditional (EQV)";
+		public const String AND_DESC = "Logical conjunction (AND)";
+		public const String OR_DESC = "Logical disjunction (OR)";
+		public const String NEG_DESC = "Negation";
+		public const String NAND_DESC = "NAND - Sheffer stroke";
+		public const String NOR_DESC = "Logical NOR";
+		public const String XOR_DESC = "Exclusive or (XOR)";
+		public const String IMP_DESC = "Implication (IMP)";
+		public const String CIMP_DESC = "Converse implication (CIMP)";
+		public const String NIMP_DESC = "Material nonimplication (NIMP)";
+		public const String CNIMP_DESC = "Converse nonimplication (CNIMP)";
+		public const String EQV_DESC = "Logical biconditional (EQV)";
 		/*
 		 * BooleanOperator - since.
 		 */
-		public const String AND_SINCE			= mXparser.NAMEv10;
-		public const String OR_SINCE			= mXparser.NAMEv10;
-		public const String NEG_SINCE			= mXparser.NAMEv10;
-		public const String NAND_SINCE			= mXparser.NAMEv10;
-		public const String NOR_SINCE			= mXparser.NAMEv10;
-		public const String XOR_SINCE			= mXparser.NAMEv10;
-		public const String IMP_SINCE			= mXparser.NAMEv10;
-		public const String CIMP_SINCE			= mXparser.NAMEv10;
-		public const String NIMP_SINCE			= mXparser.NAMEv10;
-		public const String CNIMP_SINCE			= mXparser.NAMEv10;
-		public const String EQV_SINCE			= mXparser.NAMEv10;
+		public const String AND_SINCE = mXparser.NAMEv10;
+		public const String OR_SINCE = mXparser.NAMEv10;
+		public const String NEG_SINCE = mXparser.NAMEv10;
+		public const String NAND_SINCE = mXparser.NAMEv10;
+		public const String NOR_SINCE = mXparser.NAMEv10;
+		public const String XOR_SINCE = mXparser.NAMEv10;
+		public const String IMP_SINCE = mXparser.NAMEv10;
+		public const String CIMP_SINCE = mXparser.NAMEv10;
+		public const String NIMP_SINCE = mXparser.NAMEv10;
+		public const String CNIMP_SINCE = mXparser.NAMEv10;
+		public const String EQV_SINCE = mXparser.NAMEv10;
 	}
 }

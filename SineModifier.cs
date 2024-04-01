@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace dninosores.UnityAnimationModifiers
+namespace ollyisonit.UnityAnimationModifiers
 {
 	/// <summary>
 	/// Modifies a value based on a sine wave.

@@ -60,7 +60,8 @@
  */
 using System;
 
-namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
+namespace org.ollyisonit.mariuszgromada.math.mxparser.mathcollection
+{
 	/**
 	 * Evaluate - currently only polynomial evaluation based on provided coefficients.
 	 *
@@ -84,21 +85,24 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 	 * @version        4.2.0
 	 */
 	[CLSCompliant(false)]
-	public sealed class Evaluate {
+	public sealed class Evaluate
+	{
 		/**
 		 * Polynomial evaluation based on provided coefficients.
 		 * @param x                  Point at which polynomial will be evaluated
 		 * @param coefficients       Polynomial coefficients
 		 * @return                   Polynomial value
 		 */
-		public static double polynomial(double x, double[] coefficients) {
+		public static double polynomial(double x, double[] coefficients)
+		{
 			if (Double.IsNaN(x)) return Double.NaN;
 			if (coefficients == null) return Double.NaN;
 			if (coefficients.Length == 0) return Double.NaN;
 			if (coefficients.Length == 1) return coefficients[0];
 			double sum = coefficients[coefficients.Length - 1];
 			if (Double.IsNaN(sum)) return Double.NaN;
-			for (int i = coefficients.Length - 2; i >= 0; i--) {
+			for (int i = coefficients.Length - 2; i >= 0; i--)
+			{
 				if (Double.IsNaN(coefficients[i])) return Double.NaN;
 				sum *= x;
 				sum += coefficients[i];
@@ -112,10 +116,11 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @param n      Polynomial degree
 		 * @return Polynomial value
 		 */
-		public static double p1evl(double x, double[] coef, int n) {
+		public static double p1evl(double x, double[] coef, int n)
+		{
 			double ans;
 			ans = x + coef[0];
-			for(int i=1; i<n; i++) { ans = ans*x+coef[i]; }
+			for (int i = 1; i < n; i++) { ans = ans * x + coef[i]; }
 			return ans;
 		}
 		/**
@@ -125,10 +130,11 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 		 * @param n      Polynomial degree
 		 * @return Polynomial value
 		 */
-		public static double polevl(double x, double[] coef, int n) {
+		public static double polevl(double x, double[] coef, int n)
+		{
 			double ans;
 			ans = coef[0];
-			for(int i=1; i<=n; i++) ans = ans*x+coef[i];
+			for (int i = 1; i <= n; i++) ans = ans * x + coef[i];
 			return ans;
 		}
 	}

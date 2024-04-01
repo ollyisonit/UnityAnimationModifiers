@@ -57,7 +57,8 @@
  *                              Asked if he believes in one God, a mathematician answered:
  *                              "Yes, up to isomorphism."
  */
-namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
+namespace org.ollyisonit.mariuszgromada.math.mxparser.mathcollection
+{
 	/**
 	 * Coefficients - various coefficients supporting numerical computation.
 	 *
@@ -80,7 +81,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser.mathcollection {
 	 *
 	 * @version        4.2.0
 	 */
-	internal sealed class Coefficients {
+	internal sealed class Coefficients
+	{
 		/*
 		 * --------------------------------------
 		 * COEFFICIENTS FOR METHOD erfImp

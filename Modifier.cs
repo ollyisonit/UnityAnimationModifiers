@@ -1,9 +1,9 @@
-﻿using dninosores.UnityAccessors;
+﻿using ollyisonit.UnityAccessors;
 using System;
 using System.Collections;
 using UnityEngine;
 
-namespace dninosores.UnityAnimationModifiers
+namespace ollyisonit.UnityAnimationModifiers
 {
     /// <summary>
     /// Modifies a value of type T over time according to some method.
@@ -43,8 +43,8 @@ namespace dninosores.UnityAnimationModifiers
         /// Should be called before the first frame update.
         /// </summary>
 		public virtual void Awake()
-		{
-		}
+        {
+        }
 
 
         /// <summary>
@@ -97,6 +97,6 @@ namespace dninosores.UnityAnimationModifiers
         }
 
 
-       
+
     }
 }

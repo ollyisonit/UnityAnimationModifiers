@@ -55,7 +55,8 @@
  */
 using System;
 
-namespace org.dninosores.mariuszgromada.math.mxparser {
+namespace org.ollyisonit.mariuszgromada.math.mxparser
+{
 	/**
 	 * Class used for connecting all basic elements such as: Argument, Constant,
 	 * Function. Class not used by the end user.
@@ -88,7 +89,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 	 * @see            Expression#removeDefinitions(PrimitiveElement...)
 	 */
 	[CLSCompliant(false)]
-	public class PrimitiveElement {
+	public class PrimitiveElement
+	{
 		/**
 		 * Element type id
 		 *
@@ -106,7 +108,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @see     Constant.TYPE_ID
 		 * @see     Function.TYPE_ID
 		 */
-		public PrimitiveElement(int typeId) {
+		public PrimitiveElement(int typeId)
+		{
 			myTypeId = typeId;
 		}
 		/**
@@ -119,7 +122,8 @@ namespace org.dninosores.mariuszgromada.math.mxparser {
 		 * @see     Function.TYPE_ID
 		 *
 		 */
-		public int getMyTypeId() {
+		public int getMyTypeId()
+		{
 			return myTypeId;
 		}
 	}

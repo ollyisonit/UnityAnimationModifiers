@@ -1,10 +1,10 @@
 ﻿
 
-using dninosores.UnityEditorAttributes;
+using ollyisonit.UnityEditorAttributes;
 using System;
 using UnityEngine;
 
-namespace dninosores.UnityAnimationModifiers
+namespace ollyisonit.UnityAnimationModifiers
 {
 	/// <summary>
 	/// Animation modifier that affects a float value.
