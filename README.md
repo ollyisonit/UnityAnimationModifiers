@@ -1,6 +1,8 @@
 # Unity Animation Modifiers
 Provides components that can use equations to control any value in the Unity editor without needing to write additional scripts. It works similarly to animation modifiers in Blender or expressions in AfterEffects.
 
+https://github.com/ollyisonit/UnityAnimationModifiers/assets/56850051/90d3e5ed-06d8-4b77-a2e1-c5d7da253a5e
+
 ## Feature Overview
 
 The `Animation Modifier` component allows you add basic animation to your Unity scene without needing to write any extra scripts. Here's an example where a `Float Animation Modifier` is being used to animate the Y position of the transform it is attached to:
